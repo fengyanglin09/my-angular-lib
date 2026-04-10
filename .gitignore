@@ -1,0 +1,41 @@
+# Root Git ignore rules for this monorepo
+
+# Dependencies
+**/node_modules/
+
+# Build and test outputs
+**/dist/
+**/tmp/
+**/out-tsc/
+**/coverage/
+**/.angular/
+
+# Nx cache/work data
+**/.nx/cache/
+**/.nx/workspace-data/
+**/.nx/polygraph/
+
+# Vite/Vitest temporary timestamp artifacts
+**/vite.config.*.timestamp*
+**/vitest.config.*.timestamp*
+
+# Editor and local AI tooling state
+.idea/
+.vscode/
+**/.cursor/
+**/.codex/
+**/.claude/
+**/.gemini/
+**/.opencode/
+**/.agents/
+
+# Playwright local cache folder
+**/.playwright-mcp/
+
+# Logs and OS junk
+**/npm-debug.log*
+**/yarn-error.log*
+**/testem.log
+.DS_Store
+Thumbs.db
+
