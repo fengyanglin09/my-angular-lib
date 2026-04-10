@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "concurrently \"ng build my-lib --watch\" \"ng serve my-app\"",
+    "compodoc:json": "compodoc -p projects/my-lib/tsconfig.lib.json -e json -d projects/my-lib",
+    "storybook": "ng run my-lib:storybook",
+    "storybook:compodoc": "npm run compodoc:json && npm run storybook",
+    "build:lib": "ng build my-lib --configuration production",
+    "test:lib": "ng test my-lib"
   },
   "prettier": {
     "overrides": [
@@ -33,6 +39,14 @@
     "@angular/build": "^21.2.7",
     "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.8",
+    "@angular/platform-browser-dynamic": "^21.2.8",
+    "@angular-devkit/architect": "^0.2102.7",
+    "@compodoc/compodoc": "^1.2.1",
+    "@storybook/angular": "^10.3.5",
+    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/addon-docs": "^10.3.5",
+    "@storybook/addon-onboarding": "^10.3.5",
+    "storybook": "^10.3.5",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",

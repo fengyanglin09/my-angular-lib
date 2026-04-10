@@ -26,7 +26,7 @@ my-workspace/
 ## Add Storybook
 ```shell
 # Add Storybook to the workspace targeting the library
-ng add @storybook/angular
+npm create storybook@latest
 # When prompted, select my-lib as the project  
 ```
 - or manually:
