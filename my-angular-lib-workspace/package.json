@@ -12,7 +12,9 @@
     "storybook": "ng run my-lib:storybook",
     "storybook:compodoc": "npm run compodoc:json && npm run storybook",
     "build:lib": "ng build my-lib --configuration production",
-    "test:lib": "ng test my-lib"
+    "test:lib": "ng test my-lib",
+    "build:app": "ng build my-app --configuration production",
+    "build:lib:app": "npm run build:lib && npm run build:app"
   },
   "prettier": {
     "overrides": [
