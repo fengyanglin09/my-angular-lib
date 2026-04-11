@@ -21,7 +21,6 @@
 
 # Editor and local AI tooling state
 .idea/
-.vscode/
 **/.cursor/
 **/.codex/
 **/.claude/
@@ -38,6 +37,5 @@
 **/testem.log
 .DS_Store
 Thumbs.db
-
 /.husky/
 /.vscode/
