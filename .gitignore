@@ -39,3 +39,5 @@
 .DS_Store
 Thumbs.db
 
+/.husky/
+/.vscode/
