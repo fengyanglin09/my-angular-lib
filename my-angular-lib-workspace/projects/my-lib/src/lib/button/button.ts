@@ -11,6 +11,7 @@ export class Button {
 
   @Input() label = 'Click me';
   @Input() disabled = false;
+  @Input() variant: 'primary' | 'secondary' = 'primary';
 
   onClick() {
     this.disabled = !this.disabled;

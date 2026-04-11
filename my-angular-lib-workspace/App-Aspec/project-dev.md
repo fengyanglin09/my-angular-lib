@@ -17,4 +17,7 @@ npm install -D concurrently
 }
 ```
 
-
+- create a new component in lib
+```shell
+ng generate component button --project=my-lib
+```

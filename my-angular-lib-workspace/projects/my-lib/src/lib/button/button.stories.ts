@@ -19,7 +19,17 @@ const meta: Meta<Button> = {
     // put default @Input values here, for example:
     // label: 'Click me'
     label: 'Click me',
+    variant: 'primary',
     disabled: false,
+  },
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: ['primary', 'secondary'], // add all your variants here
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    }
   },
 };
 
@@ -30,15 +40,30 @@ type Story = StoryObj<Button>;
 export const Default: Story = {};
 
 
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled button',
-    disabled: true,
-  },
-};
+// export const Disabled: Story = {
+//   args: {
+//     label: 'Disabled button',
+//     disabled: true,
+//   },
+// };
 
 export const Save: Story = {
   args: {
     label: 'Save',
+  },
+};
+
+
+export const Secondary: Story = {
+  args: {
+    variant: 'secondary'
+  },
+
+};
+
+export const Disabled: Story = {
+  args: {
+    variant: 'primary',
+    disabled: true
   },
 };
