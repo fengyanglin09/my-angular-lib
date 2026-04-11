@@ -28,7 +28,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    label: 'Disabled button',\n    disabled: true,\n  },\n}"
+                "defaultValue": "{\n  args: {\n    variant: 'primary',\n    disabled: true\n  },\n}"
             },
             {
                 "name": "Large",
@@ -118,7 +118,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<Button>",
-                "defaultValue": "{\n  title: 'My Lib/Button',\n  component: Button,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        // any standalone dependencies used by the template\n      ],\n      providers: [\n        // optional providers\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  args: {\n    // put default @Input values here, for example:\n    // label: 'Click me'\n    label: 'Click me',\n    disabled: false,\n  },\n}"
+                "defaultValue": "{\n  title: 'My Lib/Button',\n  component: Button,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        // any standalone dependencies used by the template\n      ],\n      providers: [\n        // optional providers\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  args: {\n    // put default @Input values here, for example:\n    // label: 'Click me'\n    label: 'Click me',\n    variant: 'primary',\n    disabled: false,\n  },\n  argTypes: {\n    variant: {\n      control: { type: 'select' },\n      options: ['primary', 'secondary'], // add all your variants here\n    },\n    disabled: {\n      control: { type: 'boolean' },\n    }\n  },\n}"
             },
             {
                 "name": "preview",
@@ -159,6 +159,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {\n    label: \"Button22\",\n    backgroundColor: \"#a1bfb6\"\n  },\n}"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/my-lib/src/lib/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    variant: 'secondary'\n  },\n\n}"
             },
             {
                 "name": "Small",
@@ -249,7 +259,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    label: 'Disabled button',\n    disabled: true,\n  },\n}"
+                    "defaultValue": "{\n  args: {\n    variant: 'primary',\n    disabled: true\n  },\n}"
                 },
                 {
                     "name": "meta",
@@ -259,7 +269,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<Button>",
-                    "defaultValue": "{\n  title: 'My Lib/Button',\n  component: Button,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        // any standalone dependencies used by the template\n      ],\n      providers: [\n        // optional providers\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  args: {\n    // put default @Input values here, for example:\n    // label: 'Click me'\n    label: 'Click me',\n    disabled: false,\n  },\n}"
+                    "defaultValue": "{\n  title: 'My Lib/Button',\n  component: Button,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        // any standalone dependencies used by the template\n      ],\n      providers: [\n        // optional providers\n      ],\n    }),\n  ],\n  tags: ['autodocs'],\n  args: {\n    // put default @Input values here, for example:\n    // label: 'Click me'\n    label: 'Click me',\n    variant: 'primary',\n    disabled: false,\n  },\n  argTypes: {\n    variant: {\n      control: { type: 'select' },\n      options: ['primary', 'secondary'], // add all your variants here\n    },\n    disabled: {\n      control: { type: 'boolean' },\n    }\n  },\n}"
                 },
                 {
                     "name": "Save",
@@ -270,6 +280,16 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {\n    label: 'Save',\n  },\n}"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/my-lib/src/lib/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    variant: 'secondary'\n  },\n\n}"
                 }
             ],
             "projects/my-lib/src/stories/button.stories.ts": [
@@ -523,6 +543,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Save",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/my-lib/src/lib/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

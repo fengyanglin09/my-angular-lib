@@ -8,13 +8,13 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "concurrently \"ng build my-lib --watch\" \"ng serve my-app\"",
-    "compodoc:json": "compodoc -p projects/my-lib/tsconfig.lib.json -e json -d projects/my-lib",
-    "storybook": "ng run my-lib:storybook",
-    "storybook:compodoc": "npm run compodoc:json && npm run storybook",
+    "storybook:build": "ng run my-lib:build-storybook",
+    "storybook:run": "ng run my-lib:storybook",
+    "storybook:serve": "npm run storybook:build && npm run storybook:run",
     "build:lib": "ng build my-lib --configuration production",
     "test:lib": "ng test my-lib",
     "build:app": "ng build my-app --configuration production",
-    "build:lib:app": "npm run build:lib && npm run build:app"
+    "build:all": "npm run build:lib && npm run build:app"
   },
   "prettier": {
     "overrides": [

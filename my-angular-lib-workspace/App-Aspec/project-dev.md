@@ -21,3 +21,18 @@ npm install -D concurrently
 ```shell
 ng generate component button --project=my-lib
 ```
+
+- build storybook
+```shell
+npm run storybook:build
+```
+
+- run the dev server and storybook in parallel
+```shell
+npm run storybook:serve
+```
+
+- build all projects in the workspace
+```shell
+npm build:all
+```
