@@ -39,4 +39,5 @@ npx changeset init
 ```shell
 npx changeset
 npx changeset version
+npm install    ## this will update the version in package.json and install the new version in node_modules
 ```
