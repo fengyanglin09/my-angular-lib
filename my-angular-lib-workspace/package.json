@@ -14,7 +14,10 @@
     "build:lib": "ng build my-lib --configuration production",
     "test:lib": "ng test my-lib",
     "build:app": "ng build my-app --configuration production",
-    "build:all": "npm run build:lib && npm run build:app"
+    "build:all": "npm run build:lib && npm run build:app",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "npm run build:lib && changeset publish"
   },
   "prettier": {
     "overrides": [
@@ -44,6 +47,8 @@
     "@angular/cli": "^21.2.7",
     "@angular/compiler-cli": "^21.2.8",
     "@angular/platform-browser-dynamic": "^21.2.8",
+    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/cli": "^2.30.0",
     "@compodoc/compodoc": "^1.2.1",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",

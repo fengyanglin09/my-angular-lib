@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class Button {
 
-  @Input() label = 'Click me';
+  @Input() label = 'Click me!';
   @Input() disabled = false;
   @Input() variant: 'primary' | 'secondary' = 'primary';
 

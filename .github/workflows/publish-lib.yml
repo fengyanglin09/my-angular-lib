@@ -1,10 +1,11 @@
-name: Publish library
+name: Release library
 
 on:
   push:
     branches: [main]
     paths:
       - 'my-angular-lib-workspace/projects/my-lib/**'
+      - 'my-angular-lib-workspace/.changeset/**'
       - 'my-angular-lib-workspace/package.json'
       - 'my-angular-lib-workspace/package-lock.json'
       - 'my-angular-lib-workspace/angular.json'
@@ -12,11 +13,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
       id-token: write
 
     defaults:
@@ -26,6 +28,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -41,6 +45,12 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
-      - name: Publish package to npm
-        run: npm publish --access public
-        working-directory: my-angular-lib-workspace/dist/my-lib
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: npm run version-packages
+          publish: npm run release
+          commit: "chore: version packages"
+          title: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
