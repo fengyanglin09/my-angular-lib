@@ -52,13 +52,17 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
-      - name: Create release PR or publish
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          version: cd my-angular-lib-workspace && npm run version-packages
-          publish: cd my-angular-lib-workspace && npm run release
-          commit: "chore: version packages"
-          title: "chore: version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package to npm
+        run: npm publish --provenance --access public
+        working-directory: my-angular-lib-workspace/dist/my-lib
+
+#      - name: Create release PR or publish
+#        uses: changesets/action@v1
+#        with:
+#          cwd: my-angular-lib-workspace
+#          version: npm run version-packages
+#          publish: npm run release
+#          commit: "chore: version packages"
+#          title: "chore: version packages"
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
