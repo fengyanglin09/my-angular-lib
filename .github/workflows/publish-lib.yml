@@ -31,6 +31,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug workspace contents
+        run: |
+          pwd
+          ls -la
+          ls -la .changeset || true
+          ls -la ../my-angular-lib-workspace/.changeset || true
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
