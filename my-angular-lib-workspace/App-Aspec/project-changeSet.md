@@ -35,7 +35,8 @@ npx changeset init
 }
 ```
 
-- add a changeset:
+- add a changeset and version the packages:
 ```shell
 npx changeset
+npx changeset version
 ```

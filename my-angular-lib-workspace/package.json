@@ -1,6 +1,7 @@
 {
   "name": "my-angular-lib-workspace",
   "version": "0.0.0",
+  "workspaces": ["projects/my-lib"],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
