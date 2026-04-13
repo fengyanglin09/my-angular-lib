@@ -49,10 +49,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build Angular app
-        run: ng build my-app --configuration production --base-href /my-angular-lib/
+        run: npm run build:app:pages
 
       - name: Build Storybook
-        run: ng run my-lib:build-storybook
+        run: npm run build:storybook
 
       - name: Combine app and Storybook
         run: |
