@@ -11,7 +11,7 @@
     "dev": "concurrently \"ng build my-lib --watch\" \"ng serve my-app\"",
     "build:storybook": "ng run my-lib:build-storybook",
     "run:storybook": "ng run my-lib:storybook",
-    "serve:storybook": "npm run storybook:build && npm run storybook:run",
+    "serve:storybook": "npm run build:storybook && npm run run:storybook",
     "build:lib": "ng build my-lib --configuration production",
     "test:lib": "ng test my-lib",
     "build:app": "ng build my-app --configuration production",
