@@ -1,0 +1,36 @@
+<main class="lesson-shell">
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 1</p>
+    <h1>Counter Store</h1>
+    <p>
+      This first lesson follows the smallest useful NgRx loop: dispatch an action,
+      update state in a reducer, and read the result with a selector.
+    </p>
+  </section>
+
+  <section class="counter-panel" aria-labelledby="counter-title">
+    <div>
+      <p class="eyebrow">Live Store Value</p>
+      <h2 id="counter-title">{{ countLabel() }}</h2>
+    </div>
+
+    <output class="count-display" aria-live="polite">{{ count() }}</output>
+
+    <div class="actions" aria-label="Counter controls">
+      <button type="button" (click)="decrement()">-</button>
+      <button type="button" class="primary" (click)="increment()">+</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What Just Happened?</h2>
+    <ol>
+      <li>The button calls a component method.</li>
+      <li>The method dispatches an NgRx action.</li>
+      <li>The reducer receives the action and returns new state.</li>
+      <li>The selector reads the count from the store.</li>
+      <li>The template updates from the selected signal.</li>
+    </ol>
+  </section>
+</main>

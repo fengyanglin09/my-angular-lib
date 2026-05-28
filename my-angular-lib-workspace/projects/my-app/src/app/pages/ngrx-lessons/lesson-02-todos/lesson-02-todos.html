@@ -1,0 +1,73 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <span>Lesson 2</span>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 2</p>
+    <h1>Todos With Payloads</h1>
+    <p>
+      This lesson adds data to actions. The title and id values travel from the
+      component into the reducer through an action payload.
+    </p>
+  </section>
+
+  <section class="todo-panel" aria-labelledby="todo-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Store Collection</p>
+        <h2 id="todo-title">Todo List</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <form class="todo-form" (ngSubmit)="addTodo()">
+      <label for="new-todo">New todo</label>
+      <div>
+        <input
+          id="new-todo"
+          name="newTodoTitle"
+          type="text"
+          [(ngModel)]="newTodoTitle"
+          placeholder="Try: Learn selectors"
+          autocomplete="off"
+        />
+        <button type="submit" class="primary">Add</button>
+      </div>
+    </form>
+
+    <ul class="todo-list" aria-label="Todos">
+      @for (todo of todos(); track todo.id) {
+        <li [class.completed]="todo.completed">
+          <label>
+            <input
+              type="checkbox"
+              [checked]="todo.completed"
+              (change)="toggleTodo(todo.id)"
+            />
+            <span>{{ todo.title }}</span>
+          </label>
+          <button type="button" class="ghost" (click)="deleteTodo(todo.id)">Delete</button>
+        </li>
+      } @empty {
+        <li class="empty">No todos yet.</li>
+      }
+    </ul>
+
+    <button type="button" class="secondary" (click)="clearCompleted()">
+      Clear completed
+    </button>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The form dispatches <code>addTodo(&#123; title &#125;)</code>.</li>
+      <li>The title is the action payload.</li>
+      <li>The reducer receives the payload as <code>&#123; title &#125;</code>.</li>
+      <li>The reducer returns a new todos array with the new item added.</li>
+      <li>Selectors recalculate the list summary for the template.</li>
+    </ol>
+  </section>
+</main>
