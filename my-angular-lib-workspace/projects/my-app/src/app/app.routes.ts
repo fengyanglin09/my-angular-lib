@@ -27,4 +27,11 @@ export const routes: Routes = [
         (m) => m.Lesson03EffectsProducts,
       ),
   },
+  {
+    path: 'ngrx-lessons/lesson-04-entity-books',
+    loadComponent: () =>
+      import('./pages/ngrx-lessons/lesson-04-entity-books/lesson-04-entity-books').then(
+        (m) => m.Lesson04EntityBooks,
+      ),
+  },
 ];

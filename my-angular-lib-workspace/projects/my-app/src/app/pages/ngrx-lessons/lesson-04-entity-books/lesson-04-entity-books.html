@@ -1,0 +1,142 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-02-todos']">Lesson 2</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-03-effects-products']">Lesson 3</a>
+    <span>Lesson 4</span>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 4</p>
+    <h1>Entity For Collections</h1>
+    <p>
+      This lesson combines NgRx Entity, Effects, and pagination. The effect loads
+      one page from a larger remote collection, and Entity stores the current page
+      in a normalized ids-and-entities shape.
+    </p>
+  </section>
+
+  <section class="books-panel" aria-labelledby="books-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Normalized State</p>
+        <h2 id="books-title">Book Shelf</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" [disabled]="loading()" (click)="loadBooks()">
+        Reload page
+      </button>
+      <button type="button" [disabled]="loading()" (click)="simulateFailure()">
+        Simulate failure
+      </button>
+      <button type="button" class="save" [disabled]="saving() || loading()" (click)="saveBooks()">
+        Save shelf
+      </button>
+      <button type="button" [disabled]="saving() || loading()" (click)="simulateSaveFailure()">
+        Simulate save failure
+      </button>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Loading books...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    @if (saving()) {
+      <p class="status">Saving current books...</p>
+    }
+
+    @if (lastSavedAt()) {
+      <p class="status">Last saved at {{ lastSavedAt() }}</p>
+    }
+
+    @if (saveError()) {
+      <p class="error" role="alert">{{ saveError() }}</p>
+    }
+
+    <div class="pagination" aria-label="Book pagination">
+      <button type="button" [disabled]="loading() || page() === 1" (click)="previousPage()">
+        Previous
+      </button>
+      <span>Page {{ page() }} of {{ totalPages() }} · {{ pageRange() }}</span>
+      <button type="button" [disabled]="loading() || page() === totalPages()" (click)="nextPage()">
+        Next
+      </button>
+    </div>
+
+    <form class="book-form" (ngSubmit)="addBook()">
+      <label>
+        Title
+        <input
+          name="newBookTitle"
+          type="text"
+          [(ngModel)]="newBookTitle"
+          placeholder="Angular Patterns"
+          autocomplete="off"
+        />
+      </label>
+      <label>
+        Author
+        <input
+          name="newBookAuthor"
+          type="text"
+          [(ngModel)]="newBookAuthor"
+          placeholder="Taylor Type"
+          autocomplete="off"
+        />
+      </label>
+      <button type="submit" class="primary">Add book</button>
+    </form>
+
+    <div class="workspace">
+      <ul class="book-list" aria-label="Books">
+        @for (book of books(); track book.id) {
+          <li [class.selected]="selectedBook()?.id === book.id">
+            <button type="button" class="book-select" (click)="selectBook(book.id)">
+              <span>{{ book.title }}</span>
+              <small>{{ book.author }}</small>
+            </button>
+            <div class="row-actions">
+              <button type="button" (click)="toggleFavorite(book.id)">
+                {{ book.favorite ? 'Favorite' : 'Mark favorite' }}
+              </button>
+              <button type="button" class="danger" (click)="removeBook(book.id)">Remove</button>
+            </div>
+          </li>
+        } @empty {
+          <li class="empty">No books yet.</li>
+        }
+      </ul>
+
+      <aside class="selected-panel" aria-labelledby="selected-title">
+        <p class="eyebrow">Selected Entity</p>
+        @if (selectedBook(); as book) {
+          <h2 id="selected-title">{{ book.title }}</h2>
+          <p>{{ book.author }}</p>
+          <strong>Entity id: {{ book.id }}</strong>
+        } @else {
+          <h2 id="selected-title">Nothing selected</h2>
+          <p>Select a book to read it by id from the entity dictionary.</p>
+        }
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The component dispatches <code>loadBooks</code> with page and page size.</li>
+      <li>The effect calls the paginated API and dispatches success or failure.</li>
+      <li><code>setAll</code> replaces Entity state with the current page.</li>
+      <li><code>addOne</code>, <code>updateOne</code>, and <code>removeOne</code> still handle local changes.</li>
+      <li>The save effect reads the current page collection with a selector.</li>
+      <li>The API returns page metadata: page, page size, and total records.</li>
+    </ol>
+  </section>
+</main>
