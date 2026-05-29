@@ -13,6 +13,29 @@
   padding: 48px 20px;
 }
 
+.lesson-nav {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lesson-nav a,
+.lesson-nav span {
+  border: 1px solid #bac6be;
+  border-radius: 8px;
+  color: #17382c;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.lesson-nav span {
+  background: #17382c;
+  color: #ffffff;
+}
+
 .lesson-intro {
   display: grid;
   gap: 12px;

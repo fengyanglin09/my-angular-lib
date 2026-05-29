@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { CounterActions } from '../../../state/counter/counter.actions';
@@ -6,6 +7,7 @@ import { selectCount, selectCountLabel } from '../../../state/counter/counter.se
 
 @Component({
   selector: 'app-lesson-01-counter',
+  imports: [RouterLink],
   templateUrl: './lesson-01-counter.html',
   styleUrl: './lesson-01-counter.css',
 })

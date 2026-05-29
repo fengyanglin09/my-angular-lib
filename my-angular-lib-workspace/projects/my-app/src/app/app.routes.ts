@@ -20,4 +20,11 @@ export const routes: Routes = [
         (m) => m.Lesson02Todos,
       ),
   },
+  {
+    path: 'ngrx-lessons/lesson-03-effects-products',
+    loadComponent: () =>
+      import('./pages/ngrx-lessons/lesson-03-effects-products/lesson-03-effects-products').then(
+        (m) => m.Lesson03EffectsProducts,
+      ),
+  },
 ];

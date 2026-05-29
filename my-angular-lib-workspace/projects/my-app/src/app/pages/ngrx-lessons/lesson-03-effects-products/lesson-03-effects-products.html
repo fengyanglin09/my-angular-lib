@@ -1,0 +1,68 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-02-todos']">Lesson 2</a>
+    <span>Lesson 3</span>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 3</p>
+    <h1>Effects For Async Work</h1>
+    <p>
+      This lesson moves loading products out of the component and into an NgRx
+      effect. The component only dispatches an intent: load products.
+    </p>
+  </section>
+
+  <section class="products-panel" aria-labelledby="products-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Async Store Flow</p>
+        <h2 id="products-title">Products</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="primary" [disabled]="loading()" (click)="loadProducts()">
+        Load products
+      </button>
+      <button type="button" [disabled]="loading()" (click)="simulateFailure()">
+        Simulate failure
+      </button>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Loading products...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <ul class="product-list" aria-label="Products">
+      @for (product of products(); track product.id) {
+        <li>
+          <div>
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.category }}</p>
+          </div>
+          <strong>{{ product.price | currency }}</strong>
+        </li>
+      } @empty {
+        <li class="empty">No products loaded yet.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The component dispatches <code>loadProducts</code>.</li>
+      <li>The effect listens for that action with <code>ofType</code>.</li>
+      <li>The effect calls the API service.</li>
+      <li>The effect dispatches success or failure.</li>
+      <li>The reducer stores products, loading, and error state.</li>
+    </ol>
+  </section>
+</main>
