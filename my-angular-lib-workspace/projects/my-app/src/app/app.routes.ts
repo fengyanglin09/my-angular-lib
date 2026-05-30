@@ -53,4 +53,11 @@ export const routes: Routes = [
         (m) => m.Lesson06RouteParamStore,
       ),
   },
+  {
+    path: 'ngrx-lessons/lesson-07-rxmethod-search',
+    loadComponent: () =>
+      import('./pages/ngrx-lessons/lesson-07-rxmethod-search/lesson-07-rxmethod-search').then(
+        (m) => m.Lesson07RxMethodSearch,
+      ),
+  },
 ];

@@ -1,0 +1,79 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-02-todos']">Lesson 2</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-03-effects-products']">Lesson 3</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-04-entity-books']">Lesson 4</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-05-signal-store']">Lesson 5</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store']">Lesson 6</a>
+    <span>Lesson 7</span>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 7</p>
+    <h1>rxMethod For Backend Search</h1>
+    <p>
+      This lesson uses Signal Store with <code>rxMethod</code> for a realistic
+      backend search flow: debounce typing, cancel stale requests, show loading,
+      and handle errors.
+    </p>
+  </section>
+
+  <section class="search-panel" aria-labelledby="search-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Reactive Backend Method</p>
+        <h2 id="search-title">Lesson Search</h2>
+      </div>
+      <p class="summary">{{ searchStore.resultSummary() }}</p>
+    </div>
+
+    <div class="search-box">
+      <input
+        type="search"
+        [ngModel]="searchStore.query()"
+        (ngModelChange)="searchStore.search($event)"
+        name="lessonSearch"
+        placeholder="Try: ngrx, angular, rxjs, error"
+        autocomplete="off"
+      />
+      <button type="button" (click)="searchStore.clear()">Clear</button>
+    </div>
+
+    @if (searchStore.loading()) {
+      <p class="status">Searching backend...</p>
+    }
+
+    @if (searchStore.error()) {
+      <p class="error" role="alert">{{ searchStore.error() }}</p>
+    }
+
+    <ul class="result-list" aria-label="Search results">
+      @for (result of searchStore.results(); track result.id) {
+        <li>
+          <div>
+            <h3>{{ result.title }}</h3>
+            <p>{{ result.category }} · {{ result.minutes }} min</p>
+          </div>
+        </li>
+      } @empty {
+        @if (searchStore.hasQuery() && !searchStore.loading() && !searchStore.error()) {
+          <li class="empty">No matching lessons found.</li>
+        } @else {
+          <li class="empty">Search results will appear here.</li>
+        }
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li><code>rxMethod</code> exposes a store method powered by an RxJS pipeline.</li>
+      <li><code>debounceTime</code> waits for typing to pause before calling the backend.</li>
+      <li><code>distinctUntilChanged</code> ignores repeated identical queries.</li>
+      <li><code>switchMap</code> cancels stale backend requests when a newer query arrives.</li>
+      <li>The store patches loading, results, and error state for the template.</li>
+    </ol>
+  </section>
+</main>
