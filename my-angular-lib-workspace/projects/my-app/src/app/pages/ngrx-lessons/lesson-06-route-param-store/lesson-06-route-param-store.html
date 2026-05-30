@@ -1,0 +1,101 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-02-todos']">Lesson 2</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-03-effects-products']">Lesson 3</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-04-entity-books']">Lesson 4</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-05-signal-store']">Lesson 5</a>
+    <span>Lesson 6</span>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 6</p>
+    <h1>Route Params Into A Store</h1>
+    <p>
+      This lesson shows the route-param pattern: the component reads the URL,
+      then passes the id into a feature-scoped Signal Store that loads and saves
+      backend data.
+    </p>
+  </section>
+
+  <section class="project-panel" aria-labelledby="project-title">
+    <div class="project-switcher" aria-label="Project links">
+      <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store/project-101']">Project 101</a>
+      <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store/project-202']">Project 202</a>
+      <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store/project-303']">Project 303</a>
+      <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store/missing-project']">Missing project</a>
+    </div>
+
+    @if (projectStore.loading()) {
+      <p class="status">Loading project from backend...</p>
+    }
+
+    @if (projectStore.error()) {
+      <p class="error" role="alert">{{ projectStore.error() }}</p>
+    }
+
+    @if (projectStore.project(); as project) {
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Backend Project</p>
+          <h2 id="project-title">{{ project.name }}</h2>
+        </div>
+        <p class="summary">{{ projectStore.taskSummary() }}</p>
+      </div>
+
+      <div class="metadata">
+        <span>Id: {{ project.id }}</span>
+        <span>Owner: {{ project.owner }}</span>
+        <span>Status: {{ project.status }}</span>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="primary" [disabled]="projectStore.saving()" (click)="projectStore.cycleStatus()">
+          Cycle status
+        </button>
+        @if (projectStore.saving()) {
+          <span>Saving changes...</span>
+        }
+        @if (projectStore.lastSavedAt()) {
+          <span>Last saved at {{ projectStore.lastSavedAt() }}</span>
+        }
+      </div>
+
+      <label class="notes">
+        Project notes
+        <textarea
+          [ngModel]="project.notes"
+          (ngModelChange)="projectStore.updateNotes($event)"
+          rows="4"
+        ></textarea>
+      </label>
+
+      <ul class="task-list" aria-label="Project tasks">
+        @for (task of project.tasks; track task.id) {
+          <li [class.done]="task.done">
+            <label>
+              <input
+                type="checkbox"
+                [checked]="task.done"
+                [disabled]="projectStore.saving()"
+                (change)="projectStore.toggleTask(task.id)"
+              />
+              <span>{{ task.title }}</span>
+            </label>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The component uses <code>ActivatedRoute</code> in <code>ngOnInit</code>.</li>
+      <li>The route id is passed into <code>projectStore.loadProject(projectId)</code>.</li>
+      <li>The Signal Store owns backend loading, saving, loading state, and errors.</li>
+      <li>Changing links reuses the component while loading a different project id.</li>
+      <li>This is useful when store initialization depends on URL params.</li>
+    </ol>
+  </section>
+</main>

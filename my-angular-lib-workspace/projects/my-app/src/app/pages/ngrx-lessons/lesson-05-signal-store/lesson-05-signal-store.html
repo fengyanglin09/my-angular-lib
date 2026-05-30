@@ -1,0 +1,140 @@
+<main class="lesson-shell">
+  <nav class="lesson-nav" aria-label="NgRx lessons">
+    <a [routerLink]="['/ngrx-lessons/lesson-01-counter']">Lesson 1</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-02-todos']">Lesson 2</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-03-effects-products']">Lesson 3</a>
+    <a [routerLink]="['/ngrx-lessons/lesson-04-entity-books']">Lesson 4</a>
+    <span>Lesson 5</span>
+    <a [routerLink]="['/ngrx-lessons/lesson-06-route-param-store']">Lesson 6</a>
+  </nav>
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 5</p>
+    <h1>Signal Store For Local State</h1>
+    <p>
+      This lesson keeps backend-loaded page state inside a feature-scoped Signal
+      Store. Methods load from a simulated API, patch local state, and persist
+      changes after add, remove, reset, and status updates.
+    </p>
+  </section>
+
+  <section class="queue-panel" aria-labelledby="queue-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Feature-Scoped Store</p>
+        <h2 id="queue-title">Reading Queue</h2>
+      </div>
+      <p class="summary">{{ queueStore.summary() }}</p>
+    </div>
+
+    <div class="sync-actions" aria-label="Backend sync actions">
+      <button type="button" class="primary" [disabled]="queueStore.loading() || queueStore.saving()" (click)="queueStore.reloadFromBackend()">
+        Reload from backend
+      </button>
+      <button type="button" [disabled]="queueStore.loading() || queueStore.saving()" (click)="queueStore.reset()">
+        Reset backend data
+      </button>
+    </div>
+
+    @if (queueStore.loading()) {
+      <p class="status">Loading queue from backend...</p>
+    }
+
+    @if (queueStore.saving()) {
+      <p class="status">Persisting queue changes...</p>
+    }
+
+    @if (queueStore.lastSavedAt()) {
+      <p class="status">Last persisted at {{ queueStore.lastSavedAt() }}</p>
+    }
+
+    @if (queueStore.loadError()) {
+      <p class="error" role="alert">{{ queueStore.loadError() }}</p>
+    }
+
+    @if (queueStore.saveError()) {
+      <p class="error" role="alert">{{ queueStore.saveError() }}</p>
+    }
+
+    <form class="queue-form" (ngSubmit)="addItem()">
+      <label>
+        Topic
+        <input
+          name="newItemTitle"
+          type="text"
+          [(ngModel)]="newItemTitle"
+          placeholder="Signal Store notes"
+          autocomplete="off"
+        />
+      </label>
+      <label>
+        Minutes
+        <input
+          name="newItemMinutes"
+          type="number"
+          min="1"
+          [(ngModel)]="newItemMinutes"
+        />
+      </label>
+      <button type="submit" class="primary" [disabled]="queueStore.loading() || queueStore.saving()">Add item</button>
+    </form>
+
+    <div class="filters" aria-label="Queue filters">
+      <input
+        type="search"
+        [ngModel]="queueStore.search()"
+        (ngModelChange)="queueStore.setSearch($event)"
+        name="queueSearch"
+        placeholder="Search queue"
+        autocomplete="off"
+      />
+      <button type="button" [class.active]="queueStore.filter() === 'all'" (click)="queueStore.setFilter('all')">
+        All
+      </button>
+      <button type="button" [class.active]="queueStore.filter() === 'queued'" (click)="queueStore.setFilter('queued')">
+        Queued
+      </button>
+      <button type="button" [class.active]="queueStore.filter() === 'reading'" (click)="queueStore.setFilter('reading')">
+        Reading
+      </button>
+      <button type="button" [class.active]="queueStore.filter() === 'done'" (click)="queueStore.setFilter('done')">
+        Done
+      </button>
+    </div>
+
+    <div class="stats" aria-label="Queue statistics">
+      <span>{{ queueStore.queuedCount() }} queued</span>
+      <span>{{ queueStore.readingCount() }} reading</span>
+      <span>{{ queueStore.doneCount() }} done</span>
+    </div>
+
+    <ul class="queue-list" aria-label="Reading queue">
+      @for (item of queueStore.filteredItems(); track item.id) {
+        <li>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.minutes }} min · {{ item.status }}</p>
+          </div>
+          <div class="row-actions">
+            <button type="button" [disabled]="queueStore.saving()" (click)="queueStore.toggleStatus(item.id)">Next status</button>
+            <button type="button" class="danger" [disabled]="queueStore.saving()" (click)="queueStore.removeItem(item.id)">Remove</button>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">No queue items match the current filters.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li><code>signalStore</code> creates an injectable store class for this page.</li>
+      <li><code>withHooks</code> loads queue data from the backend when the store initializes.</li>
+      <li><code>withState</code> tracks items, loading, saving, errors, and last saved time.</li>
+      <li><code>withComputed</code> derives filtered lists, counts, and summary text.</li>
+      <li><code>withMethods</code> patches state and saves modified lists back to the API.</li>
+      <li>The component provides the store, so this backend state is scoped to this page instance.</li>
+    </ol>
+  </section>
+</main>
