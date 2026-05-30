@@ -1,0 +1,33 @@
+<main class="dashboard-shell">
+  <section class="dashboard-intro">
+    <p class="eyebrow">Angular Learning Lab</p>
+    <h1>Choose A Learning Track</h1>
+    <p>
+      Pick a category to start a focused sequence of lessons. Each track can grow
+      without crowding the route table or individual lesson pages.
+    </p>
+  </section>
+
+  <section class="track-grid" aria-label="Learning categories">
+    <a class="track-card primary" [routerLink]="['/ngrx-lessons/lesson-01-counter']">
+      <span>State Management</span>
+      <h2>NgRx</h2>
+      <p>Store, actions, reducers, selectors, effects, Entity, Signal Store, and rxMethod.</p>
+      <strong>Start Lesson 1</strong>
+    </a>
+
+    <article class="track-card">
+      <span>Coming Next</span>
+      <h2>RxJS</h2>
+      <p>Streams, operators, cancellation, composition, and async UI patterns.</p>
+      <strong>Planned</strong>
+    </article>
+
+    <article class="track-card">
+      <span>Coming Next</span>
+      <h2>Angular Forms</h2>
+      <p>Template forms, reactive forms, validation, custom controls, and form state.</p>
+      <strong>Planned</strong>
+    </article>
+  </section>
+</main>

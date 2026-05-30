@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { ProductsActions } from '../../../state/products/products.actions';
 import {
   selectError,
@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-lesson-03-effects-products',
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, LearningNav],
   templateUrl: './lesson-03-effects-products.html',
   styleUrl: './lesson-03-effects-products.css',
 })

@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { distinctUntilChanged, map } from 'rxjs';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { ProjectDetailStore } from './project-detail.store';
 
 @Component({
   selector: 'app-lesson-06-route-param-store',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, LearningNav, RouterLink],
   providers: [ProjectDetailStore],
   templateUrl: './lesson-06-route-param-store.html',
   styleUrl: './lesson-06-route-param-store.css',

@@ -1,0 +1,10 @@
+<nav class="learning-nav" aria-label="Learning navigation">
+  <a [routerLink]="['/']">Dashboard</a>
+  @for (lesson of lessons; track lesson.label; let index = $index) {
+    @if (activeLesson === index + 1) {
+      <span>{{ lesson.label }}</span>
+    } @else {
+      <a [routerLink]="[lesson.path]">{{ lesson.label }}</a>
+    }
+  }
+</nav>

@@ -1,0 +1,26 @@
+.learning-nav {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.learning-nav a,
+.learning-nav span {
+  border: 1px solid #bcc8c2;
+  border-radius: 8px;
+  color: #27483d;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+.learning-nav a:hover {
+  border-color: #27483d;
+}
+
+.learning-nav span {
+  background: #27483d;
+  color: #ffffff;
+}

@@ -3,8 +3,10 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'ngrx-lessons/lesson-01-counter',
+    loadComponent: () =>
+      import('./pages/home/home').then(
+        (m) => m.Home,
+      ),
   },
   {
     path: 'ngrx-lessons/lesson-01-counter',

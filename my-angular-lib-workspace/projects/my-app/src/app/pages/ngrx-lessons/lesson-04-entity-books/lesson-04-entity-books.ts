@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { BooksActions } from '../../../state/books/books.actions';
 import {
   selectAllBooks,
@@ -21,7 +21,7 @@ import {
 
 @Component({
   selector: 'app-lesson-04-entity-books',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, LearningNav],
   templateUrl: './lesson-04-entity-books.html',
   styleUrl: './lesson-04-entity-books.css',
 })

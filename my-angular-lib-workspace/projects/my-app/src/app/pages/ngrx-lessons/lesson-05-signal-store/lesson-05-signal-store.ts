@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { ReadingQueueStore } from './reading-queue.store';
 
 @Component({
   selector: 'app-lesson-05-signal-store',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, LearningNav],
   providers: [ReadingQueueStore],
   templateUrl: './lesson-05-signal-store.html',
   styleUrl: './lesson-05-signal-store.css',

@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { SearchStore } from './search.store';
 
 @Component({
   selector: 'app-lesson-07-rxmethod-search',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, LearningNav],
   providers: [SearchStore],
   templateUrl: './lesson-07-rxmethod-search.html',
   styleUrl: './lesson-07-rxmethod-search.css',

@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { TodosActions } from '../../../state/todos/todos.actions';
 import { selectTodos, selectTodosSummary } from '../../../state/todos/todos.selectors';
 
 @Component({
   selector: 'app-lesson-02-todos',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, LearningNav],
   templateUrl: './lesson-02-todos.html',
   styleUrl: './lesson-02-todos.css',
 })

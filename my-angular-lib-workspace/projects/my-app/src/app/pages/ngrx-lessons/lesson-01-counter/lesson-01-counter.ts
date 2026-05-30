@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
 import { CounterActions } from '../../../state/counter/counter.actions';
 import { selectCount, selectCountLabel } from '../../../state/counter/counter.selectors';
 
 @Component({
   selector: 'app-lesson-01-counter',
-  imports: [RouterLink],
+  imports: [LearningNav],
   templateUrl: './lesson-01-counter.html',
   styleUrl: './lesson-01-counter.css',
 })
