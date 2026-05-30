@@ -34,4 +34,11 @@ export const routes: Routes = [
         (m) => m.Lesson04EntityBooks,
       ),
   },
+  {
+    path: 'ngrx-lessons/lesson-05-signal-store',
+    loadComponent: () =>
+      import('./pages/ngrx-lessons/lesson-05-signal-store/lesson-05-signal-store').then(
+        (m) => m.Lesson05SignalStore,
+      ),
+  },
 ];
