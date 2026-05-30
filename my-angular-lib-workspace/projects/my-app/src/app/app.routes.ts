@@ -41,4 +41,16 @@ export const routes: Routes = [
         (m) => m.Lesson05SignalStore,
       ),
   },
+  {
+    path: 'ngrx-lessons/lesson-06-route-param-store',
+    pathMatch: 'full',
+    redirectTo: 'ngrx-lessons/lesson-06-route-param-store/project-101',
+  },
+  {
+    path: 'ngrx-lessons/lesson-06-route-param-store/:projectId',
+    loadComponent: () =>
+      import('./pages/ngrx-lessons/lesson-06-route-param-store/lesson-06-route-param-store').then(
+        (m) => m.Lesson06RouteParamStore,
+      ),
+  },
 ];
