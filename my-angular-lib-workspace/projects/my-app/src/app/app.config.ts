@@ -8,6 +8,10 @@ import { routes } from './app.routes';
 import { BooksEffects } from './state/books/books.effects';
 import { booksFeature } from './state/books/books.reducer';
 import { counterFeature } from './state/counter/counter.reducer';
+import { DraftsEffects } from './state/drafts/drafts.effects';
+import { draftsFeature } from './state/drafts/drafts.reducer';
+import { FeedbackEffects } from './state/feedback/feedback.effects';
+import { feedbackFeature } from './state/feedback/feedback.reducer';
 import { ProductsEffects } from './state/products/products.effects';
 import { productsFeature } from './state/products/products.reducer';
 import { todosFeature } from './state/todos/todos.reducer';
@@ -20,10 +24,12 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       [booksFeature.name]: booksFeature.reducer,
       [counterFeature.name]: counterFeature.reducer,
+      [draftsFeature.name]: draftsFeature.reducer,
+      [feedbackFeature.name]: feedbackFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
       [todosFeature.name]: todosFeature.reducer,
     }),
-    provideEffects([BooksEffects, ProductsEffects]),
+    provideEffects([BooksEffects, DraftsEffects, FeedbackEffects, ProductsEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

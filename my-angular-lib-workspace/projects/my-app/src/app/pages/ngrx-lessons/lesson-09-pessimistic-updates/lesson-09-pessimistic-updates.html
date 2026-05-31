@@ -1,0 +1,104 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 9</p>
+    <h1>Pessimistic Updates</h1>
+    <p>
+      This lesson waits for the backend before changing Entity state. The UI is
+      slower than optimistic updates, but the reducer is simpler because it only
+      stores data the backend has accepted.
+    </p>
+  </section>
+
+  <section class="draft-panel" aria-labelledby="draft-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Backend First</p>
+        <h2 id="draft-title">Draft Ideas</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Loading saved drafts...</p>
+    }
+
+    @if (creating()) {
+      <p class="status">Creating draft on backend before updating the list...</p>
+    }
+
+    @if (updatingIds().length > 0) {
+      <p class="status">Saving row changes before updating Entity state...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <form class="draft-form" (ngSubmit)="createDraft()">
+      <label>
+        Title
+        <input
+          name="title"
+          type="text"
+          [(ngModel)]="title"
+          placeholder="New lesson idea"
+          autocomplete="off"
+        />
+      </label>
+      <label>
+        Category
+        <input
+          name="category"
+          type="text"
+          [(ngModel)]="category"
+          autocomplete="off"
+        />
+      </label>
+      <button type="submit" class="primary" [disabled]="creating()">Create</button>
+      <button type="button" [disabled]="creating()" (click)="createDraft(true)">Create and fail</button>
+    </form>
+
+    <ul class="draft-list" aria-label="Draft ideas">
+      @for (draft of drafts(); track draft.id) {
+        <li [class.updating]="isUpdating(draft.id)">
+          <div>
+            <h3>{{ draft.title }}</h3>
+            <p>{{ draft.category }} · database id {{ draft.id }}</p>
+          </div>
+          <div class="row-actions" aria-label="Draft actions">
+            <button
+              type="button"
+              [disabled]="isUpdating(draft.id)"
+              (click)="updateCategory(draft, 'Reviewed')"
+            >
+              Mark reviewed
+            </button>
+            <button
+              type="button"
+              class="danger"
+              [disabled]="isUpdating(draft.id)"
+              (click)="updateCategory(draft, 'Blocked', true)"
+            >
+              Update and fail
+            </button>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">No drafts saved yet.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The create or update action sets a pending flag, but does not change the item yet.</li>
+      <li>The effect sends the request to the backend.</li>
+      <li>The backend returns the accepted draft with its real id and values.</li>
+      <li>The success action writes the backend result into Entity state.</li>
+      <li>The failure action stores an error because no rollback is needed.</li>
+    </ol>
+  </section>
+</main>

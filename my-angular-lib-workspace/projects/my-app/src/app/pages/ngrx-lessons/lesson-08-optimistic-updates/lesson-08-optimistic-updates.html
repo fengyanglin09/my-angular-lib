@@ -1,0 +1,81 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 8</p>
+    <h1>Optimistic Updates</h1>
+    <p>
+      This lesson updates the UI before the backend responds. If the request
+      succeeds, the optimistic state is confirmed. If it fails, the reducer rolls
+      the state back.
+    </p>
+  </section>
+
+  <section class="feedback-panel" aria-labelledby="feedback-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Classic Store Pattern</p>
+        <h2 id="feedback-title">Lesson Feedback</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Loading feedback...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <form class="feedback-form" (ngSubmit)="addFeedback()">
+      <label>
+        New feedback
+        <input
+          name="newFeedback"
+          type="text"
+          [(ngModel)]="newFeedback"
+          placeholder="Write a comment"
+          autocomplete="off"
+        />
+      </label>
+      <button type="submit" class="primary">Add</button>
+      <button type="button" (click)="addFeedback(true)">Add and fail</button>
+    </form>
+
+    <ul class="feedback-list" aria-label="Feedback comments">
+      @for (item of feedback(); track item.id) {
+        <li [class.pending]="item.pending">
+          <div>
+            <h3>{{ item.author }}</h3>
+            <p>{{ item.text }}</p>
+            @if (item.pending) {
+              <small>Waiting for backend...</small>
+            }
+          </div>
+          <div class="row-actions">
+            <button type="button" (click)="toggleLike(item)">
+              {{ item.liked ? 'Liked' : 'Like' }}
+            </button>
+            <button type="button" (click)="toggleLike(item, true)">Like and fail</button>
+            <button type="button" class="danger" (click)="deleteFeedback(item)">Delete</button>
+            <button type="button" class="danger" (click)="deleteFeedback(item, true)">Delete and fail</button>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">No feedback yet.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">New Idea In This Lesson</h2>
+    <ol>
+      <li>The first action updates state immediately in the reducer.</li>
+      <li>The effect sends the request to the backend.</li>
+      <li>A success action clears the pending flag or confirms the saved item.</li>
+      <li>A failure action rolls the optimistic change back.</li>
+      <li>This gives fast UI, but requires careful rollback data.</li>
+    </ol>
+  </section>
+</main>
