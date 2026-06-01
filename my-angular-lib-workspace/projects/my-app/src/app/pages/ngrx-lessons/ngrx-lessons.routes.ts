@@ -37,11 +37,6 @@ export const ngrxLessonsRoutes: Routes = [
       ),
   },
   {
-    path: 'lesson-06-route-param-store',
-    pathMatch: 'full',
-    redirectTo: 'lesson-06-route-param-store/project-101',
-  },
-  {
     path: 'lesson-06-route-param-store/:projectId',
     loadComponent: () =>
       import('./lesson-06-route-param-store/lesson-06-route-param-store').then(
@@ -74,6 +69,13 @@ export const ngrxLessonsRoutes: Routes = [
     loadComponent: () =>
       import('./lesson-10-effect-concurrency/lesson-10-effect-concurrency').then(
         (m) => m.Lesson10EffectConcurrency,
+      ),
+  },
+  {
+    path: 'lesson-11-facade-pattern',
+    loadComponent: () =>
+      import('./lesson-11-facade-pattern/lesson-11-facade-pattern').then(
+        (m) => m.Lesson11FacadePattern,
       ),
   },
 ];

@@ -21,10 +21,11 @@ export class LearningNav {
     { label: 'Lesson 3', path: '/ngrx-lessons/lesson-03-effects-products' },
     { label: 'Lesson 4', path: '/ngrx-lessons/lesson-04-entity-books' },
     { label: 'Lesson 5', path: '/ngrx-lessons/lesson-05-signal-store' },
-    { label: 'Lesson 6', path: '/ngrx-lessons/lesson-06-route-param-store' },
+    { label: 'Lesson 6', path: '/ngrx-lessons/lesson-06-route-param-store/project-101' },
     { label: 'Lesson 7', path: '/ngrx-lessons/lesson-07-rxmethod-search' },
     { label: 'Lesson 8', path: '/ngrx-lessons/lesson-08-optimistic-updates' },
     { label: 'Lesson 9', path: '/ngrx-lessons/lesson-09-pessimistic-updates' },
     { label: 'Lesson 10', path: '/ngrx-lessons/lesson-10-effect-concurrency' },
+    { label: 'Lesson 11', path: '/ngrx-lessons/lesson-11-facade-pattern' },
   ];
 }
