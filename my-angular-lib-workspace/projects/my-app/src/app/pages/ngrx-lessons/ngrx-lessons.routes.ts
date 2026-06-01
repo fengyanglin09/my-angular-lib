@@ -69,4 +69,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson09PessimisticUpdates,
       ),
   },
+  {
+    path: 'lesson-10-effect-concurrency',
+    loadComponent: () =>
+      import('./lesson-10-effect-concurrency/lesson-10-effect-concurrency').then(
+        (m) => m.Lesson10EffectConcurrency,
+      ),
+  },
 ];

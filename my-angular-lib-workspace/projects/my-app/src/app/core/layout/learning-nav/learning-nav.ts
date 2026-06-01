@@ -25,5 +25,6 @@ export class LearningNav {
     { label: 'Lesson 7', path: '/ngrx-lessons/lesson-07-rxmethod-search' },
     { label: 'Lesson 8', path: '/ngrx-lessons/lesson-08-optimistic-updates' },
     { label: 'Lesson 9', path: '/ngrx-lessons/lesson-09-pessimistic-updates' },
+    { label: 'Lesson 10', path: '/ngrx-lessons/lesson-10-effect-concurrency' },
   ];
 }

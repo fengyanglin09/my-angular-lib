@@ -7,6 +7,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { BooksEffects } from './state/books/books.effects';
 import { booksFeature } from './state/books/books.reducer';
+import { ConcurrencyEffects } from './state/concurrency/concurrency.effects';
+import { concurrencyFeature } from './state/concurrency/concurrency.reducer';
 import { counterFeature } from './state/counter/counter.reducer';
 import { DraftsEffects } from './state/drafts/drafts.effects';
 import { draftsFeature } from './state/drafts/drafts.reducer';
@@ -23,13 +25,20 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({
       [booksFeature.name]: booksFeature.reducer,
+      [concurrencyFeature.name]: concurrencyFeature.reducer,
       [counterFeature.name]: counterFeature.reducer,
       [draftsFeature.name]: draftsFeature.reducer,
       [feedbackFeature.name]: feedbackFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
       [todosFeature.name]: todosFeature.reducer,
     }),
-    provideEffects([BooksEffects, DraftsEffects, FeedbackEffects, ProductsEffects]),
+    provideEffects([
+      BooksEffects,
+      ConcurrencyEffects,
+      DraftsEffects,
+      FeedbackEffects,
+      ProductsEffects,
+    ]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

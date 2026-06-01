@@ -1,0 +1,71 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 10</p>
+    <h1>Effect Concurrency</h1>
+    <p>
+      Effects listen to actions and usually call APIs. When the same action
+      happens several times quickly, the RxJS operator decides whether requests
+      cancel, queue, run together, or get ignored.
+    </p>
+  </section>
+
+  <section class="lab-toolbar" aria-label="Effect concurrency controls">
+    <div>
+      <p class="eyebrow">Try It</p>
+      <h2>Click each burst button and compare the logs</h2>
+    </div>
+    <button type="button" (click)="clearLogs()">Clear logs</button>
+  </section>
+
+  <section class="strategy-grid" aria-label="Concurrency strategies">
+    @for (strategy of strategies; track strategy.name) {
+      <article class="strategy-card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">{{ strategy.name }}</p>
+            <h2>{{ strategy.title }}</h2>
+          </div>
+          <span>{{ logsByStrategy()[strategy.name].length }}</span>
+        </div>
+
+        <p class="summary">{{ strategy.summary }}</p>
+        <p class="usage">{{ strategy.usage }}</p>
+
+        <div class="actions">
+          <button type="button" class="primary" (click)="runOne(strategy.name)">
+            Run one
+          </button>
+          <button type="button" (click)="runThree(strategy.name)">
+            Run burst
+          </button>
+        </div>
+
+        <ol class="request-log" [attr.aria-label]="strategy.name + ' request log'">
+          @for (log of logsByStrategy()[strategy.name]; track log.id) {
+            <li [class]="log.status">
+              <span>{{ log.status }}</span>
+              <p>{{ log.message }}</p>
+            </li>
+          } @empty {
+            <li class="empty">
+              <span>idle</span>
+              <p>No requests yet.</p>
+            </li>
+          }
+        </ol>
+      </article>
+    }
+  </section>
+
+  <section class="notes-panel" aria-labelledby="operator-title">
+    <h2 id="operator-title">How To Choose</h2>
+    <ul>
+      <li>Use switchMap when only the latest result should update the store.</li>
+      <li>Use concatMap when every request must finish in the order it was sent.</li>
+      <li>Use mergeMap when requests are independent and can run in parallel.</li>
+      <li>Use exhaustMap when repeated clicks should be ignored until the first request finishes.</li>
+    </ul>
+  </section>
+</main>
