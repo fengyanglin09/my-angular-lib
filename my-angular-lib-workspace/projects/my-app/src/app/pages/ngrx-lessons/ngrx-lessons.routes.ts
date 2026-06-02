@@ -85,4 +85,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson12RouterStore,
       ),
   },
+  {
+    path: 'lesson-13-subscriptions/:topic',
+    loadComponent: () =>
+      import('./lesson-13-subscriptions/lesson-13-subscriptions').then(
+        (m) => m.Lesson13Subscriptions,
+      ),
+  },
 ];
