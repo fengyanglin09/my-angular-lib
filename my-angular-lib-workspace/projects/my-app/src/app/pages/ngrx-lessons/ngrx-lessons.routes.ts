@@ -1,4 +1,9 @@
+import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
 import { Routes } from '@angular/router';
+
+import { LessonProgressEffects } from '../../state/lesson-progress/lesson-progress.effects';
+import { lessonProgressFeature } from '../../state/lesson-progress/lesson-progress.reducer';
 
 export const ngrxLessonsRoutes: Routes = [
   {
@@ -97,6 +102,17 @@ export const ngrxLessonsRoutes: Routes = [
     loadComponent: () =>
       import('./lesson-14-route-effects/lesson-14-route-effects').then(
         (m) => m.Lesson14RouteEffects,
+      ),
+  },
+  {
+    path: 'lesson-15-lazy-feature-state',
+    providers: [
+      provideState(lessonProgressFeature),
+      provideEffects(LessonProgressEffects),
+    ],
+    loadComponent: () =>
+      import('./lesson-15-lazy-feature-state/lesson-15-lazy-feature-state').then(
+        (m) => m.Lesson15LazyFeatureState,
       ),
   },
 ];

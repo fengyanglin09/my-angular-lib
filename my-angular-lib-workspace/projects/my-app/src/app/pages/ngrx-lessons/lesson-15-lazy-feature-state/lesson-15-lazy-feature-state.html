@@ -1,0 +1,66 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="15" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 15</p>
+    <h1>Lazy Feature State</h1>
+    <p>
+      Root state is useful for app-wide data. Feature state can also be provided
+      by a lazy route, so its reducer and effects are registered only when that
+      route is loaded.
+    </p>
+  </section>
+
+  <section class="progress-panel" aria-labelledby="progress-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Route Providers</p>
+        <h2 id="progress-title">Lesson Progress Feature</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="reload()">Reload lazy feature data</button>
+      <span>{{ loaded() ? 'Feature loaded' : 'Feature waiting' }}</span>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Lazy effect is loading progress...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <ul class="progress-list" aria-label="Lesson progress">
+      @for (item of items(); track item.id) {
+        <li>
+          <div>
+            <h3>{{ item.lesson }}</h3>
+            <p>{{ item.topic }}</p>
+          </div>
+          <button
+            type="button"
+            [class.complete]="item.complete"
+            (click)="toggleItem(item.id)"
+          >
+            {{ item.complete ? 'Complete' : 'Mark complete' }}
+          </button>
+        </li>
+      } @empty {
+        <li class="empty">Progress has not loaded yet.</li>
+      }
+    </ul>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What Is Different</h2>
+    <ol>
+      <li>app.config.ts does not register lessonProgress state.</li>
+      <li>The Lesson 15 route provides lessonProgressFeature with provideState.</li>
+      <li>The Lesson 15 route provides LessonProgressEffects with provideEffects.</li>
+      <li>The component can still use Store selectors and actions normally.</li>
+    </ol>
+  </section>
+</main>
