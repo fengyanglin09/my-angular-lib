@@ -1,0 +1,112 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="13" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 13</p>
+    <h1>Safe Subscriptions</h1>
+    <p>
+      Most UI can use signals or the async pipe. When component TypeScript needs
+      a manual subscription for a side effect, clean it up with takeUntilDestroyed.
+    </p>
+  </section>
+
+  <section class="subscription-panel" aria-labelledby="subscription-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Manual Subscribe</p>
+        <h2 id="subscription-title">Route Change Logger</h2>
+      </div>
+      <button type="button" (click)="clearLogs()">Clear logs</button>
+    </div>
+
+    <div class="link-grid" aria-label="Subscription examples">
+      <a
+        [routerLink]="['/ngrx-lessons/lesson-13-subscriptions', 'route-params']"
+        [queryParams]="{ mode: 'inspect' }"
+      >
+        <span>Route Params</span>
+        <small>topic = route-params, mode = inspect</small>
+      </a>
+      <a
+        [routerLink]="['/ngrx-lessons/lesson-13-subscriptions', 'query-params']"
+        [queryParams]="{ mode: 'compare' }"
+      >
+        <span>Query Params</span>
+        <small>topic = query-params, mode = compare</small>
+      </a>
+      <a
+        [routerLink]="['/ngrx-lessons/lesson-13-subscriptions', 'cleanup']"
+        [queryParams]="{ mode: 'destroy-ref' }"
+      >
+        <span>Cleanup</span>
+        <small>topic = cleanup, mode = destroy-ref</small>
+      </a>
+    </div>
+
+    <div class="state-grid">
+      <article class="current-state">
+        <p class="eyebrow">Current Store Values</p>
+        <dl>
+          <div>
+            <dt>topic</dt>
+            <dd>{{ topic() }}</dd>
+          </div>
+          <div>
+            <dt>mode</dt>
+            <dd>{{ mode() ?? 'learn' }}</dd>
+          </div>
+          <div>
+            <dt>url</dt>
+            <dd>{{ url() }}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="code-card">
+        <p class="eyebrow">Pattern</p>
+        <pre>store.select(selector)
+  .pipe(
+    filter(Boolean),
+    distinctUntilChanged(),
+    takeUntilDestroyed(destroyRef),
+  )
+  .subscribe(value =&gt; {{ '{' }}
+    // side effect here
+  {{ '}' }});</pre>
+      </article>
+    </div>
+
+    <section class="log-panel" aria-labelledby="log-title">
+      <h2 id="log-title">Subscription Log</h2>
+      <ol>
+        @for (log of logs; track log.id) {
+          <li>
+            <span>#{{ log.id }}</span>
+            <div>
+              <p>{{ log.message }}</p>
+              <small>{{ log.url }}</small>
+            </div>
+          </li>
+        } @empty {
+          <li class="empty">
+            <span>#</span>
+            <div>
+              <p>No subscription events yet.</p>
+              <small>Click one of the links above.</small>
+            </div>
+          </li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">When To Subscribe Manually</h2>
+    <ol>
+      <li>Use signals or async pipe when the template only needs to display state.</li>
+      <li>Use manual subscribe when the component must perform a side effect.</li>
+      <li>Pipe through distinctUntilChanged when repeated identical values should be ignored.</li>
+      <li>Pipe through takeUntilDestroyed so Angular unsubscribes when the component is destroyed.</li>
+    </ol>
+  </section>
+</main>
