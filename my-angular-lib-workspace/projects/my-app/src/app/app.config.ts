@@ -19,6 +19,8 @@ import { ProductsEffects } from './state/products/products.effects';
 import { productsFeature } from './state/products/products.reducer';
 import { RouteProjectsEffects } from './state/route-projects/route-projects.effects';
 import { routeProjectsFeature } from './state/route-projects/route-projects.reducer';
+import { SelectedBookNotesEffects } from './state/selected-book-notes/selected-book-notes.effects';
+import { selectedBookNotesFeature } from './state/selected-book-notes/selected-book-notes.reducer';
 import { todosFeature } from './state/todos/todos.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -34,6 +36,7 @@ export const appConfig: ApplicationConfig = {
       [feedbackFeature.name]: feedbackFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
       [routeProjectsFeature.name]: routeProjectsFeature.reducer,
+      [selectedBookNotesFeature.name]: selectedBookNotesFeature.reducer,
       router: routerReducer,
       [todosFeature.name]: todosFeature.reducer,
     }),
@@ -45,6 +48,7 @@ export const appConfig: ApplicationConfig = {
       FeedbackEffects,
       ProductsEffects,
       RouteProjectsEffects,
+      SelectedBookNotesEffects,
     ]),
     provideStoreDevtools({
       maxAge: 25,

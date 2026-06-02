@@ -122,4 +122,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson16ViewModelSelectors,
       ),
   },
+  {
+    path: 'lesson-17-action-state-effects',
+    loadComponent: () =>
+      import('./lesson-17-action-state-effects/lesson-17-action-state-effects').then(
+        (m) => m.Lesson17ActionStateEffects,
+      ),
+  },
 ];

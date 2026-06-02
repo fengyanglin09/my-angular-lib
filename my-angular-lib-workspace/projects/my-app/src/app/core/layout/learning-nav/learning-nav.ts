@@ -32,5 +32,6 @@ export class LearningNav {
     { label: 'Lesson 14', path: '/ngrx-lessons/lesson-14-route-effects/project-101' },
     { label: 'Lesson 15', path: '/ngrx-lessons/lesson-15-lazy-feature-state' },
     { label: 'Lesson 16', path: '/ngrx-lessons/lesson-16-view-model-selectors' },
+    { label: 'Lesson 17', path: '/ngrx-lessons/lesson-17-action-state-effects' },
   ];
 }

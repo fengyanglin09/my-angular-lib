@@ -1,0 +1,113 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="17" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 17</p>
+    <h1>Action Plus State Effects</h1>
+    <p>
+      Sometimes an action has part of the data, and the effect needs the rest
+      from Store. This lesson saves a note from the action together with the
+      currently selected book from state.
+    </p>
+  </section>
+
+  <section class="notes-panel" aria-labelledby="notes-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Latest State In An Effect</p>
+        <h2 id="notes-title">Selected Book Notes</h2>
+      </div>
+      <p class="summary">{{ notesSummary() }}</p>
+    </div>
+
+    @if (booksVm().loading) {
+      <p class="status">Loading books to select from...</p>
+    }
+
+    @if (saving()) {
+      <p class="status">Saving note with the current selected book...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <div class="content-grid">
+      <section class="book-picker" aria-label="Book picker">
+        <h2>Pick A Book</h2>
+        <ul>
+          @for (book of booksVm().books; track book.id) {
+            <li [class.selected]="booksVm().selectedBook?.id === book.id">
+              <button type="button" (click)="selectBook(book.id)">
+                <span>{{ book.title }}</span>
+                <small>{{ book.author }}</small>
+              </button>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="note-editor" aria-label="Note editor">
+        <p class="eyebrow">Action Payload</p>
+        @if (booksVm().selectedBook; as selectedBook) {
+          <h2>{{ selectedBook.title }}</h2>
+          <p>The selected book comes from Store inside the effect.</p>
+        } @else {
+          <h2>No book selected</h2>
+          <p>The effect will fail until selectedBook exists.</p>
+        }
+
+        <label>
+          Note
+          <textarea
+            name="note"
+            [(ngModel)]="note"
+            rows="5"
+            placeholder="Write a note about the selected book"
+          ></textarea>
+        </label>
+
+        <div class="actions">
+          <button
+            type="button"
+            class="primary"
+            [disabled]="saving()"
+            (click)="saveNote()"
+          >
+            Save note
+          </button>
+          <button type="button" [disabled]="saving()" (click)="saveNote(true)">
+            Save and fail
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <section class="saved-notes" aria-labelledby="saved-title">
+      <h2 id="saved-title">Saved Notes</h2>
+      <ol>
+        @for (savedNote of notes(); track savedNote.id) {
+          <li>
+            <div>
+              <h3>{{ savedNote.bookTitle }}</h3>
+              <p>{{ savedNote.note }}</p>
+            </div>
+            <span>{{ savedNote.savedAt }}</span>
+          </li>
+        } @empty {
+          <li class="empty">No notes saved yet.</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Effect Flow</h2>
+    <ol>
+      <li>The component dispatches Save Note For Selected Book with only note text.</li>
+      <li>The effect pairs that action with selectSelectedBook from Store.</li>
+      <li>If no book is selected, the effect dispatches failure.</li>
+      <li>If a book is selected, the effect saves note plus book details.</li>
+    </ol>
+  </section>
+</main>
