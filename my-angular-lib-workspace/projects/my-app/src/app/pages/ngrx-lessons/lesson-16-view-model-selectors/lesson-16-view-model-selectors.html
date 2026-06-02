@@ -1,0 +1,114 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="16" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 16</p>
+    <h1>View Model Selectors</h1>
+    <p>
+      A view model selector combines many small selectors into one object for a
+      screen. The component selects one signal, and the template renders from
+      that single view model.
+    </p>
+  </section>
+
+  <section class="vm-panel" aria-labelledby="vm-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">One Selector</p>
+        <h2 id="vm-title">Books View Model</h2>
+      </div>
+      <p class="summary">{{ vm().summary }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadPage(vm().page)">Reload</button>
+      <button type="button" (click)="loadPage(vm().page, true)">Reload and fail</button>
+      <button
+        type="button"
+        class="primary"
+        [disabled]="vm().saving"
+        (click)="savePage()"
+      >
+        Save page
+      </button>
+    </div>
+
+    @if (vm().loading) {
+      <p class="status">Loading books from the view model screen...</p>
+    }
+
+    @if (vm().saving) {
+      <p class="status">Saving current view model books...</p>
+    }
+
+    @if (vm().error) {
+      <p class="error" role="alert">{{ vm().error }}</p>
+    }
+
+    @if (vm().saveError) {
+      <p class="error" role="alert">{{ vm().saveError }}</p>
+    }
+
+    <div class="content-grid">
+      <ul class="book-list" aria-label="Books">
+        @for (book of vm().books; track book.id) {
+          <li [class.selected]="vm().selectedBook?.id === book.id">
+            <button type="button" (click)="selectBook(book.id)">
+              <span>{{ book.title }}</span>
+              <small>{{ book.author }}</small>
+            </button>
+            <button type="button" (click)="toggleFavorite(book.id)">
+              {{ book.favorite ? 'Favorite' : 'Add favorite' }}
+            </button>
+          </li>
+        } @empty {
+          <li class="empty">No books loaded.</li>
+        }
+      </ul>
+
+      <aside class="details-panel" aria-label="Selected book">
+        <p class="eyebrow">Selected In VM</p>
+        @if (vm().selectedBook; as selectedBook) {
+          <h2>{{ selectedBook.title }}</h2>
+          <p>{{ selectedBook.author }}</p>
+          <p>{{ selectedBook.favorite ? 'Favorite book' : 'Not a favorite yet' }}</p>
+        } @else {
+          <h2>No book selected</h2>
+          <p>The view model returns null until a book is selected.</p>
+        }
+
+        @if (vm().lastSavedAt) {
+          <p class="saved">Last saved at {{ vm().lastSavedAt }}</p>
+        }
+      </aside>
+    </div>
+
+    <footer class="pagination">
+      <button
+        type="button"
+        [disabled]="!vm().canGoPrevious"
+        (click)="loadPage(vm().page - 1)"
+      >
+        Previous
+      </button>
+      <span>Page {{ vm().page }} of {{ vm().totalPages }}</span>
+      <button
+        type="button"
+        [disabled]="!vm().canGoNext"
+        (click)="loadPage(vm().page + 1)"
+      >
+        Next
+      </button>
+    </footer>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Why This Helps</h2>
+    <ol>
+      <li>The component selects one screen-shaped object.</li>
+      <li>The selector composes smaller selectors, so the logic stays testable.</li>
+      <li>The template reads clear names like vm().canGoNext and vm().selectedBook.</li>
+      <li>The component avoids juggling many independent selector signals.</li>
+    </ol>
+  </section>
+</main>

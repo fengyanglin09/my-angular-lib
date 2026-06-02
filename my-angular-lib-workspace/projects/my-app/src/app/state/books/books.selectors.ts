@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { booksAdapter, booksFeature } from './books.reducer';
+import { Book } from './books.models';
 
 export const { selectBooksState, selectSelectedBookId } = booksFeature;
 export const {
@@ -71,4 +72,57 @@ export const selectBooksSummary = createSelector(
   selectPageRange,
   (pageTotal, favorites, pageRange) =>
     `${pageRange} books, ${pageTotal} on this page, ${favorites.length} favorites here`,
+);
+
+export interface BooksViewModel {
+  books: Book[];
+  canGoNext: boolean;
+  canGoPrevious: boolean;
+  error: string | null;
+  lastSavedAt: string | null;
+  loading: boolean;
+  page: number;
+  saveError: string | null;
+  saving: boolean;
+  selectedBook: Book | null;
+  summary: string;
+  totalPages: number;
+}
+
+export const selectBooksViewModel = createSelector(
+  selectAllBooks,
+  selectError,
+  selectLastSavedAt,
+  selectLoading,
+  selectPage,
+  selectSaveError,
+  selectSaving,
+  selectSelectedBook,
+  selectBooksSummary,
+  selectTotalPages,
+  (
+    books,
+    error,
+    lastSavedAt,
+    loading,
+    page,
+    saveError,
+    saving,
+    selectedBook,
+    summary,
+    totalPages,
+  ): BooksViewModel => ({
+    books,
+    canGoNext: page < totalPages,
+    canGoPrevious: page > 1,
+    error,
+    lastSavedAt,
+    loading,
+    page,
+    saveError,
+    saving,
+    selectedBook,
+    summary,
+    totalPages,
+  }),
 );

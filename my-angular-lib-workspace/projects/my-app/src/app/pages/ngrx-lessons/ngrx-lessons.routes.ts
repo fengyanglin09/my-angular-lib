@@ -115,4 +115,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson15LazyFeatureState,
       ),
   },
+  {
+    path: 'lesson-16-view-model-selectors',
+    loadComponent: () =>
+      import('./lesson-16-view-model-selectors/lesson-16-view-model-selectors').then(
+        (m) => m.Lesson16ViewModelSelectors,
+      ),
+  },
 ];
