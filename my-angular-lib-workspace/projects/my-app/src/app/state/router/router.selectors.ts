@@ -15,6 +15,8 @@ export const {
 
 export const selectLessonTopic = selectRouteParam('topic');
 export const selectLessonMode = selectQueryParam('mode');
+export const selectRouteEffectProjectId = selectRouteParam('projectId');
+export const selectRouteEffectView = selectQueryParam('view');
 
 export interface LessonRouteState {
   mode: string;
@@ -35,6 +37,29 @@ export const selectLessonRouteState = createSelector(
       mode: Array.isArray(mode) ? mode[0] ?? 'learn' : mode ?? 'learn',
       topic,
       url,
+    };
+  },
+);
+
+export interface RouteEffectProjectRouteState {
+  projectId: string;
+  url: string;
+  view: string;
+}
+
+export const selectRouteEffectProjectRouteState = createSelector(
+  selectRouteEffectProjectId,
+  selectRouteEffectView,
+  selectUrl,
+  (projectId, view, url): RouteEffectProjectRouteState | null => {
+    if (!projectId || !url) {
+      return null;
+    }
+
+    return {
+      projectId,
+      url,
+      view: Array.isArray(view) ? view[0] ?? 'overview' : view ?? 'overview',
     };
   },
 );

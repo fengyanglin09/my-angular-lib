@@ -1,0 +1,103 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="14" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 14</p>
+    <h1>Route-Driven Effects</h1>
+    <p>
+      This lesson loads data when route params or query params change. The
+      component does not subscribe to route changes; an NgRx effect listens to
+      Router Store and dispatches the load action.
+    </p>
+  </section>
+
+  <section class="route-panel" aria-labelledby="route-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Router Store Effect</p>
+        <h2 id="route-title">{{ title() }}</h2>
+      </div>
+      <p class="view-pill">view: {{ view() }}</p>
+    </div>
+
+    <div class="link-grid" aria-label="Project route links">
+      @for (projectLink of projectLinks; track projectLink.id) {
+        <a
+          [routerLink]="['/ngrx-lessons/lesson-14-route-effects', projectLink.id]"
+          [queryParams]="{ view: projectLink.view }"
+        >
+          <span>{{ projectLink.label }}</span>
+          <small>{{ projectLink.id }} · {{ projectLink.view }}</small>
+        </a>
+      }
+    </div>
+
+    @if (loading()) {
+      <p class="status">Effect noticed the route change and is loading data...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <div class="content-grid">
+      <article class="project-card">
+        <p class="eyebrow">Loaded Project</p>
+        <h2>{{ title() }}</h2>
+        <p>{{ summary() }}</p>
+
+        @if (project(); as loadedProject) {
+          <dl>
+            <div>
+              <dt>Owner</dt>
+              <dd>{{ loadedProject.owner }}</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd>{{ loadedProject.status }}</dd>
+            </div>
+          </dl>
+
+          <ul>
+            @for (task of loadedProject.tasks; track task) {
+              <li>{{ task }}</li>
+            }
+          </ul>
+        }
+      </article>
+
+      <aside class="route-state" aria-label="Current route state">
+        <p class="eyebrow">Current Route</p>
+        <p>{{ currentUrl() ?? 'Waiting for route state' }}</p>
+      </aside>
+    </div>
+
+    <section class="log-panel" aria-labelledby="log-title">
+      <h2 id="log-title">Effect Log</h2>
+      <ol>
+        @for (log of logs(); track log.id) {
+          <li>
+            <span>#{{ log.id }}</span>
+            <p>{{ log.message }}</p>
+          </li>
+        } @empty {
+          <li class="empty">
+            <span>#</span>
+            <p>No route-driven effect events yet.</p>
+          </li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Effect Flow</h2>
+    <ol>
+      <li>Router Store updates when the URL changes.</li>
+      <li>The route effect selects projectId, view, and url from Store.</li>
+      <li>distinctUntilChanged prevents duplicate loads for the same route state.</li>
+      <li>The effect dispatches Load Project From Route.</li>
+      <li>A second effect calls the backend and dispatches success or failure.</li>
+    </ol>
+  </section>
+</main>

@@ -92,4 +92,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson13Subscriptions,
       ),
   },
+  {
+    path: 'lesson-14-route-effects/:projectId',
+    loadComponent: () =>
+      import('./lesson-14-route-effects/lesson-14-route-effects').then(
+        (m) => m.Lesson14RouteEffects,
+      ),
+  },
 ];

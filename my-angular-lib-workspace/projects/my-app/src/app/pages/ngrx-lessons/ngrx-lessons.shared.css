@@ -1,0 +1,35 @@
+.lesson-shell {
+  box-sizing: border-box;
+  display: grid;
+  gap: 24px;
+  margin: 0 auto;
+  max-width: 1120px !important;
+  padding: 40px 20px !important;
+  width: 100%;
+}
+
+.lesson-shell *,
+.lesson-shell *::before,
+.lesson-shell *::after {
+  box-sizing: border-box;
+}
+
+.lesson-shell app-learning-nav {
+  display: block;
+  width: 100%;
+}
+
+.lesson-intro {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-intro p:last-child {
+  max-width: 840px !important;
+}
+
+@media (max-width: 900px) {
+  .lesson-shell {
+    padding: 32px 16px !important;
+  }
+}

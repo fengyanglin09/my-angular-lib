@@ -3,6 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .learning-nav a,
@@ -10,8 +12,12 @@
   border: 1px solid #bcc8c2;
   border-radius: 8px;
   color: #27483d;
+  display: inline-flex;
   font-size: 0.9rem;
   font-weight: 700;
+  justify-content: center;
+  line-height: 1.2;
+  min-width: 82px;
   padding: 8px 12px;
   text-decoration: none;
 }

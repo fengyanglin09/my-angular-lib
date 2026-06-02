@@ -17,6 +17,8 @@ import { FeedbackEffects } from './state/feedback/feedback.effects';
 import { feedbackFeature } from './state/feedback/feedback.reducer';
 import { ProductsEffects } from './state/products/products.effects';
 import { productsFeature } from './state/products/products.reducer';
+import { RouteProjectsEffects } from './state/route-projects/route-projects.effects';
+import { routeProjectsFeature } from './state/route-projects/route-projects.reducer';
 import { todosFeature } from './state/todos/todos.reducer';
 
 export const appConfig: ApplicationConfig = {
@@ -31,6 +33,7 @@ export const appConfig: ApplicationConfig = {
       [draftsFeature.name]: draftsFeature.reducer,
       [feedbackFeature.name]: feedbackFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
+      [routeProjectsFeature.name]: routeProjectsFeature.reducer,
       router: routerReducer,
       [todosFeature.name]: todosFeature.reducer,
     }),
@@ -41,6 +44,7 @@ export const appConfig: ApplicationConfig = {
       DraftsEffects,
       FeedbackEffects,
       ProductsEffects,
+      RouteProjectsEffects,
     ]),
     provideStoreDevtools({
       maxAge: 25,

@@ -29,5 +29,6 @@ export class LearningNav {
     { label: 'Lesson 11', path: '/ngrx-lessons/lesson-11-facade-pattern' },
     { label: 'Lesson 12', path: '/ngrx-lessons/lesson-12-router-store/route-params' },
     { label: 'Lesson 13', path: '/ngrx-lessons/lesson-13-subscriptions/route-params' },
+    { label: 'Lesson 14', path: '/ngrx-lessons/lesson-14-route-effects/project-101' },
   ];
 }
