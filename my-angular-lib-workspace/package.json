@@ -44,6 +44,7 @@
     "@eagle009/spaa-angular-lib": "^0.0.3",
     "@ngrx/effects": "^21.1.0",
     "@ngrx/entity": "^21.1.0",
+    "@ngrx/router-store": "^21.1.0",
     "@ngrx/signals": "^21.1.0",
     "@ngrx/store": "^21.1.0",
     "@ngrx/store-devtools": "^21.1.0",

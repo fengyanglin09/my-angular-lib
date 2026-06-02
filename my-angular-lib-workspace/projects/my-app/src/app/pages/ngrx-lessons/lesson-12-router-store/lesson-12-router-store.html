@@ -1,0 +1,87 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="12" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 12</p>
+    <h1>Router Store</h1>
+    <p>
+      Router Store copies Angular Router state into NgRx. Components can select
+      the current URL, route params, and query params from Store just like any
+      other state.
+    </p>
+  </section>
+
+  <section class="router-panel" aria-labelledby="router-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Route State</p>
+        <h2 id="router-title">Current Topic</h2>
+      </div>
+      <p class="mode-pill">mode: {{ modeLabel() }}</p>
+    </div>
+
+    <div class="topic-grid" aria-label="Router store topics">
+      @for (topicCard of topics; track topicCard.id) {
+        <a
+          [routerLink]="['/ngrx-lessons/lesson-12-router-store', topicCard.id]"
+          [queryParams]="{ mode: topicCard.id === 'router-actions' ? 'devtools' : 'inspect' }"
+          [class.active]="topic() === topicCard.id"
+        >
+          <span>{{ topicCard.title }}</span>
+          <small>{{ topicCard.description }}</small>
+        </a>
+      }
+    </div>
+
+    <div class="content-grid">
+      <article class="selected-card">
+        <p class="eyebrow">Selected From Store</p>
+        <h2>{{ selectedTopic().title }}</h2>
+        <p>{{ selectedTopic().description }}</p>
+        <p>
+          The component is not injecting ActivatedRoute. These values come from
+          selectors built with getRouterSelectors.
+        </p>
+      </article>
+
+      <aside class="state-card" aria-label="Router store values">
+        <h2>Selected Router Values</h2>
+        <dl>
+          <div>
+            <dt>URL</dt>
+            <dd>{{ url() }}</dd>
+          </div>
+          <div>
+            <dt>topic param</dt>
+            <dd>{{ topic() }}</dd>
+          </div>
+          <div>
+            <dt>mode query param</dt>
+            <dd>{{ modeLabel() }}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="raw-state">
+      <section>
+        <h2>Route Params</h2>
+        <pre>{{ routeParams() | json }}</pre>
+      </section>
+      <section>
+        <h2>Query Params</h2>
+        <pre>{{ queryParams() | json }}</pre>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What Router Store Adds</h2>
+    <ol>
+      <li>Angular navigation dispatches router actions.</li>
+      <li>The router reducer stores the latest router snapshot.</li>
+      <li>Router selectors read URL, params, query params, data, and fragments.</li>
+      <li>Components can react to navigation through Store selectors.</li>
+    </ol>
+  </section>
+</main>

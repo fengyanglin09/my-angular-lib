@@ -1,0 +1,146 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="11" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 11</p>
+    <h1>Facade Pattern</h1>
+    <p>
+      A facade puts store details behind a small service API. The component uses
+      readable methods like loadPage, saveBooks, and toggleFavorite instead of
+      importing every selector and action directly.
+    </p>
+  </section>
+
+  <section class="books-panel" aria-labelledby="books-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Books Facade</p>
+        <h2 id="books-title">Books Workspace</h2>
+      </div>
+      <p class="summary">{{ booksFacade.summary() }}</p>
+    </div>
+
+    @if (booksFacade.loading()) {
+      <p class="status">Loading books through the facade...</p>
+    }
+
+    @if (booksFacade.saving()) {
+      <p class="status">Saving the current page through the facade...</p>
+    }
+
+    @if (booksFacade.error()) {
+      <p class="error" role="alert">{{ booksFacade.error() }}</p>
+    }
+
+    @if (booksFacade.saveError()) {
+      <p class="error" role="alert">{{ booksFacade.saveError() }}</p>
+    }
+
+    <div class="toolbar" aria-label="Book controls">
+      <button type="button" (click)="booksFacade.loadCurrentPage()">
+        Reload
+      </button>
+      <button type="button" (click)="booksFacade.loadCurrentPage(true)">
+        Reload and fail
+      </button>
+      <button
+        type="button"
+        class="primary"
+        [disabled]="booksFacade.saving()"
+        (click)="booksFacade.saveBooks()"
+      >
+        Save page
+      </button>
+    </div>
+
+    <form class="book-form" (ngSubmit)="addBook()">
+      <label>
+        Title
+        <input
+          name="title"
+          type="text"
+          [(ngModel)]="title"
+          placeholder="Facade-friendly NgRx"
+          autocomplete="off"
+        />
+      </label>
+      <label>
+        Author
+        <input
+          name="author"
+          type="text"
+          [(ngModel)]="author"
+          autocomplete="off"
+        />
+      </label>
+      <button type="submit" class="primary">Add local book</button>
+    </form>
+
+    <div class="content-grid">
+      <ul class="book-list" aria-label="Books">
+        @for (book of booksFacade.books(); track book.id) {
+          <li>
+            <button type="button" (click)="booksFacade.selectBook(book.id)">
+              <span>{{ book.title }}</span>
+              <small>{{ book.author }}</small>
+            </button>
+            <div class="row-actions">
+              <button type="button" (click)="booksFacade.toggleFavorite(book.id)">
+                {{ book.favorite ? 'Unfavorite' : 'Favorite' }}
+              </button>
+              <button type="button" class="danger" (click)="booksFacade.removeBook(book.id)">
+                Remove
+              </button>
+            </div>
+          </li>
+        }
+      </ul>
+
+      <aside class="details-panel" aria-label="Selected book">
+        <p class="eyebrow">Selected</p>
+        @if (booksFacade.selectedBook(); as selectedBook) {
+          <h2>{{ selectedBook.title }}</h2>
+          <p>{{ selectedBook.author }}</p>
+          <p>
+            {{ selectedBook.favorite ? 'Favorite book' : 'Not a favorite yet' }}
+          </p>
+        } @else {
+          <h2>No book selected</h2>
+          <p>Select a book from the list.</p>
+        }
+
+        @if (booksFacade.lastSavedAt()) {
+          <p class="saved">Last saved at {{ booksFacade.lastSavedAt() }}</p>
+        }
+      </aside>
+    </div>
+
+    <footer class="pagination">
+      <button
+        type="button"
+        [disabled]="!booksFacade.canGoPrevious()"
+        (click)="booksFacade.previousPage()"
+      >
+        Previous
+      </button>
+      <span>Page {{ booksFacade.page() }} of {{ booksFacade.totalPages() }}</span>
+      <button
+        type="button"
+        [disabled]="!booksFacade.canGoNext()"
+        (click)="booksFacade.nextPage()"
+      >
+        Next
+      </button>
+    </footer>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What Changed</h2>
+    <ol>
+      <li>The component injects BooksFacade instead of Store.</li>
+      <li>The facade exposes selector signals as readable properties.</li>
+      <li>The facade exposes methods that dispatch actions.</li>
+      <li>The reducer and effects stay unchanged.</li>
+    </ol>
+  </section>
+</main>

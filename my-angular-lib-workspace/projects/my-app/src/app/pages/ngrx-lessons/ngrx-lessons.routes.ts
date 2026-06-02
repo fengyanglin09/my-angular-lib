@@ -78,4 +78,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson11FacadePattern,
       ),
   },
+  {
+    path: 'lesson-12-router-store/:topic',
+    loadComponent: () =>
+      import('./lesson-12-router-store/lesson-12-router-store').then(
+        (m) => m.Lesson12RouterStore,
+      ),
+  },
 ];

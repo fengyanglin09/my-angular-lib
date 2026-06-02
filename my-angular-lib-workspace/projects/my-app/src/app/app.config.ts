@@ -1,5 +1,6 @@
 import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideRouter } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -30,8 +31,10 @@ export const appConfig: ApplicationConfig = {
       [draftsFeature.name]: draftsFeature.reducer,
       [feedbackFeature.name]: feedbackFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
+      router: routerReducer,
       [todosFeature.name]: todosFeature.reducer,
     }),
+    provideRouterStore(),
     provideEffects([
       BooksEffects,
       ConcurrencyEffects,
