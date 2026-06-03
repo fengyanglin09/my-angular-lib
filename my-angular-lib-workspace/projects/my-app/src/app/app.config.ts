@@ -53,6 +53,8 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
+      trace: true,
+      traceLimit: 25,
     }),
   ]
 };

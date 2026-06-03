@@ -2,6 +2,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { Routes } from '@angular/router';
 
+import { DevtoolsLabEffects } from '../../state/devtools-lab/devtools-lab.effects';
+import { devtoolsLabFeature } from '../../state/devtools-lab/devtools-lab.reducer';
 import * as functionalTipsEffects from '../../state/functional-tips/functional-tips.effects';
 import { functionalTipsFeature } from '../../state/functional-tips/functional-tips.reducer';
 import { LessonProgressEffects } from '../../state/lesson-progress/lesson-progress.effects';
@@ -154,6 +156,17 @@ export const ngrxLessonsRoutes: Routes = [
     loadComponent: () =>
       import('./lesson-20-functional-effects/lesson-20-functional-effects').then(
         (m) => m.Lesson20FunctionalEffects,
+      ),
+  },
+  {
+    path: 'lesson-21-store-devtools',
+    providers: [
+      provideState(devtoolsLabFeature),
+      provideEffects(DevtoolsLabEffects),
+    ],
+    loadComponent: () =>
+      import('./lesson-21-store-devtools/lesson-21-store-devtools').then(
+        (m) => m.Lesson21StoreDevtools,
       ),
   },
 ];

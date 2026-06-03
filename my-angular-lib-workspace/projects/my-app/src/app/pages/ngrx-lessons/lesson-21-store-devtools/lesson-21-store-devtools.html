@@ -1,0 +1,91 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="21" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 21</p>
+    <h1>Store DevTools Deep Dive</h1>
+    <p>
+      Store DevTools lets you inspect the action timeline, the state tree, the
+      state diff, and effect-produced actions. This lab gives you predictable
+      actions to click and inspect.
+    </p>
+  </section>
+
+  <section class="lab-panel" aria-labelledby="lab-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Action Timeline</p>
+        <h2 id="lab-title">DevTools Lab State</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="state-grid">
+      <article>
+        <span>Count</span>
+        <strong>{{ count() }}</strong>
+      </article>
+      <article>
+        <span>Label</span>
+        <strong>{{ label() }}</strong>
+      </article>
+      <article>
+        <span>Status</span>
+        <strong>{{ loading() ? 'Loading' : 'Idle' }}</strong>
+      </article>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="increment()">Increment</button>
+      <button type="button" (click)="setNextLabel()">Set label</button>
+      <button type="button" (click)="loadAuditTrail()">Load audit trail</button>
+      <button type="button" (click)="loadAuditTrail(true)">Load and fail</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <section class="audit-card" aria-labelledby="audit-title">
+      <h2 id="audit-title">Audit Trail From Effect</h2>
+      <ol>
+        @for (entry of auditTrail(); track entry.id) {
+          <li>{{ entry.message }}</li>
+        } @empty {
+          <li class="empty">Click "Load audit trail" to create effect actions.</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="guide-panel" aria-labelledby="guide-title">
+    <h2 id="guide-title">What To Inspect In Store DevTools</h2>
+    <ol>
+      <li>
+        Click Increment and find
+        <code>[DevTools Lab] Increment Counter</code> in the action list.
+      </li>
+      <li>
+        Open the State tab and look for the
+        <code>devtoolsLab</code> feature state.
+      </li>
+      <li>
+        Open the Diff tab after Set label to see only
+        <code>label</code> change.
+      </li>
+      <li>
+        Click Load audit trail and watch one action turn into a later success
+        action from the effect.
+      </li>
+      <li>
+        Click Reset, then use time travel to compare before and after states.
+      </li>
+      <li>
+        For Trace, reload the page, click DevTools Reset, then dispatch a new
+        action. Trace does not appear for old actions from before tracing was
+        enabled.
+      </li>
+    </ol>
+  </section>
+</main>
