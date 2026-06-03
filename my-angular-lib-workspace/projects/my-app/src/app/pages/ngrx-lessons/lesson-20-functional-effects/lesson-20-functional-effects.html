@@ -1,0 +1,83 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="20" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 20</p>
+    <h1>Functional Effects</h1>
+    <p>
+      Functional effects are exported functions instead of class properties.
+      They still listen to actions, call services, and emit actions, but they
+      use inject() for dependencies.
+    </p>
+  </section>
+
+  <section class="effects-panel" aria-labelledby="effects-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">functional: true</p>
+        <h2 id="effects-title">Functional Tips</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadTips()">Load tips</button>
+      <button type="button" (click)="loadTips(true)">Load and fail</button>
+      <button type="button" (click)="clearNotifications()">Clear notifications</button>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Functional effect is loading tips...</p>
+    }
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    <div class="content-grid">
+      <section class="tips-card" aria-labelledby="tips-title">
+        <h2 id="tips-title">Tips Loaded By Functional Effect</h2>
+        <ul>
+          @for (tip of tips(); track tip.id) {
+            <li>
+              <h3>{{ tip.title }}</h3>
+              <p>{{ tip.body }}</p>
+            </li>
+          } @empty {
+            <li class="empty">No tips loaded yet.</li>
+          }
+        </ul>
+      </section>
+
+      <aside class="code-card" aria-label="Functional effect shape">
+        <p class="eyebrow">Shape</p>
+        <pre>export const loadTips = createEffect(
+  (actions$ = inject(Actions)) =&gt;
+    actions$.pipe(...),
+  {{ '{' }} functional: true {{ '}' }},
+);</pre>
+      </aside>
+    </div>
+
+    <section class="notifications" aria-labelledby="notifications-title">
+      <h2 id="notifications-title">Functional Notification Effect</h2>
+      <ol>
+        @for (notification of notifications(); track notification.id) {
+          <li>{{ notification.message }}</li>
+        } @empty {
+          <li class="empty">No notifications yet.</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Class Effect vs Functional Effect</h2>
+    <ol>
+      <li>Class effects are properties on an injectable class.</li>
+      <li>Functional effects are exported constants created with createEffect.</li>
+      <li>Functional effects use inject() to get Actions and services.</li>
+      <li>Register functional effects by passing their exported object to provideEffects.</li>
+    </ol>
+  </section>
+</main>

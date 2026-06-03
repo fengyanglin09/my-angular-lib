@@ -35,5 +35,6 @@ export class LearningNav {
     { label: 'Lesson 17', path: '/ngrx-lessons/lesson-17-action-state-effects' },
     { label: 'Lesson 18', path: '/ngrx-lessons/lesson-18-selector-factories' },
     { label: 'Lesson 19', path: '/ngrx-lessons/lesson-19-non-dispatching-effects' },
+    { label: 'Lesson 20', path: '/ngrx-lessons/lesson-20-functional-effects' },
   ];
 }

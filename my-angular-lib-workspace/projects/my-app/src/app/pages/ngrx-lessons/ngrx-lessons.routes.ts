@@ -2,6 +2,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { Routes } from '@angular/router';
 
+import * as functionalTipsEffects from '../../state/functional-tips/functional-tips.effects';
+import { functionalTipsFeature } from '../../state/functional-tips/functional-tips.reducer';
 import { LessonProgressEffects } from '../../state/lesson-progress/lesson-progress.effects';
 import { lessonProgressFeature } from '../../state/lesson-progress/lesson-progress.reducer';
 
@@ -141,6 +143,17 @@ export const ngrxLessonsRoutes: Routes = [
     loadComponent: () =>
       import('./lesson-19-non-dispatching-effects/lesson-19-non-dispatching-effects').then(
         (m) => m.Lesson19NonDispatchingEffects,
+      ),
+  },
+  {
+    path: 'lesson-20-functional-effects',
+    providers: [
+      provideState(functionalTipsFeature),
+      provideEffects(functionalTipsEffects),
+    ],
+    loadComponent: () =>
+      import('./lesson-20-functional-effects/lesson-20-functional-effects').then(
+        (m) => m.Lesson20FunctionalEffects,
       ),
   },
 ];

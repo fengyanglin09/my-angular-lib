@@ -1,0 +1,170 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.effects-panel,
+.flow-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  padding: 26px;
+}
+
+.panel-heading,
+.toolbar {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #606b78;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.summary {
+  color: #606b78;
+  font-weight: 800;
+}
+
+.toolbar {
+  border-top: 1px solid #dbe2e8;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+
+button {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+.status,
+.error {
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 18px;
+  padding: 12px 14px;
+}
+
+.status {
+  background: #eaf2f8;
+  color: #315a85;
+}
+
+.error {
+  background: #fff0ed;
+  color: #a33d2b;
+}
+
+.content-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  margin-top: 22px;
+}
+
+.tips-card,
+.code-card,
+.notifications {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.tips-card ul,
+.notifications ol {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.tips-card li,
+.notifications li {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.tips-card li {
+  display: grid;
+  gap: 8px;
+}
+
+.tips-card p,
+.flow-panel ol {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+pre {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  line-height: 1.55;
+  margin: 12px 0 0;
+  overflow: auto;
+  padding: 14px;
+}
+
+.notifications {
+  margin-top: 18px;
+}
+
+.empty {
+  color: #606b78;
+  font-weight: 800;
+}
+
+.flow-panel ol {
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+@media (max-width: 880px) {
+  .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
