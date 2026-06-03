@@ -1,15 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, concatMap, map, of, withLatestFrom } from 'rxjs';
+import { catchError, concatMap, map, of, tap, withLatestFrom } from 'rxjs';
 
 import { selectSelectedBook } from '../books/books.selectors';
 import { SelectedBookNotesActions } from './selected-book-notes.actions';
 import { SelectedBookNotesApi } from './selected-book-notes-api';
+import { SelectedBookNotesNotifications } from './selected-book-notes-notifications';
 
 @Injectable()
 export class SelectedBookNotesEffects {
   private readonly actions$ = inject(Actions);
+  private readonly notifications = inject(SelectedBookNotesNotifications);
   private readonly selectedBookNotesApi = inject(SelectedBookNotesApi);
   private readonly store = inject(Store);
 
@@ -38,5 +40,27 @@ export class SelectedBookNotesEffects {
           );
       }),
     ),
+  );
+
+  readonly noteNotifications$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          SelectedBookNotesActions.saveNoteSuccess,
+          SelectedBookNotesActions.saveNoteFailure,
+        ),
+        tap((action) => {
+          if (action.type === SelectedBookNotesActions.saveNoteSuccess.type) {
+            this.notifications.show(
+              `Saved note for ${action.savedNote.bookTitle}`,
+              'success',
+            );
+            return;
+          }
+
+          this.notifications.show(action.error, 'error');
+        }),
+      ),
+    { dispatch: false },
   );
 }

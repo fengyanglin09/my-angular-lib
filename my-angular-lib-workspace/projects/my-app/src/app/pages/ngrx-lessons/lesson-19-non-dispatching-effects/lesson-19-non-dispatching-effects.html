@@ -1,0 +1,101 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="19" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 19</p>
+    <h1>Non-Dispatching Effects</h1>
+    <p>
+      Not every effect needs to dispatch a new action. Some effects perform
+      side effects like showing a toast, writing to storage, analytics, or
+      navigation.
+    </p>
+  </section>
+
+  <section class="toast-panel" aria-labelledby="toast-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">dispatch: false</p>
+        <h2 id="toast-title">Save Note Toasts</h2>
+      </div>
+      <button type="button" (click)="clearNotifications()">Clear toasts</button>
+    </div>
+
+    @if (booksVm().loading) {
+      <p class="status">Loading books...</p>
+    }
+
+    @if (saving()) {
+      <p class="status">Saving note. The toast effect will react after success or failure.</p>
+    }
+
+    <div class="content-grid">
+      <section class="book-picker" aria-label="Book picker">
+        <h2>Pick A Book</h2>
+        <ul>
+          @for (book of booksVm().books; track book.id) {
+            <li [class.selected]="booksVm().selectedBook?.id === book.id">
+              <button type="button" (click)="selectBook(book.id)">
+                <span>{{ book.title }}</span>
+                <small>{{ book.author }}</small>
+              </button>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="note-card" aria-label="Save note">
+        <p class="eyebrow">Action That Dispatches</p>
+        <h2>{{ booksVm().selectedBook?.title ?? 'No selected book' }}</h2>
+        <label>
+          Note
+          <textarea
+            name="toastNote"
+            [(ngModel)]="note"
+            rows="5"
+            placeholder="Write a note"
+          ></textarea>
+        </label>
+        <div class="actions">
+          <button
+            type="button"
+            class="primary"
+            [disabled]="saving()"
+            (click)="saveNote()"
+          >
+            Save note
+          </button>
+          <button type="button" [disabled]="saving()" (click)="saveNote(true)">
+            Save and fail
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <section class="notifications" aria-labelledby="notifications-title">
+      <h2 id="notifications-title">Notifications From Effect</h2>
+      <ol>
+        @for (notification of notifications(); track notification.id) {
+          <li [class]="notification.tone">
+            <span>{{ notification.tone }}</span>
+            <p>{{ notification.message }}</p>
+          </li>
+        } @empty {
+          <li class="empty">
+            <span>idle</span>
+            <p>No notifications yet.</p>
+          </li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Effect Shape</h2>
+    <ol>
+      <li>The save effect dispatches success or failure actions.</li>
+      <li>The notification effect listens to those actions.</li>
+      <li>It uses tap to call a notification service.</li>
+      <li>It uses dispatch: false because tap does not return an action.</li>
+    </ol>
+  </section>
+</main>

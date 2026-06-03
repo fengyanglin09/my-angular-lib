@@ -136,4 +136,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson18SelectorFactories,
       ),
   },
+  {
+    path: 'lesson-19-non-dispatching-effects',
+    loadComponent: () =>
+      import('./lesson-19-non-dispatching-effects/lesson-19-non-dispatching-effects').then(
+        (m) => m.Lesson19NonDispatchingEffects,
+      ),
+  },
 ];
