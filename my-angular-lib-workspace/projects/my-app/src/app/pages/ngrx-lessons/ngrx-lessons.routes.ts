@@ -129,4 +129,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson17ActionStateEffects,
       ),
   },
+  {
+    path: 'lesson-18-selector-factories',
+    loadComponent: () =>
+      import('./lesson-18-selector-factories/lesson-18-selector-factories').then(
+        (m) => m.Lesson18SelectorFactories,
+      ),
+  },
 ];

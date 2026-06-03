@@ -1,0 +1,96 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="18" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 18</p>
+    <h1>Selector Factories</h1>
+    <p>
+      A selector factory is a function that receives a parameter and returns a
+      selector. Use it when the same selection logic needs different inputs,
+      like book id or author name.
+    </p>
+  </section>
+
+  <section class="factory-panel" aria-labelledby="factory-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Parameterized Selectors</p>
+        <h2 id="factory-title">Loaded Books</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadPage(1)">Load page 1</button>
+      <button type="button" (click)="loadPage(2)">Load page 2</button>
+    </div>
+
+    @if (loading()) {
+      <p class="status">Loading books before selector factories run...</p>
+    }
+
+    <div class="lookup-grid">
+      <article>
+        <p class="eyebrow">selectBookById(3)</p>
+        <h2>{{ bookThreeLabel() }}</h2>
+        @if (bookThree(); as book) {
+          <p>{{ book.author }}</p>
+          <button type="button" (click)="toggleFavorite(book.id)">
+            {{ book.favorite ? 'Favorite' : 'Add favorite' }}
+          </button>
+        }
+      </article>
+
+      <article>
+        <p class="eyebrow">selectBookById(10)</p>
+        <h2>{{ bookTenLabel() }}</h2>
+        @if (bookTen(); as book) {
+          <p>{{ book.author }}</p>
+          <button type="button" (click)="toggleFavorite(book.id)">
+            {{ book.favorite ? 'Favorite' : 'Add favorite' }}
+          </button>
+        }
+      </article>
+    </div>
+
+    <div class="author-grid">
+      <section aria-labelledby="ada-title">
+        <h2 id="ada-title">selectBooksByAuthor('Ada Weaver')</h2>
+        <ul>
+          @for (book of adaBooks(); track book.id) {
+            <li>
+              <span>{{ book.title }}</span>
+              <small>id {{ book.id }}</small>
+            </li>
+          } @empty {
+            <li class="empty">No Ada Weaver books on this loaded page.</li>
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="ben-title">
+        <h2 id="ben-title">selectBooksByAuthor('Ben Stream')</h2>
+        <ul>
+          @for (book of benBooks(); track book.id) {
+            <li>
+              <span>{{ book.title }}</span>
+              <small>id {{ book.id }}</small>
+            </li>
+          } @empty {
+            <li class="empty">No Ben Stream books on this loaded page.</li>
+          }
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>selectBookById(3) creates a selector for one specific id.</li>
+      <li>selectBooksByAuthor('Ada Weaver') creates a selector for one author.</li>
+      <li>Create selector instances in TypeScript, not repeatedly in the template.</li>
+      <li>Selector factories are useful for ids, categories, authors, tabs, or route params.</li>
+    </ol>
+  </section>
+</main>

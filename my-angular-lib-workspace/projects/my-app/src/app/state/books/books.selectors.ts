@@ -66,6 +66,24 @@ export const selectSelectedBook = createSelector(
     selectedBookId === null ? null : entities[selectedBookId] ?? null,
 );
 
+export const selectBookById = (bookId: number) =>
+  createSelector(
+    selectBookEntities,
+    (entities) => entities[bookId] ?? null,
+  );
+
+export const selectBooksByAuthor = (author: string) =>
+  createSelector(
+    selectAllBooks,
+    (books) => books.filter((book) => book.author === author),
+  );
+
+export const selectBookLookupLabel = (bookId: number) =>
+  createSelector(
+    selectBookById(bookId),
+    (book) => book?.title ?? `No loaded book with id ${bookId}`,
+  );
+
 export const selectBooksSummary = createSelector(
   selectTotalBooks,
   selectFavoriteBooks,
