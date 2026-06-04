@@ -37,5 +37,6 @@ export class LearningNav {
     { label: 'Lesson 19', path: '/ngrx-lessons/lesson-19-non-dispatching-effects' },
     { label: 'Lesson 20', path: '/ngrx-lessons/lesson-20-functional-effects' },
     { label: 'Lesson 21', path: '/ngrx-lessons/lesson-21-store-devtools' },
+    { label: 'Lesson 22', path: '/ngrx-lessons/lesson-22-meta-reducers' },
   ];
 }

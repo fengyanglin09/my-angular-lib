@@ -1,0 +1,155 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f6f3;
+  color: #22272a;
+}
+
+.preferences-panel,
+.storage-panel,
+.flow-panel {
+  background: #ffffff;
+  border: 1px solid #dfe3dc;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  padding: 26px;
+}
+
+.panel-heading {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #626c5f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.summary {
+  color: #626c5f;
+  font-weight: 800;
+}
+
+.controls-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 22px;
+}
+
+.controls-grid.compact {
+  gap: 8px;
+}
+
+.control-card {
+  background: #f8faf7;
+  border: 1px solid #e1e8de;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.controls-grid.compact .control-card {
+  padding: 12px;
+}
+
+.notes-card {
+  grid-column: 1 / -1;
+}
+
+.segmented-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  background: #ffffff;
+  border: 1px solid #bdc8b7;
+  border-radius: 8px;
+  color: #2f6336;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+  text-transform: capitalize;
+}
+
+button.active {
+  background: #2f6336;
+  border-color: #2f6336;
+  color: #ffffff;
+}
+
+textarea {
+  border: 1px solid #bdc8b7;
+  border-radius: 8px;
+  color: inherit;
+  font: inherit;
+  line-height: 1.5;
+  padding: 12px;
+  resize: vertical;
+}
+
+.toolbar {
+  border-top: 1px solid #dfe3dc;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+
+pre {
+  background: #222a24;
+  border-radius: 8px;
+  color: #f4f8f0;
+  line-height: 1.55;
+  margin: 14px 0 0;
+  overflow: auto;
+  padding: 14px;
+}
+
+.flow-panel ol {
+  color: #626c5f;
+  line-height: 1.6;
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+@media (max-width: 780px) {
+  .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

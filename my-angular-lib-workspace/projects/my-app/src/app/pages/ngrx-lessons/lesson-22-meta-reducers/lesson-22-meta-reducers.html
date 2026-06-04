@@ -1,0 +1,77 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="22" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 22</p>
+    <h1>Meta-Reducers And Persistence</h1>
+    <p>
+      A meta-reducer wraps normal reducers. In this lesson, the reducer updates
+      preferences, while the meta-reducer saves and restores that slice from
+      localStorage.
+    </p>
+  </section>
+
+  <section class="preferences-panel" aria-labelledby="preferences-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Persisted State</p>
+        <h2 id="preferences-title">Lesson Preferences</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="controls-grid" [class.compact]="compactMode()">
+      <section class="control-card" aria-labelledby="theme-title">
+        <h3 id="theme-title">Theme</h3>
+        <div class="segmented-control">
+          @for (themeOption of themes; track themeOption) {
+            <button
+              type="button"
+              [class.active]="theme() === themeOption"
+              (click)="setTheme(themeOption)"
+            >
+              {{ themeOption }}
+            </button>
+          }
+        </div>
+      </section>
+
+      <section class="control-card" aria-labelledby="spacing-title">
+        <h3 id="spacing-title">Spacing</h3>
+        <button type="button" (click)="toggleCompactMode()">
+          {{ compactMode() ? 'Use comfortable spacing' : 'Use compact spacing' }}
+        </button>
+      </section>
+
+      <section class="control-card notes-card" aria-labelledby="notes-title">
+        <h3 id="notes-title">Notes</h3>
+        <textarea
+          [value]="notes()"
+          (input)="updateNotes($any($event.target).value)"
+          rows="5"
+        ></textarea>
+      </section>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="resetPreferences()">Reset preferences</button>
+    </div>
+  </section>
+
+  <section class="storage-panel" aria-labelledby="storage-title">
+    <h2 id="storage-title">localStorage Snapshot</h2>
+    <pre>{{ storageSnapshot() }}</pre>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What Is Happening</h2>
+    <ol>
+      <li>The component dispatches normal preference actions.</li>
+      <li>The reducer returns the next preference state.</li>
+      <li>The meta-reducer sees that preference action and saves the slice.</li>
+      <li>On app startup, the meta-reducer hydrates the slice from localStorage.</li>
+      <li>The component does not contain persistence logic.</li>
+    </ol>
+  </section>
+</main>
+

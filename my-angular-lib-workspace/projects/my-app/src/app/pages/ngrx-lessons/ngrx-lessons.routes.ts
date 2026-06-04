@@ -169,4 +169,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson21StoreDevtools,
       ),
   },
+  {
+    path: 'lesson-22-meta-reducers',
+    loadComponent: () =>
+      import('./lesson-22-meta-reducers/lesson-22-meta-reducers').then(
+        (m) => m.Lesson22MetaReducers,
+      ),
+  },
 ];

@@ -15,6 +15,8 @@ import { DraftsEffects } from './state/drafts/drafts.effects';
 import { draftsFeature } from './state/drafts/drafts.reducer';
 import { FeedbackEffects } from './state/feedback/feedback.effects';
 import { feedbackFeature } from './state/feedback/feedback.reducer';
+import { lessonPreferencesStorageMetaReducer } from './state/lesson-preferences/lesson-preferences.meta-reducer';
+import { lessonPreferencesFeature } from './state/lesson-preferences/lesson-preferences.reducer';
 import { ProductsEffects } from './state/products/products.effects';
 import { productsFeature } from './state/products/products.reducer';
 import { RouteProjectsEffects } from './state/route-projects/route-projects.effects';
@@ -34,11 +36,14 @@ export const appConfig: ApplicationConfig = {
       [counterFeature.name]: counterFeature.reducer,
       [draftsFeature.name]: draftsFeature.reducer,
       [feedbackFeature.name]: feedbackFeature.reducer,
+      [lessonPreferencesFeature.name]: lessonPreferencesFeature.reducer,
       [productsFeature.name]: productsFeature.reducer,
       [routeProjectsFeature.name]: routeProjectsFeature.reducer,
       [selectedBookNotesFeature.name]: selectedBookNotesFeature.reducer,
       router: routerReducer,
       [todosFeature.name]: todosFeature.reducer,
+    }, {
+      metaReducers: [lessonPreferencesStorageMetaReducer],
     }),
     provideRouterStore(),
     provideEffects([
