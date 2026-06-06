@@ -40,5 +40,6 @@ export class LearningNav {
     { label: 'Lesson 22', path: '/ngrx-lessons/lesson-22-meta-reducers' },
     { label: 'Lesson 23', path: '/ngrx-lessons/lesson-23-ngrx-testing' },
     { label: 'Lesson 24', path: '/ngrx-lessons/lesson-24-mock-store-testing' },
+    { label: 'Lesson 25', path: '/ngrx-lessons/lesson-25-normalized-state' },
   ];
 }

@@ -1,0 +1,78 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="25" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 25</p>
+    <h1>Normalized State And Selector Joins</h1>
+    <p>
+      Real applications often receive related data from a backend. Instead of
+      nesting duplicate author objects inside every book, store authors and
+      books separately, then join them in selectors.
+    </p>
+  </section>
+
+  <section class="catalog-panel" aria-labelledby="catalog-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Entity Relationships</p>
+        <h2 id="catalog-title">Library Catalog</h2>
+      </div>
+      <p class="summary">{{ summary() }}</p>
+    </div>
+
+    <div class="author-filter" aria-label="Author filter">
+      <button
+        type="button"
+        [class.active]="selectedAuthorId() === null"
+        (click)="selectAuthor(null)"
+      >
+        All authors
+      </button>
+
+      @for (author of authors(); track author.id) {
+        <button
+          type="button"
+          [class.active]="selectedAuthorId() === author.id"
+          (click)="selectAuthor(author.id)"
+        >
+          {{ author.name }}
+        </button>
+      }
+    </div>
+
+    <div class="content-grid">
+      <section class="books-list" aria-labelledby="books-title">
+        <h2 id="books-title">Books From Joined Selector</h2>
+        <ul>
+          @for (book of books(); track book.id) {
+            <li>
+              <h3>{{ book.title }}</h3>
+              <p>{{ book.authorName }} · {{ book.year }}</p>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <aside class="shape-card" aria-label="Normalized state shape">
+        <p class="eyebrow">State Shape</p>
+        <pre>libraryCatalog: {{ '{' }}
+  authors: {{ '{' }} ids, entities {{ '}' }},
+  books: {{ '{' }} ids, entities {{ '}' }},
+  selectedAuthorId
+{{ '}' }}</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Why This Pattern Matters</h2>
+    <ol>
+      <li>Each author is stored once, even if they have many books.</li>
+      <li>Each book stores only <code>authorId</code>, like a database foreign key.</li>
+      <li>Selectors join books with author names for the UI.</li>
+      <li>Filtering by selected author changes only one small state value.</li>
+      <li>The component receives simple display-ready book view models.</li>
+    </ol>
+  </section>
+</main>
+

@@ -8,6 +8,7 @@ import * as functionalTipsEffects from '../../state/functional-tips/functional-t
 import { functionalTipsFeature } from '../../state/functional-tips/functional-tips.reducer';
 import { LessonProgressEffects } from '../../state/lesson-progress/lesson-progress.effects';
 import { lessonProgressFeature } from '../../state/lesson-progress/lesson-progress.reducer';
+import { libraryCatalogFeature } from '../../state/library-catalog/library-catalog.reducer';
 
 export const ngrxLessonsRoutes: Routes = [
   {
@@ -188,6 +189,14 @@ export const ngrxLessonsRoutes: Routes = [
     loadComponent: () =>
       import('./lesson-24-mock-store-testing/lesson-24-mock-store-testing').then(
         (m) => m.Lesson24MockStoreTesting,
+      ),
+  },
+  {
+    path: 'lesson-25-normalized-state',
+    providers: [provideState(libraryCatalogFeature)],
+    loadComponent: () =>
+      import('./lesson-25-normalized-state/lesson-25-normalized-state').then(
+        (m) => m.Lesson25NormalizedState,
       ),
   },
 ];
