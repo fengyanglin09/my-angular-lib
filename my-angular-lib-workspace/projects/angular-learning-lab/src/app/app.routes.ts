@@ -15,4 +15,11 @@ export const routes: Routes = [
         (m) => m.ngrxLessonsRoutes,
       ),
   },
+  {
+    path: 'rxjs-lessons',
+    loadChildren: () =>
+      import('./pages/rxjs-lessons/rxjs-lessons.routes').then(
+        (m) => m.rxjsLessonsRoutes,
+      ),
+  },
 ];

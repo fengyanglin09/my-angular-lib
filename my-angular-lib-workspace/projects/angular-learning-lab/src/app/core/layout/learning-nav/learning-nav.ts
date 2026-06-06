@@ -6,6 +6,8 @@ interface LessonLink {
   path: string;
 }
 
+type LearningCategory = 'ngrx' | 'rxjs';
+
 @Component({
   selector: 'app-learning-nav',
   imports: [RouterLink],
@@ -14,8 +16,9 @@ interface LessonLink {
 })
 export class LearningNav {
   @Input({ required: true }) activeLesson!: number;
+  @Input() category: LearningCategory = 'ngrx';
 
-  protected readonly lessons: LessonLink[] = [
+  private readonly ngrxLessons: LessonLink[] = [
     { label: 'Lesson 1', path: '/ngrx-lessons/lesson-01-counter' },
     { label: 'Lesson 2', path: '/ngrx-lessons/lesson-02-todos' },
     { label: 'Lesson 3', path: '/ngrx-lessons/lesson-03-effects-products' },
@@ -42,4 +45,12 @@ export class LearningNav {
     { label: 'Lesson 24', path: '/ngrx-lessons/lesson-24-mock-store-testing' },
     { label: 'Lesson 25', path: '/ngrx-lessons/lesson-25-normalized-state' },
   ];
+
+  private readonly rxjsLessons: LessonLink[] = [
+    { label: 'Lesson 1', path: '/rxjs-lessons/lesson-01-observable-basics' },
+  ];
+
+  protected get lessons(): LessonLink[] {
+    return this.category === 'rxjs' ? this.rxjsLessons : this.ngrxLessons;
+  }
 }

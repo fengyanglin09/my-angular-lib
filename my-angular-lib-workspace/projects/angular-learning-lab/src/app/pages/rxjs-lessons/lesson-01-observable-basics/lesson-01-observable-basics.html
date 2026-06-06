@@ -1,0 +1,50 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="1" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 1</p>
+    <h1>Observable Basics</h1>
+    <p>
+      An Observable is a recipe for producing values over time. The recipe does
+      not run when you create it. It runs when something subscribes.
+    </p>
+  </section>
+
+  <section class="demo-panel" aria-labelledby="demo-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Subscribe To Start</p>
+        <h2 id="demo-title">Cold Observable Demo</h2>
+      </div>
+      <p class="summary">{{ running() ? 'Subscription active' : 'No active subscription' }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runColdObservable()">Start 3-value stream</button>
+      <button type="button" (click)="runSingleValueObservable()">Run single value</button>
+      <button type="button" (click)="stopStream()">Unsubscribe</button>
+    </div>
+
+    <section class="log-card" aria-labelledby="log-title">
+      <h2 id="log-title">Subscription Log</h2>
+      <ol>
+        @for (log of logs(); track $index) {
+          <li>{{ log }}</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Notice</h2>
+    <ol>
+      <li>Creating an Observable does not start the work.</li>
+      <li><code>subscribe()</code> starts the producer.</li>
+      <li>An Observable can emit one value, many values, or no values.</li>
+      <li><code>next</code> handles emitted values.</li>
+      <li><code>complete</code> means the Observable finished normally.</li>
+      <li><code>unsubscribe()</code> stops listening and runs cleanup.</li>
+    </ol>
+  </section>
+</main>
+
