@@ -1,0 +1,53 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="23" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 23</p>
+    <h1>Testing Reducers, Selectors, And Effects</h1>
+    <p>
+      NgRx tests are strongest when each test focuses on one layer. Reducers are
+      plain functions, selectors test derived data, and effects test action in
+      to action out.
+    </p>
+  </section>
+
+  <section class="testing-panel" aria-labelledby="testing-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Test Strategy</p>
+        <h2 id="testing-title">What Each Test Proves</h2>
+      </div>
+      <p class="summary">Small tests, clear responsibility</p>
+    </div>
+
+    <div class="test-grid">
+      @for (example of examples; track example.title) {
+        <article class="test-card">
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.code }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">How To Think About NgRx Tests</h2>
+    <ol>
+      <li>Reducer tests ask: given state and action, what next state comes out?</li>
+      <li>Selector tests ask: given state inputs, what derived value comes out?</li>
+      <li>Effect tests ask: given an action and mocked service response, what action is emitted?</li>
+      <li>Component tests are usually separate; they verify rendering and user interaction.</li>
+    </ol>
+  </section>
+
+  <section class="files-panel" aria-labelledby="files-title">
+    <h2 id="files-title">Files Added For This Lesson</h2>
+    <ul>
+      <li><code>state/devtools-lab/devtools-lab.reducer.spec.ts</code></li>
+      <li><code>state/devtools-lab/devtools-lab.selectors.spec.ts</code></li>
+      <li><code>state/devtools-lab/devtools-lab.effects.spec.ts</code></li>
+    </ul>
+  </section>
+</main>
+

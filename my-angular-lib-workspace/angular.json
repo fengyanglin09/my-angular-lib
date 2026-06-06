@@ -3,26 +3,26 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-app": {
+    "angular-learning-lab": {
       "projectType": "application",
       "schematics": {},
-      "root": "projects/my-app",
-      "sourceRoot": "projects/my-app/src",
+      "root": "projects/angular-learning-lab",
+      "sourceRoot": "projects/angular-learning-lab/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "projects/my-app/src/main.ts",
-            "tsConfig": "projects/my-app/tsconfig.app.json",
+            "browser": "projects/angular-learning-lab/src/main.ts",
+            "tsConfig": "projects/angular-learning-lab/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/my-app/public"
+                "input": "projects/angular-learning-lab/public"
               }
             ],
             "styles": [
-              "projects/my-app/src/styles.css"
+              "projects/angular-learning-lab/src/styles.css"
             ]
           },
           "configurations": {
@@ -53,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-app:build:production"
+              "buildTarget": "angular-learning-lab:build:production"
             },
             "development": {
-              "buildTarget": "my-app:build:development"
+              "buildTarget": "angular-learning-lab:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -67,15 +67,15 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "tsConfig": "projects/my-app/tsconfig.spec.json",
+            "tsConfig": "projects/angular-learning-lab/tsconfig.spec.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/my-app/public"
+                "input": "projects/angular-learning-lab/public"
               }
             ],
             "styles": [
-              "projects/my-app/src/styles.css"
+              "projects/angular-learning-lab/src/styles.css"
             ]
           }
         }

@@ -9,7 +9,7 @@ npm install -D concurrently
 ```json
 {
   "scripts": {
-    "dev": "concurrently \"ng build my-lib --watch\" \"ng serve my-app\"",
+    "dev": "concurrently \"ng build my-lib --watch\" \"ng serve angular-learning-lab\"",
     "storybook": "ng build my-lib --watch & npx storybook dev -p 6006",
     "build:lib": "ng build my-lib --configuration production",
     "test:lib": "ng test my-lib"

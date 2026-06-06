@@ -5,7 +5,7 @@ ng new my-workspace --no-create-application
 cd my-workspace
 
 # Create the demo app and the library
-ng generate application my-app
+ng generate application angular-learning-lab
 ng generate library my-lib
 ```
 
@@ -13,7 +13,7 @@ ng generate library my-lib
 ```yaml
 my-workspace/
 ├── projects/
-│   ├── my-app/
+│   ├── angular-learning-lab/
 │   └── my-lib/
 │       ├── src/
 │       │   ├── lib/

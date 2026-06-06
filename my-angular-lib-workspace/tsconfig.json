@@ -30,10 +30,10 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/my-app/tsconfig.app.json"
+      "path": "./projects/angular-learning-lab/tsconfig.app.json"
     },
     {
-      "path": "./projects/my-app/tsconfig.spec.json"
+      "path": "./projects/angular-learning-lab/tsconfig.spec.json"
     },
     {
       "path": "./projects/my-lib/tsconfig.lib.json"

@@ -163,7 +163,7 @@ dispatch a new action.
 In this project, trace is enabled in:
 
 ```text
-projects/my-app/src/app/app.config.ts
+projects/angular-learning-lab/src/app/app.config.ts
 ```
 
 with:

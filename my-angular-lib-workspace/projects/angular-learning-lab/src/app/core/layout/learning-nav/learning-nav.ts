@@ -38,5 +38,6 @@ export class LearningNav {
     { label: 'Lesson 20', path: '/ngrx-lessons/lesson-20-functional-effects' },
     { label: 'Lesson 21', path: '/ngrx-lessons/lesson-21-store-devtools' },
     { label: 'Lesson 22', path: '/ngrx-lessons/lesson-22-meta-reducers' },
+    { label: 'Lesson 23', path: '/ngrx-lessons/lesson-23-ngrx-testing' },
   ];
 }
