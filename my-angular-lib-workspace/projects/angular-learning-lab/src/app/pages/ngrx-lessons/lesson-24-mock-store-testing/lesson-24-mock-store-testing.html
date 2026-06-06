@@ -1,0 +1,52 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="24" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 24</p>
+    <h1>MockStore Component Tests</h1>
+    <p>
+      MockStore lets a component test control selector values without creating
+      the full real NgRx store. This is useful when the test is about rendering
+      and dispatched actions, not reducer behavior.
+    </p>
+  </section>
+
+  <section class="mock-panel" aria-labelledby="mock-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Component Testing</p>
+        <h2 id="mock-title">Why MockStore Exists</h2>
+      </div>
+      <p class="summary">Mock selectors in, user action out</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.title) {
+        <article class="example-card">
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.code }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">How The Test Reads</h2>
+    <ol>
+      <li>Mock selector values describe the store state the component should see.</li>
+      <li>The component renders those values through normal template bindings.</li>
+      <li>The test clicks a button just like a user would.</li>
+      <li>The dispatch spy checks that the component sent the right action.</li>
+      <li>The reducer is not tested here because reducer tests already cover state changes.</li>
+    </ol>
+  </section>
+
+  <section class="files-panel" aria-labelledby="files-title">
+    <h2 id="files-title">Spec Added For This Lesson</h2>
+    <p>
+      <code>pages/ngrx-lessons/lesson-21-store-devtools/lesson-21-store-devtools.spec.ts</code>
+    </p>
+  </section>
+</main>
+

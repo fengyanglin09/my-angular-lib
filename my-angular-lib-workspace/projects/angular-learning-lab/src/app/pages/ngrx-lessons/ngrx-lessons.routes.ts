@@ -183,4 +183,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson23NgrxTesting,
       ),
   },
+  {
+    path: 'lesson-24-mock-store-testing',
+    loadComponent: () =>
+      import('./lesson-24-mock-store-testing/lesson-24-mock-store-testing').then(
+        (m) => m.Lesson24MockStoreTesting,
+      ),
+  },
 ];
