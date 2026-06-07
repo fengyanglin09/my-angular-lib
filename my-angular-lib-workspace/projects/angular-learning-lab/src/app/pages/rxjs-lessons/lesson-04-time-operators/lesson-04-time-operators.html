@@ -1,0 +1,77 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="4" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 4</p>
+    <h1>Time Operators</h1>
+    <p>
+      Time operators control when values move through a stream. The source may
+      emit right away, but operators like <code>delay</code>,
+      <code>debounceTime</code>, and <code>throttleTime</code> decide when the
+      subscriber is allowed to receive those values.
+    </p>
+  </section>
+
+  <section class="timing-panel" aria-labelledby="timing-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">delay, debounceTime, throttleTime</p>
+        <h2 id="timing-title">Timing Demo</h2>
+      </div>
+      <p class="summary">Active demo: {{ activeDemo() }}</p>
+    </div>
+
+    <div class="operator-grid">
+      @for (operator of operators; track operator.name) {
+        <article class="operator-card">
+          <h3>{{ operator.name }}</h3>
+          <p>{{ operator.description }}</p>
+          <p class="use-case">{{ operator.realWorldUse }}</p>
+          <pre>{{ operator.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runDelayDemo()">Run delay()</button>
+      <button type="button" (click)="runDebounceDemo()">
+        Run debounceTime()
+      </button>
+      <button type="button" (click)="runThrottleDemo()">
+        Run throttleTime()
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <section class="log-card" aria-labelledby="log-title">
+      <h2 id="log-title">Emission Log</h2>
+      <ol>
+        @for (log of logs(); track $index) {
+          <li>{{ log }}</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        <code>delay</code> shifts delivery later, but it does not stop the
+        source from emitting.
+      </li>
+      <li>
+        <code>debounceTime</code> is best when you only care about the latest
+        value after a pause.
+      </li>
+      <li>
+        <code>throttleTime</code> is best when you want the first value, then a
+        short cooldown.
+      </li>
+      <li>
+        The source Observable and the subscriber can experience different timing
+        because operators sit between them.
+      </li>
+    </ol>
+  </section>
+</main>

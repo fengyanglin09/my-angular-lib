@@ -22,4 +22,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson03PipeableOperators,
       ),
   },
+  {
+    path: 'lesson-04-time-operators',
+    loadComponent: () =>
+      import('./lesson-04-time-operators/lesson-04-time-operators').then(
+        (m) => m.Lesson04TimeOperators,
+      ),
+  },
 ];

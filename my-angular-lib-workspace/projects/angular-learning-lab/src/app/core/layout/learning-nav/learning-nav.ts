@@ -50,6 +50,7 @@ export class LearningNav {
     { label: 'Lesson 1', path: '/rxjs-lessons/lesson-01-observable-basics' },
     { label: 'Lesson 2', path: '/rxjs-lessons/lesson-02-creation-operators' },
     { label: 'Lesson 3', path: '/rxjs-lessons/lesson-03-pipeable-operators' },
+    { label: 'Lesson 4', path: '/rxjs-lessons/lesson-04-time-operators' },
   ];
 
   protected get lessons(): LessonLink[] {

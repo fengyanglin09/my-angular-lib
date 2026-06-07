@@ -10,6 +10,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 1. Observable Basics | `/rxjs-lessons/lesson-01-observable-basics` | What an Observable is, why it does not run until subscription, how `next` and `complete` work, and how `unsubscribe()` runs cleanup. |
 | 2. Creation Operators | `/rxjs-lessons/lesson-02-creation-operators` | How to create Observables with `of`, `from`, `interval`, and `timer`, plus why `take` is useful for limiting long-running streams. |
 | 3. Pipeable Operators | `/rxjs-lessons/lesson-03-pipeable-operators` | How `pipe()` chains operators, how `tap` observes values, how `filter` removes values, and how `map` transforms values. |
+| 4. Time Operators | `/rxjs-lessons/lesson-04-time-operators` | How `delay`, `debounceTime`, and `throttleTime` change when values reach the subscriber. |
 
 ## Big Ideas So Far
 
@@ -38,6 +39,13 @@ what each lesson teaches as the RxJS learning path grows.
 - `map(...)` changes each value into a new value.
 - The subscriber receives only the values that survive the pipeline.
 
+### Time Operators
+
+- `delay(...)` moves delivery later while preserving the value.
+- `debounceTime(...)` waits for a quiet period and then emits the latest value.
+- `throttleTime(...)` emits the first value, then ignores extra values for a short window.
+- Timing operators are common in search inputs, save buttons, repeated clicks, and loading flows.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -57,7 +65,6 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- async operators like `delay` and `debounceTime`
 - flattening operators like `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap`
 - error handling with `catchError`
 - combining streams with `combineLatest`, `withLatestFrom`, and `forkJoin`
