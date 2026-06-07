@@ -1,0 +1,80 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 5</p>
+    <h1>Flattening Operators</h1>
+    <p>
+      Flattening operators are used when each source value creates another
+      Observable. In Angular, that often means a click, route change, or search
+      query creates an HTTP request Observable.
+    </p>
+  </section>
+
+  <section class="flattening-panel" aria-labelledby="flattening-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">switchMap, concatMap, mergeMap, exhaustMap</p>
+        <h2 id="flattening-title">Click Burst To Backend Request</h2>
+      </div>
+      <p class="summary">Active strategy: {{ activeStrategy() }}</p>
+    </div>
+
+    <div class="operator-grid">
+      @for (operator of operators; track operator.name) {
+        <article class="operator-card">
+          <h3>{{ operator.name }}</h3>
+          <p class="rule">{{ operator.rule }}</p>
+          <p>{{ operator.description }}</p>
+          <p class="use-case">{{ operator.realWorldUse }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runDemo('switchMap')">Run switchMap</button>
+      <button type="button" (click)="runDemo('concatMap')">Run concatMap</button>
+      <button type="button" (click)="runDemo('mergeMap')">Run mergeMap</button>
+      <button type="button" (click)="runDemo('exhaustMap')">
+        Run exhaustMap
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="result-card" aria-labelledby="results-title">
+        <h2 id="results-title">Subscriber Results</h2>
+        <ul>
+          @for (result of results(); track $index) {
+            <li>{{ result }}</li>
+          } @empty {
+            <li>No results yet.</li>
+          }
+        </ul>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Flattening Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        The outer Observable emits clicks. Each click creates an inner backend
+        request Observable.
+      </li>
+      <li><code>switchMap</code> keeps only the latest inner Observable.</li>
+      <li><code>concatMap</code> queues inner Observables in order.</li>
+      <li><code>mergeMap</code> lets inner Observables run at the same time.</li>
+      <li><code>exhaustMap</code> ignores new outer values while busy.</li>
+    </ol>
+  </section>
+</main>

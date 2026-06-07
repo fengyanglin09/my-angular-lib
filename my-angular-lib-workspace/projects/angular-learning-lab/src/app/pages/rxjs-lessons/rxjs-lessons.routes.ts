@@ -29,4 +29,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson04TimeOperators,
       ),
   },
+  {
+    path: 'lesson-05-flattening-operators',
+    loadComponent: () =>
+      import('./lesson-05-flattening-operators/lesson-05-flattening-operators').then(
+        (m) => m.Lesson05FlatteningOperators,
+      ),
+  },
 ];
