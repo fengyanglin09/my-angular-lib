@@ -18,6 +18,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 9. HTTP Data Flow | `/rxjs-lessons/lesson-09-http-data-flow` | How to model backend-style loading, data, error, reload, cancellation, and shared async-pipe subscriptions. |
 | 10. Service Data Flow | `/rxjs-lessons/lesson-10-service-data-flow` | How to move RxJS loading/data/error state into an injectable service with a `vm$` stream and component-friendly methods. |
 | 11. Component Facade | `/rxjs-lessons/lesson-11-component-facade` | How a local facade combines backend state and UI state into one component-friendly `vm$`. |
+| 12. Subjects And Multicasting | `/rxjs-lessons/lesson-12-subjects-multicasting` | How `Subject`, `BehaviorSubject`, and `ReplaySubject` multicast values and treat late subscribers differently. |
 
 ## Big Ideas So Far
 
@@ -105,6 +106,14 @@ what each lesson teaches as the RxJS learning path grows.
 - `combineLatest(...)` can join backend data, search text, and selected ids into one view model.
 - A local facade can be scoped to one screen without introducing global state.
 
+### Subjects And Multicasting
+
+- A `Subject` is both an Observable and an observer.
+- A plain `Subject` only sends future values to subscribers.
+- A `BehaviorSubject(...)` stores one current value and sends it immediately to new subscribers.
+- A `ReplaySubject(...)` stores previous values according to its buffer size.
+- Subjects are often private event/input streams inside services and facades.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -124,4 +133,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- subjects and multicasting patterns in more depth
+- marble testing or advanced stream debugging

@@ -1,0 +1,94 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="12" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 12</p>
+    <h1>Subjects And Multicasting</h1>
+    <p>
+      A Subject is both an Observable and an observer: you can subscribe to it,
+      and you can push values into it with <code>next()</code>. Different
+      Subject types decide what late subscribers receive.
+    </p>
+  </section>
+
+  <section class="subject-panel" aria-labelledby="subject-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Subject, BehaviorSubject, ReplaySubject</p>
+        <h2 id="subject-title">Late Subscriber Demo</h2>
+      </div>
+      <p class="summary">Subscriber A starts immediately</p>
+    </div>
+
+    <div class="demo-grid">
+      @for (demo of demos; track demo.name) {
+        <article class="demo-card">
+          <h3>{{ demo.name }}</h3>
+          <p>{{ demo.description }}</p>
+          <p class="use-case">{{ demo.realWorldUse }}</p>
+          <pre>{{ demo.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="emitValue()">Emit next value</button>
+      <button type="button" (click)="addSubscriberB()">
+        Subscribe Subscriber B
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="log-grid">
+      <section class="log-card" aria-labelledby="plain-title">
+        <h2 id="plain-title">Subject Log</h2>
+        <ol>
+          @for (log of plainLogs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="behavior-title">
+        <h2 id="behavior-title">BehaviorSubject Log</h2>
+        <ol>
+          @for (log of behaviorLogs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="replay-title">
+        <h2 id="replay-title">ReplaySubject Log</h2>
+        <ol>
+          @for (log of replayLogs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        A plain <code>Subject</code> does not replay earlier values to late
+        subscribers.
+      </li>
+      <li>
+        A <code>BehaviorSubject</code> always has one current value, so late
+        subscribers immediately receive that value. In this demo the initial
+        current value is <code>seed</code>.
+      </li>
+      <li>
+        A <code>ReplaySubject</code> remembers previous values based on its
+        buffer size.
+      </li>
+      <li>
+        In Angular services, Subjects are often private inputs, while public
+        Observables expose the derived result.
+      </li>
+    </ol>
+  </section>
+</main>

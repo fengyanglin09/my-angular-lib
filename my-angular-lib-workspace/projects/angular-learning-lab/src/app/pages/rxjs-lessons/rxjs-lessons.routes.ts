@@ -78,4 +78,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson11ComponentFacade,
       ),
   },
+  {
+    path: 'lesson-12-subjects-multicasting',
+    loadComponent: () =>
+      import('./lesson-12-subjects-multicasting/lesson-12-subjects-multicasting').then(
+        (m) => m.Lesson12SubjectsMulticasting,
+      ),
+  },
 ];

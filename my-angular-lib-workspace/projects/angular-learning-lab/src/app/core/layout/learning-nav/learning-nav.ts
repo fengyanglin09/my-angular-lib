@@ -60,6 +60,7 @@ export class LearningNav {
     { description: 'Build a loading/data/error view model for backend-style streams.', number: 9, path: '/rxjs-lessons/lesson-09-http-data-flow', title: 'HTTP Data Flow' },
     { description: 'Move stream state into an injectable service with vm$ and methods.', number: 10, path: '/rxjs-lessons/lesson-10-service-data-flow', title: 'Service Data Flow' },
     { description: 'Use a local facade service to combine backend and UI state.', number: 11, path: '/rxjs-lessons/lesson-11-component-facade', title: 'Component Facade' },
+    { description: 'Compare Subject, BehaviorSubject, and ReplaySubject for late subscribers.', number: 12, path: '/rxjs-lessons/lesson-12-subjects-multicasting', title: 'Subjects' },
   ];
 
   protected get categoryLabel(): string {
