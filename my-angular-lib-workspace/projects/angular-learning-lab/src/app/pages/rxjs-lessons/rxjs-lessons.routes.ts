@@ -15,4 +15,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson02CreationOperators,
       ),
   },
+  {
+    path: 'lesson-03-pipeable-operators',
+    loadComponent: () =>
+      import('./lesson-03-pipeable-operators/lesson-03-pipeable-operators').then(
+        (m) => m.Lesson03PipeableOperators,
+      ),
+  },
 ];

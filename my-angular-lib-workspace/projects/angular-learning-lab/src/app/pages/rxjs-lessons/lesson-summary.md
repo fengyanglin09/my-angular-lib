@@ -9,6 +9,7 @@ what each lesson teaches as the RxJS learning path grows.
 | --- | --- | --- |
 | 1. Observable Basics | `/rxjs-lessons/lesson-01-observable-basics` | What an Observable is, why it does not run until subscription, how `next` and `complete` work, and how `unsubscribe()` runs cleanup. |
 | 2. Creation Operators | `/rxjs-lessons/lesson-02-creation-operators` | How to create Observables with `of`, `from`, `interval`, and `timer`, plus why `take` is useful for limiting long-running streams. |
+| 3. Pipeable Operators | `/rxjs-lessons/lesson-03-pipeable-operators` | How `pipe()` chains operators, how `tap` observes values, how `filter` removes values, and how `map` transforms values. |
 
 ## Big Ideas So Far
 
@@ -29,6 +30,14 @@ what each lesson teaches as the RxJS learning path grows.
 - `timer(...)` waits before emitting.
 - `take(...)` limits how many values continue through a stream.
 
+### Pipeable Operators
+
+- `pipe(...)` creates a pipeline of operators.
+- `tap(...)` is for logging or side effects without changing the value.
+- `filter(...)` keeps only values that pass a condition.
+- `map(...)` changes each value into a new value.
+- The subscriber receives only the values that survive the pipeline.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -48,7 +57,6 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- operators like `map`, `filter`, and `tap`
 - async operators like `delay` and `debounceTime`
 - flattening operators like `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap`
 - error handling with `catchError`

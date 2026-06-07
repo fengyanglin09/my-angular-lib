@@ -1,0 +1,72 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="3" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 3</p>
+    <h1>Pipeable Operators</h1>
+    <p>
+      Operators are functions that sit inside <code>pipe()</code>. They receive
+      values from the source Observable and can inspect, filter, or transform
+      those values before the subscriber receives them.
+    </p>
+  </section>
+
+  <section class="operators-panel" aria-labelledby="operators-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">map, filter, tap</p>
+        <h2 id="operators-title">Pipeline Demo</h2>
+      </div>
+      <p class="summary">Input: {{ inputValues.join(', ') }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of steps; track step.name) {
+        <article class="step-card">
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runPipeline()">Run pipeline</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="result-card" aria-labelledby="output-title">
+        <h2 id="output-title">Output Values</h2>
+        <ul>
+          @for (value of outputValues(); track value) {
+            <li>{{ value }}</li>
+          } @empty {
+            <li>No output yet.</li>
+          }
+        </ul>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Pipeline Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>pipe()</code> chains operators together.</li>
+      <li><code>tap</code> observes values but returns the same value onward.</li>
+      <li><code>filter</code> removes values that do not pass a condition.</li>
+      <li><code>map</code> transforms each value into a new value.</li>
+      <li>The subscriber only receives values that survive the full pipeline.</li>
+    </ol>
+  </section>
+</main>
+
