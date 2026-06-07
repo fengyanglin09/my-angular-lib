@@ -1,0 +1,149 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.operators-panel,
+.flow-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  padding: 26px;
+}
+
+.panel-heading {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #606b78;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.summary {
+  color: #606b78;
+  font-weight: 800;
+}
+
+.operator-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 22px;
+}
+
+.operator-card,
+.log-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.operator-card {
+  display: grid;
+  gap: 12px;
+}
+
+.operator-card p,
+.flow-panel ol,
+.log-card ol {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+pre {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  line-height: 1.55;
+  margin: 0;
+  overflow: auto;
+  padding: 12px;
+}
+
+.toolbar {
+  border-top: 1px solid #dbe2e8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 18px;
+}
+
+button {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+.log-card {
+  margin-top: 20px;
+}
+
+.log-card ol,
+.flow-panel ol {
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+code {
+  background: #eef3f7;
+  border-radius: 6px;
+  color: #315a85;
+  padding: 2px 6px;
+}
+
+@media (max-width: 1040px) {
+  .operator-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .operator-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -8,5 +8,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson01ObservableBasics,
       ),
   },
+  {
+    path: 'lesson-02-creation-operators',
+    loadComponent: () =>
+      import('./lesson-02-creation-operators/lesson-02-creation-operators').then(
+        (m) => m.Lesson02CreationOperators,
+      ),
+  },
 ];
-

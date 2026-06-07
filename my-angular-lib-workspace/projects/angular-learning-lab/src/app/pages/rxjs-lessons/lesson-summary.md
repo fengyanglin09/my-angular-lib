@@ -8,6 +8,7 @@ what each lesson teaches as the RxJS learning path grows.
 | Lesson | Route | What It Teaches |
 | --- | --- | --- |
 | 1. Observable Basics | `/rxjs-lessons/lesson-01-observable-basics` | What an Observable is, why it does not run until subscription, how `next` and `complete` work, and how `unsubscribe()` runs cleanup. |
+| 2. Creation Operators | `/rxjs-lessons/lesson-02-creation-operators` | How to create Observables with `of`, `from`, `interval`, and `timer`, plus why `take` is useful for limiting long-running streams. |
 
 ## Big Ideas So Far
 
@@ -19,6 +20,14 @@ what each lesson teaches as the RxJS learning path grows.
 - A subscriber can receive zero values, one value, or many values.
 - `complete` means the Observable finished normally.
 - `unsubscribe()` stops listening and runs cleanup logic.
+
+### Creation Operators
+
+- `of(...)` emits the values passed to it, then completes.
+- `from(...)` converts arrays, promises, or iterables into Observables.
+- `interval(...)` emits repeatedly on a schedule.
+- `timer(...)` waits before emitting.
+- `take(...)` limits how many values continue through a stream.
 
 ### Cold Observable Mental Model
 
@@ -40,9 +49,8 @@ producer completes or subscriber unsubscribes
 Future RxJS lessons can build from this foundation:
 
 - operators like `map`, `filter`, and `tap`
-- async operators like `delay`, `debounceTime`, and `interval`
+- async operators like `delay` and `debounceTime`
 - flattening operators like `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap`
 - error handling with `catchError`
 - combining streams with `combineLatest`, `withLatestFrom`, and `forkJoin`
 - Angular patterns like `async` pipe, HTTP streams, and subscription cleanup
-

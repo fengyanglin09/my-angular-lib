@@ -1,0 +1,63 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="2" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 2</p>
+    <h1>Creation Operators</h1>
+    <p>
+      Creation operators are shortcuts for creating Observables. Instead of
+      manually calling <code>new Observable()</code>, you can use helpers like
+      <code>of</code>, <code>from</code>, <code>interval</code>, and
+      <code>timer</code>.
+    </p>
+  </section>
+
+  <section class="operators-panel" aria-labelledby="operators-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Observable Sources</p>
+        <h2 id="operators-title">Common Creation Operators</h2>
+      </div>
+      <p class="summary">Active demo: {{ activeDemo() }}</p>
+    </div>
+
+    <div class="operator-grid">
+      @for (operator of operators; track operator.name) {
+        <article class="operator-card">
+          <h3>{{ operator.name }}</h3>
+          <p>{{ operator.description }}</p>
+          <pre>{{ operator.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runOfDemo()">Run of()</button>
+      <button type="button" (click)="runFromDemo()">Run from()</button>
+      <button type="button" (click)="runIntervalDemo()">Run interval()</button>
+      <button type="button" (click)="runTimerDemo()">Run timer()</button>
+      <button type="button" (click)="stopDemo()">Unsubscribe</button>
+    </div>
+
+    <section class="log-card" aria-labelledby="log-title">
+      <h2 id="log-title">Emission Log</h2>
+      <ol>
+        @for (log of logs(); track $index) {
+          <li>{{ log }}</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">When To Use Each</h2>
+    <ol>
+      <li>Use <code>of</code> when you already have values and want to emit them.</li>
+      <li>Use <code>from</code> when converting an array, promise, or iterable.</li>
+      <li>Use <code>interval</code> for repeated scheduled emissions.</li>
+      <li>Use <code>timer</code> for delayed start or one delayed emission.</li>
+      <li>Use <code>take</code> to limit streams that would otherwise keep running.</li>
+    </ol>
+  </section>
+</main>
+

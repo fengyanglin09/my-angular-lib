@@ -48,6 +48,7 @@ export class LearningNav {
 
   private readonly rxjsLessons: LessonLink[] = [
     { label: 'Lesson 1', path: '/rxjs-lessons/lesson-01-observable-basics' },
+    { label: 'Lesson 2', path: '/rxjs-lessons/lesson-02-creation-operators' },
   ];
 
   protected get lessons(): LessonLink[] {
