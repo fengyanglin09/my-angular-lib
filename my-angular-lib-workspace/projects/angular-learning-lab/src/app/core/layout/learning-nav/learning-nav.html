@@ -1,10 +1,57 @@
 <nav class="learning-nav" aria-label="Learning navigation">
-  <a [routerLink]="['/']">Dashboard</a>
-  @for (lesson of lessons; track lesson.label; let index = $index) {
-    @if (activeLesson === index + 1) {
-      <span>{{ lesson.label }}</span>
+  <div class="learning-nav__bar">
+    <a class="learning-nav__pill" [routerLink]="['/']">Dashboard</a>
+
+    @if (previousLesson) {
+      <a class="learning-nav__pill" [routerLink]="[previousLesson.path]">
+        Previous
+      </a>
     } @else {
-      <a [routerLink]="[lesson.path]">{{ lesson.label }}</a>
+      <span class="learning-nav__pill learning-nav__pill--disabled">Previous</span>
     }
-  }
+
+    <span class="learning-nav__current">
+      <strong>{{ categoryLabel }} {{ activeLesson }}</strong>
+      <small>{{ currentLesson?.title ?? 'Lesson' }}</small>
+    </span>
+
+    @if (nextLesson) {
+      <a class="learning-nav__pill" [routerLink]="[nextLesson.path]">Next</a>
+    } @else {
+      <span class="learning-nav__pill learning-nav__pill--disabled">Next</span>
+    }
+  </div>
+
+  <details class="learning-nav__index">
+    <summary>All {{ categoryLabel }} lessons</summary>
+
+    <div class="learning-nav__grid">
+      @for (lesson of lessons; track lesson.path) {
+        @if (activeLesson === lesson.number) {
+          <span
+            class="learning-nav__item learning-nav__item--active"
+            [attr.aria-label]="'Current lesson: ' + lesson.title"
+          >
+            <strong>{{ lesson.number }}</strong>
+            <span>
+              <b>{{ lesson.title }}</b>
+              <small>{{ lesson.description }}</small>
+            </span>
+          </span>
+        } @else {
+          <a
+            class="learning-nav__item"
+            [routerLink]="[lesson.path]"
+            [attr.aria-label]="'Open lesson ' + lesson.number + ': ' + lesson.title"
+          >
+            <strong>{{ lesson.number }}</strong>
+            <span>
+              <b>{{ lesson.title }}</b>
+              <small>{{ lesson.description }}</small>
+            </span>
+          </a>
+        }
+      }
+    </div>
+  </details>
 </nav>
