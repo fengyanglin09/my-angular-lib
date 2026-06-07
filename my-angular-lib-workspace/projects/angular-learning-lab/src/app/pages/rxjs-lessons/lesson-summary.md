@@ -13,6 +13,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 4. Time Operators | `/rxjs-lessons/lesson-04-time-operators` | How `delay`, `debounceTime`, and `throttleTime` change when values reach the subscriber. |
 | 5. Flattening Operators | `/rxjs-lessons/lesson-05-flattening-operators` | How `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap` handle inner Observables created from source values. |
 | 6. Error Handling | `/rxjs-lessons/lesson-06-error-handling` | How `catchError`, `retry`, and `finalize` help streams recover, retry, and clean up loading state. |
+| 7. Combining Streams | `/rxjs-lessons/lesson-07-combining-streams` | How `combineLatest`, `withLatestFrom`, and `forkJoin` combine multiple source streams for different real-world timing needs. |
 
 ## Big Ideas So Far
 
@@ -64,6 +65,13 @@ what each lesson teaches as the RxJS learning path grows.
 - `finalize(...)` runs when a stream completes, errors, or is unsubscribed.
 - In Angular screens, `finalize(...)` is useful for turning loading state off.
 
+### Combining Streams
+
+- `combineLatest(...)` emits when any source emits, after all sources have emitted once.
+- `withLatestFrom(...)` emits only when the main source emits.
+- `forkJoin(...)` waits for all sources to complete, then emits one combined result.
+- Choosing a combining operator depends on what should trigger the combined emission.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -83,5 +91,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- combining streams with `combineLatest`, `withLatestFrom`, and `forkJoin`
 - Angular patterns like `async` pipe, HTTP streams, and subscription cleanup

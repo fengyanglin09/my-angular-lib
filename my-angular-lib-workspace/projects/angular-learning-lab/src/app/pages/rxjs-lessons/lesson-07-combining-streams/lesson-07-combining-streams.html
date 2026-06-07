@@ -1,0 +1,89 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="7" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 7</p>
+    <h1>Combining Streams</h1>
+    <p>
+      Angular screens often need more than one stream at the same time.
+      Combining operators let you build one useful result from filters, clicks,
+      route values, form values, and backend requests.
+    </p>
+  </section>
+
+  <section class="combining-panel" aria-labelledby="combining-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">combineLatest, withLatestFrom, forkJoin</p>
+        <h2 id="combining-title">Multiple Source Streams</h2>
+      </div>
+      <p class="summary">Active demo: {{ activeDemo() }}</p>
+    </div>
+
+    <div class="operator-grid">
+      @for (operator of operators; track operator.name) {
+        <article class="operator-card">
+          <h3>{{ operator.name }}</h3>
+          <p>{{ operator.description }}</p>
+          <p class="use-case">{{ operator.realWorldUse }}</p>
+          <pre>{{ operator.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runCombineLatestDemo()">
+        Run combineLatest
+      </button>
+      <button type="button" (click)="runWithLatestFromDemo()">
+        Run withLatestFrom
+      </button>
+      <button type="button" (click)="runForkJoinDemo()">Run forkJoin</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="result-card" aria-labelledby="results-title">
+        <h2 id="results-title">Subscriber Results</h2>
+        <ul>
+          @for (result of results(); track $index) {
+            <li>{{ result }}</li>
+          } @empty {
+            <li>No results yet.</li>
+          }
+        </ul>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Combination Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        <code>combineLatest</code> reacts to any source after all sources have
+        emitted once.
+      </li>
+      <li>
+        <code>withLatestFrom</code> only reacts to the main source, then reads
+        latest values from helper streams.
+      </li>
+      <li>
+        <code>forkJoin</code> waits for all sources to complete, then emits one
+        final combined value.
+      </li>
+      <li>
+        Pick the operator based on what should trigger the emission, not just
+        what data you need.
+      </li>
+    </ol>
+  </section>
+</main>

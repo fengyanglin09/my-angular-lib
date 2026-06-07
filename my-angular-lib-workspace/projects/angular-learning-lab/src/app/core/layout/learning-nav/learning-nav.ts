@@ -53,6 +53,7 @@ export class LearningNav {
     { label: 'Lesson 4', path: '/rxjs-lessons/lesson-04-time-operators' },
     { label: 'Lesson 5', path: '/rxjs-lessons/lesson-05-flattening-operators' },
     { label: 'Lesson 6', path: '/rxjs-lessons/lesson-06-error-handling' },
+    { label: 'Lesson 7', path: '/rxjs-lessons/lesson-07-combining-streams' },
   ];
 
   protected get lessons(): LessonLink[] {

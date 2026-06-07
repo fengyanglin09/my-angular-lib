@@ -43,4 +43,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson06ErrorHandling,
       ),
   },
+  {
+    path: 'lesson-07-combining-streams',
+    loadComponent: () =>
+      import('./lesson-07-combining-streams/lesson-07-combining-streams').then(
+        (m) => m.Lesson07CombiningStreams,
+      ),
+  },
 ];
