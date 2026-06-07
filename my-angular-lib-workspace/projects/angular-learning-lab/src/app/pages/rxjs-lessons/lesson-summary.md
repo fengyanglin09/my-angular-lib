@@ -17,6 +17,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 8. Angular Subscription Patterns | `/rxjs-lessons/lesson-08-angular-subscriptions` | How manual `subscribe`, `takeUntilDestroyed`, and the `async` pipe handle subscription ownership and cleanup. |
 | 9. HTTP Data Flow | `/rxjs-lessons/lesson-09-http-data-flow` | How to model backend-style loading, data, error, reload, cancellation, and shared async-pipe subscriptions. |
 | 10. Service Data Flow | `/rxjs-lessons/lesson-10-service-data-flow` | How to move RxJS loading/data/error state into an injectable service with a `vm$` stream and component-friendly methods. |
+| 11. Component Facade | `/rxjs-lessons/lesson-11-component-facade` | How a local facade combines backend state and UI state into one component-friendly `vm$`. |
 
 ## Big Ideas So Far
 
@@ -97,6 +98,13 @@ what each lesson teaches as the RxJS learning path grows.
 - A `vm$` stream gives the template one Observable with everything it needs.
 - Component-level service providers create an isolated service instance for that screen.
 
+### Component Facade
+
+- A facade can expose methods for user intent and hide RxJS implementation details.
+- `BehaviorSubject(...)` is useful for local UI state with a current value.
+- `combineLatest(...)` can join backend data, search text, and selected ids into one view model.
+- A local facade can be scoped to one screen without introducing global state.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -116,4 +124,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- component-store style facades
+- subjects and multicasting patterns in more depth

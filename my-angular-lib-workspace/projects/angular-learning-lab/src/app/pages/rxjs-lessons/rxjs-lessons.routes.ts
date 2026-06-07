@@ -71,4 +71,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson10ServiceDataFlow,
       ),
   },
+  {
+    path: 'lesson-11-component-facade',
+    loadComponent: () =>
+      import('./lesson-11-component-facade/lesson-11-component-facade').then(
+        (m) => m.Lesson11ComponentFacade,
+      ),
+  },
 ];

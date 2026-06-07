@@ -59,6 +59,7 @@ export class LearningNav {
     { description: 'Compare manual subscribe, takeUntilDestroyed, and async pipe cleanup.', number: 8, path: '/rxjs-lessons/lesson-08-angular-subscriptions', title: 'Angular Subscriptions' },
     { description: 'Build a loading/data/error view model for backend-style streams.', number: 9, path: '/rxjs-lessons/lesson-09-http-data-flow', title: 'HTTP Data Flow' },
     { description: 'Move stream state into an injectable service with vm$ and methods.', number: 10, path: '/rxjs-lessons/lesson-10-service-data-flow', title: 'Service Data Flow' },
+    { description: 'Use a local facade service to combine backend and UI state.', number: 11, path: '/rxjs-lessons/lesson-11-component-facade', title: 'Component Facade' },
   ];
 
   protected get categoryLabel(): string {

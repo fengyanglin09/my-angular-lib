@@ -1,0 +1,120 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="11" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 11</p>
+    <h1>Component Facade</h1>
+    <p>
+      A facade is a small service that gives the component a clean API. The
+      component calls methods, and the facade owns Subjects, backend requests,
+      filtering, selection, and the final <code>vm$</code>.
+    </p>
+  </section>
+
+  <section class="facade-panel" aria-labelledby="facade-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">BehaviorSubject, combineLatest, vm$</p>
+        <h2 id="facade-title">Local Store Facade</h2>
+      </div>
+      <p class="summary">Component talks to methods, template reads vm$</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of steps; track step.name) {
+        <article class="step-card">
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <label>
+        <span>Search</span>
+        <input
+          type="search"
+          [ngModel]="(facade.vm$ | async)?.search ?? ''"
+          (ngModelChange)="facade.setSearch($event)"
+          name="facadeSearch"
+          placeholder="Try facade or template"
+        />
+      </label>
+      <button type="button" (click)="facade.reload()">Reload</button>
+      <button type="button" (click)="facade.reloadWithFailure()">
+        Fail reload
+      </button>
+    </div>
+
+    <div class="result-grid">
+      @if (facade.vm$ | async; as vm) {
+        <section class="state-card" aria-labelledby="state-title">
+          <h2 id="state-title">Facade View Model</h2>
+          <dl>
+            <div>
+              <dt>Loading</dt>
+              <dd>{{ vm.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>Error</dt>
+              <dd>{{ vm.error ?? 'None' }}</dd>
+            </div>
+            <div>
+              <dt>Results</dt>
+              <dd>{{ vm.resultCount }}</dd>
+            </div>
+            <div>
+              <dt>Selected</dt>
+              <dd>{{ vm.selectedCourse?.title ?? 'None' }}</dd>
+            </div>
+          </dl>
+
+          <ul>
+            @for (course of vm.courses; track course.id) {
+              <li>
+                <button type="button" (click)="facade.selectCourse(course.id)">
+                  {{ course.title }}
+                </button>
+                <span>{{ course.owner }}</span>
+              </li>
+            } @empty {
+              <li>No matching courses.</li>
+            }
+          </ul>
+        </section>
+      }
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Facade Log</h2>
+        <ol>
+          @for (log of facade.logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        A facade can combine server state and UI state into one
+        <code>vm$</code>.
+      </li>
+      <li>
+        <code>BehaviorSubject</code> is useful for local state that always has a
+        current value, like search text or selected id.
+      </li>
+      <li>
+        The component becomes easier to read because it calls methods instead of
+        wiring operators directly.
+      </li>
+      <li>
+        This pattern is similar in spirit to NgRx facades, but it can stay local
+        to one screen.
+      </li>
+    </ol>
+  </section>
+</main>
