@@ -4,10 +4,10 @@
 #  push:
 #    branches: [main]
 #    paths:
-#      - 'my-angular-lib-workspace/projects/my-lib/**'
-#      - 'my-angular-lib-workspace/package.json'
-#      - 'my-angular-lib-workspace/package-lock.json'
-#      - 'my-angular-lib-workspace/angular.json'
+#      - 'projects/my-lib/**'
+#      - 'package.json'
+#      - 'package-lock.json'
+#      - 'angular.json'
 #      - '.github/workflows/deploy-storybook.yml'
 #  workflow_dispatch:
 #
@@ -26,7 +26,7 @@
 #
 #    defaults:
 #      run:
-#        working-directory: my-angular-lib-workspace
+#        working-directory: .
 #
 #    steps:
 #      - name: Check out repository
@@ -37,7 +37,7 @@
 #        with:
 #          node-version: 24
 #          cache: npm
-#          cache-dependency-path: my-angular-lib-workspace/package-lock.json
+#          cache-dependency-path: package-lock.json
 #
 #      - name: Install dependencies
 #        run: npm ci
@@ -51,7 +51,7 @@
 #      - name: Upload Storybook artifact
 #        uses: actions/upload-pages-artifact@v4
 #        with:
-#          path: my-angular-lib-workspace/dist/storybook/my-lib
+#          path: dist/storybook/my-lib
 #
 #  deploy:
 #    environment:

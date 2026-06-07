@@ -61,6 +61,7 @@ export class LearningNav {
     { description: 'Move stream state into an injectable service with vm$ and methods.', number: 10, path: '/rxjs-lessons/lesson-10-service-data-flow', title: 'Service Data Flow' },
     { description: 'Use a local facade service to combine backend and UI state.', number: 11, path: '/rxjs-lessons/lesson-11-component-facade', title: 'Component Facade' },
     { description: 'Compare Subject, BehaviorSubject, and ReplaySubject for late subscribers.', number: 12, path: '/rxjs-lessons/lesson-12-subjects-multicasting', title: 'Subjects' },
+    { description: 'Use marble-style timelines to reason about operator behavior.', number: 13, path: '/rxjs-lessons/lesson-13-marble-thinking', title: 'Marble Thinking' },
   ];
 
   protected get categoryLabel(): string {

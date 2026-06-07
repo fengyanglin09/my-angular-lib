@@ -9,6 +9,8 @@
 **/out-tsc/
 **/coverage/
 **/.angular/
+/bazel-out
+/storybook-static
 
 # Nx cache/work data
 **/.nx/cache/
@@ -21,12 +23,19 @@
 
 # Editor and local AI tooling state
 .idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 **/.cursor/
 **/.codex/
 **/.claude/
 **/.gemini/
 **/.opencode/
 **/.agents/
+.history/
 
 # Playwright local cache folder
 **/.playwright-mcp/
@@ -34,8 +43,12 @@
 # Logs and OS junk
 **/npm-debug.log*
 **/yarn-error.log*
+*storybook.log
 **/testem.log
 .DS_Store
 Thumbs.db
+/connect.lock
+/libpeerconnection.log
+/typings
 /.husky/
 /.vscode/

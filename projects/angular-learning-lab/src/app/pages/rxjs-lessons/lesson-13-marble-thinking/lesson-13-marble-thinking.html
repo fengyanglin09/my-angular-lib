@@ -1,0 +1,79 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="13" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 13</p>
+    <h1>Marble Thinking</h1>
+    <p>
+      Marble diagrams are compact timelines for Observables. They help you see
+      when values are emitted, when values disappear, and when an operator
+      changes the shape of time.
+    </p>
+  </section>
+
+  <section class="marble-panel" aria-labelledby="marble-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">timeline, values, completion</p>
+        <h2 id="marble-title">Operator Timelines</h2>
+      </div>
+      <p class="summary">Active scenario: {{ activeScenario() }}</p>
+    </div>
+
+    <div class="scenario-grid">
+      @for (scenario of scenarios; track scenario.name) {
+        <article class="scenario-card">
+          <h3>{{ scenario.name }}</h3>
+          <p>{{ scenario.description }}</p>
+          <pre>{{ scenario.source }}</pre>
+          <code>{{ scenario.operator }}</code>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runMapScenario()">Run map</button>
+      <button type="button" (click)="runFilterScenario()">Run filter</button>
+      <button type="button" (click)="runSwitchMapScenario()">Run switchMap</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="timeline-card" aria-labelledby="timeline-title">
+        <h2 id="timeline-title">Marble Result</h2>
+        <dl>
+          <div>
+            <dt>Source</dt>
+            <dd><pre>{{ result().source }}</pre></dd>
+          </div>
+          <div>
+            <dt>Output</dt>
+            <dd><pre>{{ result().output }}</pre></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Timeline Notes</h2>
+        <ol>
+          @for (log of result().logs; track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Each dash represents time passing.</li>
+      <li>Letters or numbers represent emitted values.</li>
+      <li>The pipe character, <code>|</code>, means the stream completed.</li>
+      <li>
+        Marble thinking is useful before formal marble tests because it makes
+        operator behavior visible.
+      </li>
+    </ol>
+  </section>
+</main>

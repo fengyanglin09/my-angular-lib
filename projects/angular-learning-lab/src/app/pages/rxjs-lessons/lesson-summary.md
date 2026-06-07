@@ -19,6 +19,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 10. Service Data Flow | `/rxjs-lessons/lesson-10-service-data-flow` | How to move RxJS loading/data/error state into an injectable service with a `vm$` stream and component-friendly methods. |
 | 11. Component Facade | `/rxjs-lessons/lesson-11-component-facade` | How a local facade combines backend state and UI state into one component-friendly `vm$`. |
 | 12. Subjects And Multicasting | `/rxjs-lessons/lesson-12-subjects-multicasting` | How `Subject`, `BehaviorSubject`, and `ReplaySubject` multicast values and treat late subscribers differently. |
+| 13. Marble Thinking | `/rxjs-lessons/lesson-13-marble-thinking` | How marble-style timelines make operator behavior easier to reason about before writing formal marble tests. |
 
 ## Big Ideas So Far
 
@@ -114,6 +115,14 @@ what each lesson teaches as the RxJS learning path grows.
 - A `ReplaySubject(...)` stores previous values according to its buffer size.
 - Subjects are often private event/input streams inside services and facades.
 
+### Marble Thinking
+
+- Marble diagrams draw Observable values across time.
+- Dashes represent time passing.
+- Values such as `a`, `b`, or `1` represent emitted values.
+- `|` represents stream completion.
+- Thinking in marbles makes operators like `map`, `filter`, and `switchMap` easier to debug.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -133,4 +142,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- marble testing or advanced stream debugging
+- formal marble testing or advanced stream debugging

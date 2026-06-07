@@ -2,7 +2,7 @@
 
 - Install changeset:
 ```shell
-cd my-angular-lib-workspace
+cd my-angular-lib
 npm install -D @changesets/cli @changesets/changelog-github
 ```
 

@@ -1,4 +1,4 @@
-#this will deploy both my-app and Storybook to GitHub Pages.
+# Deploys Angular Learning Lab at the site root and Storybook under /storybook.
 
 name: Deploy app + Storybook to GitHub Pages
 
@@ -6,11 +6,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'my-angular-lib-workspace/projects/my-app/**'
-      - 'my-angular-lib-workspace/projects/my-lib/**'
-      - 'my-angular-lib-workspace/package.json'
-      - 'my-angular-lib-workspace/package-lock.json'
-      - 'my-angular-lib-workspace/angular.json'
+      - 'projects/angular-learning-lab/**'
+      - 'projects/my-lib/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'angular.json'
       - '.github/workflows/deploy-site.yml'
   workflow_dispatch:
 
@@ -27,10 +27,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: my-angular-lib-workspace
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -40,7 +36,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
-          cache-dependency-path: my-angular-lib-workspace/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -59,13 +55,13 @@ jobs:
           rm -rf site
           mkdir -p site/storybook
 
-          cp -R dist/my-app/browser/* site/
-          cp -R dist/storybook/my-lib/* site/storybook/
+          cp -R dist/angular-learning-lab/browser/. site/
+          cp -R dist/storybook/my-lib/. site/storybook/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: my-angular-lib-workspace/site
+          path: site
 
   deploy:
     environment:

@@ -85,4 +85,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson12SubjectsMulticasting,
       ),
   },
+  {
+    path: 'lesson-13-marble-thinking',
+    loadComponent: () =>
+      import('./lesson-13-marble-thinking/lesson-13-marble-thinking').then(
+        (m) => m.Lesson13MarbleThinking,
+      ),
+  },
 ];
