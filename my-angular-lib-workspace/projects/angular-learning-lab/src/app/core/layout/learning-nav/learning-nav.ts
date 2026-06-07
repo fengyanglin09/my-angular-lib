@@ -57,6 +57,7 @@ export class LearningNav {
     { description: 'Recover, retry, and clean up streams with catchError, retry, and finalize.', number: 6, path: '/rxjs-lessons/lesson-06-error-handling', title: 'Error Handling' },
     { description: 'Combine several streams with combineLatest, withLatestFrom, and forkJoin.', number: 7, path: '/rxjs-lessons/lesson-07-combining-streams', title: 'Combining Streams' },
     { description: 'Compare manual subscribe, takeUntilDestroyed, and async pipe cleanup.', number: 8, path: '/rxjs-lessons/lesson-08-angular-subscriptions', title: 'Angular Subscriptions' },
+    { description: 'Build a loading/data/error view model for backend-style streams.', number: 9, path: '/rxjs-lessons/lesson-09-http-data-flow', title: 'HTTP Data Flow' },
   ];
 
   protected get categoryLabel(): string {

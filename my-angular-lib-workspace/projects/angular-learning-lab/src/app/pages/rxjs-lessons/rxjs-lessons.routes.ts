@@ -57,4 +57,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson08AngularSubscriptions,
       ),
   },
+  {
+    path: 'lesson-09-http-data-flow',
+    loadComponent: () =>
+      import('./lesson-09-http-data-flow/lesson-09-http-data-flow').then(
+        (m) => m.Lesson09HttpDataFlow,
+      ),
+  },
 ];

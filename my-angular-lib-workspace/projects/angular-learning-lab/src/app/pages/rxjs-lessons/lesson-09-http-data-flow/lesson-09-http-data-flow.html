@@ -1,0 +1,118 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 9</p>
+    <h1>HTTP Data Flow</h1>
+    <p>
+      A practical Angular stream often looks like a view model:
+      <code>loading</code>, <code>data</code>, and <code>error</code>. This
+      lesson uses a fake backend request to show reloads, failure recovery,
+      cancellation, and shared template subscriptions.
+    </p>
+  </section>
+
+  <section class="data-panel" aria-labelledby="data-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">switchMap, catchError, shareReplay</p>
+        <h2 id="data-title">Course Catalog Stream</h2>
+      </div>
+      <p class="summary">Rendered with async pipe</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of steps; track step.name) {
+        <article class="step-card">
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="reloadSuccess()">Reload success</button>
+      <button type="button" (click)="reloadFailure()">Reload failure</button>
+      <button type="button" (click)="reloadTwiceQuickly()">
+        Start slow then replace
+      </button>
+    </div>
+
+    <div class="result-grid">
+      @if (coursesState$ | async; as state) {
+        <section class="state-card" aria-labelledby="state-title">
+          <h2 id="state-title">Primary View</h2>
+          <dl>
+            <div>
+              <dt>Source</dt>
+              <dd>{{ state.source }}</dd>
+            </div>
+            <div>
+              <dt>Loading</dt>
+              <dd>{{ state.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>Error</dt>
+              <dd>{{ state.error ?? 'None' }}</dd>
+            </div>
+          </dl>
+
+          <ul>
+            @for (course of state.courses; track course.id) {
+              <li>
+                <strong>{{ course.title }}</strong>
+                <span>{{ course.level }}</span>
+              </li>
+            } @empty {
+              <li>No courses loaded.</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (coursesState$ | async; as sharedState) {
+        <section class="state-card" aria-labelledby="shared-title">
+          <h2 id="shared-title">Second Async Pipe</h2>
+          <p>
+            This second template read uses the same
+            <code>coursesState$</code>. Because the stream uses
+            <code>shareReplay</code>, it does not start a second API request.
+          </p>
+          <p class="metric">{{ sharedState.courses.length }} courses visible</p>
+        </section>
+      }
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Request Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        A reload stream can represent events that should fetch fresh backend
+        data.
+      </li>
+      <li>
+        <code>switchMap</code> is common for reloads because newer requests
+        replace older ones.
+      </li>
+      <li>
+        <code>catchError</code> keeps the outer view-model stream alive after a
+        failed request.
+      </li>
+      <li>
+        <code>shareReplay</code> is useful when multiple subscribers should
+        share the latest loaded value.
+      </li>
+    </ol>
+  </section>
+</main>

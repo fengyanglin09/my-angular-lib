@@ -15,6 +15,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 6. Error Handling | `/rxjs-lessons/lesson-06-error-handling` | How `catchError`, `retry`, and `finalize` help streams recover, retry, and clean up loading state. |
 | 7. Combining Streams | `/rxjs-lessons/lesson-07-combining-streams` | How `combineLatest`, `withLatestFrom`, and `forkJoin` combine multiple source streams for different real-world timing needs. |
 | 8. Angular Subscription Patterns | `/rxjs-lessons/lesson-08-angular-subscriptions` | How manual `subscribe`, `takeUntilDestroyed`, and the `async` pipe handle subscription ownership and cleanup. |
+| 9. HTTP Data Flow | `/rxjs-lessons/lesson-09-http-data-flow` | How to model backend-style loading, data, error, reload, cancellation, and shared async-pipe subscriptions. |
 
 ## Big Ideas So Far
 
@@ -80,6 +81,14 @@ what each lesson teaches as the RxJS learning path grows.
 - Manual subscriptions work, but you must keep the `Subscription` and unsubscribe at the right time.
 - Long-lived streams such as `interval`, route params, and form value changes need cleanup.
 
+### HTTP Data Flow
+
+- A practical screen stream often emits a view model with `loading`, `data`, and `error`.
+- A reload `Subject` can represent user actions or route changes that should fetch fresh data.
+- `switchMap(...)` cancels older backend requests when a newer reload arrives.
+- `catchError(...)` keeps the outer stream alive after a failed backend call.
+- `shareReplay(...)` lets multiple subscribers reuse the latest emitted result.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -99,4 +108,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- Angular HTTP streams and service-based data flows
+- service-based data flows and component-store style facades
