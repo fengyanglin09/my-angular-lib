@@ -1,0 +1,85 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="6" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 6</p>
+    <h1>Error Handling</h1>
+    <p>
+      RxJS errors stop a stream unless you handle them. Operators like
+      <code>catchError</code>, <code>retry</code>, and <code>finalize</code>
+      help your Angular screens recover, try again, and clean up loading state.
+    </p>
+  </section>
+
+  <section class="error-panel" aria-labelledby="error-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">catchError, retry, finalize</p>
+        <h2 id="error-title">Fake Backend Request</h2>
+      </div>
+      <p class="summary">Active demo: {{ activeDemo() }}</p>
+    </div>
+
+    <div class="operator-grid">
+      @for (operator of operators; track operator.name) {
+        <article class="operator-card">
+          <h3>{{ operator.name }}</h3>
+          <p>{{ operator.description }}</p>
+          <p class="use-case">{{ operator.realWorldUse }}</p>
+          <pre>{{ operator.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runSuccessDemo()">Run success</button>
+      <button type="button" (click)="runCatchErrorDemo()">
+        Run catchError fallback
+      </button>
+      <button type="button" (click)="runRetryDemo()">Run retry</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="status-card" aria-labelledby="status-title">
+        <h2 id="status-title">Screen State</h2>
+        <dl>
+          <div>
+            <dt>Loading</dt>
+            <dd>{{ loading() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>Result</dt>
+            <dd>{{ result() }}</dd>
+          </div>
+          <div>
+            <dt>Error</dt>
+            <dd>{{ error() ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Request Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>An Observable error ends that stream unless it is caught.</li>
+      <li>
+        <code>catchError</code> must return another Observable, such as
+        <code>of(fallbackValue)</code>.
+      </li>
+      <li><code>retry</code> runs before <code>catchError</code> when you want retry first.</li>
+      <li><code>finalize</code> is a reliable place to turn loading off.</li>
+    </ol>
+  </section>
+</main>

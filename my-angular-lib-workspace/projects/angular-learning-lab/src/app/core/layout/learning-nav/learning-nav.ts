@@ -52,6 +52,7 @@ export class LearningNav {
     { label: 'Lesson 3', path: '/rxjs-lessons/lesson-03-pipeable-operators' },
     { label: 'Lesson 4', path: '/rxjs-lessons/lesson-04-time-operators' },
     { label: 'Lesson 5', path: '/rxjs-lessons/lesson-05-flattening-operators' },
+    { label: 'Lesson 6', path: '/rxjs-lessons/lesson-06-error-handling' },
   ];
 
   protected get lessons(): LessonLink[] {

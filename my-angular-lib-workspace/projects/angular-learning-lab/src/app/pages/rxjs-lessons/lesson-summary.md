@@ -12,6 +12,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 3. Pipeable Operators | `/rxjs-lessons/lesson-03-pipeable-operators` | How `pipe()` chains operators, how `tap` observes values, how `filter` removes values, and how `map` transforms values. |
 | 4. Time Operators | `/rxjs-lessons/lesson-04-time-operators` | How `delay`, `debounceTime`, and `throttleTime` change when values reach the subscriber. |
 | 5. Flattening Operators | `/rxjs-lessons/lesson-05-flattening-operators` | How `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap` handle inner Observables created from source values. |
+| 6. Error Handling | `/rxjs-lessons/lesson-06-error-handling` | How `catchError`, `retry`, and `finalize` help streams recover, retry, and clean up loading state. |
 
 ## Big Ideas So Far
 
@@ -55,6 +56,14 @@ what each lesson teaches as the RxJS learning path grows.
 - `mergeMap(...)` runs inner Observables at the same time.
 - `exhaustMap(...)` ignores new source values while the current inner Observable is active.
 
+### Error Handling
+
+- An Observable error ends the stream unless an operator catches it.
+- `catchError(...)` receives the error and must return a replacement Observable.
+- `retry(...)` resubscribes to the source after an error.
+- `finalize(...)` runs when a stream completes, errors, or is unsubscribed.
+- In Angular screens, `finalize(...)` is useful for turning loading state off.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -74,6 +83,5 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- error handling with `catchError`
 - combining streams with `combineLatest`, `withLatestFrom`, and `forkJoin`
 - Angular patterns like `async` pipe, HTTP streams, and subscription cleanup

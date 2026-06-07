@@ -36,4 +36,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson05FlatteningOperators,
       ),
   },
+  {
+    path: 'lesson-06-error-handling',
+    loadComponent: () =>
+      import('./lesson-06-error-handling/lesson-06-error-handling').then(
+        (m) => m.Lesson06ErrorHandling,
+      ),
+  },
 ];
