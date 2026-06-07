@@ -16,6 +16,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 7. Combining Streams | `/rxjs-lessons/lesson-07-combining-streams` | How `combineLatest`, `withLatestFrom`, and `forkJoin` combine multiple source streams for different real-world timing needs. |
 | 8. Angular Subscription Patterns | `/rxjs-lessons/lesson-08-angular-subscriptions` | How manual `subscribe`, `takeUntilDestroyed`, and the `async` pipe handle subscription ownership and cleanup. |
 | 9. HTTP Data Flow | `/rxjs-lessons/lesson-09-http-data-flow` | How to model backend-style loading, data, error, reload, cancellation, and shared async-pipe subscriptions. |
+| 10. Service Data Flow | `/rxjs-lessons/lesson-10-service-data-flow` | How to move RxJS loading/data/error state into an injectable service with a `vm$` stream and component-friendly methods. |
 
 ## Big Ideas So Far
 
@@ -89,6 +90,13 @@ what each lesson teaches as the RxJS learning path grows.
 - `catchError(...)` keeps the outer stream alive after a failed backend call.
 - `shareReplay(...)` lets multiple subscribers reuse the latest emitted result.
 
+### Service Data Flow
+
+- A service can own the Subjects, backend calls, operators, and shared view-model stream.
+- The component can call methods like `reload()` or `selectCategory(...)` instead of calling `next(...)` directly.
+- A `vm$` stream gives the template one Observable with everything it needs.
+- Component-level service providers create an isolated service instance for that screen.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -108,4 +116,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- service-based data flows and component-store style facades
+- component-store style facades

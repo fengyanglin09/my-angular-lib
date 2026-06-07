@@ -1,0 +1,117 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 10</p>
+    <h1>Service-Based Data Flow</h1>
+    <p>
+      Lesson 9 kept the stream inside the component. This lesson moves the
+      stream into a small service so the component can focus on rendering and
+      user actions.
+    </p>
+  </section>
+
+  <section class="service-panel" aria-labelledby="service-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">service, vm$, component API</p>
+        <h2 id="service-title">Reusable Course Data Service</h2>
+      </div>
+      <p class="summary">Component consumes a service stream</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of steps; track step.name) {
+        <article class="step-card">
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="coursesData.selectCategory('all')">
+        All courses
+      </button>
+      <button type="button" (click)="coursesData.selectCategory('angular')">
+        Angular only
+      </button>
+      <button type="button" (click)="coursesData.selectCategory('rxjs')">
+        RxJS only
+      </button>
+      <button type="button" (click)="coursesData.reload()">Reload</button>
+      <button type="button" (click)="coursesData.failNextLoad()">
+        Fail next load
+      </button>
+    </div>
+
+    <div class="result-grid">
+      @if (coursesData.vm$ | async; as vm) {
+        <section class="state-card" aria-labelledby="state-title">
+          <h2 id="state-title">View Model From Service</h2>
+          <dl>
+            <div>
+              <dt>Category</dt>
+              <dd>{{ vm.category }}</dd>
+            </div>
+            <div>
+              <dt>Source</dt>
+              <dd>{{ vm.source }}</dd>
+            </div>
+            <div>
+              <dt>Loading</dt>
+              <dd>{{ vm.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>Error</dt>
+              <dd>{{ vm.error ?? 'None' }}</dd>
+            </div>
+          </dl>
+
+          <ul>
+            @for (course of vm.courses; track course.id) {
+              <li>
+                <strong>{{ course.title }}</strong>
+                <span>{{ course.category }}</span>
+              </li>
+            } @empty {
+              <li>No courses visible.</li>
+            }
+          </ul>
+        </section>
+      }
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Service Log</h2>
+        <ol>
+          @for (log of coursesData.logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        A service can own the Subjects, operators, backend calls, and shared
+        view-model stream.
+      </li>
+      <li>
+        The component can call service methods instead of knowing about
+        <code>next()</code>, <code>switchMap</code>, or <code>catchError</code>.
+      </li>
+      <li>
+        A component-level provider creates a fresh service instance for this
+        screen.
+      </li>
+      <li>
+        This pattern is a lightweight cousin of a facade: expose useful streams
+        and useful methods.
+      </li>
+    </ol>
+  </section>
+</main>

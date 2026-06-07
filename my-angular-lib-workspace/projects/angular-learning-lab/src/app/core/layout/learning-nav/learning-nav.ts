@@ -58,6 +58,7 @@ export class LearningNav {
     { description: 'Combine several streams with combineLatest, withLatestFrom, and forkJoin.', number: 7, path: '/rxjs-lessons/lesson-07-combining-streams', title: 'Combining Streams' },
     { description: 'Compare manual subscribe, takeUntilDestroyed, and async pipe cleanup.', number: 8, path: '/rxjs-lessons/lesson-08-angular-subscriptions', title: 'Angular Subscriptions' },
     { description: 'Build a loading/data/error view model for backend-style streams.', number: 9, path: '/rxjs-lessons/lesson-09-http-data-flow', title: 'HTTP Data Flow' },
+    { description: 'Move stream state into an injectable service with vm$ and methods.', number: 10, path: '/rxjs-lessons/lesson-10-service-data-flow', title: 'Service Data Flow' },
   ];
 
   protected get categoryLabel(): string {

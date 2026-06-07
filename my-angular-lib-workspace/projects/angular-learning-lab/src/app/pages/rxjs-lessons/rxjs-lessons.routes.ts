@@ -64,4 +64,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson09HttpDataFlow,
       ),
   },
+  {
+    path: 'lesson-10-service-data-flow',
+    loadComponent: () =>
+      import('./lesson-10-service-data-flow/lesson-10-service-data-flow').then(
+        (m) => m.Lesson10ServiceDataFlow,
+      ),
+  },
 ];
