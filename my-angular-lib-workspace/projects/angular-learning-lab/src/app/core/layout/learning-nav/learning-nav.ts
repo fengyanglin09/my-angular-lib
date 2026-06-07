@@ -54,6 +54,7 @@ export class LearningNav {
     { label: 'Lesson 5', path: '/rxjs-lessons/lesson-05-flattening-operators' },
     { label: 'Lesson 6', path: '/rxjs-lessons/lesson-06-error-handling' },
     { label: 'Lesson 7', path: '/rxjs-lessons/lesson-07-combining-streams' },
+    { label: 'Lesson 8', path: '/rxjs-lessons/lesson-08-angular-subscriptions' },
   ];
 
   protected get lessons(): LessonLink[] {

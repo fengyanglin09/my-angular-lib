@@ -1,0 +1,95 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 8</p>
+    <h1>Angular Subscription Patterns</h1>
+    <p>
+      In Angular, subscribing is not only about receiving values. It is also
+      about ownership: TypeScript can own the subscription, Angular can clean it
+      up with <code>takeUntilDestroyed</code>, or the template can own it with
+      the <code>async</code> pipe.
+    </p>
+  </section>
+
+  <section class="subscription-panel" aria-labelledby="subscription-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">subscribe, takeUntilDestroyed, async pipe</p>
+        <h2 id="subscription-title">Who Owns The Subscription?</h2>
+      </div>
+      <p class="summary">Active demo: {{ activeDemo() }}</p>
+    </div>
+
+    <div class="pattern-grid">
+      @for (pattern of patterns; track pattern.name) {
+        <article class="pattern-card">
+          <h3>{{ pattern.name }}</h3>
+          <p>{{ pattern.description }}</p>
+          <p class="use-case">{{ pattern.realWorldUse }}</p>
+          <pre>{{ pattern.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runManualSubscribeDemo()">
+        Run manual subscribe
+      </button>
+      <button type="button" (click)="runTakeUntilDestroyedDemo()">
+        Run takeUntilDestroyed
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="result-grid">
+      <section class="result-card" aria-labelledby="values-title">
+        <h2 id="values-title">Displayed Values</h2>
+        <dl>
+          <div>
+            <dt>Manual subscription</dt>
+            <dd>{{ manualValue() }}</dd>
+          </div>
+          <div>
+            <dt>takeUntilDestroyed</dt>
+            <dd>{{ safeValue() }}</dd>
+          </div>
+          <div>
+            <dt>Async pipe</dt>
+            <dd>{{ asyncPipeValue$ | async }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Subscription Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>
+        Use the <code>async</code> pipe when the template only needs to display
+        Observable values.
+      </li>
+      <li>
+        Use <code>takeUntilDestroyed</code> when TypeScript needs the values and
+        the subscription should end with the component.
+      </li>
+      <li>
+        Manual <code>unsubscribe()</code> works, but you must remember to do it.
+      </li>
+      <li>
+        HTTP Observables usually complete by themselves, but long-lived streams
+        like intervals, route params, and form changes need cleanup.
+      </li>
+    </ol>
+  </section>
+</main>

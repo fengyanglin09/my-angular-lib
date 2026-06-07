@@ -50,4 +50,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson07CombiningStreams,
       ),
   },
+  {
+    path: 'lesson-08-angular-subscriptions',
+    loadComponent: () =>
+      import('./lesson-08-angular-subscriptions/lesson-08-angular-subscriptions').then(
+        (m) => m.Lesson08AngularSubscriptions,
+      ),
+  },
 ];

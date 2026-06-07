@@ -14,6 +14,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 5. Flattening Operators | `/rxjs-lessons/lesson-05-flattening-operators` | How `switchMap`, `concatMap`, `mergeMap`, and `exhaustMap` handle inner Observables created from source values. |
 | 6. Error Handling | `/rxjs-lessons/lesson-06-error-handling` | How `catchError`, `retry`, and `finalize` help streams recover, retry, and clean up loading state. |
 | 7. Combining Streams | `/rxjs-lessons/lesson-07-combining-streams` | How `combineLatest`, `withLatestFrom`, and `forkJoin` combine multiple source streams for different real-world timing needs. |
+| 8. Angular Subscription Patterns | `/rxjs-lessons/lesson-08-angular-subscriptions` | How manual `subscribe`, `takeUntilDestroyed`, and the `async` pipe handle subscription ownership and cleanup. |
 
 ## Big Ideas So Far
 
@@ -72,6 +73,13 @@ what each lesson teaches as the RxJS learning path grows.
 - `forkJoin(...)` waits for all sources to complete, then emits one combined result.
 - Choosing a combining operator depends on what should trigger the combined emission.
 
+### Angular Subscription Patterns
+
+- The `async` pipe subscribes in the template and cleans up when the view is destroyed.
+- `takeUntilDestroyed(...)` is useful when TypeScript needs stream values until the component is destroyed.
+- Manual subscriptions work, but you must keep the `Subscription` and unsubscribe at the right time.
+- Long-lived streams such as `interval`, route params, and form value changes need cleanup.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -91,4 +99,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- Angular patterns like `async` pipe, HTTP streams, and subscription cleanup
+- Angular HTTP streams and service-based data flows
