@@ -62,6 +62,7 @@ export class LearningNav {
     { description: 'Use a local facade service to combine backend and UI state.', number: 11, path: '/rxjs-lessons/lesson-11-component-facade', title: 'Component Facade' },
     { description: 'Compare Subject, BehaviorSubject, and ReplaySubject for late subscribers.', number: 12, path: '/rxjs-lessons/lesson-12-subjects-multicasting', title: 'Subjects' },
     { description: 'Use marble-style timelines to reason about operator behavior.', number: 13, path: '/rxjs-lessons/lesson-13-marble-thinking', title: 'Marble Thinking' },
+    { description: 'Accumulate event streams into useful UI state with scan.', number: 14, path: '/rxjs-lessons/lesson-14-scan-state', title: 'scan State' },
   ];
 
   protected get categoryLabel(): string {

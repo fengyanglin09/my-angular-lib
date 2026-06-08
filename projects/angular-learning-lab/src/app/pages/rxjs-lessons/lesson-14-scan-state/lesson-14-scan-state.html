@@ -1,0 +1,106 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="14" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 14</p>
+    <h1>Accumulating State With scan</h1>
+    <p>
+      The <code>scan</code> operator turns a stream of events into a stream of
+      state. It is useful when the next value depends on previous values, such
+      as carts, notification logs, undo history, selected rows, or paginated
+      results.
+    </p>
+  </section>
+
+  <section class="state-panel" aria-labelledby="state-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">events into state</p>
+        <h2 id="state-title">Cart Event Stream</h2>
+      </div>
+      <p class="summary">previous state + event = next state</p>
+    </div>
+
+    <div class="concept-grid">
+      <article>
+        <h3>Event stream</h3>
+        <pre>cartEvents$.next(addProductEvent)</pre>
+        <p>Buttons create events. Events describe what happened.</p>
+      </article>
+
+      <article>
+        <h3>scan reducer</h3>
+        <pre>scan((state, event) => nextState, initialState)</pre>
+        <p><code>scan</code> remembers the previous state for the next event.</p>
+      </article>
+
+      <article>
+        <h3>view model</h3>
+        <pre>map((state) => totals)</pre>
+        <p>The template receives cart items, totals, and the last event.</p>
+      </article>
+    </div>
+
+    @if (vm$ | async; as vm) {
+      <div class="shop-grid">
+        <section class="product-card" aria-labelledby="products-title">
+          <h2 id="products-title">Products</h2>
+          <div class="product-list">
+            @for (product of products; track product.id) {
+              <button type="button" (click)="addProduct(product)">
+                <span>{{ product.name }}</span>
+                <strong>{{ product.price | currency }}</strong>
+              </button>
+            }
+          </div>
+        </section>
+
+        <section class="cart-card" aria-labelledby="cart-title">
+          <div class="cart-heading">
+            <h2 id="cart-title">Cart State</h2>
+            <button type="button" class="quiet" (click)="clearCart()">Clear</button>
+          </div>
+
+          <p class="event">{{ vm.lastEvent }}</p>
+
+          <ul>
+            @for (item of vm.items; track item.id) {
+              <li>
+                <div>
+                  <strong>{{ item.name }}</strong>
+                  <span>{{ item.quantity }} x {{ item.price | currency }}</span>
+                </div>
+                <button type="button" class="quiet" (click)="removeProduct(item.id)">
+                  Remove one
+                </button>
+              </li>
+            } @empty {
+              <li class="empty">The cart is empty.</li>
+            }
+          </ul>
+
+          <dl>
+            <div>
+              <dt>Total items</dt>
+              <dd>{{ vm.totalItems }}</dd>
+            </div>
+            <div>
+              <dt>Total price</dt>
+              <dd>{{ vm.totalPrice | currency }}</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    }
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>scan</code> emits after every source event.</li>
+      <li>Each emission becomes the previous state for the next event.</li>
+      <li>It is similar to a reducer, but it keeps emitting over time.</li>
+      <li>Use it when an RxJS stream needs memory without introducing global state.</li>
+    </ol>
+  </section>
+</main>

@@ -20,6 +20,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 11. Component Facade | `/rxjs-lessons/lesson-11-component-facade` | How a local facade combines backend state and UI state into one component-friendly `vm$`. |
 | 12. Subjects And Multicasting | `/rxjs-lessons/lesson-12-subjects-multicasting` | How `Subject`, `BehaviorSubject`, and `ReplaySubject` multicast values and treat late subscribers differently. |
 | 13. Marble Thinking | `/rxjs-lessons/lesson-13-marble-thinking` | How marble-style timelines make operator behavior easier to reason about before writing formal marble tests. |
+| 14. Accumulating State With scan | `/rxjs-lessons/lesson-14-scan-state` | How `scan` turns event streams into accumulated UI state for carts, logs, undo history, and pagination. |
 
 ## Big Ideas So Far
 
@@ -123,6 +124,14 @@ what each lesson teaches as the RxJS learning path grows.
 - `|` represents stream completion.
 - Thinking in marbles makes operators like `map`, `filter`, and `switchMap` easier to debug.
 
+### Accumulating State With scan
+
+- `scan(...)` remembers the previous emitted state.
+- Each new source event becomes `previous state + event -> next state`.
+- Unlike `reduce(...)`, `scan(...)` emits every intermediate state instead of waiting for completion.
+- It is useful for carts, activity logs, selected items, undo history, and loading more paginated results.
+- It feels similar to a reducer, but it lives inside an RxJS stream instead of global store state.
+
 ### Cold Observable Mental Model
 
 Lesson 1 focuses on a cold Observable:
@@ -142,4 +151,4 @@ producer completes or subscriber unsubscribes
 
 Future RxJS lessons can build from this foundation:
 
-- formal marble testing or advanced stream debugging
+- advanced stream debugging

@@ -92,4 +92,16 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson13MarbleThinking,
       ),
   },
+  {
+    path: 'lesson-14-marble-testing',
+    pathMatch: 'full',
+    redirectTo: 'lesson-14-scan-state',
+  },
+  {
+    path: 'lesson-14-scan-state',
+    loadComponent: () =>
+      import('./lesson-14-scan-state/lesson-14-scan-state').then(
+        (m) => m.Lesson14ScanState,
+      ),
+  },
 ];
