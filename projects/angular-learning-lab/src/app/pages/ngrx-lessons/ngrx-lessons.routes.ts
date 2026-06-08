@@ -199,4 +199,11 @@ export const ngrxLessonsRoutes: Routes = [
         (m) => m.Lesson25NormalizedState,
       ),
   },
+  {
+    path: 'lesson-26-auth-user',
+    loadComponent: () =>
+      import('./lesson-26-auth-user/lesson-26-auth-user').then(
+        (m) => m.Lesson26AuthUser,
+      ),
+  },
 ];

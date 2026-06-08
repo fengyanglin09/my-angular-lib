@@ -33,6 +33,7 @@ path.
 | 23. NgRx Testing | `/ngrx-lessons/lesson-23-ngrx-testing` | Basic reducer, selector, and effect test patterns with Jasmine. |
 | 24. MockStore Testing | `/ngrx-lessons/lesson-24-mock-store-testing` | Component tests with `provideMockStore`, mocked selector values, rendered state assertions, and dispatch spies. |
 | 25. Normalized State | `/ngrx-lessons/lesson-25-normalized-state` | Normalized entity state, storing relationships by ID, and selector joins for UI-ready data. |
+| 26. Auth User State | `/ngrx-lessons/lesson-26-auth-user` | Global auth user state, login/logout/session effects, and selectors for logged-in status and roles. |
 
 ## Big Ideas By Category
 
@@ -64,6 +65,7 @@ path.
 - Lesson 16 introduces view model selectors.
 - Lesson 22 introduces persistence with meta-reducers.
 - Lesson 25 introduces normalized state and selector joins.
+- Lesson 26 introduces app-wide auth user state.
 
 ### Testing
 
@@ -110,4 +112,3 @@ store related records separately
   -> connect them by ID
   -> use selectors to join data for the UI
 ```
-

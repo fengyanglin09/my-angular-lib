@@ -6,6 +6,8 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
+import { AuthUserEffects } from './state/auth-user/auth-user.effects';
+import { authUserFeature } from './state/auth-user/auth-user.reducer';
 import { BooksEffects } from './state/books/books.effects';
 import { booksFeature } from './state/books/books.reducer';
 import { ConcurrencyEffects } from './state/concurrency/concurrency.effects';
@@ -31,6 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideStore({
+      [authUserFeature.name]: authUserFeature.reducer,
       [booksFeature.name]: booksFeature.reducer,
       [concurrencyFeature.name]: concurrencyFeature.reducer,
       [counterFeature.name]: counterFeature.reducer,
@@ -47,6 +50,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideRouterStore(),
     provideEffects([
+      AuthUserEffects,
       BooksEffects,
       ConcurrencyEffects,
       DraftsEffects,

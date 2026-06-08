@@ -46,6 +46,7 @@ export class LearningNav {
     { description: 'Test reducers and selectors with focused examples.', number: 23, path: '/ngrx-lessons/lesson-23-ngrx-testing', title: 'Reducer Tests' },
     { description: 'Use MockStore for component and facade tests.', number: 24, path: '/ngrx-lessons/lesson-24-mock-store-testing', title: 'MockStore Tests' },
     { description: 'Model relational data with normalized entities and selector joins.', number: 25, path: '/ngrx-lessons/lesson-25-normalized-state', title: 'Normalized State' },
+    { description: 'Store the current auth user globally with effects and selectors.', number: 26, path: '/ngrx-lessons/lesson-26-auth-user', title: 'Auth User' },
   ];
 
   private readonly rxjsLessons: LessonLink[] = [

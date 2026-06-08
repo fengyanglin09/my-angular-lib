@@ -1,0 +1,91 @@
+<main class="lesson-shell">
+  <app-learning-nav [activeLesson]="26" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">NgRx Lesson 26</p>
+    <h1>Auth User State</h1>
+    <p>
+      Auth user state is a strong use case for global NgRx Store. Many screens
+      may need to know whether the user is logged in, who they are, and what
+      role or permissions they have.
+    </p>
+  </section>
+
+  <section class="auth-panel" aria-labelledby="auth-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Actions, Effects, Reducer, Selectors</p>
+        <h2 id="auth-title">Current User</h2>
+      </div>
+      <p class="status" [class.signed-in]="isLoggedIn()">
+        {{ statusLabel() }}
+      </p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="checkSession()" [disabled]="loading()">
+        Check session
+      </button>
+      <button type="button" (click)="login()" [disabled]="loading()">
+        Login success
+      </button>
+      <button type="button" (click)="loginFailure()" [disabled]="loading()">
+        Login failure
+      </button>
+      <button type="button" (click)="logout()" [disabled]="loading() || !isLoggedIn()">
+        Logout
+      </button>
+    </div>
+
+    <div class="content-grid">
+      <section class="user-card" aria-labelledby="user-title">
+        <h2 id="user-title">Selector Output</h2>
+
+        @if (user(); as currentUser) {
+          <dl>
+            <div>
+              <dt>Name</dt>
+              <dd>{{ currentUser.name }}</dd>
+            </div>
+            <div>
+              <dt>Email</dt>
+              <dd>{{ currentUser.email }}</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>{{ userRole() }}</dd>
+            </div>
+          </dl>
+        } @else {
+          <p class="empty">No authenticated user is currently stored.</p>
+        }
+
+        @if (error()) {
+          <p class="error">{{ error() }}</p>
+        }
+      </section>
+
+      <aside class="shape-card" aria-label="Auth state shape">
+        <p class="eyebrow">State Shape</p>
+        <pre>authUser: {{ '{' }}
+  user: AuthUser | null,
+  loading: boolean,
+  error: string | null,
+  checkedSession: boolean
+{{ '}' }}</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">Why Auth Belongs In Global State</h2>
+    <ol>
+      <li>Many features need the same logged-in user.</li>
+      <li>Effects are a clean place for login, logout, and session API calls.</li>
+      <li>Selectors give components simple answers like <code>isLoggedIn</code>.</li>
+      <li>Reducers keep success, failure, loading, and logout transitions predictable.</li>
+      <li><code>Check session</code> asks the backend whether a saved session still exists.</li>
+      <li>Later, route guards and permissions can read the same auth state.</li>
+    </ol>
+  </section>
+</main>
