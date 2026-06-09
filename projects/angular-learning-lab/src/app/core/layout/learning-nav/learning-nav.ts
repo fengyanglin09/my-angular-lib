@@ -69,6 +69,7 @@ export class LearningNav {
     { description: 'Combine many event sources into one reload workflow.', number: 17, path: '/rxjs-lessons/lesson-17-merge-reload-triggers', title: 'merge Triggers' },
     { description: 'Fail slow or stuck streams before loading spins forever.', number: 18, path: '/rxjs-lessons/lesson-18-timeout-safety', title: 'timeout Safety' },
     { description: 'Sample noisy UI events with auditTime, debounceTime, and throttleTime.', number: 19, path: '/rxjs-lessons/lesson-19-audit-time', title: 'auditTime' },
+    { description: 'Batch noisy events into arrays before sending backend work.', number: 20, path: '/rxjs-lessons/lesson-20-buffer-time', title: 'bufferTime' },
   ];
 
   protected get categoryLabel(): string {

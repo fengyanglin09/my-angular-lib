@@ -26,6 +26,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 17. Combining Reload Triggers With merge | `/rxjs-lessons/lesson-17-merge-reload-triggers` | How `merge` combines manual refresh, route change, and save success event sources into one reload workflow. |
 | 18. Backend Safety With timeout | `/rxjs-lessons/lesson-18-timeout-safety` | How `timeout` turns slow or stuck streams into error states so loading does not spin forever. |
 | 19. Rate Limiting With auditTime | `/rxjs-lessons/lesson-19-audit-time` | How `auditTime` compares with `debounceTime` and `throttleTime` for noisy UI events like resize, scroll, and drag. |
+| 20. Batching Events With bufferTime | `/rxjs-lessons/lesson-20-buffer-time` | How `bufferTime` collects noisy events into arrays so logs, analytics, or patches can be sent in batches. |
 
 ## Big Ideas So Far
 
@@ -173,6 +174,13 @@ what each lesson teaches as the RxJS learning path grows.
 - `debounceTime(...)` waits until the source becomes quiet.
 - `throttleTime(...)` emits early, then ignores values for a while.
 - `auditTime(...)` is useful when noisy UI events need regular latest-value updates.
+
+### Batching Events With bufferTime
+
+- `bufferTime(...)` collects values for a time window, then emits an array.
+- It can emit empty arrays if nothing happened during the window.
+- Pair it with `filter((batch) => batch.length > 0)` when empty batches should be ignored.
+- It is useful for analytics events, logs, websocket messages, autosave patches, and other small event streams.
 
 ### Cold Observable Mental Model
 

@@ -1,0 +1,78 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="20" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 20</p>
+    <h1>Batching Events With bufferTime</h1>
+    <p>
+      The <code>bufferTime</code> operator collects values for a period of time,
+      then emits them as an array. It is useful when a backend should receive
+      batches instead of many tiny requests.
+    </p>
+  </section>
+
+  <section class="buffer-panel" aria-labelledby="buffer-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">batching, analytics, logs</p>
+        <h2 id="buffer-title">Analytics Event Queue</h2>
+      </div>
+      <p class="summary">{{ pendingEvents().length }} pending events</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="emitEvent('Open menu')">Open menu</button>
+      <button type="button" (click)="emitEvent('Click lesson')">Click lesson</button>
+      <button type="button" (click)="emitEvent('Toggle filter')">Toggle filter</button>
+      <button type="button" (click)="emitBurst()">Emit burst</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="queue-card" aria-labelledby="pending-title">
+        <h2 id="pending-title">Pending Events</h2>
+        <ol>
+          @for (event of pendingEvents(); track event.id) {
+            <li>#{{ event.id }} {{ event.label }}</li>
+          } @empty {
+            <li class="empty">No pending events.</li>
+          }
+        </ol>
+      </section>
+
+      <section class="batch-card" aria-labelledby="batch-title">
+        <h2 id="batch-title">Sent Batches</h2>
+        <ol>
+          @for (batch of sentBatches(); track batch.id) {
+            <li>
+              <strong>Batch #{{ batch.id }} sent at {{ batch.sentAt }}</strong>
+              <span>{{ batch.events.length }} events: {{ batch.events.map(event => event.label).join(', ') }}</span>
+            </li>
+          } @empty {
+            <li class="empty">No batches sent yet. Wait two seconds after emitting events.</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>bufferTime</code> emits arrays of collected values.</li>
+      <li>Empty arrays can be filtered out with <code>filter((batch) => batch.length > 0)</code>.</li>
+      <li>It is useful when many small events should become fewer backend requests.</li>
+      <li>For count-based batches, RxJS also has <code>bufferCount</code>.</li>
+    </ol>
+  </section>
+</main>

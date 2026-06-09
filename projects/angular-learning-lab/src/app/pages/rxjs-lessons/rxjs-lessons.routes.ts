@@ -139,4 +139,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson19AuditTime,
       ),
   },
+  {
+    path: 'lesson-20-buffer-time',
+    loadComponent: () =>
+      import('./lesson-20-buffer-time/lesson-20-buffer-time').then(
+        (m) => m.Lesson20BufferTime,
+      ),
+  },
 ];
