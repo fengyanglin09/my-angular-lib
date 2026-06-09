@@ -1,0 +1,102 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="24" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 24</p>
+    <h1>Prevent Duplicate Submits</h1>
+    <p>
+      <code>exhaustMap</code> is useful when one backend request should finish
+      before another one can start. It is a good fit for submit buttons, payment
+      buttons, invite buttons, and other workflows where double-clicks should be
+      ignored while saving.
+    </p>
+  </section>
+
+  <section class="submit-panel" aria-labelledby="submit-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Subject, exhaustMap, concat</p>
+        <h2 id="submit-title">Order Save Demo</h2>
+      </div>
+      <p class="summary">Only one save request runs at a time</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="submitSave()">Emit one save click</button>
+      <button type="button" (click)="submitTwice()">Emit two rapid save clicks</button>
+      <button type="button" (click)="submitFailure()">Emit one failing click</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      @if (submitState$ | async; as state) {
+        <section class="state-card" aria-labelledby="state-title">
+          <h2 id="state-title">Submit State</h2>
+          <dl>
+            <div>
+              <dt>Loading</dt>
+              <dd>{{ state.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>Source</dt>
+              <dd>{{ state.source }}</dd>
+            </div>
+            <div>
+              <dt>Confirmation</dt>
+              <dd>{{ state.confirmation ?? 'None' }}</dd>
+            </div>
+            <div>
+              <dt>Error</dt>
+              <dd>{{ state.error ?? 'None' }}</dd>
+            </div>
+          </dl>
+        </section>
+      }
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Submit Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="exhaustMap mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>All buttons emit into the same submitClicks$ stream.
+All submit clicks go through exhaustMap.
+
+click #1
+  exhaustMap accepts it
+  backend request starts
+
+click #2 while request #1 is active
+  exhaustMap ignores it
+
+request #1 completes
+  next click can be accepted</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>exhaustMap</code> subscribes to the first inner Observable.</li>
+      <li>While that inner Observable is active, new source emissions are ignored.</li>
+      <li>After the inner Observable completes, the next source emission can start new work.</li>
+      <li>This is different from <code>switchMap</code>, which cancels the previous request.</li>
+    </ol>
+  </section>
+</main>

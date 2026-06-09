@@ -73,6 +73,7 @@ export class LearningNav {
     { description: 'Read one value and complete with take(1) or first().', number: 21, path: '/rxjs-lessons/lesson-21-take-first', title: 'take / first' },
     { description: 'Share backend work and replay cached values to late subscribers.', number: 22, path: '/rxjs-lessons/lesson-22-share-replay', title: 'shareReplay' },
     { description: 'Use a refresh Subject to reload cached HTTP-style data.', number: 23, path: '/rxjs-lessons/lesson-23-refresh-cache', title: 'Refresh Cache' },
+    { description: 'Prevent duplicate backend submits with exhaustMap.', number: 24, path: '/rxjs-lessons/lesson-24-exhaust-map-submit', title: 'Submit Guard' },
   ];
 
   protected get categoryLabel(): string {

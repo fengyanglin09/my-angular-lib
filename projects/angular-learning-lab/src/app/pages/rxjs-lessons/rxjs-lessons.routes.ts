@@ -167,4 +167,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson23RefreshCache,
       ),
   },
+  {
+    path: 'lesson-24-exhaust-map-submit',
+    loadComponent: () =>
+      import('./lesson-24-exhaust-map-submit/lesson-24-exhaust-map-submit').then(
+        (m) => m.Lesson24ExhaustMapSubmit,
+      ),
+  },
 ];

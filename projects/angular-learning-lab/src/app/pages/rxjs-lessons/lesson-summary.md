@@ -30,6 +30,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 21. One-Time Reads With take and first | `/rxjs-lessons/lesson-21-take-first` | How `take(1)` and `first()` read one value, complete after that value, and differ when no value arrives. |
 | 22. Sharing Work With shareReplay | `/rxjs-lessons/lesson-22-share-replay` | How `share` and `shareReplay` share backend work, and why `shareReplay` can replay cached values to late subscribers. |
 | 23. Refresh Trigger With shareReplay | `/rxjs-lessons/lesson-23-refresh-cache` | How to use a refresh Subject, `startWith`, `switchMap`, and `shareReplay` to load, cache, and manually reload backend-style data. |
+| 24. Prevent Duplicate Submits With exhaustMap | `/rxjs-lessons/lesson-24-exhaust-map-submit` | How `exhaustMap` accepts one submit request, ignores duplicate clicks while saving, and allows the next submit after completion. |
 
 ## Big Ideas So Far
 
@@ -208,6 +209,14 @@ what each lesson teaches as the RxJS learning path grows.
 - `switchMap(...)` turns each reload trigger into a backend request.
 - `shareReplay({ bufferSize: 1, refCount: true })` shares the request result and caches the latest state for late subscribers.
 - Calling `refresh$.next(...)` does not update the data directly; it triggers the pipeline to fetch fresh data.
+
+### Prevent Duplicate Submits With exhaustMap
+
+- `exhaustMap(...)` accepts the first source emission and subscribes to its inner Observable.
+- New source emissions are ignored while that inner Observable is still active.
+- After the inner Observable completes, the next source emission can start new work.
+- This is useful for save, pay, invite, upload, and other submit-style workflows.
+- It is different from `switchMap(...)`, which cancels old work when a new source value arrives.
 
 ### Cold Observable Mental Model
 
