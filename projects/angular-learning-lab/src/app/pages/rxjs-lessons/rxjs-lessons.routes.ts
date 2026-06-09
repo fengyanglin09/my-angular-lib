@@ -111,4 +111,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson15PairwiseChanges,
       ),
   },
+  {
+    path: 'lesson-16-distinct-until-changed',
+    loadComponent: () =>
+      import('./lesson-16-distinct-until-changed/lesson-16-distinct-until-changed').then(
+        (m) => m.Lesson16DistinctUntilChanged,
+      ),
+  },
 ];

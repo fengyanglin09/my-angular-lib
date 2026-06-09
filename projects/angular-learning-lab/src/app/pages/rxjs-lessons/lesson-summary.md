@@ -22,6 +22,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 13. Marble Thinking | `/rxjs-lessons/lesson-13-marble-thinking` | How marble-style timelines make operator behavior easier to reason about before writing formal marble tests. |
 | 14. Accumulating State With scan | `/rxjs-lessons/lesson-14-scan-state` | How `scan` turns event streams into accumulated UI state for carts, logs, undo history, and pagination. |
 | 15. Comparing Changes With pairwise | `/rxjs-lessons/lesson-15-pairwise-changes` | How `pairwise` emits previous/current value pairs for route changes, metric trends, and status transitions. |
+| 16. Avoiding Duplicate Work With distinctUntilChanged | `/rxjs-lessons/lesson-16-distinct-until-changed` | How `distinctUntilChanged` skips consecutive duplicate route params, filters, or search values before expensive work runs. |
 
 ## Big Ideas So Far
 
@@ -139,6 +140,14 @@ what each lesson teaches as the RxJS learning path grows.
 - It does not emit for the first value because there is no previous value yet.
 - `startWith(...)` can provide an initial previous value.
 - It is useful when the transition matters, such as old route to new route, old status to new status, or previous metric to current metric.
+
+### Avoiding Duplicate Work With distinctUntilChanged
+
+- `distinctUntilChanged(...)` blocks consecutive duplicate values.
+- By default, it compares values with `===`.
+- Object values usually need a custom comparer function.
+- It is useful before backend calls, route-driven reloads, search requests, and filter changes.
+- Normalize values with `map(...)` first when casing or whitespace should not count as a meaningful change.
 
 ### Cold Observable Mental Model
 

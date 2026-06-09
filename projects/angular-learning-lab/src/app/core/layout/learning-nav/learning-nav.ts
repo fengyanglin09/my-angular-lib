@@ -65,6 +65,7 @@ export class LearningNav {
     { description: 'Use marble-style timelines to reason about operator behavior.', number: 13, path: '/rxjs-lessons/lesson-13-marble-thinking', title: 'Marble Thinking' },
     { description: 'Accumulate event streams into useful UI state with scan.', number: 14, path: '/rxjs-lessons/lesson-14-scan-state', title: 'scan State' },
     { description: 'Compare previous and current values with pairwise.', number: 15, path: '/rxjs-lessons/lesson-15-pairwise-changes', title: 'pairwise Changes' },
+    { description: 'Skip consecutive duplicate values before doing expensive work.', number: 16, path: '/rxjs-lessons/lesson-16-distinct-until-changed', title: 'Distinct Changes' },
   ];
 
   protected get categoryLabel(): string {

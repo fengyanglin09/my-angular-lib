@@ -1,0 +1,87 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="16" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 16</p>
+    <h1>Avoiding Duplicate Work With distinctUntilChanged</h1>
+    <p>
+      The <code>distinctUntilChanged</code> operator blocks consecutive duplicate
+      values. In Angular apps, it helps avoid duplicate backend requests when
+      route params, filters, or search values did not meaningfully change.
+    </p>
+  </section>
+
+  <section class="distinct-panel" aria-labelledby="distinct-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">duplicate values, custom comparison</p>
+        <h2 id="distinct-title">Course Filter Requests</h2>
+      </div>
+      <p class="summary">
+        {{ currentFilters().category }} / {{ currentFilters().sort }} / page {{ currentFilters().page }}
+      </p>
+    </div>
+
+    <div class="snippet-grid">
+      @for (snippet of snippets; track snippet.name) {
+        <article>
+          <h3>{{ snippet.name }}</h3>
+          <p>{{ snippet.description }}</p>
+          <pre>{{ snippet.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar" aria-label="Filter controls">
+      <button type="button" (click)="setCategory('all')">All</button>
+      <button type="button" (click)="setCategory('angular')">Angular</button>
+      <button type="button" (click)="setCategory('rxjs')">RxJS</button>
+      <button type="button" (click)="setSort('newest')">Newest</button>
+      <button type="button" (click)="setSort('popular')">Popular</button>
+      <button type="button" (click)="setPage(currentFilters().page + 1)">Next page</button>
+      <button type="button" (click)="emitCurrentAgain()">Emit duplicate</button>
+      <button type="button" (click)="runPrimitiveExample()">Primitive example</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="distinct-log-title">
+        <h2 id="distinct-log-title">With distinctUntilChanged</h2>
+        <ol>
+          @for (log of distinctLogs(); track $index) {
+            <li [class.skipped]="log.skipped">
+              <strong>{{ log.label }}</strong>
+              <span>{{ log.request.category }} / {{ log.request.sort }} / page {{ log.request.page }}</span>
+            </li>
+          } @empty {
+            <li class="empty">No distinct requests yet.</li>
+          }
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="raw-log-title">
+        <h2 id="raw-log-title">Without distinctUntilChanged</h2>
+        <ol>
+          @for (log of rawLogs(); track $index) {
+            <li>
+              <strong>{{ log.label }}</strong>
+              <span>{{ log.request.category }} / {{ log.request.sort }} / page {{ log.request.page }}</span>
+            </li>
+          } @empty {
+            <li class="empty">No raw requests yet.</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>By default, <code>distinctUntilChanged</code> uses <code>===</code>.</li>
+      <li>For objects, pass a comparer function that checks meaningful fields.</li>
+      <li>It only compares the current value to the previous emitted value.</li>
+      <li>Use <code>map</code> before it when values should be normalized first.</li>
+    </ol>
+  </section>
+</main>
