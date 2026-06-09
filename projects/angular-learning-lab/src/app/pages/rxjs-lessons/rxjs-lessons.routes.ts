@@ -146,4 +146,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson20BufferTime,
       ),
   },
+  {
+    path: 'lesson-21-take-first',
+    loadComponent: () =>
+      import('./lesson-21-take-first/lesson-21-take-first').then(
+        (m) => m.Lesson21TakeFirst,
+      ),
+  },
 ];

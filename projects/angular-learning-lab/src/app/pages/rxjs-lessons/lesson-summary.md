@@ -27,6 +27,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 18. Backend Safety With timeout | `/rxjs-lessons/lesson-18-timeout-safety` | How `timeout` turns slow or stuck streams into error states so loading does not spin forever. |
 | 19. Rate Limiting With auditTime | `/rxjs-lessons/lesson-19-audit-time` | How `auditTime` compares with `debounceTime` and `throttleTime` for noisy UI events like resize, scroll, and drag. |
 | 20. Batching Events With bufferTime | `/rxjs-lessons/lesson-20-buffer-time` | How `bufferTime` collects noisy events into arrays so logs, analytics, or patches can be sent in batches. |
+| 21. One-Time Reads With take and first | `/rxjs-lessons/lesson-21-take-first` | How `take(1)` and `first()` read one value, complete after that value, and differ when no value arrives. |
 
 ## Big Ideas So Far
 
@@ -181,6 +182,14 @@ what each lesson teaches as the RxJS learning path grows.
 - It can emit empty arrays if nothing happened during the window.
 - Pair it with `filter((batch) => batch.length > 0)` when empty batches should be ignored.
 - It is useful for analytics events, logs, websocket messages, autosave patches, and other small event streams.
+
+### One-Time Reads With take and first
+
+- `take(1)` reads the next value and then completes.
+- `first()` reads the first value, or the first value that matches a predicate, then completes.
+- `take(1)` completes quietly if the source completes without values.
+- `first()` errors if the source completes before a matching value appears.
+- These operators are useful for dialog results, one-time route reads, and short workflow decisions.
 
 ### Cold Observable Mental Model
 

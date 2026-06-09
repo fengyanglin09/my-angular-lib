@@ -1,0 +1,77 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="21" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 21</p>
+    <h1>One-Time Reads With take and first</h1>
+    <p>
+      The <code>take(1)</code> and <code>first()</code> operators are useful
+      when a stream should give you one value and then stop. This is common for
+      dialog results, one-time route reads, and short-lived workflow decisions.
+    </p>
+  </section>
+
+  <section class="take-panel" aria-labelledby="take-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">one value, then complete</p>
+        <h2 id="take-title">Confirm Dialog Stream</h2>
+      </div>
+      <p class="summary">{{ listening() ? 'Listening for one answer' : 'Not listening' }}</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="listenOnce()" [disabled]="listening()">
+        Listen once
+      </button>
+      <button type="button" (click)="emitAnswer('confirm')">Emit confirm</button>
+      <button type="button" (click)="emitAnswer('cancel')">Emit cancel</button>
+      <button type="button" (click)="runFirstConfirmExample()">Run first(predicate)</button>
+      <button type="button" (click)="runEmptyComparison()">Compare empty stream</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Execution Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="shape-card" aria-label="take and first comparison">
+        <p class="eyebrow">Difference</p>
+        <pre>take(1)
+  - takes the next value
+  - completes if source completes empty
+
+first()
+  - takes the first matching value
+  - completes after that match
+  - errors if no value arrives</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>take(1)</code> is the simple choice for “give me the next value once.”</li>
+      <li><code>first(predicate)</code> emits the first matching value, then completes.</li>
+      <li><code>take(1)</code> completes quietly if the source completes without values.</li>
+      <li><code>first()</code> errors if the source completes before a matching value appears.</li>
+    </ol>
+  </section>
+</main>
