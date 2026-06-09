@@ -132,4 +132,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson18TimeoutSafety,
       ),
   },
+  {
+    path: 'lesson-19-audit-time',
+    loadComponent: () =>
+      import('./lesson-19-audit-time/lesson-19-audit-time').then(
+        (m) => m.Lesson19AuditTime,
+      ),
+  },
 ];

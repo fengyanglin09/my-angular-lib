@@ -1,0 +1,85 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="19" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 19</p>
+    <h1>Rate Limiting With auditTime</h1>
+    <p>
+      The <code>auditTime</code> operator is useful for noisy UI events. It
+      watches a time window and emits the latest value at the end of that
+      window.
+    </p>
+  </section>
+
+  <section class="rate-panel" aria-labelledby="rate-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">auditTime, debounceTime, throttleTime</p>
+        <h2 id="rate-title">Resize Event Stream</h2>
+      </div>
+      <p class="summary">{{ rawLogs().length }} raw events</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="emitOne()">Emit one value</button>
+      <button type="button" (click)="emitBurst()">Emit burst</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="raw-title">
+        <h2 id="raw-title">Raw</h2>
+        <p>{{ rawLogs().join(', ') || 'No values yet' }}</p>
+      </section>
+
+      <section class="log-card" aria-labelledby="audit-title">
+        <h2 id="audit-title">auditTime</h2>
+        <p>{{ auditLogs().join(', ') || 'No values yet' }}</p>
+      </section>
+
+      <section class="log-card" aria-labelledby="debounce-title">
+        <h2 id="debounce-title">debounceTime</h2>
+        <p>{{ debounceLogs().join(', ') || 'No values yet' }}</p>
+      </section>
+
+      <section class="log-card" aria-labelledby="throttle-title">
+        <h2 id="throttle-title">throttleTime</h2>
+        <p>{{ throttleLogs().join(', ') || 'No values yet' }}</p>
+      </section>
+    </div>
+
+    <section class="timeline-card" aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Emission Timeline</h2>
+      <ol>
+        @for (log of timeline(); track $index) {
+          <li>
+            <strong>{{ log.operator }}</strong>
+            <span>emitted {{ log.value }}</span>
+          </li>
+        } @empty {
+          <li class="empty">No operator emissions yet.</li>
+        }
+      </ol>
+    </section>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>auditTime</code> emits the latest value after each time window.</li>
+      <li><code>debounceTime</code> waits for quiet before emitting.</li>
+      <li><code>throttleTime</code> emits early, then ignores values for a while.</li>
+      <li>Use <code>auditTime</code> for noisy events where the latest value matters regularly, such as resize, scroll, or drag updates.</li>
+    </ol>
+  </section>
+</main>
