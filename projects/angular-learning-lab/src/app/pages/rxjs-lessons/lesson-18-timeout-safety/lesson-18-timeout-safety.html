@@ -1,0 +1,79 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="18" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 18</p>
+    <h1>Backend Safety With timeout</h1>
+    <p>
+      The <code>timeout</code> operator turns a stream that takes too long into
+      an error. In apps, that means your loading state does not spin forever
+      when a backend request is slow or stuck.
+    </p>
+  </section>
+
+  <section class="timeout-panel" aria-labelledby="timeout-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">timeout, catchError, finalize</p>
+        <h2 id="timeout-title">Profile Request</h2>
+      </div>
+      <p class="summary">{{ state().source }}</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runRequest('fast')">Fast request</button>
+      <button type="button" (click)="runRequest('slow')">Slow request</button>
+      <button type="button" (click)="runRequest('hanging')">Hanging request</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Request State</h2>
+        <dl>
+          <div>
+            <dt>Loading</dt>
+            <dd>{{ state().loading ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>Result</dt>
+            <dd>{{ state().result ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Error</dt>
+            <dd>{{ state().error ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Request Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>timeout</code> creates an error if the source waits too long.</li>
+      <li><code>catchError</code> turns that timeout into a UI-friendly error state.</li>
+      <li><code>finalize</code> still runs when the request succeeds, fails, times out, or is canceled.</li>
+      <li>Use it when a screen needs a clear failure path instead of endless loading.</li>
+    </ol>
+  </section>
+</main>

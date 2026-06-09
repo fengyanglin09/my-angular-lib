@@ -24,6 +24,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 15. Comparing Changes With pairwise | `/rxjs-lessons/lesson-15-pairwise-changes` | How `pairwise` emits previous/current value pairs for route changes, metric trends, and status transitions. |
 | 16. Avoiding Duplicate Work With distinctUntilChanged | `/rxjs-lessons/lesson-16-distinct-until-changed` | How `distinctUntilChanged` skips consecutive duplicate route params, filters, or search values before expensive work runs. |
 | 17. Combining Reload Triggers With merge | `/rxjs-lessons/lesson-17-merge-reload-triggers` | How `merge` combines manual refresh, route change, and save success event sources into one reload workflow. |
+| 18. Backend Safety With timeout | `/rxjs-lessons/lesson-18-timeout-safety` | How `timeout` turns slow or stuck streams into error states so loading does not spin forever. |
 
 ## Big Ideas So Far
 
@@ -157,6 +158,13 @@ what each lesson teaches as the RxJS learning path grows.
 - It does not combine values into an array or object.
 - It is useful when different events should trigger the same workflow.
 - A common pattern is `merge(routeChange$, refreshClick$, saveSuccess$).pipe(switchMap(() => loadData()))`.
+
+### Backend Safety With timeout
+
+- `timeout(...)` errors when a source waits too long before emitting.
+- It is useful for backend calls, websocket handshakes, and long-running workflows that need a failure path.
+- Pair it with `catchError(...)` to show a UI-friendly error state.
+- `finalize(...)` still runs after success, failure, timeout, or unsubscribe.
 
 ### Cold Observable Mental Model
 

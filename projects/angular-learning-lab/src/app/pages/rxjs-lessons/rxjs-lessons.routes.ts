@@ -125,4 +125,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson17MergeReloadTriggers,
       ),
   },
+  {
+    path: 'lesson-18-timeout-safety',
+    loadComponent: () =>
+      import('./lesson-18-timeout-safety/lesson-18-timeout-safety').then(
+        (m) => m.Lesson18TimeoutSafety,
+      ),
+  },
 ];
