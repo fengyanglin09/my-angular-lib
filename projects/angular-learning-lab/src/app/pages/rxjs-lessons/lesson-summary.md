@@ -21,6 +21,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 12. Subjects And Multicasting | `/rxjs-lessons/lesson-12-subjects-multicasting` | How `Subject`, `BehaviorSubject`, and `ReplaySubject` multicast values and treat late subscribers differently. |
 | 13. Marble Thinking | `/rxjs-lessons/lesson-13-marble-thinking` | How marble-style timelines make operator behavior easier to reason about before writing formal marble tests. |
 | 14. Accumulating State With scan | `/rxjs-lessons/lesson-14-scan-state` | How `scan` turns event streams into accumulated UI state for carts, logs, undo history, and pagination. |
+| 15. Comparing Changes With pairwise | `/rxjs-lessons/lesson-15-pairwise-changes` | How `pairwise` emits previous/current value pairs for route changes, metric trends, and status transitions. |
 
 ## Big Ideas So Far
 
@@ -131,6 +132,13 @@ what each lesson teaches as the RxJS learning path grows.
 - Unlike `reduce(...)`, `scan(...)` emits every intermediate state instead of waiting for completion.
 - It is useful for carts, activity logs, selected items, undo history, and loading more paginated results.
 - It feels similar to a reducer, but it lives inside an RxJS stream instead of global store state.
+
+### Comparing Changes With pairwise
+
+- `pairwise(...)` emits `[previous, current]` arrays.
+- It does not emit for the first value because there is no previous value yet.
+- `startWith(...)` can provide an initial previous value.
+- It is useful when the transition matters, such as old route to new route, old status to new status, or previous metric to current metric.
 
 ### Cold Observable Mental Model
 

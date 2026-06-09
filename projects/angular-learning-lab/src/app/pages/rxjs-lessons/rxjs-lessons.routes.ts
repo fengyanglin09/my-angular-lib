@@ -104,4 +104,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson14ScanState,
       ),
   },
+  {
+    path: 'lesson-15-pairwise-changes',
+    loadComponent: () =>
+      import('./lesson-15-pairwise-changes/lesson-15-pairwise-changes').then(
+        (m) => m.Lesson15PairwiseChanges,
+      ),
+  },
 ];

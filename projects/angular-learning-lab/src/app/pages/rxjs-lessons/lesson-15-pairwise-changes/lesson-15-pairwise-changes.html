@@ -1,0 +1,75 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="15" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 15</p>
+    <h1>Comparing Changes With pairwise</h1>
+    <p>
+      The <code>pairwise</code> operator waits until it has two values, then
+      emits them as <code>[previous, current]</code>. It is useful when the app
+      needs to react to transitions, not just individual values.
+    </p>
+  </section>
+
+  <section class="change-panel" aria-labelledby="change-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">previous value, current value</p>
+        <h2 id="change-title">Dashboard Score</h2>
+      </div>
+      <p class="score">{{ currentScore() }}</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="setScore(78)">Set 78</button>
+      <button type="button" (click)="setScore(81)">Set 81</button>
+      <button type="button" (click)="setScore(66)">Set 66</button>
+      <button type="button" (click)="setScore(currentScore())">Emit same</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Change Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li [class.up]="log.direction === 'up'" [class.down]="log.direction === 'down'">
+              <strong>{{ log.label }}</strong>
+              <span>pairwise emitted [{{ log.previous }}, {{ log.next }}]</span>
+            </li>
+          } @empty {
+            <li class="empty">
+              No changes yet. Click a score button to emit the first pair.
+            </li>
+          }
+        </ol>
+      </section>
+
+      <aside class="shape-card" aria-label="pairwise stream shape">
+        <p class="eyebrow">Stream Shape</p>
+        <pre>score$:       72 ---- 78 ---- 81
+pairwise():       [72,78] [78,81]</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>pairwise</code> does not emit for the first source value.</li>
+      <li>It emits after the second value because it finally has a pair.</li>
+      <li><code>startWith</code> can provide an initial previous value.</li>
+      <li>Use it when the transition matters: previous route to current route, old status to new status, or previous score to current score.</li>
+    </ol>
+  </section>
+</main>

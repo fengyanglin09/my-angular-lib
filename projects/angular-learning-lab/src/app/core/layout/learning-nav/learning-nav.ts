@@ -64,6 +64,7 @@ export class LearningNav {
     { description: 'Compare Subject, BehaviorSubject, and ReplaySubject for late subscribers.', number: 12, path: '/rxjs-lessons/lesson-12-subjects-multicasting', title: 'Subjects' },
     { description: 'Use marble-style timelines to reason about operator behavior.', number: 13, path: '/rxjs-lessons/lesson-13-marble-thinking', title: 'Marble Thinking' },
     { description: 'Accumulate event streams into useful UI state with scan.', number: 14, path: '/rxjs-lessons/lesson-14-scan-state', title: 'scan State' },
+    { description: 'Compare previous and current values with pairwise.', number: 15, path: '/rxjs-lessons/lesson-15-pairwise-changes', title: 'pairwise Changes' },
   ];
 
   protected get categoryLabel(): string {
