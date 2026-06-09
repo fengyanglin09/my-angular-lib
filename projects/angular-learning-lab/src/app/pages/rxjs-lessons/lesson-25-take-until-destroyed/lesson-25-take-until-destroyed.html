@@ -1,0 +1,95 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="25" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 25</p>
+    <h1>takeUntilDestroyed In Practice</h1>
+    <p>
+      Some streams are subscribed to in TypeScript because they update local
+      signals, call imperative APIs, or connect to route params. Use
+      <code>takeUntilDestroyed</code> so Angular owns the cleanup when the
+      component is destroyed.
+    </p>
+  </section>
+
+  <section class="cleanup-panel" aria-labelledby="cleanup-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">route params, intervals, component streams</p>
+        <h2 id="cleanup-title">Cleanup Demo</h2>
+      </div>
+      <p class="summary">Subscriptions clean up when leaving the lesson</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a routerLink="../project-101">Project 101</a>
+      <a routerLink="../project-202">Project 202</a>
+      <a routerLink="../project-303">Project 303</a>
+      <button type="button" (click)="emitComponentEvent()">Emit component event</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Live State</h2>
+        <dl>
+          <div>
+            <dt>Current projectId</dt>
+            <dd>{{ projectId() }}</dd>
+          </div>
+          <div>
+            <dt>Interval ticks</dt>
+            <dd>{{ tickCount() }}</dd>
+          </div>
+          <div>
+            <dt>Component events</dt>
+            <dd>{{ componentEventCount() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Subscription Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="takeUntilDestroyed mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>component created
+  subscriptions start
+
+route param changes
+  same subscription receives new value
+  component is not destroyed
+
+leave this lesson
+  component is destroyed
+  takeUntilDestroyed unsubscribes</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>takeUntilDestroyed</code> is for subscriptions you create in TypeScript.</li>
+      <li>Route param changes usually reuse the same component instance.</li>
+      <li>Intervals and component-owned Subjects can keep running if not cleaned up.</li>
+      <li>The <code>async</code> pipe already cleans up template subscriptions for you.</li>
+    </ol>
+  </section>
+</main>

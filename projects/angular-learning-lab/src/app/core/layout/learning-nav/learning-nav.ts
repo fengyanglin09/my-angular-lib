@@ -74,6 +74,7 @@ export class LearningNav {
     { description: 'Share backend work and replay cached values to late subscribers.', number: 22, path: '/rxjs-lessons/lesson-22-share-replay', title: 'shareReplay' },
     { description: 'Use a refresh Subject to reload cached HTTP-style data.', number: 23, path: '/rxjs-lessons/lesson-23-refresh-cache', title: 'Refresh Cache' },
     { description: 'Prevent duplicate backend submits with exhaustMap.', number: 24, path: '/rxjs-lessons/lesson-24-exhaust-map-submit', title: 'Submit Guard' },
+    { description: 'Clean up route param, interval, and component stream subscriptions.', number: 25, path: '/rxjs-lessons/lesson-25-take-until-destroyed/project-101', title: 'Cleanup' },
   ];
 
   protected get categoryLabel(): string {

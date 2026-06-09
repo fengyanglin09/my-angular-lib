@@ -174,4 +174,16 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson24ExhaustMapSubmit,
       ),
   },
+  {
+    path: 'lesson-25-take-until-destroyed',
+    pathMatch: 'full',
+    redirectTo: 'lesson-25-take-until-destroyed/project-101',
+  },
+  {
+    path: 'lesson-25-take-until-destroyed/:projectId',
+    loadComponent: () =>
+      import('./lesson-25-take-until-destroyed/lesson-25-take-until-destroyed').then(
+        (m) => m.Lesson25TakeUntilDestroyed,
+      ),
+  },
 ];

@@ -31,6 +31,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 22. Sharing Work With shareReplay | `/rxjs-lessons/lesson-22-share-replay` | How `share` and `shareReplay` share backend work, and why `shareReplay` can replay cached values to late subscribers. |
 | 23. Refresh Trigger With shareReplay | `/rxjs-lessons/lesson-23-refresh-cache` | How to use a refresh Subject, `startWith`, `switchMap`, and `shareReplay` to load, cache, and manually reload backend-style data. |
 | 24. Prevent Duplicate Submits With exhaustMap | `/rxjs-lessons/lesson-24-exhaust-map-submit` | How `exhaustMap` accepts one submit request, ignores duplicate clicks while saving, and allows the next submit after completion. |
+| 25. takeUntilDestroyed In Practice | `/rxjs-lessons/lesson-25-take-until-destroyed/project-101` | How to clean up TypeScript subscriptions for route params, intervals, and component-owned streams when the component is destroyed. |
 
 ## Big Ideas So Far
 
@@ -217,6 +218,14 @@ what each lesson teaches as the RxJS learning path grows.
 - After the inner Observable completes, the next source emission can start new work.
 - This is useful for save, pay, invite, upload, and other submit-style workflows.
 - It is different from `switchMap(...)`, which cancels old work when a new source value arrives.
+
+### takeUntilDestroyed In Practice
+
+- `takeUntilDestroyed(...)` is useful for subscriptions created in TypeScript.
+- Route param streams can emit new values without destroying and recreating the component.
+- Intervals do not complete by themselves, so they need cleanup when the component leaves.
+- Component-owned Subjects also need subscription cleanup when subscribed manually.
+- Template subscriptions with the `async` pipe already clean up automatically.
 
 ### Cold Observable Mental Model
 
