@@ -71,6 +71,8 @@ export class LearningNav {
     { description: 'Sample noisy UI events with auditTime, debounceTime, and throttleTime.', number: 19, path: '/rxjs-lessons/lesson-19-audit-time', title: 'auditTime' },
     { description: 'Batch noisy events into arrays before sending backend work.', number: 20, path: '/rxjs-lessons/lesson-20-buffer-time', title: 'bufferTime' },
     { description: 'Read one value and complete with take(1) or first().', number: 21, path: '/rxjs-lessons/lesson-21-take-first', title: 'take / first' },
+    { description: 'Share backend work and replay cached values to late subscribers.', number: 22, path: '/rxjs-lessons/lesson-22-share-replay', title: 'shareReplay' },
+    { description: 'Use a refresh Subject to reload cached HTTP-style data.', number: 23, path: '/rxjs-lessons/lesson-23-refresh-cache', title: 'Refresh Cache' },
   ];
 
   protected get categoryLabel(): string {

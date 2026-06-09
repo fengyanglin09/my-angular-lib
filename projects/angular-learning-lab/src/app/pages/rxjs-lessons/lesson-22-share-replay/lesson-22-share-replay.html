@@ -1,0 +1,80 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="22" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 22</p>
+    <h1>Sharing Work With shareReplay</h1>
+    <p>
+      Cold Observables run once per subscriber. The <code>share</code> and
+      <code>shareReplay</code> operators let subscribers reuse work, but only
+      <code>shareReplay</code> replays cached values to late subscribers.
+    </p>
+  </section>
+
+  <section class="share-panel" aria-labelledby="share-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">cold source, share, shareReplay</p>
+        <h2 id="share-title">Profile Request Demo</h2>
+      </div>
+      <p class="summary">{{ requestLabel() }}</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runDemo('cold')">Run cold source</button>
+      <button type="button" (click)="runDemo('share')">Run share</button>
+      <button type="button" (click)="runDemo('shareReplay')">Run shareReplay</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Subscription Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="shape-card" aria-label="share and shareReplay comparison">
+        <p class="eyebrow">Mental Model</p>
+        <pre>Subscriber B joins while request #1 is running.
+Subscriber C joins after request #1 completed.
+
+cold source
+  subscriber A -> request #1
+  subscriber B -> request #2
+  subscriber C -> request #3
+
+share
+  subscriber A/B share request #1
+  subscriber C starts request #2
+
+shareReplay
+  subscriber A/B share request #1
+  subscriber C receives cached request #1 value</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>share</code> shares one active subscription to the source.</li>
+      <li><code>shareReplay</code> shares the source and caches recent emissions.</li>
+      <li><code>bufferSize: 1</code> means replay the latest value.</li>
+      <li><code>refCount: true</code> disconnects from the source when no subscribers remain.</li>
+    </ol>
+  </section>
+</main>

@@ -28,6 +28,8 @@ what each lesson teaches as the RxJS learning path grows.
 | 19. Rate Limiting With auditTime | `/rxjs-lessons/lesson-19-audit-time` | How `auditTime` compares with `debounceTime` and `throttleTime` for noisy UI events like resize, scroll, and drag. |
 | 20. Batching Events With bufferTime | `/rxjs-lessons/lesson-20-buffer-time` | How `bufferTime` collects noisy events into arrays so logs, analytics, or patches can be sent in batches. |
 | 21. One-Time Reads With take and first | `/rxjs-lessons/lesson-21-take-first` | How `take(1)` and `first()` read one value, complete after that value, and differ when no value arrives. |
+| 22. Sharing Work With shareReplay | `/rxjs-lessons/lesson-22-share-replay` | How `share` and `shareReplay` share backend work, and why `shareReplay` can replay cached values to late subscribers. |
+| 23. Refresh Trigger With shareReplay | `/rxjs-lessons/lesson-23-refresh-cache` | How to use a refresh Subject, `startWith`, `switchMap`, and `shareReplay` to load, cache, and manually reload backend-style data. |
 
 ## Big Ideas So Far
 
@@ -190,6 +192,22 @@ what each lesson teaches as the RxJS learning path grows.
 - `take(1)` completes quietly if the source completes without values.
 - `first()` errors if the source completes before a matching value appears.
 - These operators are useful for dialog results, one-time route reads, and short workflow decisions.
+
+### Sharing Work With shareReplay
+
+- A cold Observable starts work once per subscriber.
+- `share(...)` lets active subscribers share one source subscription.
+- `shareReplay(...)` shares the source and caches recent emitted values.
+- `bufferSize: 1` means late subscribers receive the latest cached value.
+- `refCount: true` disconnects from the source when there are no subscribers.
+
+### Refresh Trigger With shareReplay
+
+- A reload `Subject` can represent user intent, such as clicking refresh.
+- `startWith(...)` creates the first load when the stream gets its first subscriber.
+- `switchMap(...)` turns each reload trigger into a backend request.
+- `shareReplay({ bufferSize: 1, refCount: true })` shares the request result and caches the latest state for late subscribers.
+- Calling `refresh$.next(...)` does not update the data directly; it triggers the pipeline to fetch fresh data.
 
 ### Cold Observable Mental Model
 

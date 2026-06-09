@@ -153,4 +153,18 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson21TakeFirst,
       ),
   },
+  {
+    path: 'lesson-22-share-replay',
+    loadComponent: () =>
+      import('./lesson-22-share-replay/lesson-22-share-replay').then(
+        (m) => m.Lesson22ShareReplay,
+      ),
+  },
+  {
+    path: 'lesson-23-refresh-cache',
+    loadComponent: () =>
+      import('./lesson-23-refresh-cache/lesson-23-refresh-cache').then(
+        (m) => m.Lesson23RefreshCache,
+      ),
+  },
 ];

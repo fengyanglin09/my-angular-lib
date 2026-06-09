@@ -1,0 +1,103 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="23" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 23</p>
+    <h1>Refresh Trigger With shareReplay</h1>
+    <p>
+      A common Angular service pattern is to keep a small refresh Subject, use
+      <code>switchMap</code> to call the backend, and use
+      <code>shareReplay</code> so templates and late subscribers reuse the
+      latest loaded value.
+    </p>
+  </section>
+
+  <section class="cache-panel" aria-labelledby="cache-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Subject, startWith, switchMap, shareReplay</p>
+        <h2 id="cache-title">Profile Cache Demo</h2>
+      </div>
+      <p class="summary">refresh$.next() reloads the backend data</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="refreshProfile()">Refresh profile</button>
+      <button type="button" (click)="failRefresh()">Fail refresh</button>
+      <button type="button" (click)="addLateSubscriber()">Add late subscriber</button>
+      <button type="button" (click)="resetLateSubscribers()">Reset late subscribers</button>
+    </div>
+
+    <div class="content-grid">
+      @if (profileState$ | async; as state) {
+        <section class="profile-card" aria-labelledby="profile-title">
+          <h2 id="profile-title">Template Subscriber</h2>
+          <dl>
+            <div>
+              <dt>Loading</dt>
+              <dd>{{ state.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>Source</dt>
+              <dd>{{ state.source }}</dd>
+            </div>
+            <div>
+              <dt>Error</dt>
+              <dd>{{ state.error ?? 'None' }}</dd>
+            </div>
+            <div>
+              <dt>Name</dt>
+              <dd>{{ state.profile?.name ?? 'None' }}</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>{{ state.profile?.role ?? 'None' }}</dd>
+            </div>
+            <div>
+              <dt>Loaded From</dt>
+              <dd>{{ state.profile?.refreshedAt ?? 'None' }}</dd>
+            </div>
+          </dl>
+        </section>
+      }
+
+      <section class="log-card" aria-labelledby="main-log-title">
+        <h2 id="main-log-title">Request Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="late-log-title">
+        <h2 id="late-log-title">Late Subscriber Log</h2>
+        <ol>
+          @for (log of lateSubscriberLogs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>refresh$</code> is only a trigger. It does not store the profile.</li>
+      <li><code>startWith</code> creates the initial load for the first subscriber.</li>
+      <li><code>switchMap</code> turns each refresh trigger into a new backend request.</li>
+      <li><code>shareReplay</code> keeps the latest loaded state for late subscribers.</li>
+    </ol>
+  </section>
+</main>
