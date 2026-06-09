@@ -66,6 +66,7 @@ export class LearningNav {
     { description: 'Accumulate event streams into useful UI state with scan.', number: 14, path: '/rxjs-lessons/lesson-14-scan-state', title: 'scan State' },
     { description: 'Compare previous and current values with pairwise.', number: 15, path: '/rxjs-lessons/lesson-15-pairwise-changes', title: 'pairwise Changes' },
     { description: 'Skip consecutive duplicate values before doing expensive work.', number: 16, path: '/rxjs-lessons/lesson-16-distinct-until-changed', title: 'Distinct Changes' },
+    { description: 'Combine many event sources into one reload workflow.', number: 17, path: '/rxjs-lessons/lesson-17-merge-reload-triggers', title: 'merge Triggers' },
   ];
 
   protected get categoryLabel(): string {

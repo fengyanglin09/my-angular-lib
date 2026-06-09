@@ -1,0 +1,77 @@
+<main class="lesson-shell">
+  <app-learning-nav category="rxjs" [activeLesson]="17" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">RxJS Lesson 17</p>
+    <h1>Combining Reload Triggers With merge</h1>
+    <p>
+      The <code>merge</code> creation function combines several Observable
+      sources into one stream. It is useful when different events should trigger
+      the same workflow, such as reloading data.
+    </p>
+  </section>
+
+  <section class="merge-panel" aria-labelledby="merge-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">many sources, one workflow</p>
+        <h2 id="merge-title">Dashboard Reload Stream</h2>
+      </div>
+      <p class="summary">Last source: {{ lastLoadedSource() }}</p>
+    </div>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article>
+          <h3>{{ example.name }}</h3>
+          <p>{{ example.description }}</p>
+          <pre>{{ example.stream }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="manualRefresh()">Refresh</button>
+      <button type="button" (click)="routeChanged('101')">Route project 101</button>
+      <button type="button" (click)="routeChanged('202')">Route project 202</button>
+      <button type="button" (click)="saveSucceeded()">Save success</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Reload Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>
+              <strong>#{{ log.id }} {{ log.source }}</strong>
+              <span>{{ log.detail }}</span>
+              <small>{{ log.loadedAt }}</small>
+            </li>
+          } @empty {
+            <li class="empty">No reloads yet.</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="shape-card" aria-label="merge stream shape">
+        <p class="eyebrow">Stream Shape</p>
+        <pre>merge(
+  manualRefresh$,
+  routeChange$,
+  saveSuccess$
+).subscribe(reloadDashboard)</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>merge</code> does not combine values into an array or object.</li>
+      <li>It forwards values from whichever source emits next.</li>
+      <li>Use it when many event sources should trigger the same pipeline.</li>
+      <li>If each reload calls a backend, you often place <code>switchMap</code>, <code>concatMap</code>, or another flattening operator after <code>merge</code>.</li>
+    </ol>
+  </section>
+</main>

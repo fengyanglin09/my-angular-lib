@@ -118,4 +118,11 @@ export const rxjsLessonsRoutes: Routes = [
         (m) => m.Lesson16DistinctUntilChanged,
       ),
   },
+  {
+    path: 'lesson-17-merge-reload-triggers',
+    loadComponent: () =>
+      import('./lesson-17-merge-reload-triggers/lesson-17-merge-reload-triggers').then(
+        (m) => m.Lesson17MergeReloadTriggers,
+      ),
+  },
 ];

@@ -23,6 +23,7 @@ what each lesson teaches as the RxJS learning path grows.
 | 14. Accumulating State With scan | `/rxjs-lessons/lesson-14-scan-state` | How `scan` turns event streams into accumulated UI state for carts, logs, undo history, and pagination. |
 | 15. Comparing Changes With pairwise | `/rxjs-lessons/lesson-15-pairwise-changes` | How `pairwise` emits previous/current value pairs for route changes, metric trends, and status transitions. |
 | 16. Avoiding Duplicate Work With distinctUntilChanged | `/rxjs-lessons/lesson-16-distinct-until-changed` | How `distinctUntilChanged` skips consecutive duplicate route params, filters, or search values before expensive work runs. |
+| 17. Combining Reload Triggers With merge | `/rxjs-lessons/lesson-17-merge-reload-triggers` | How `merge` combines manual refresh, route change, and save success event sources into one reload workflow. |
 
 ## Big Ideas So Far
 
@@ -148,6 +149,14 @@ what each lesson teaches as the RxJS learning path grows.
 - Object values usually need a custom comparer function.
 - It is useful before backend calls, route-driven reloads, search requests, and filter changes.
 - Normalize values with `map(...)` first when casing or whitespace should not count as a meaningful change.
+
+### Combining Reload Triggers With merge
+
+- `merge(...)` forwards values from multiple Observable sources into one stream.
+- It does not wait for all sources to emit.
+- It does not combine values into an array or object.
+- It is useful when different events should trigger the same workflow.
+- A common pattern is `merge(routeChange$, refreshClick$, saveSuccess$).pipe(switchMap(() => loadData()))`.
 
 ### Cold Observable Mental Model
 
