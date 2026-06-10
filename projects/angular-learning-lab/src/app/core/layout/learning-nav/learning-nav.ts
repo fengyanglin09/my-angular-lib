@@ -83,6 +83,7 @@ export class LearningNav {
     { description: 'Cancel timers, subscriptions, and pending work with effect cleanup.', number: 3, path: '/angular-signal-lessons/lesson-03-effect-cleanup', title: 'Effect Cleanup' },
     { description: 'Pass parent state into child components with input signals.', number: 4, path: '/angular-signal-lessons/lesson-04-input-signals', title: 'Input Signals' },
     { description: 'Let child controls update parent-owned state with model signals.', number: 5, path: '/angular-signal-lessons/lesson-05-model-signals', title: 'Model Signals' },
+    { description: 'Reset writable state from another signal with linkedSignal.', number: 6, path: '/angular-signal-lessons/lesson-06-linked-signal', title: 'linkedSignal' },
   ];
 
   protected get categoryLabel(): string {

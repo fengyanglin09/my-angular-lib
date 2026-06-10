@@ -12,6 +12,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 3. Effect Cleanup | `/angular-signal-lessons/lesson-03-effect-cleanup` | How to use `onCleanup` inside an effect to cancel timers, subscriptions, listeners, or pending async work before the effect reruns. |
 | 4. Input Signals | `/angular-signal-lessons/lesson-04-input-signals` | How child components receive parent data with `input(...)` and `input.required(...)`, then read those inputs like signals. |
 | 5. Model Signals | `/angular-signal-lessons/lesson-05-model-signals` | How child controls use `model(...)` and two-way binding to update parent-owned signal state. |
+| 6. linkedSignal | `/angular-signal-lessons/lesson-06-linked-signal` | How `linkedSignal(...)` creates writable state that resets from another signal-driven computation. |
 
 ## Big Ideas So Far
 
@@ -54,6 +55,14 @@ derived values, effects, inputs, and practical UI patterns.
 - The child reads the model by calling it, such as `quantity()`.
 - The child can update the model with `set(...)` or `update(...)`.
 - Use `input(...)` for one-way data and `model(...)` when the child should update parent-owned state.
+
+### linkedSignal
+
+- `linkedSignal(...)` creates writable state.
+- Its initial and reset value comes from a reactive computation.
+- It tracks the signals read inside that computation.
+- When those dependencies change, the linked signal resets from the computation.
+- Use it when state is user-editable but should reset when another state source changes.
 
 ## Growing Path
 

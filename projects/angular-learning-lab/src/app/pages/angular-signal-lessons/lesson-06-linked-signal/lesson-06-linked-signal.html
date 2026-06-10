@@ -1,0 +1,119 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="6" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 6</p>
+    <h1>linkedSignal</h1>
+    <p>
+      <code>linkedSignal</code> creates writable state that resets from a
+      reactive computation. It is useful when one piece of state depends on
+      another, like selected product depending on selected category.
+    </p>
+  </section>
+
+  <section class="linked-panel" aria-labelledby="linked-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">dependent writable state</p>
+        <h2 id="linked-title">Category Product Demo</h2>
+      </div>
+      <p class="summary">{{ pageSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      @for (category of categories; track category) {
+        <button type="button" (click)="selectCategory(category)">
+          {{ category }}
+        </button>
+      }
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="product-list" aria-label="Products in selected category">
+      @for (product of visibleProducts(); track product.id) {
+        <button type="button" (click)="selectProduct(product.id)">
+          {{ product.name }} - ${{ product.price }}
+        </button>
+      }
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal Values</h2>
+        <dl>
+          <div>
+            <dt>selectedCategory()</dt>
+            <dd>{{ selectedCategory() }}</dd>
+          </div>
+          <div>
+            <dt>visibleProducts()</dt>
+            <dd>{{ visibleProducts().length }} products</dd>
+          </div>
+          <div>
+            <dt>selectedProductId()</dt>
+            <dd>{{ selectedProductId() }}</dd>
+          </div>
+          <div>
+            <dt>selectedProduct()</dt>
+            <dd>{{ selectedProduct()?.name ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="preview-card" aria-labelledby="preview-title">
+        <p class="eyebrow">Selected Product</p>
+        @if (selectedProduct(); as product) {
+          <h2 id="preview-title">{{ product.name }}</h2>
+          <p>{{ product.category }} category</p>
+          <strong>${{ product.price }}</strong>
+        } @else {
+          <h2 id="preview-title">No Product</h2>
+          <p>Choose a category with available products.</p>
+        }
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">linkedSignal Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="linkedSignal mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>signal()
+  independent writable state
+
+computed()
+  derived read-only state
+
+linkedSignal()
+  derived default
+  writable by user
+  resets when dependencies change</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>linkedSignal</code> creates writable state.</li>
+      <li>It reads other signals in its computation, like <code>computed</code>.</li>
+      <li>When those dependencies change, the linked signal resets from the computation.</li>
+      <li>The user can still manually change it with <code>set</code> or <code>update</code>.</li>
+    </ol>
+  </section>
+</main>

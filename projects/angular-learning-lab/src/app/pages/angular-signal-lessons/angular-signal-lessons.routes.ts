@@ -36,4 +36,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson05ModelSignals,
       ),
   },
+  {
+    path: 'lesson-06-linked-signal',
+    loadComponent: () =>
+      import('./lesson-06-linked-signal/lesson-06-linked-signal').then(
+        (m) => m.Lesson06LinkedSignal,
+      ),
+  },
 ];
