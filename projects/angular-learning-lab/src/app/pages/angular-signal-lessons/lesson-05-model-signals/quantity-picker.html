@@ -1,0 +1,25 @@
+<article class="quantity-picker">
+  <p class="eyebrow">Child Component</p>
+  <h3>{{ label() }}</h3>
+
+  <div class="quantity-control">
+    <button type="button" (click)="decrease()" [disabled]="!canDecrease()">
+      -
+    </button>
+    <strong>{{ quantity() }}</strong>
+    <button type="button" (click)="increase()" [disabled]="!canIncrease()">
+      +
+    </button>
+  </div>
+
+  <dl>
+    <div>
+      <dt>quantity()</dt>
+      <dd>{{ quantity() }}</dd>
+    </div>
+    <div>
+      <dt>Allowed range</dt>
+      <dd>{{ min() }} to {{ max() }}</dd>
+    </div>
+  </dl>
+</article>

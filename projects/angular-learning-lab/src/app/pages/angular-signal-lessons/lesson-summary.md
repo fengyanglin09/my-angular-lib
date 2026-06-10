@@ -11,6 +11,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 2. Effects For Side Effects | `/angular-signal-lessons/lesson-02-effects` | How `effect(...)` runs when signal dependencies change, and why effects are for side effects rather than derived display state. |
 | 3. Effect Cleanup | `/angular-signal-lessons/lesson-03-effect-cleanup` | How to use `onCleanup` inside an effect to cancel timers, subscriptions, listeners, or pending async work before the effect reruns. |
 | 4. Input Signals | `/angular-signal-lessons/lesson-04-input-signals` | How child components receive parent data with `input(...)` and `input.required(...)`, then read those inputs like signals. |
+| 5. Model Signals | `/angular-signal-lessons/lesson-05-model-signals` | How child controls use `model(...)` and two-way binding to update parent-owned signal state. |
 
 ## Big Ideas So Far
 
@@ -45,6 +46,14 @@ derived values, effects, inputs, and practical UI patterns.
 - A child reads input signals by calling them, such as `plan()`.
 - Input signals can be used inside `computed(...)`.
 - Parent-to-child data flow still matters: the parent owns the state, and the child receives it.
+
+### Model Signals
+
+- `model(...)` creates a writable signal input for two-way component binding.
+- The parent can bind a signal with syntax like `[(quantity)]="quantity"`.
+- The child reads the model by calling it, such as `quantity()`.
+- The child can update the model with `set(...)` or `update(...)`.
+- Use `input(...)` for one-way data and `model(...)` when the child should update parent-owned state.
 
 ## Growing Path
 

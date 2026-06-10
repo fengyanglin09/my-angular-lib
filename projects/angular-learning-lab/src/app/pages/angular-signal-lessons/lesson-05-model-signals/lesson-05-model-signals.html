@@ -1,0 +1,103 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 5</p>
+    <h1>Model Signals</h1>
+    <p>
+      <code>model(...)</code> creates a signal input that the child can update.
+      It is useful when a parent owns state, but a child control needs to change
+      that state through two-way binding.
+    </p>
+  </section>
+
+  <section class="model-panel" aria-labelledby="model-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">model, two-way binding, child updates</p>
+        <h2 id="model-title">Cart Quantity Demo</h2>
+      </div>
+      <p class="summary">{{ cartSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="setSingleItem()">Parent sets 1</button>
+      <button type="button" (click)="setFamilyPack()">Parent sets 6</button>
+      <button type="button" (click)="raisePrice()">Raise price</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Parent Signals</h2>
+        <dl>
+          <div>
+            <dt>quantity()</dt>
+            <dd>{{ quantity() }}</dd>
+          </div>
+          <div>
+            <dt>unitPrice()</dt>
+            <dd>${{ unitPrice() }}</dd>
+          </div>
+          <div>
+            <dt>subtotal()</dt>
+            <dd>${{ subtotal() }}</dd>
+          </div>
+          <div>
+            <dt>Template binding</dt>
+            <dd>[(quantity)]="quantity"</dd>
+          </div>
+        </dl>
+      </section>
+
+      <app-quantity-picker
+        [(quantity)]="quantity"
+        label="Cart Quantity"
+        [min]="1"
+        [max]="10"
+      />
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Model Signal Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="model signal mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>input()
+  parent -> child
+  child reads value
+
+model()
+  parent <-> child
+  child can update value
+
+parent signal remains source of truth</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>model(...)</code> creates a writable signal input.</li>
+      <li>The parent can bind to it with <code>[(quantity)]="quantity"</code>.</li>
+      <li>The child can read and update the model signal.</li>
+      <li>Use <code>input</code> for one-way data, and <code>model</code> when the child should update the parent-owned value.</li>
+    </ol>
+  </section>
+</main>

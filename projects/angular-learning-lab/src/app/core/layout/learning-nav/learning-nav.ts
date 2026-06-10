@@ -82,6 +82,7 @@ export class LearningNav {
     { description: 'Use effect for side effects that run when signal dependencies change.', number: 2, path: '/angular-signal-lessons/lesson-02-effects', title: 'Effects' },
     { description: 'Cancel timers, subscriptions, and pending work with effect cleanup.', number: 3, path: '/angular-signal-lessons/lesson-03-effect-cleanup', title: 'Effect Cleanup' },
     { description: 'Pass parent state into child components with input signals.', number: 4, path: '/angular-signal-lessons/lesson-04-input-signals', title: 'Input Signals' },
+    { description: 'Let child controls update parent-owned state with model signals.', number: 5, path: '/angular-signal-lessons/lesson-05-model-signals', title: 'Model Signals' },
   ];
 
   protected get categoryLabel(): string {
