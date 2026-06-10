@@ -81,6 +81,7 @@ export class LearningNav {
     { description: 'Create writable signals, read values, update state, and derive computed values.', number: 1, path: '/angular-signal-lessons/lesson-01-signal-basics', title: 'Signal Basics' },
     { description: 'Use effect for side effects that run when signal dependencies change.', number: 2, path: '/angular-signal-lessons/lesson-02-effects', title: 'Effects' },
     { description: 'Cancel timers, subscriptions, and pending work with effect cleanup.', number: 3, path: '/angular-signal-lessons/lesson-03-effect-cleanup', title: 'Effect Cleanup' },
+    { description: 'Pass parent state into child components with input signals.', number: 4, path: '/angular-signal-lessons/lesson-04-input-signals', title: 'Input Signals' },
   ];
 
   protected get categoryLabel(): string {

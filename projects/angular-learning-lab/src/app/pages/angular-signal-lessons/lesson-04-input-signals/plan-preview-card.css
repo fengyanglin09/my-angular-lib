@@ -1,0 +1,45 @@
+.child-preview {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  display: grid;
+  gap: 14px;
+  min-height: 100%;
+  padding: 18px;
+}
+
+.eyebrow {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+
+dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+dl div {
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+dt {
+  font-weight: 800;
+}
+
+dd {
+  color: #cbd5e1;
+  margin: 6px 0 0;
+}

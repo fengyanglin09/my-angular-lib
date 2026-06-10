@@ -22,4 +22,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson03EffectCleanup,
       ),
   },
+  {
+    path: 'lesson-04-input-signals',
+    loadComponent: () =>
+      import('./lesson-04-input-signals/lesson-04-input-signals').then(
+        (m) => m.Lesson04InputSignals,
+      ),
+  },
 ];

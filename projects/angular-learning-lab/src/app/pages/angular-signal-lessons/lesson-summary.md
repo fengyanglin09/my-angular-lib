@@ -10,6 +10,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 1. Signal Basics | `/angular-signal-lessons/lesson-01-signal-basics` | How to create writable signals, read signal values, update state with `set` and `update`, and derive values with `computed`. |
 | 2. Effects For Side Effects | `/angular-signal-lessons/lesson-02-effects` | How `effect(...)` runs when signal dependencies change, and why effects are for side effects rather than derived display state. |
 | 3. Effect Cleanup | `/angular-signal-lessons/lesson-03-effect-cleanup` | How to use `onCleanup` inside an effect to cancel timers, subscriptions, listeners, or pending async work before the effect reruns. |
+| 4. Input Signals | `/angular-signal-lessons/lesson-04-input-signals` | How child components receive parent data with `input(...)` and `input.required(...)`, then read those inputs like signals. |
 
 ## Big Ideas So Far
 
@@ -36,6 +37,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Cleanup also runs when Angular destroys the effect with the component.
 - Use cleanup for timers, subscriptions, browser listeners, and pending async work.
 - Cleanup prevents older side effects from finishing after newer signal state has replaced them.
+
+### Input Signals
+
+- `input(...)` creates an optional input signal with a default value.
+- `input.required<T>()` creates a required input signal.
+- A child reads input signals by calling them, such as `plan()`.
+- Input signals can be used inside `computed(...)`.
+- Parent-to-child data flow still matters: the parent owns the state, and the child receives it.
 
 ## Growing Path
 

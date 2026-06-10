@@ -1,0 +1,22 @@
+<article class="child-preview">
+  <p class="eyebrow">Child Component</p>
+  <h3>{{ plan().name }}</h3>
+  <dl>
+    <div>
+      <dt>plan()</dt>
+      <dd>{{ plan().id }}</dd>
+    </div>
+    <div>
+      <dt>billingCycle()</dt>
+      <dd>{{ billingCycle() }}</dd>
+    </div>
+    <div>
+      <dt>monthlyTotal()</dt>
+      <dd>${{ monthlyTotal() }}</dd>
+    </div>
+    <div>
+      <dt>priceLabel()</dt>
+      <dd>{{ priceLabel() }}</dd>
+    </div>
+  </dl>
+</article>

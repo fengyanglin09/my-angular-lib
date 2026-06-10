@@ -1,0 +1,107 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="4" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 4</p>
+    <h1>Input Signals</h1>
+    <p>
+      Signal inputs let a child component receive parent data as signals. The
+      parent still owns the state, and the child can read the input with
+      <code>plan()</code> or use it inside <code>computed</code>.
+    </p>
+  </section>
+
+  <section class="input-panel" aria-labelledby="input-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">input, input.required, computed</p>
+        <h2 id="input-title">Parent To Child Demo</h2>
+      </div>
+      <p class="summary">{{ parentSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      @for (plan of plans; track plan.id) {
+        <button type="button" (click)="selectPlan(plan.id)">
+          {{ plan.name }}
+        </button>
+      }
+      <button type="button" (click)="setBillingCycle('monthly')">Monthly</button>
+      <button type="button" (click)="setBillingCycle('annual')">Annual</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Parent Signals</h2>
+        <dl>
+          <div>
+            <dt>selectedPlanId()</dt>
+            <dd>{{ selectedPlanId() }}</dd>
+          </div>
+          <div>
+            <dt>billingCycle()</dt>
+            <dd>{{ billingCycle() }}</dd>
+          </div>
+          <div>
+            <dt>selectedPlan()</dt>
+            <dd>{{ selectedPlan().name }}</dd>
+          </div>
+          <div>
+            <dt>parentSummary()</dt>
+            <dd>{{ parentSummary() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <app-plan-preview-card
+        [plan]="selectedPlan()"
+        [billingCycle]="billingCycle()"
+      />
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Input Signal Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="input signal mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>parent
+  owns writable signals
+  passes values to child
+
+child
+  declares input signals
+  reads plan()
+  computes derived values
+
+data flow
+  parent -> child</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>input(...)</code> creates an optional input signal with a default value.</li>
+      <li><code>input.required&lt;T&gt;()</code> creates a required input signal.</li>
+      <li>Read input signals by calling them, like <code>plan()</code>.</li>
+      <li>The child should not mutate parent state directly; data still flows parent to child.</li>
+    </ol>
+  </section>
+</main>
