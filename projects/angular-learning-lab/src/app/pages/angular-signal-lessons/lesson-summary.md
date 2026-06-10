@@ -9,6 +9,7 @@ derived values, effects, inputs, and practical UI patterns.
 | --- | --- | --- |
 | 1. Signal Basics | `/angular-signal-lessons/lesson-01-signal-basics` | How to create writable signals, read signal values, update state with `set` and `update`, and derive values with `computed`. |
 | 2. Effects For Side Effects | `/angular-signal-lessons/lesson-02-effects` | How `effect(...)` runs when signal dependencies change, and why effects are for side effects rather than derived display state. |
+| 3. Effect Cleanup | `/angular-signal-lessons/lesson-03-effect-cleanup` | How to use `onCleanup` inside an effect to cancel timers, subscriptions, listeners, or pending async work before the effect reruns. |
 
 ## Big Ideas So Far
 
@@ -27,6 +28,14 @@ derived values, effects, inputs, and practical UI patterns.
 - When any tracked signal changes, the effect runs again.
 - Use `computed(...)` for values you want to read or display.
 - Use `effect(...)` for side effects, such as logging, syncing preferences, or calling browser APIs.
+
+### Effect Cleanup
+
+- `effect((onCleanup) => ...)` gives the effect a cleanup callback.
+- Cleanup runs before the same effect reruns because a tracked signal changed.
+- Cleanup also runs when Angular destroys the effect with the component.
+- Use cleanup for timers, subscriptions, browser listeners, and pending async work.
+- Cleanup prevents older side effects from finishing after newer signal state has replaced them.
 
 ## Growing Path
 

@@ -15,4 +15,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson02Effects,
       ),
   },
+  {
+    path: 'lesson-03-effect-cleanup',
+    loadComponent: () =>
+      import('./lesson-03-effect-cleanup/lesson-03-effect-cleanup').then(
+        (m) => m.Lesson03EffectCleanup,
+      ),
+  },
 ];
