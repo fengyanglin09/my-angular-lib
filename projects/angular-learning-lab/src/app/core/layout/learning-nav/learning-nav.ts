@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'ngrx' | 'rxjs';
+type LearningCategory = 'ngrx' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -77,8 +77,20 @@ export class LearningNav {
     { description: 'Clean up route param, interval, and component stream subscriptions.', number: 25, path: '/rxjs-lessons/lesson-25-take-until-destroyed/project-101', title: 'Cleanup' },
   ];
 
+  private readonly signalLessons: LessonLink[] = [
+    { description: 'Create writable signals, read values, update state, and derive computed values.', number: 1, path: '/angular-signal-lessons/lesson-01-signal-basics', title: 'Signal Basics' },
+  ];
+
   protected get categoryLabel(): string {
-    return this.category === 'rxjs' ? 'RxJS' : 'NgRx';
+    if (this.category === 'rxjs') {
+      return 'RxJS';
+    }
+
+    if (this.category === 'signals') {
+      return 'Signals';
+    }
+
+    return 'NgRx';
   }
 
   protected get currentLesson(): LessonLink | undefined {
@@ -86,7 +98,15 @@ export class LearningNav {
   }
 
   protected get lessons(): LessonLink[] {
-    return this.category === 'rxjs' ? this.rxjsLessons : this.ngrxLessons;
+    if (this.category === 'rxjs') {
+      return this.rxjsLessons;
+    }
+
+    if (this.category === 'signals') {
+      return this.signalLessons;
+    }
+
+    return this.ngrxLessons;
   }
 
   protected get nextLesson(): LessonLink | undefined {

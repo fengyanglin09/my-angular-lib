@@ -22,4 +22,11 @@ export const routes: Routes = [
         (m) => m.rxjsLessonsRoutes,
       ),
   },
+  {
+    path: 'angular-signal-lessons',
+    loadChildren: () =>
+      import('./pages/angular-signal-lessons/angular-signal-lessons.routes').then(
+        (m) => m.angularSignalLessonsRoutes,
+      ),
+  },
 ];

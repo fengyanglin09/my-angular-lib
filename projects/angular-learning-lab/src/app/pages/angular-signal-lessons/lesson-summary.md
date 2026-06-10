@@ -1,0 +1,30 @@
+# Angular Signals Lessons
+
+This track focuses on Angular's signal-based reactivity for component state,
+derived values, effects, inputs, and practical UI patterns.
+
+## Lessons
+
+| Lesson | Route | Teaches |
+| --- | --- | --- |
+| 1. Signal Basics | `/angular-signal-lessons/lesson-01-signal-basics` | How to create writable signals, read signal values, update state with `set` and `update`, and derive values with `computed`. |
+
+## Big Ideas So Far
+
+### Signal Basics
+
+- `signal(value)` creates writable reactive state.
+- Read a signal by calling it like a function, such as `quantity()`.
+- `set(...)` replaces the current value.
+- `update(...)` receives the current value and returns the next value.
+- `computed(...)` derives values from other signals and recalculates when those dependencies change.
+
+## Growing Path
+
+Future Angular Signals lessons can build from this foundation:
+
+- `effect(...)` for side effects
+- signals with component inputs
+- signal-based forms and local UI state
+- converting between Signals and Observables
+- signal services for shared state

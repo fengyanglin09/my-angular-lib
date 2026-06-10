@@ -1,0 +1,99 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="1" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 1</p>
+    <h1>Signal Basics</h1>
+    <p>
+      Signals are Angular's local reactive state primitive. A writable signal
+      stores a value, and a <code>computed</code> signal derives a value from
+      other signals and updates automatically.
+    </p>
+  </section>
+
+  <section class="signals-panel" aria-labelledby="signals-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">signal, set, update, computed</p>
+        <h2 id="signals-title">Order Calculator</h2>
+      </div>
+      <p class="summary">{{ orderLabel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="decreaseQuantity()">Decrease quantity</button>
+      <button type="button" (click)="increaseQuantity()">Increase quantity</button>
+      <button type="button" (click)="raisePrice()">Raise price</button>
+      <button type="button" (click)="setStarterOrder()">Starter order</button>
+      <button type="button" (click)="setBulkOrder()">Bulk order</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal Values</h2>
+        <dl>
+          <div>
+            <dt>quantity()</dt>
+            <dd>{{ quantity() }}</dd>
+          </div>
+          <div>
+            <dt>unitPrice()</dt>
+            <dd>${{ unitPrice() }}</dd>
+          </div>
+          <div>
+            <dt>subtotal()</dt>
+            <dd>${{ subtotal() }}</dd>
+          </div>
+          <div>
+            <dt>freeShipping()</dt>
+            <dd>{{ freeShipping() ? 'true' : 'false' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Signal Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="signals mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>writable signal
+  stores a value
+  read with quantity()
+  change with set/update
+
+computed signal
+  reads other signals
+  caches the derived value
+  recalculates when dependencies change</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>signal(value)</code> creates writable state.</li>
+      <li>Read a signal by calling it like a function: <code>quantity()</code>.</li>
+      <li><code>set(...)</code> replaces the value.</li>
+      <li><code>update(...)</code> calculates the next value from the current value.</li>
+      <li><code>computed(...)</code> is for derived values, not manually assigned values.</li>
+    </ol>
+  </section>
+</main>
