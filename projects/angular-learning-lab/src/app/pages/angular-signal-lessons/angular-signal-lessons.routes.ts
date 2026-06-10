@@ -8,4 +8,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson01SignalBasics,
       ),
   },
+  {
+    path: 'lesson-02-effects',
+    loadComponent: () =>
+      import('./lesson-02-effects/lesson-02-effects').then(
+        (m) => m.Lesson02Effects,
+      ),
+  },
 ];

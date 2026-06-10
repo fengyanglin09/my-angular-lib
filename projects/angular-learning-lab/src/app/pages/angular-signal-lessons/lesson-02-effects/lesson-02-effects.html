@@ -1,0 +1,110 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="2" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 2</p>
+    <h1>Effects For Side Effects</h1>
+    <p>
+      <code>computed</code> is for derived values you display or reuse.
+      <code>effect</code> is for work that should happen because signal values
+      changed, such as logging, syncing preferences, or calling browser APIs.
+    </p>
+  </section>
+
+  <section class="effects-panel" aria-labelledby="effects-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">computed vs effect</p>
+        <h2 id="effects-title">Preference Sync Demo</h2>
+      </div>
+      <p class="summary">{{ preferenceSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="setTheme('light')">Light theme</button>
+      <button type="button" (click)="setTheme('dark')">Dark theme</button>
+      <button type="button" (click)="setDensity('comfortable')">Comfortable</button>
+      <button type="button" (click)="setDensity('compact')">Compact</button>
+      <button type="button" (click)="toggleNotifications()">Toggle notifications</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal Values</h2>
+        <dl>
+          <div>
+            <dt>theme()</dt>
+            <dd>{{ theme() }}</dd>
+          </div>
+          <div>
+            <dt>density()</dt>
+            <dd>{{ density() }}</dd>
+          </div>
+          <div>
+            <dt>notificationsEnabled()</dt>
+            <dd>{{ notificationsEnabled() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>preferenceSummary()</dt>
+            <dd>{{ preferenceSummary() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        class="preview-card"
+        [class.preview-card--compact]="previewClasses()['preview-card--compact']"
+        [class.preview-card--dark]="previewClasses()['preview-card--dark']"
+        aria-labelledby="preview-title"
+      >
+        <p class="eyebrow">Preview</p>
+        <h2 id="preview-title">Account Settings</h2>
+        <p>{{ preferenceSummary() }}</p>
+        <button type="button">Save Preferences</button>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Effect Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="effect mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>computed
+  returns a derived value
+  should stay pure
+  use it in template/code
+
+effect
+  runs because signals changed
+  performs side effects
+  does not return display state</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>effect(...)</code> runs once when created.</li>
+      <li>Angular tracks every signal read inside the effect.</li>
+      <li>When a tracked signal changes, the effect runs again.</li>
+      <li>Use <code>computed</code> for values, and <code>effect</code> for side effects.</li>
+    </ol>
+  </section>
+</main>

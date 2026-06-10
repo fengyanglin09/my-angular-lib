@@ -79,6 +79,7 @@ export class LearningNav {
 
   private readonly signalLessons: LessonLink[] = [
     { description: 'Create writable signals, read values, update state, and derive computed values.', number: 1, path: '/angular-signal-lessons/lesson-01-signal-basics', title: 'Signal Basics' },
+    { description: 'Use effect for side effects that run when signal dependencies change.', number: 2, path: '/angular-signal-lessons/lesson-02-effects', title: 'Effects' },
   ];
 
   protected get categoryLabel(): string {
