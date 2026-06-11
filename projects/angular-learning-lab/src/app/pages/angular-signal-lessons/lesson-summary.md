@@ -13,6 +13,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 4. Input Signals | `/angular-signal-lessons/lesson-04-input-signals` | How child components receive parent data with `input(...)` and `input.required(...)`, then read those inputs like signals. |
 | 5. Model Signals | `/angular-signal-lessons/lesson-05-model-signals` | How child controls use `model(...)` and two-way binding to update parent-owned signal state. |
 | 6. linkedSignal | `/angular-signal-lessons/lesson-06-linked-signal` | How `linkedSignal(...)` creates writable state that resets from another signal-driven computation. |
+| 7. Signals And RxJS Interop | `/angular-signal-lessons/lesson-07-rxjs-interop` | How to use `toObservable(...)` and `toSignal(...)` to combine signal UI state with RxJS operators and async streams. |
 
 ## Big Ideas So Far
 
@@ -63,6 +64,14 @@ derived values, effects, inputs, and practical UI patterns.
 - It tracks the signals read inside that computation.
 - When those dependencies change, the linked signal resets from the computation.
 - Use it when state is user-editable but should reset when another state source changes.
+
+### Signals And RxJS Interop
+
+- `toObservable(signal)` turns signal changes into Observable emissions.
+- RxJS remains useful for debounce, cancellation, retries, and async stream composition.
+- `toSignal(observable, { initialValue })` turns Observable output back into signal state.
+- Provide an `initialValue` so the template can render before the Observable emits.
+- This pattern works well for search boxes, route streams, service streams, and backend-style data flows.
 
 ## Growing Path
 

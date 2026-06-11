@@ -1,0 +1,128 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="7" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 7</p>
+    <h1>Signals And RxJS Interop</h1>
+    <p>
+      Signals are great for local UI state, while RxJS is still excellent for
+      debounce, cancellation, and async streams. Use <code>toObservable</code>
+      and <code>toSignal</code> when a feature needs both.
+    </p>
+  </section>
+
+  <section class="interop-panel" aria-labelledby="interop-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">toObservable, debounceTime, switchMap, toSignal</p>
+        <h2 id="interop-title">Lesson Search Demo</h2>
+      </div>
+      <p class="summary">{{ resultSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="search-row">
+      <input
+        type="search"
+        [value]="query()"
+        (input)="updateQuery($any($event.target).value)"
+        placeholder="Try signals, rxjs, ngrx, error"
+        autocomplete="off"
+      />
+      <button type="button" (click)="clearSearch()">Clear</button>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="runExample('signals')">signals</button>
+      <button type="button" (click)="runExample('rxjs')">rxjs</button>
+      <button type="button" (click)="runExample('ngrx')">ngrx</button>
+      <button type="button" (click)="runExample('error')">error</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal Values</h2>
+        <dl>
+          <div>
+            <dt>query()</dt>
+            <dd>{{ query() || 'empty' }}</dd>
+          </div>
+          <div>
+            <dt>searchState().loading</dt>
+            <dd>{{ searchState().loading ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>searchState().query</dt>
+            <dd>{{ searchState().query || 'empty' }}</dd>
+          </div>
+          <div>
+            <dt>searchState().error</dt>
+            <dd>{{ searchState().error ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="results-card" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        @if (searchState().loading) {
+          <p>Searching...</p>
+        } @else if (searchState().error) {
+          <p>{{ searchState().error }}</p>
+        } @else {
+          <ul>
+            @for (result of searchState().results; track result.title) {
+              <li>
+                <strong>{{ result.title }}</strong>
+                <span>{{ result.category }}</span>
+              </li>
+            } @empty {
+              <li>No results yet.</li>
+            }
+          </ul>
+        }
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Interop Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="signals and rxjs mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>query signal
+  local UI state
+
+toObservable(query)
+  enter RxJS pipeline
+  debounce and switchMap
+
+toSignal(results$)
+  return async state
+  template reads signal</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>toObservable(signal)</code> turns signal changes into Observable emissions.</li>
+      <li>Use RxJS operators when you need debounce, cancellation, retries, or stream composition.</li>
+      <li><code>toSignal(observable, ...)</code> gives the template signal-style state again.</li>
+      <li>Provide an <code>initialValue</code> so the template has a value before the Observable emits.</li>
+    </ol>
+  </section>
+</main>

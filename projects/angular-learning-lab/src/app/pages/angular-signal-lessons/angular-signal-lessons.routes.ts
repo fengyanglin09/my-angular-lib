@@ -43,4 +43,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson06LinkedSignal,
       ),
   },
+  {
+    path: 'lesson-07-rxjs-interop',
+    loadComponent: () =>
+      import('./lesson-07-rxjs-interop/lesson-07-rxjs-interop').then(
+        (m) => m.Lesson07RxjsInterop,
+      ),
+  },
 ];

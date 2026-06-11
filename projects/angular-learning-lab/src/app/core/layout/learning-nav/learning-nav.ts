@@ -84,6 +84,7 @@ export class LearningNav {
     { description: 'Pass parent state into child components with input signals.', number: 4, path: '/angular-signal-lessons/lesson-04-input-signals', title: 'Input Signals' },
     { description: 'Let child controls update parent-owned state with model signals.', number: 5, path: '/angular-signal-lessons/lesson-05-model-signals', title: 'Model Signals' },
     { description: 'Reset writable state from another signal with linkedSignal.', number: 6, path: '/angular-signal-lessons/lesson-06-linked-signal', title: 'linkedSignal' },
+    { description: 'Bridge Signals and RxJS with toObservable and toSignal.', number: 7, path: '/angular-signal-lessons/lesson-07-rxjs-interop', title: 'RxJS Interop' },
   ];
 
   protected get categoryLabel(): string {
