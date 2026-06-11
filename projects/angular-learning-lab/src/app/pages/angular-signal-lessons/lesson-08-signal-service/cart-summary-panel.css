@@ -1,0 +1,67 @@
+.panel {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.eyebrow {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+dl,
+ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+dl div,
+li {
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+dt,
+strong {
+  font-weight: 800;
+}
+
+dd {
+  color: #cbd5e1;
+  margin: 6px 0 0;
+}
+
+li {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+button {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 36px;
+  padding: 0 12px;
+  width: fit-content;
+}

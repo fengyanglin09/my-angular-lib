@@ -1,0 +1,18 @@
+<section class="panel" aria-labelledby="actions-title">
+  <p class="eyebrow">Component A</p>
+  <h2 id="actions-title">Cart Actions</h2>
+
+  <div class="product-list">
+    @for (product of products; track product.id) {
+      <button type="button" (click)="cartStore.addItem(product)">
+        Add {{ product.name }} - ${{ product.price }}
+      </button>
+    }
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="cartStore.applyDiscount(10)">Apply $10 discount</button>
+    <button type="button" (click)="cartStore.applyDiscount(0)">Remove discount</button>
+    <button type="button" (click)="cartStore.clearCart()">Clear cart</button>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 8</p>
+    <h1>Signal Service State</h1>
+    <p>
+      A service can hold signal state and expose a small API to components. This
+      is useful for shared local state when you do not need a full global store.
+    </p>
+  </section>
+
+  <section class="service-panel" aria-labelledby="service-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">service, private signals, computed selectors</p>
+        <h2 id="service-title">Shared Cart Store Demo</h2>
+      </div>
+      <p class="summary">Two components inject one signal store instance</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="content-grid">
+      <app-cart-actions-panel />
+      <app-cart-summary-panel />
+
+      <aside class="mental-card" aria-label="signal service mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>lesson component
+  provides CartSignalStore
+
+actions component
+  injects same store
+  calls methods
+
+summary component
+  injects same store
+  reads signals
+
+store
+  private writable state
+  public readonly state
+  public methods</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Signal services are useful for shared state across nearby components.</li>
+      <li>Keep writable signals private so components cannot mutate state randomly.</li>
+      <li>Expose readonly signals, computed values, and clear methods.</li>
+      <li>Provider scope matters: component-level providers create local store instances.</li>
+    </ol>
+  </section>
+</main>

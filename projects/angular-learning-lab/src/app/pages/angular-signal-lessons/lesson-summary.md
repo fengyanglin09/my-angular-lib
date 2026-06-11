@@ -14,6 +14,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 5. Model Signals | `/angular-signal-lessons/lesson-05-model-signals` | How child controls use `model(...)` and two-way binding to update parent-owned signal state. |
 | 6. linkedSignal | `/angular-signal-lessons/lesson-06-linked-signal` | How `linkedSignal(...)` creates writable state that resets from another signal-driven computation. |
 | 7. Signals And RxJS Interop | `/angular-signal-lessons/lesson-07-rxjs-interop` | How to use `toObservable(...)` and `toSignal(...)` to combine signal UI state with RxJS operators and async streams. |
+| 8. Signal Service State | `/angular-signal-lessons/lesson-08-signal-service` | How to use an injectable service with private writable signals, public readonly signals, computed values, and methods for shared local state. |
 
 ## Big Ideas So Far
 
@@ -72,6 +73,14 @@ derived values, effects, inputs, and practical UI patterns.
 - `toSignal(observable, { initialValue })` turns Observable output back into signal state.
 - Provide an `initialValue` so the template can render before the Observable emits.
 - This pattern works well for search boxes, route streams, service streams, and backend-style data flows.
+
+### Signal Service State
+
+- A service can hold signal state that several components share.
+- Keep writable signals private inside the service.
+- Expose readonly signals and computed values for component reads.
+- Expose methods for state changes.
+- Provider scope controls whether the store is local to one feature or global across the app.
 
 ## Growing Path
 

@@ -1,0 +1,35 @@
+<section class="panel" aria-labelledby="summary-title">
+  <p class="eyebrow">Component B</p>
+  <h2 id="summary-title">Cart Summary</h2>
+
+  <dl>
+    <div>
+      <dt>itemCount()</dt>
+      <dd>{{ cartStore.itemCount() }}</dd>
+    </div>
+    <div>
+      <dt>subtotal()</dt>
+      <dd>${{ cartStore.subtotal() }}</dd>
+    </div>
+    <div>
+      <dt>discount()</dt>
+      <dd>${{ cartStore.discount() }}</dd>
+    </div>
+    <div>
+      <dt>total()</dt>
+      <dd>${{ cartStore.total() }}</dd>
+    </div>
+  </dl>
+
+  <ul>
+    @for (item of cartStore.items(); track item.id) {
+      <li>
+        <span>{{ item.name }}</span>
+        <strong>{{ item.quantity }} x ${{ item.price }}</strong>
+        <button type="button" (click)="cartStore.decreaseItem(item.id)">Remove one</button>
+      </li>
+    } @empty {
+      <li>No items in cart.</li>
+    }
+  </ul>
+</section>

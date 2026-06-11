@@ -50,4 +50,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson07RxjsInterop,
       ),
   },
+  {
+    path: 'lesson-08-signal-service',
+    loadComponent: () =>
+      import('./lesson-08-signal-service/lesson-08-signal-service').then(
+        (m) => m.Lesson08SignalService,
+      ),
+  },
 ];

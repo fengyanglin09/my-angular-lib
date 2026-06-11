@@ -85,6 +85,7 @@ export class LearningNav {
     { description: 'Let child controls update parent-owned state with model signals.', number: 5, path: '/angular-signal-lessons/lesson-05-model-signals', title: 'Model Signals' },
     { description: 'Reset writable state from another signal with linkedSignal.', number: 6, path: '/angular-signal-lessons/lesson-06-linked-signal', title: 'linkedSignal' },
     { description: 'Bridge Signals and RxJS with toObservable and toSignal.', number: 7, path: '/angular-signal-lessons/lesson-07-rxjs-interop', title: 'RxJS Interop' },
+    { description: 'Share local state across components with a signal service.', number: 8, path: '/angular-signal-lessons/lesson-08-signal-service', title: 'Signal Service' },
   ];
 
   protected get categoryLabel(): string {
