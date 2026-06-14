@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.note-item p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.notes-list {
+  display: grid;
+  gap: 12px;
+}
+
+.note-item {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  outline: none;
+  padding: 14px;
+}
+
+.note-item:focus {
+  border-color: #315f9d;
+  box-shadow: 0 0 0 3px rgb(49 95 157 / 18%);
+}
+
+.note-item h3,
+.note-item p {
+  margin: 0;
+}
+
+.log-card,
+.mental-card {
+  min-height: 260px;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

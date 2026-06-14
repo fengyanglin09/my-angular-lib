@@ -87,6 +87,7 @@ export class LearningNav {
     { description: 'Bridge Signals and RxJS with toObservable and toSignal.', number: 7, path: '/angular-signal-lessons/lesson-07-rxjs-interop', title: 'RxJS Interop' },
     { description: 'Share local state across components with a signal service.', number: 8, path: '/angular-signal-lessons/lesson-08-signal-service', title: 'Signal Service' },
     { description: 'Load async read state with resource, params, status, and cancellation.', number: 9, path: '/angular-signal-lessons/lesson-09-resource-loading', title: 'Resource Loading' },
+    { description: 'Reference DOM elements and rendered children with signal queries.', number: 10, path: '/angular-signal-lessons/lesson-10-signal-queries', title: 'Signal Queries' },
   ];
 
   protected get categoryLabel(): string {

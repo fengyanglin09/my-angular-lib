@@ -1,0 +1,125 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 10</p>
+    <h1>Signal Queries</h1>
+    <p>
+      <code>viewChild</code> and <code>viewChildren</code> let a component read
+      template references and child components as signals. Use them for focused
+      DOM work such as focus, scrolling, measurement, and calling child APIs.
+    </p>
+  </section>
+
+  <section class="queries-panel" aria-labelledby="queries-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">viewChild, viewChildren, ElementRef</p>
+        <h2 id="queries-title">Notes Workspace</h2>
+      </div>
+      <p class="summary">{{ renderedCardCount() }} rendered cards</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <label>
+        Search notes
+        <input
+          #searchInput
+          type="search"
+          [value]="query()"
+          (input)="updateQuery(searchInput.value)"
+          placeholder="Try focus, DOM, card"
+          autocomplete="off"
+        />
+      </label>
+      <button type="button" (click)="focusSearch()">Focus search</button>
+      <button type="button" (click)="focusFirstCard()">Focus first card</button>
+      <button type="button" (click)="addNote()">Add note</button>
+      <button type="button" (click)="removeLastNote()">Remove last</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Query Signals</h2>
+        <dl>
+          <div>
+            <dt>query()</dt>
+            <dd>{{ query() || 'empty' }}</dd>
+          </div>
+          <div>
+            <dt>filteredNotes().length</dt>
+            <dd>{{ filteredNotes().length }}</dd>
+          </div>
+          <div>
+            <dt>noteCards().length</dt>
+            <dd>{{ renderedCardCount() }}</dd>
+          </div>
+          <div>
+            <dt>searchInput()</dt>
+            <dd>ElementRef&lt;HTMLInputElement&gt;</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="notes-card" aria-labelledby="notes-title">
+        <h2 id="notes-title">Rendered Notes</h2>
+        <div class="notes-list">
+          @for (note of filteredNotes(); track note.id) {
+            <article #noteCard class="note-item" tabindex="0">
+              <p class="eyebrow">Note {{ note.id }}</p>
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.body }}</p>
+            </article>
+          } @empty {
+            <p class="empty-state">No notes match the current search.</p>
+          }
+        </div>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Query Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="signal query mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>template reference
+  #searchInput
+  #noteCard
+
+class field
+  viewChild(...)
+  viewChildren(...)
+
+read result
+  searchInput()
+  noteCards()</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>viewChild(...)</code> returns a signal for one matching result.</li>
+      <li><code>viewChildren(...)</code> returns a signal containing an array of matches.</li>
+      <li>Use <code>required</code> only when the element or component always exists.</li>
+      <li>Query signals are for view references, not for normal application state.</li>
+    </ol>
+  </section>
+</main>

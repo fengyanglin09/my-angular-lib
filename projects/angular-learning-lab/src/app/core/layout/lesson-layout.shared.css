@@ -28,6 +28,223 @@
   max-width: 840px !important;
 }
 
+.lesson-shell :is(h1, h2, h3, p) {
+  margin: 0;
+}
+
+.lesson-shell h1 {
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.lesson-shell h2 {
+  font-size: 1.2rem;
+}
+
+.lesson-shell h3 {
+  font-size: 1rem;
+}
+
+.lesson-shell .eyebrow {
+  color: #606b78;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.lesson-shell :is(
+  .resource-panel,
+  .queries-panel,
+  .flow-panel
+) {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  padding: 26px;
+}
+
+.lesson-shell :is(.resource-panel, .queries-panel) {
+  display: grid;
+  gap: 22px;
+}
+
+.lesson-shell .panel-heading {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+}
+
+.lesson-shell .summary {
+  background: #eef3f7;
+  border: 1px solid #d5dde5;
+  border-radius: 999px;
+  color: #475569;
+  font-weight: 800;
+  padding: 8px 14px;
+}
+
+.lesson-shell :is(.step-grid, .content-grid) {
+  display: grid;
+  gap: 16px;
+}
+
+.lesson-shell .step-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.lesson-shell .content-grid {
+  align-items: start;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+}
+
+.lesson-shell :is(
+  .step-grid article,
+  .state-card,
+  .project-card,
+  .notes-card,
+  .log-card
+) {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.lesson-shell :is(.step-grid article, .project-card, .notes-card) {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-shell .mental-card {
+  background: #202a35;
+  border: 1px solid #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  padding: 18px;
+}
+
+.lesson-shell .mental-card .eyebrow {
+  color: #cbd5e1;
+}
+
+.lesson-shell :is(
+  .step-grid p,
+  .flow-panel ol,
+  .log-card ol,
+  .empty-state
+) {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.lesson-shell pre {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  padding: 12px;
+}
+
+.lesson-shell code {
+  background: #eef3f7;
+  border-radius: 6px;
+  color: #315a85;
+  display: inline-block;
+  padding: 2px 6px;
+}
+
+.lesson-shell .toolbar {
+  align-items: end;
+  border-top: 1px solid #dbe2e8;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 18px;
+}
+
+.lesson-shell .toolbar label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+  min-width: min(100%, 260px);
+}
+
+.lesson-shell .toolbar input {
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.lesson-shell button {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+.lesson-shell :is(.log-card, .mental-card) {
+  min-width: 0;
+}
+
+.lesson-shell dl {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 0;
+}
+
+.lesson-shell dl div {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.lesson-shell dt {
+  font-weight: 800;
+}
+
+.lesson-shell dd {
+  color: #606b78;
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.lesson-shell ol {
+  margin: 14px 0 0;
+  padding-left: 24px;
+}
+
+@media (max-width: 1120px) {
+  .lesson-shell :is(.step-grid, .content-grid) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .lesson-shell .panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 900px) {
   .lesson-shell {
     padding: 32px 16px !important;

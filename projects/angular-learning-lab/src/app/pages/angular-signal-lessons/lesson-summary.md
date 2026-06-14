@@ -16,6 +16,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 7. Signals And RxJS Interop | `/angular-signal-lessons/lesson-07-rxjs-interop` | How to use `toObservable(...)` and `toSignal(...)` to combine signal UI state with RxJS operators and async streams. |
 | 8. Signal Service State | `/angular-signal-lessons/lesson-08-signal-service` | How to use an injectable service with private writable signals, public readonly signals, computed values, and methods for shared local state. |
 | 9. Resource Loading | `/angular-signal-lessons/lesson-09-resource-loading` | How `resource(...)` connects reactive params to an API service, exposing value, status, error, loading, reload, and cancellation. |
+| 10. Signal Queries | `/angular-signal-lessons/lesson-10-signal-queries` | How `viewChild(...)` and `viewChildren(...)` expose DOM and child component references as signals. |
 
 ## Big Ideas So Far
 
@@ -92,6 +93,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Passing `abortSignal` through to `fetch(url, { signal: abortSignal })` lets the browser cancel stale requests.
 - `value()`, `status()`, `isLoading()`, and `error()` expose loading state as signals.
 - `reload()` requests a fresh load for the current params.
+
+### Signal Queries
+
+- `viewChild(...)` creates a signal for one matching template reference or child component.
+- `viewChild.required(...)` is useful when the match always exists.
+- `viewChildren(...)` creates a signal that contains all rendered matches.
+- Query signals update when Angular adds or removes matching view elements.
+- Use query signals for view work such as focus, scroll, measuring, or calling child component APIs.
 
 ## Growing Path
 
