@@ -1,0 +1,33 @@
+<article class="projected-card">
+  <header class="projected-card__header">
+    <div>
+      <p class="eyebrow">Projected Header</p>
+      <ng-content select="[cardTitle]" />
+    </div>
+    <div class="projected-card__actions">
+      <ng-content select="[cardAction]" />
+    </div>
+  </header>
+
+  <section class="projected-card__body">
+    <ng-content select="[cardBody]" />
+  </section>
+
+  <section class="projected-card__inspector" aria-label="content query results">
+    <h3>Content Query Results</h3>
+    <dl>
+      <div>
+        <dt>contentChild(ProjectedTitle)</dt>
+        <dd>{{ projectedTitleText() }}</dd>
+      </div>
+      <div>
+        <dt>contentChild(ProjectedTitle, read ElementRef)</dt>
+        <dd>{{ projectedTitleElementDescription() }}</dd>
+      </div>
+      <div>
+        <dt>contentChildren(ProjectedAction)</dt>
+        <dd>{{ actionLabels().join(', ') || 'No actions projected' }}</dd>
+      </div>
+    </dl>
+  </section>
+</article>

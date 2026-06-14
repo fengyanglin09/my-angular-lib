@@ -1,0 +1,127 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="11" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 11</p>
+    <h1>Content Queries</h1>
+    <p>
+      <code>contentChild</code> and <code>contentChildren</code> let a reusable
+      child component inspect content projected into it with <code>ng-content</code>.
+      This is useful when building cards, tabs, menus, layout shells, and form
+      components that accept custom content from a parent.
+    </p>
+  </section>
+
+  <section class="projection-panel" aria-labelledby="projection-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">contentChild, contentChildren, ng-content</p>
+        <h2 id="projection-title">Projected Card Demo</h2>
+      </div>
+      <p class="summary">{{ actionCount() }} projected actions</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="switchTitle()">Switch projected title</button>
+      <button type="button" (click)="toggleSecondaryAction()">Toggle second action</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Parent State</h2>
+        <dl>
+          <div>
+            <dt>titleVariant()</dt>
+            <dd>{{ titleVariant() }}</dd>
+          </div>
+          <div>
+            <dt>titleText()</dt>
+            <dd>{{ titleText() }}</dd>
+          </div>
+          <div>
+            <dt>showSecondaryAction()</dt>
+            <dd>{{ showSecondaryAction() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>actionCount()</dt>
+            <dd>{{ actionCount() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="projection-demo-card" aria-labelledby="card-demo-title">
+        <h2 id="card-demo-title">Reusable Child Component</h2>
+        <app-projected-card>
+          <h3 appProjectedTitle [titleLabel]="titleText()" cardTitle>
+            {{ titleText() }}
+          </h3>
+          <p cardBody>{{ bodyText() }}</p>
+          <button
+            appProjectedAction
+            cardAction
+            type="button"
+            actionLabel="Refresh"
+          >
+            Refresh
+          </button>
+          @if (showSecondaryAction()) {
+            <button
+              appProjectedAction
+              cardAction
+              type="button"
+              actionLabel="Export"
+            >
+              Export
+            </button>
+          }
+        </app-projected-card>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Projection Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="content query mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>parent template
+  provides projected content
+
+child component
+  renders ng-content
+  reads contentChild()
+  reads contentChildren()
+
+content query
+  sees projected content
+  not the child's own view</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>viewChild</code> reads the component's own template.</li>
+      <li><code>contentChild</code> reads content projected into the component.</li>
+      <li>Querying a directive returns the directive; adding <code>read: ElementRef</code> returns the host element.</li>
+      <li><code>contentChildren</code> updates when projected matches are added or removed.</li>
+      <li>The parent owns projected content; the child component can observe it to build flexible APIs.</li>
+    </ol>
+  </section>
+</main>

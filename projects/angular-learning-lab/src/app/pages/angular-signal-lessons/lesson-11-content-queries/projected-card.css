@@ -1,0 +1,44 @@
+.projected-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.projected-card__header {
+  align-items: start;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.projected-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: end;
+}
+
+.projected-card__body {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.projected-card__inspector {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+@media (max-width: 760px) {
+  .projected-card__header {
+    display: grid;
+  }
+
+  .projected-card__actions {
+    justify-content: start;
+  }
+}

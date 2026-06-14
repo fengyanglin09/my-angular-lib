@@ -3,9 +3,9 @@
   display: grid;
   gap: 24px;
   margin: 0 auto;
-  max-width: 1120px !important;
-  padding: 40px 20px !important;
-  width: 100%;
+  max-width: 1560px !important;
+  padding: 40px 32px !important;
+  width: min(100%, 1560px);
 }
 
 .lesson-shell *,
@@ -25,7 +25,7 @@
 }
 
 .lesson-intro p:last-child {
-  max-width: 840px !important;
+  max-width: 1120px !important;
 }
 
 .lesson-shell :is(h1, h2, h3, p) {
@@ -57,6 +57,7 @@
 .lesson-shell :is(
   .resource-panel,
   .queries-panel,
+  .projection-panel,
   .flow-panel
 ) {
   background: #ffffff;
@@ -66,7 +67,7 @@
   padding: 26px;
 }
 
-.lesson-shell :is(.resource-panel, .queries-panel) {
+.lesson-shell :is(.resource-panel, .queries-panel, .projection-panel) {
   display: grid;
   gap: 22px;
 }
@@ -93,7 +94,7 @@
 }
 
 .lesson-shell .step-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .lesson-shell .content-grid {

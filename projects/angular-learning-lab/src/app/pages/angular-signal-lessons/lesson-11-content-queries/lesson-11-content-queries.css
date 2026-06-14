@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.projection-demo-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.log-card,
+.mental-card {
+  min-height: 260px;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

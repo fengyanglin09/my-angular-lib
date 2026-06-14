@@ -17,6 +17,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 8. Signal Service State | `/angular-signal-lessons/lesson-08-signal-service` | How to use an injectable service with private writable signals, public readonly signals, computed values, and methods for shared local state. |
 | 9. Resource Loading | `/angular-signal-lessons/lesson-09-resource-loading` | How `resource(...)` connects reactive params to an API service, exposing value, status, error, loading, reload, and cancellation. |
 | 10. Signal Queries | `/angular-signal-lessons/lesson-10-signal-queries` | How `viewChild(...)` and `viewChildren(...)` expose DOM and child component references as signals. |
+| 11. Content Queries | `/angular-signal-lessons/lesson-11-content-queries` | How `contentChild(...)` and `contentChildren(...)` inspect projected content inside reusable components. |
 
 ## Big Ideas So Far
 
@@ -101,6 +102,14 @@ derived values, effects, inputs, and practical UI patterns.
 - `viewChildren(...)` creates a signal that contains all rendered matches.
 - Query signals update when Angular adds or removes matching view elements.
 - Use query signals for view work such as focus, scroll, measuring, or calling child component APIs.
+
+### Content Queries
+
+- `contentChild(...)` reads one item projected into a component through `ng-content`.
+- `contentChildren(...)` reads all projected items matching a reference, directive, or component.
+- Content queries are different from view queries: they observe parent-provided projected content, not the child component's own template.
+- Query signals update when projected matches are added or removed.
+- Use content queries for reusable shells such as cards, tabs, menus, layout components, and form wrappers.
 
 ## Growing Path
 
