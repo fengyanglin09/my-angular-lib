@@ -1,0 +1,10 @@
+{
+  "id": "apollo",
+  "name": "Apollo Redesign",
+  "owner": "Mina",
+  "tasks": [
+    "Audit components",
+    "Refresh dashboard",
+    "Ship beta"
+  ]
+}

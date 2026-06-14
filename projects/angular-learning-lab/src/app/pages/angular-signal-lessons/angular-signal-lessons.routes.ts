@@ -57,4 +57,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson08SignalService,
       ),
   },
+  {
+    path: 'lesson-09-resource-loading',
+    loadComponent: () =>
+      import('./lesson-09-resource-loading/lesson-09-resource-loading').then(
+        (m) => m.Lesson09ResourceLoading,
+      ),
+  },
 ];

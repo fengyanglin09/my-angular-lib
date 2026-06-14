@@ -1,0 +1,10 @@
+{
+  "id": "cosmos",
+  "name": "Cosmos Mobile",
+  "owner": "Avery",
+  "tasks": [
+    "Map routes",
+    "Tune offline cache",
+    "Prepare release"
+  ]
+}

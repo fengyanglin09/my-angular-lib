@@ -1,0 +1,10 @@
+{
+  "id": "beacon",
+  "name": "Beacon Analytics",
+  "owner": "Theo",
+  "tasks": [
+    "Model metrics",
+    "Review charts",
+    "Publish insights"
+  ]
+}

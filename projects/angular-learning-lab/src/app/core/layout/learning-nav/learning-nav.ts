@@ -86,6 +86,7 @@ export class LearningNav {
     { description: 'Reset writable state from another signal with linkedSignal.', number: 6, path: '/angular-signal-lessons/lesson-06-linked-signal', title: 'linkedSignal' },
     { description: 'Bridge Signals and RxJS with toObservable and toSignal.', number: 7, path: '/angular-signal-lessons/lesson-07-rxjs-interop', title: 'RxJS Interop' },
     { description: 'Share local state across components with a signal service.', number: 8, path: '/angular-signal-lessons/lesson-08-signal-service', title: 'Signal Service' },
+    { description: 'Load async read state with resource, params, status, and cancellation.', number: 9, path: '/angular-signal-lessons/lesson-09-resource-loading', title: 'Resource Loading' },
   ];
 
   protected get categoryLabel(): string {

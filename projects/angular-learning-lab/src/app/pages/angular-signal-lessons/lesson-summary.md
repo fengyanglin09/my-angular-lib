@@ -15,6 +15,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 6. linkedSignal | `/angular-signal-lessons/lesson-06-linked-signal` | How `linkedSignal(...)` creates writable state that resets from another signal-driven computation. |
 | 7. Signals And RxJS Interop | `/angular-signal-lessons/lesson-07-rxjs-interop` | How to use `toObservable(...)` and `toSignal(...)` to combine signal UI state with RxJS operators and async streams. |
 | 8. Signal Service State | `/angular-signal-lessons/lesson-08-signal-service` | How to use an injectable service with private writable signals, public readonly signals, computed values, and methods for shared local state. |
+| 9. Resource Loading | `/angular-signal-lessons/lesson-09-resource-loading` | How `resource(...)` connects reactive params to an API service, exposing value, status, error, loading, reload, and cancellation. |
 
 ## Big Ideas So Far
 
@@ -81,6 +82,16 @@ derived values, effects, inputs, and practical UI patterns.
 - Expose readonly signals and computed values for component reads.
 - Expose methods for state changes.
 - Provider scope controls whether the store is local to one feature or global across the app.
+
+### Resource Loading
+
+- `resource(...)` is for async read/loading workflows.
+- `params` is reactive; signal reads inside it can trigger a new load.
+- `loader` receives `params`, `previous`, and `abortSignal`.
+- The loader can call a service method, such as `projectApi.loadProject(params, abortSignal)`.
+- Passing `abortSignal` through to `fetch(url, { signal: abortSignal })` lets the browser cancel stale requests.
+- `value()`, `status()`, `isLoading()`, and `error()` expose loading state as signals.
+- `reload()` requests a fresh load for the current params.
 
 ## Growing Path
 

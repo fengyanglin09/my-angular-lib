@@ -1,0 +1,127 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 9</p>
+    <h1>Resource Loading</h1>
+    <p>
+      <code>resource</code> connects reactive signal params to async loading.
+      It exposes signal state for value, status, error, and loading while also
+      passing an <code>AbortSignal</code> through an API service so stale
+      requests can be cancelled by <code>fetch</code>.
+    </p>
+  </section>
+
+  <section class="resource-panel" aria-labelledby="resource-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">resource, params, loader, reload</p>
+        <h2 id="resource-title">Project Details Demo</h2>
+      </div>
+      <p class="summary">{{ statusLabel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      @for (projectId of projectIds; track projectId) {
+        <button type="button" (click)="selectProject(projectId)">
+          {{ projectId }}
+        </button>
+      }
+      <button type="button" (click)="reloadProject()">Reload current</button>
+      <button type="button" (click)="failReload()">Fail next load</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Resource Signals</h2>
+        <dl>
+          <div>
+            <dt>selectedProjectId()</dt>
+            <dd>{{ selectedProjectId() }}</dd>
+          </div>
+          <div>
+            <dt>projectResource.status()</dt>
+            <dd>{{ projectResource.status() }}</dd>
+          </div>
+          <div>
+            <dt>projectResource.isLoading()</dt>
+            <dd>{{ projectResource.isLoading() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>projectResource.error()</dt>
+            <dd>{{ projectResource.error()?.message ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="project-card" aria-labelledby="project-title">
+        @if (projectResource.status() === 'error') {
+          <p class="eyebrow">Error</p>
+          <h2 id="project-title">Project unavailable</h2>
+          <p>{{ projectResource.error()?.message }}</p>
+        } @else {
+          <p class="eyebrow">Resource Value</p>
+          <h2 id="project-title">{{ projectResource.value().name }}</h2>
+          <p>Owner: {{ projectResource.value().owner }}</p>
+          <ul>
+            @for (task of projectResource.value().tasks; track task) {
+              <li>{{ task }}</li>
+            } @empty {
+              <li>No tasks loaded yet.</li>
+            }
+          </ul>
+        }
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Resource Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="resource mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>params()
+  reads selectedProjectId()
+
+loader()
+  runs when params change
+  calls projectApi.loadProject()
+
+API service
+  calls fetch(url, signal option)
+
+resource
+  value()
+  status()
+  error()
+  isLoading()</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>resource</code> is intended for read/loading workflows.</li>
+      <li><code>params</code> is reactive; changing signals inside it triggers a new load.</li>
+      <li><code>loader</code> receives <code>params</code>, <code>previous</code>, and <code>abortSignal</code>.</li>
+      <li>The loader can delegate backend work to a service and pass <code>abortSignal</code> along.</li>
+      <li>Use <code>status()</code>, <code>isLoading()</code>, <code>error()</code>, and <code>value()</code> in the template.</li>
+    </ol>
+  </section>
+</main>
