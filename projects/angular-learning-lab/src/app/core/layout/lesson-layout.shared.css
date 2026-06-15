@@ -58,6 +58,7 @@
   .resource-panel,
   .queries-panel,
   .projection-panel,
+  .render-panel,
   .flow-panel
 ) {
   background: #ffffff;
@@ -67,7 +68,7 @@
   padding: 26px;
 }
 
-.lesson-shell :is(.resource-panel, .queries-panel, .projection-panel) {
+.lesson-shell :is(.resource-panel, .queries-panel, .projection-panel, .render-panel) {
   display: grid;
   gap: 22px;
 }
@@ -107,6 +108,7 @@
   .state-card,
   .project-card,
   .notes-card,
+  .metrics-card,
   .log-card
 ) {
   background: #f8fafc;

@@ -18,6 +18,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 9. Resource Loading | `/angular-signal-lessons/lesson-09-resource-loading` | How `resource(...)` connects reactive params to an API service, exposing value, status, error, loading, reload, and cancellation. |
 | 10. Signal Queries | `/angular-signal-lessons/lesson-10-signal-queries` | How `viewChild(...)` and `viewChildren(...)` expose DOM and child component references as signals. |
 | 11. Content Queries | `/angular-signal-lessons/lesson-11-content-queries` | How `contentChild(...)` and `contentChildren(...)` inspect projected content inside reusable components. |
+| 12. After Render Hooks | `/angular-signal-lessons/lesson-12-after-render` | How `afterNextRender(...)` and `afterRenderEffect(...)` run DOM focus, scroll, and measurement work after Angular renders. |
 
 ## Big Ideas So Far
 
@@ -110,6 +111,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Content queries are different from view queries: they observe parent-provided projected content, not the child component's own template.
 - Query signals update when projected matches are added or removed.
 - Use content queries for reusable shells such as cards, tabs, menus, layout components, and form wrappers.
+
+### After Render Hooks
+
+- `afterNextRender(...)` runs once after the next completed render.
+- `afterRenderEffect(...)` tracks signals and runs after render when those dependencies change.
+- Use render phases to separate DOM writes from DOM reads.
+- Use these hooks for focus, scroll, layout measurement, and DOM-based library setup.
+- Do not use render hooks for normal derived state; use `computed(...)` for that.
 
 ## Growing Path
 

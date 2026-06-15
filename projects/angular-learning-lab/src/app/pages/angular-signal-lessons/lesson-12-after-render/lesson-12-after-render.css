@@ -1,0 +1,56 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.metrics-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.metrics-list {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.metric-item {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  outline: none;
+  padding: 18px;
+  transition: padding 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.metrics-list--compact .metric-item {
+  padding: 10px;
+}
+
+.metric-item:focus {
+  border-color: #315f9d;
+  box-shadow: 0 0 0 3px rgb(49 95 157 / 18%);
+}
+
+.metric-item strong {
+  color: #315a85;
+  font-size: 1.8rem;
+}
+
+.log-card,
+.mental-card {
+  min-height: 260px;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

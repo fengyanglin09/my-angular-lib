@@ -89,6 +89,7 @@ export class LearningNav {
     { description: 'Load async read state with resource, params, status, and cancellation.', number: 9, path: '/angular-signal-lessons/lesson-09-resource-loading', title: 'Resource Loading' },
     { description: 'Reference DOM elements and rendered children with signal queries.', number: 10, path: '/angular-signal-lessons/lesson-10-signal-queries', title: 'Signal Queries' },
     { description: 'Inspect content projected into reusable components.', number: 11, path: '/angular-signal-lessons/lesson-11-content-queries', title: 'Content Queries' },
+    { description: 'Run DOM focus, scroll, and measurement work after rendering.', number: 12, path: '/angular-signal-lessons/lesson-12-after-render', title: 'After Render' },
   ];
 
   protected get categoryLabel(): string {

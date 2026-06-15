@@ -1,0 +1,137 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="12" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 12</p>
+    <h1>After Render Hooks</h1>
+    <p>
+      <code>afterNextRender</code> and <code>afterRenderEffect</code> are for
+      DOM work that must happen after Angular has rendered. Use them for
+      scrolling, focusing, measuring layouts, or initializing DOM-based libraries.
+    </p>
+  </section>
+
+  <section class="render-panel" aria-labelledby="render-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">afterNextRender, afterRenderEffect, DOM phases</p>
+        <h2 id="render-title">Rendered Metrics Demo</h2>
+      </div>
+      <p class="summary">{{ layoutMode() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="addMetric()">Add and focus card</button>
+      <button type="button" (click)="toggleDensity()">Toggle density</button>
+      <button type="button" (click)="removeLastMetric()">Remove last</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal State</h2>
+        <dl>
+          <div>
+            <dt>metrics().length</dt>
+            <dd>{{ metrics().length }}</dd>
+          </div>
+          <div>
+            <dt>totalValue()</dt>
+            <dd>{{ totalValue() }}</dd>
+          </div>
+          <div>
+            <dt>compact()</dt>
+            <dd>{{ compact() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>metricCards().length</dt>
+            <dd>{{ metricCards().length }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="metrics-card" aria-labelledby="metrics-title">
+        <h2 id="metrics-title">Rendered Cards</h2>
+        <div class="metrics-list" [class.metrics-list--compact]="compact()">
+          @for (metric of metrics(); track metric.id) {
+            <article
+              #metricCard
+              class="metric-item"
+              tabindex="0"
+              [attr.data-metric-label]="metric.label"
+            >
+              <p class="eyebrow">Metric {{ metric.id }}</p>
+              <h3>{{ metric.label }}</h3>
+              <strong>{{ metric.value }}</strong>
+            </article>
+          } @empty {
+            <p class="empty-state">No metric cards are rendered.</p>
+          }
+        </div>
+      </section>
+
+      <section class="state-card" aria-labelledby="measurement-title">
+        <h2 id="measurement-title">After Render Measurement</h2>
+        <dl>
+          <div>
+            <dt>cardCount</dt>
+            <dd>{{ measurement().cardCount }}</dd>
+          </div>
+          <div>
+            <dt>firstCardHeight</dt>
+            <dd>{{ measurement().firstCardHeight }} px</dd>
+          </div>
+          <div>
+            <dt>totalCardWidth</dt>
+            <dd>{{ measurement().totalCardWidth }} px</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Render Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="after render mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>signal changes
+  Angular updates template
+
+after render
+  DOM exists
+  layout is measurable
+
+afterNextRender
+  run once
+
+afterRenderEffect
+  rerun after tracked signals change</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>afterNextRender</code> runs once after the next completed render.</li>
+      <li><code>afterRenderEffect</code> tracks signals and runs after render when they change.</li>
+      <li>Use the <code>write</code> phase for DOM writes and the <code>read</code> phase for DOM measurements.</li>
+      <li>Avoid using these hooks for normal derived state; use <code>computed</code> for that.</li>
+    </ol>
+  </section>
+</main>
