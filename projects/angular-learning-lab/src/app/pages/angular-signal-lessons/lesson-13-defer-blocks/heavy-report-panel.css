@@ -1,0 +1,45 @@
+.heavy-report {
+  background: #202a35;
+  border-radius: 8px;
+  color: #f3f7fb;
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.heavy-report .eyebrow {
+  color: #cbd5e1;
+}
+
+.report-total {
+  align-items: center;
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.report-total strong {
+  font-size: 2rem;
+}
+
+.report-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.report-grid div {
+  background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.report-grid span {
+  color: #cbd5e1;
+}

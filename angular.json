@@ -19,6 +19,11 @@
               {
                 "glob": "**/*",
                 "input": "projects/angular-learning-lab/public"
+              },
+              {
+                "glob": "*.json",
+                "input": "projects/angular-learning-lab/src/app/pages/angular-signal-lessons/lesson-09-resource-loading/fake-backend",
+                "output": "/signal-lessons/projects"
               }
             ],
             "styles": [
@@ -72,6 +77,11 @@
               {
                 "glob": "**/*",
                 "input": "projects/angular-learning-lab/public"
+              },
+              {
+                "glob": "*.json",
+                "input": "projects/angular-learning-lab/src/app/pages/angular-signal-lessons/lesson-09-resource-loading/fake-backend",
+                "output": "/signal-lessons/projects"
               }
             ],
             "styles": [

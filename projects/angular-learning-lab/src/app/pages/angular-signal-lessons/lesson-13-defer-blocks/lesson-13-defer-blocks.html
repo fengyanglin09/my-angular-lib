@@ -1,0 +1,120 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="13" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 13</p>
+    <h1>Defer Blocks</h1>
+    <p>
+      <code>&#64;defer</code> lets Angular delay loading and rendering expensive UI
+      until a trigger is met. It is useful for large charts, editors, maps, and
+      secondary panels that do not need to be part of the first render.
+    </p>
+  </section>
+
+  <section class="defer-panel" aria-labelledby="defer-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">&#64;defer, &#64;placeholder, &#64;loading, &#64;error</p>
+        <h2 id="defer-title">Deferred Report Demo</h2>
+      </div>
+      <p class="summary">{{ reportStatus() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadReport()">Load report</button>
+      <button type="button" (click)="refreshReport()">Refresh data</button>
+      <button type="button" (click)="resetDemo()">Reset demo</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Signal State</h2>
+        <dl>
+          <div>
+            <dt>showReport()</dt>
+            <dd>{{ showReport() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>reportVersion()</dt>
+            <dd>{{ reportVersion() }}</dd>
+          </div>
+          <div>
+            <dt>rows().length</dt>
+            <dd>{{ rows().length }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="deferred-card" aria-labelledby="report-title">
+        <h2 id="report-title">Report Outlet</h2>
+        @defer (when showReport()) {
+          <app-heavy-report-panel
+            reportName="Regional Revenue"
+            [rows]="rows()"
+          />
+        } @placeholder {
+          <div class="defer-state">
+            <p class="eyebrow">Placeholder</p>
+            <h3>Report has not loaded yet</h3>
+            <p>Click Load report to let the deferred block render.</p>
+          </div>
+        } @loading (minimum 500ms) {
+          <div class="defer-state">
+            <p class="eyebrow">Loading</p>
+            <h3>Loading deferred report...</h3>
+            <p>Angular is loading the deferred dependency.</p>
+          </div>
+        } @error {
+          <div class="defer-state">
+            <p class="eyebrow">Error</p>
+            <h3>Report could not load</h3>
+            <p>The deferred dependency failed to render.</p>
+          </div>
+        }
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Defer Log</h2>
+        <ol>
+          @for (log of logs(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="defer mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>initial render
+  placeholder appears
+
+trigger becomes true
+  deferred dependency loads
+  loading block may appear
+
+after loaded
+  component behaves normally
+  inputs keep updating</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>&#64;defer</code> delays loading and rendering a block until a trigger is satisfied.</li>
+      <li><code>&#64;placeholder</code> renders before the deferred block starts.</li>
+      <li><code>&#64;loading</code> renders while the deferred dependency is loading.</li>
+      <li>Once loaded, the deferred component still updates normally when its inputs change.</li>
+    </ol>
+  </section>
+</main>

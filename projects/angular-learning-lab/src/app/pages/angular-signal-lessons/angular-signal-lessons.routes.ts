@@ -85,4 +85,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson12AfterRender,
       ),
   },
+  {
+    path: 'lesson-13-defer-blocks',
+    loadComponent: () =>
+      import('./lesson-13-defer-blocks/lesson-13-defer-blocks').then(
+        (m) => m.Lesson13DeferBlocks,
+      ),
+  },
 ];

@@ -19,6 +19,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 10. Signal Queries | `/angular-signal-lessons/lesson-10-signal-queries` | How `viewChild(...)` and `viewChildren(...)` expose DOM and child component references as signals. |
 | 11. Content Queries | `/angular-signal-lessons/lesson-11-content-queries` | How `contentChild(...)` and `contentChildren(...)` inspect projected content inside reusable components. |
 | 12. After Render Hooks | `/angular-signal-lessons/lesson-12-after-render` | How `afterNextRender(...)` and `afterRenderEffect(...)` run DOM focus, scroll, and measurement work after Angular renders. |
+| 13. Defer Blocks | `/angular-signal-lessons/lesson-13-defer-blocks` | How `@defer`, `@placeholder`, `@loading`, and `@error` delay expensive UI until it is needed. |
 
 ## Big Ideas So Far
 
@@ -119,6 +120,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Use render phases to separate DOM writes from DOM reads.
 - Use these hooks for focus, scroll, layout measurement, and DOM-based library setup.
 - Do not use render hooks for normal derived state; use `computed(...)` for that.
+
+### Defer Blocks
+
+- `@defer` delays loading and rendering a block until a trigger is satisfied.
+- `@placeholder` shows lightweight content before deferred work starts.
+- `@loading` shows feedback while the deferred dependency loads.
+- `@error` handles a deferred dependency that fails to load.
+- Use defer blocks for expensive secondary UI, such as charts, editors, maps, and admin-only panels.
 
 ## Growing Path
 

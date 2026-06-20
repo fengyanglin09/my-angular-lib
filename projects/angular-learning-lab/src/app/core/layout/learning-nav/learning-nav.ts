@@ -90,6 +90,7 @@ export class LearningNav {
     { description: 'Reference DOM elements and rendered children with signal queries.', number: 10, path: '/angular-signal-lessons/lesson-10-signal-queries', title: 'Signal Queries' },
     { description: 'Inspect content projected into reusable components.', number: 11, path: '/angular-signal-lessons/lesson-11-content-queries', title: 'Content Queries' },
     { description: 'Run DOM focus, scroll, and measurement work after rendering.', number: 12, path: '/angular-signal-lessons/lesson-12-after-render', title: 'After Render' },
+    { description: 'Delay expensive UI with @defer, placeholder, loading, and error blocks.', number: 13, path: '/angular-signal-lessons/lesson-13-defer-blocks', title: 'Defer Blocks' },
   ];
 
   protected get categoryLabel(): string {
