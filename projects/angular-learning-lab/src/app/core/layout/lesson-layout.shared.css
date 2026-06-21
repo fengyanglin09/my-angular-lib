@@ -61,6 +61,7 @@
   .render-panel,
   .defer-panel,
   .advanced-panel,
+  .forms-panel,
   .flow-panel
 ) {
   background: #ffffff;
@@ -76,7 +77,8 @@
   .projection-panel,
   .render-panel,
   .defer-panel,
-  .advanced-panel
+  .advanced-panel,
+  .forms-panel
 ) {
   display: grid;
   gap: 22px;

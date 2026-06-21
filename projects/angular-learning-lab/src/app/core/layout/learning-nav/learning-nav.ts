@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'ngrx' | 'rxjs' | 'signals';
+type LearningCategory = 'forms' | 'ngrx' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -96,6 +96,10 @@ export class LearningNav {
     { description: 'Update object and array signal state without mutating existing references.', number: 16, path: '/angular-signal-lessons/lesson-16-immutable-updates', title: 'Immutable Updates' },
   ];
 
+  private readonly formsLessons: LessonLink[] = [
+    { description: 'Build a typed FormGroup with controls, validators, form state, and submit handling.', number: 1, path: '/angular-forms-lessons/lesson-01-reactive-form-basics', title: 'Reactive Basics' },
+  ];
+
   protected get categoryLabel(): string {
     if (this.category === 'rxjs') {
       return 'RxJS';
@@ -103,6 +107,10 @@ export class LearningNav {
 
     if (this.category === 'signals') {
       return 'Signals';
+    }
+
+    if (this.category === 'forms') {
+      return 'Forms';
     }
 
     return 'NgRx';
@@ -119,6 +127,10 @@ export class LearningNav {
 
     if (this.category === 'signals') {
       return this.signalLessons;
+    }
+
+    if (this.category === 'forms') {
+      return this.formsLessons;
     }
 
     return this.ngrxLessons;
