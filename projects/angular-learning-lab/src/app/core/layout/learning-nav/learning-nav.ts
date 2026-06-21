@@ -93,6 +93,7 @@ export class LearningNav {
     { description: 'Delay expensive UI with @defer, placeholder, loading, and error blocks.', number: 13, path: '/angular-signal-lessons/lesson-13-defer-blocks', title: 'Defer Blocks' },
     { description: 'Control incidental effect reads and noisy object updates.', number: 14, path: '/angular-signal-lessons/lesson-14-untracked-equality', title: 'untracked + Equality' },
     { description: 'See how computed and effect dependencies change with conditional branches.', number: 15, path: '/angular-signal-lessons/lesson-15-dynamic-dependencies', title: 'Dynamic Dependencies' },
+    { description: 'Update object and array signal state without mutating existing references.', number: 16, path: '/angular-signal-lessons/lesson-16-immutable-updates', title: 'Immutable Updates' },
   ];
 
   protected get categoryLabel(): string {

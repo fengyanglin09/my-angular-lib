@@ -1,0 +1,108 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="16" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 16</p>
+    <h1>Immutable Updates</h1>
+    <p>
+      Signals notify dependents when you call <code>set</code> or
+      <code>update</code> with a meaningful new value. For object and array
+      state, that usually means creating new references instead of mutating the
+      existing object.
+    </p>
+  </section>
+
+  <section class="advanced-panel" aria-labelledby="immutable-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">objects, arrays, computed cache, references</p>
+        <h2 id="immutable-title">Cart State Demo</h2>
+      </div>
+      <p class="summary">{{ itemCount() }} items · ${{ cartTotal() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="addItemSafely()">Safe add item</button>
+      <button type="button" (click)="increaseFirstItemSafely()">Safe increase first item</button>
+      <button type="button" (click)="mutateFirstItemDirectly()">Unsafe direct mutation</button>
+      <button type="button" (click)="setSameCartReference()">Set same cart reference</button>
+      <button type="button" (click)="resetCart()">Reset cart</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="cart-title">
+        <h2 id="cart-title">Computed Cart View</h2>
+        <div class="cart-list">
+          @for (item of visibleItems(); track item.id) {
+            <article>
+              <div>
+                <h3>{{ item.name }}</h3>
+                <p>${{ item.price }} × {{ item.quantity }}</p>
+              </div>
+              <strong>${{ item.lineTotal }}</strong>
+            </article>
+          }
+        </div>
+        <dl>
+          <div>
+            <dt>itemCount()</dt>
+            <dd>{{ itemCount() }}</dd>
+          </div>
+          <div>
+            <dt>cartTotal()</dt>
+            <dd>${{ cartTotal() }}</dd>
+          </div>
+          <div>
+            <dt>lastUpdatedBy()</dt>
+            <dd>{{ lastUpdatedBy() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="log-title">
+        <h2 id="log-title">Signal Notification Log</h2>
+        <article class="mental-card" aria-label="immutable update mental model">
+          <p class="eyebrow">Mental Model</p>
+          <pre>safe update
+  new object/array
+  signal notifies
+  computed reruns
+
+direct mutation
+  same object reference
+  no signal notification
+  computed stays cached</pre>
+        </article>
+        <article class="log-card">
+          <h3>What Ran?</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">How To Try It</h2>
+    <ol>
+      <li>Click the safe buttons. The computed cart view, total, and effect log update together.</li>
+      <li>Click unsafe direct mutation. The lesson logs the click, but the cart computed values do not rerun from that mutation.</li>
+      <li>Click set same cart reference. Calling <code>set</code> with the same object reference still does not notify dependents.</li>
+      <li>Use immutable updates for signal state you expect Angular to react to.</li>
+    </ol>
+  </section>
+</main>

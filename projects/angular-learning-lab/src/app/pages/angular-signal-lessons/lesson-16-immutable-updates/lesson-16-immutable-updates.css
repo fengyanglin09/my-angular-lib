@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.cart-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cart-list article {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 14px;
+}
+
+.cart-list p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.cart-list strong {
+  color: #315a85;
+  font-size: 1.1rem;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

@@ -22,6 +22,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 13. Defer Blocks | `/angular-signal-lessons/lesson-13-defer-blocks` | How `@defer`, `@placeholder`, `@loading`, and `@error` delay expensive UI until it is needed. |
 | 14. untracked And Equality | `/angular-signal-lessons/lesson-14-untracked-equality` | How `untracked(...)` avoids incidental effect dependencies, and how signal equality controls meaningful object changes. |
 | 15. Dynamic Dependencies | `/angular-signal-lessons/lesson-15-dynamic-dependencies` | How `computed(...)` and `effect(...)` track only the signals read during the latest conditional branch. |
+| 16. Immutable Updates | `/angular-signal-lessons/lesson-16-immutable-updates` | Why object and array signal state should be updated with new references instead of direct mutation. |
 
 ## Big Ideas So Far
 
@@ -146,6 +147,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Signals from inactive branches are not dependencies until that branch is read again.
 - This helps avoid unnecessary work in tabs, modes, feature flags, and permission-based UI.
 - Be careful when debugging: a signal can be important in one mode and ignored in another.
+
+### Immutable Updates
+
+- Signals notify dependents when `set(...)` or `update(...)` receives a meaningful new value.
+- Object and array state should be updated with new object and array references.
+- Directly mutating `signal().items` or nested object fields does not notify signal dependents.
+- Setting the exact same object reference does not create a signal change.
+- Immutable updates keep computed values, effects, and templates in sync.
 
 ## Growing Path
 

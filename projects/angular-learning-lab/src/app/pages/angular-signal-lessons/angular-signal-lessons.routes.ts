@@ -106,4 +106,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson15DynamicDependencies,
       ),
   },
+  {
+    path: 'lesson-16-immutable-updates',
+    loadComponent: () =>
+      import('./lesson-16-immutable-updates/lesson-16-immutable-updates').then(
+        (m) => m.Lesson16ImmutableUpdates,
+      ),
+  },
 ];
