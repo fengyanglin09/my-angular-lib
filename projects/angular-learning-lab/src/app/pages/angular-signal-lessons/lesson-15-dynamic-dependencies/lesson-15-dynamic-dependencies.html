@@ -1,0 +1,114 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="15" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 15</p>
+    <h1>Dynamic Dependencies</h1>
+    <p>
+      A <code>computed</code> or <code>effect</code> tracks only the signals it
+      reads during its latest run. If a branch changes, the dependency list can
+      change too.
+    </p>
+  </section>
+
+  <section class="advanced-panel" aria-labelledby="dynamic-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">computed, effect, conditional reads</p>
+        <h2 id="dynamic-title">Draft Or Published Preview</h2>
+      </div>
+      <p class="summary">{{ previewMode() }} mode</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="setMode('draft')">Use draft branch</button>
+      <button type="button" (click)="setMode('published')">Use published branch</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="editor-title">
+        <h2 id="editor-title">Editable Signals</h2>
+        <div class="field-grid">
+          <label>
+            Draft title
+            <input
+              type="text"
+              [value]="draftTitle()"
+              (input)="updateDraftTitle(draftTitleInput.value)"
+              #draftTitleInput
+            />
+          </label>
+          <label>
+            Draft body
+            <textarea
+              [value]="draftBody()"
+              (input)="updateDraftBody(draftBodyInput.value)"
+              #draftBodyInput
+            ></textarea>
+          </label>
+          <label>
+            Published title
+            <input
+              type="text"
+              [value]="publishedTitle()"
+              (input)="updatePublishedTitle(publishedTitleInput.value)"
+              #publishedTitleInput
+            />
+          </label>
+          <label>
+            Published summary
+            <textarea
+              [value]="publishedSummary()"
+              (input)="updatePublishedSummary(publishedSummaryInput.value)"
+              #publishedSummaryInput
+            ></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="preview-title">
+        <h2 id="preview-title">Active Preview</h2>
+        <article class="preview-card">
+          <p class="eyebrow">{{ previewMode() }} branch</p>
+          <h3>{{ activeTitle() }}</h3>
+          <p>{{ activeDescription() }}</p>
+        </article>
+
+        <div class="dependency-card">
+          <h3>Currently Tracked</h3>
+          <p>{{ activeDependencyList() }}</p>
+        </div>
+
+        <article class="log-card" aria-labelledby="dependency-log-title">
+          <h3 id="dependency-log-title">Dependency Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">How To Try It</h2>
+    <ol>
+      <li>Stay in draft mode and change the draft fields. The preview effect reruns.</li>
+      <li>Stay in draft mode and change published fields. The visible preview changes do not depend on them, so the preview effect does not rerun.</li>
+      <li>Switch to published mode. Angular reruns the computed values and starts tracking the published fields.</li>
+      <li>Now edit draft fields again. They are no longer active dependencies for the preview.</li>
+    </ol>
+  </section>
+</main>

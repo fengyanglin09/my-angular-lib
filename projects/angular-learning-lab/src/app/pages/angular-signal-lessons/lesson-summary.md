@@ -21,6 +21,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 12. After Render Hooks | `/angular-signal-lessons/lesson-12-after-render` | How `afterNextRender(...)` and `afterRenderEffect(...)` run DOM focus, scroll, and measurement work after Angular renders. |
 | 13. Defer Blocks | `/angular-signal-lessons/lesson-13-defer-blocks` | How `@defer`, `@placeholder`, `@loading`, and `@error` delay expensive UI until it is needed. |
 | 14. untracked And Equality | `/angular-signal-lessons/lesson-14-untracked-equality` | How `untracked(...)` avoids incidental effect dependencies, and how signal equality controls meaningful object changes. |
+| 15. Dynamic Dependencies | `/angular-signal-lessons/lesson-15-dynamic-dependencies` | How `computed(...)` and `effect(...)` track only the signals read during the latest conditional branch. |
 
 ## Big Ideas So Far
 
@@ -137,6 +138,14 @@ derived values, effects, inputs, and practical UI patterns.
 - Custom `equal` functions can prevent updates when a new object has the same meaningful values.
 - Use these tools sparingly; default signal tracking is usually best.
 - They are useful for audit snapshots, incidental reads, and noisy object updates.
+
+### Dynamic Dependencies
+
+- `computed(...)` and `effect(...)` track the signals read during the latest run.
+- Conditional branches can change which signals are tracked.
+- Signals from inactive branches are not dependencies until that branch is read again.
+- This helps avoid unnecessary work in tabs, modes, feature flags, and permission-based UI.
+- Be careful when debugging: a signal can be important in one mode and ignored in another.
 
 ## Growing Path
 

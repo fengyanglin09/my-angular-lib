@@ -99,4 +99,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson14UntrackedEquality,
       ),
   },
+  {
+    path: 'lesson-15-dynamic-dependencies',
+    loadComponent: () =>
+      import('./lesson-15-dynamic-dependencies/lesson-15-dynamic-dependencies').then(
+        (m) => m.Lesson15DynamicDependencies,
+      ),
+  },
 ];

@@ -92,6 +92,7 @@ export class LearningNav {
     { description: 'Run DOM focus, scroll, and measurement work after rendering.', number: 12, path: '/angular-signal-lessons/lesson-12-after-render', title: 'After Render' },
     { description: 'Delay expensive UI with @defer, placeholder, loading, and error blocks.', number: 13, path: '/angular-signal-lessons/lesson-13-defer-blocks', title: 'Defer Blocks' },
     { description: 'Control incidental effect reads and noisy object updates.', number: 14, path: '/angular-signal-lessons/lesson-14-untracked-equality', title: 'untracked + Equality' },
+    { description: 'See how computed and effect dependencies change with conditional branches.', number: 15, path: '/angular-signal-lessons/lesson-15-dynamic-dependencies', title: 'Dynamic Dependencies' },
   ];
 
   protected get categoryLabel(): string {
