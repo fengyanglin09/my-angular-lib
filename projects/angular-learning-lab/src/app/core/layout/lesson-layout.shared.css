@@ -60,6 +60,7 @@
   .projection-panel,
   .render-panel,
   .defer-panel,
+  .advanced-panel,
   .flow-panel
 ) {
   background: #ffffff;
@@ -69,7 +70,14 @@
   padding: 26px;
 }
 
-.lesson-shell :is(.resource-panel, .queries-panel, .projection-panel, .render-panel, .defer-panel) {
+.lesson-shell :is(
+  .resource-panel,
+  .queries-panel,
+  .projection-panel,
+  .render-panel,
+  .defer-panel,
+  .advanced-panel
+) {
   display: grid;
   gap: 22px;
 }
@@ -111,6 +119,7 @@
   .notes-card,
   .metrics-card,
   .deferred-card,
+  .comparison-card,
   .log-card
 ) {
   background: #f8fafc;

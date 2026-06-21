@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.comparison-grid {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.state-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.comparison-grid article {
+  align-self: start;
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+}
+
+.comparison-grid p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.comparison-grid ol,
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}
+
+.log-card,
+.mental-card {
+  min-height: 260px;
+}

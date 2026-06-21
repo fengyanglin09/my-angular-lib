@@ -92,4 +92,11 @@ export const angularSignalLessonsRoutes: Routes = [
         (m) => m.Lesson13DeferBlocks,
       ),
   },
+  {
+    path: 'lesson-14-untracked-equality',
+    loadComponent: () =>
+      import('./lesson-14-untracked-equality/lesson-14-untracked-equality').then(
+        (m) => m.Lesson14UntrackedEquality,
+      ),
+  },
 ];

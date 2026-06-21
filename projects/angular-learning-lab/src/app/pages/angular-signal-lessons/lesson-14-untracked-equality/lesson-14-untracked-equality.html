@@ -1,0 +1,141 @@
+<main class="lesson-shell">
+  <app-learning-nav category="signals" [activeLesson]="14" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Signals Lesson 14</p>
+    <h1>untracked And Equality</h1>
+    <p>
+      <code>untracked</code> lets an effect read a signal without depending on
+      it, while a signal equality function controls whether a new value should
+      notify dependents. Use both sparingly, when default reactivity is too noisy.
+    </p>
+  </section>
+
+  <section class="advanced-panel" aria-labelledby="advanced-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">untracked, signal equality, effect dependencies</p>
+        <h2 id="advanced-title">Audit Panel Demo</h2>
+      </div>
+      <p class="summary">{{ searchSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <label>
+        Search query
+        <input
+          type="text"
+          [value]="searchQuery()"
+          (input)="updateQuery(queryInput.value)"
+          #queryInput
+        />
+      </label>
+      <label>
+        Audit notes
+        <input
+          type="text"
+          [value]="auditNotes()"
+          (input)="updateAuditNotes(notesInput.value)"
+          #notesInput
+        />
+      </label>
+      <button type="button" (click)="switchCategory()">Change filter category</button>
+      <button type="button" (click)="toggleArchived()">Change filter archived</button>
+      <button type="button" (click)="setSameFilters()">Set same filter values</button>
+      <button type="button" (click)="clearLogs()">Clear logs</button>
+    </div>
+
+    <div class="content-grid">
+      <div class="state-stack">
+        <section class="state-card" aria-labelledby="state-title">
+          <h2 id="state-title">Current Signals</h2>
+          <dl>
+            <div>
+              <dt>searchQuery()</dt>
+              <dd>{{ searchQuery() }}</dd>
+            </div>
+            <div>
+              <dt>auditNotes()</dt>
+              <dd>{{ auditNotes() }}</dd>
+            </div>
+            <div>
+              <dt>filters().category</dt>
+              <dd>{{ filters().category }}</dd>
+            </div>
+            <div>
+              <dt>filters().includeArchived</dt>
+              <dd>{{ filters().includeArchived ? 'true' : 'false' }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <aside class="mental-card" aria-label="untracked mental model">
+          <p class="eyebrow">Mental Model</p>
+          <pre>effect reads signal
+  signal becomes dependency
+
+untracked(() => signal())
+  reads current value
+  does not subscribe
+
+signal(..., &#123; equal &#125;)
+  decides if new value
+  should notify dependents</pre>
+        </aside>
+      </div>
+
+      <section class="comparison-card" aria-labelledby="comparison-title">
+        <h2 id="comparison-title">Effect Comparison</h2>
+        <div class="comparison-grid">
+          <article>
+            <h3>Tracked Effect</h3>
+            <p>Changing query or audit notes reruns it.</p>
+            <ol>
+              @for (log of trackedLogs(); track log.id) {
+                <li>{{ log.message }}</li>
+              }
+            </ol>
+          </article>
+          <article>
+            <h3>Untracked Notes Effect</h3>
+            <p>Changing query reruns it; changing notes alone does not.</p>
+            <ol>
+              @for (log of untrackedLogs(); track log.id) {
+                <li>{{ log.message }}</li>
+              }
+            </ol>
+          </article>
+          <article>
+            <h3>Filter Equality Effect</h3>
+            <p>Changing category or archived reruns it; setting the same filter values does not.</p>
+            <ol>
+              @for (log of filterLogs(); track log.id) {
+                <li>{{ log.message }}</li>
+              }
+            </ol>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Effects track the signals they read.</li>
+      <li><code>untracked(...)</code> is for incidental reads that should not become dependencies.</li>
+      <li>Custom equality is useful when new object references may represent the same meaningful value.</li>
+      <li>Prefer default signal behavior unless you have a specific noisy dependency problem.</li>
+    </ol>
+  </section>
+</main>

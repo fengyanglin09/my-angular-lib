@@ -20,6 +20,7 @@ derived values, effects, inputs, and practical UI patterns.
 | 11. Content Queries | `/angular-signal-lessons/lesson-11-content-queries` | How `contentChild(...)` and `contentChildren(...)` inspect projected content inside reusable components. |
 | 12. After Render Hooks | `/angular-signal-lessons/lesson-12-after-render` | How `afterNextRender(...)` and `afterRenderEffect(...)` run DOM focus, scroll, and measurement work after Angular renders. |
 | 13. Defer Blocks | `/angular-signal-lessons/lesson-13-defer-blocks` | How `@defer`, `@placeholder`, `@loading`, and `@error` delay expensive UI until it is needed. |
+| 14. untracked And Equality | `/angular-signal-lessons/lesson-14-untracked-equality` | How `untracked(...)` avoids incidental effect dependencies, and how signal equality controls meaningful object changes. |
 
 ## Big Ideas So Far
 
@@ -128,6 +129,14 @@ derived values, effects, inputs, and practical UI patterns.
 - `@loading` shows feedback while the deferred dependency loads.
 - `@error` handles a deferred dependency that fails to load.
 - Use defer blocks for expensive secondary UI, such as charts, editors, maps, and admin-only panels.
+
+### untracked And Equality
+
+- Effects track every signal read during execution.
+- `untracked(...)` reads a signal without making it a dependency.
+- Custom `equal` functions can prevent updates when a new object has the same meaningful values.
+- Use these tools sparingly; default signal tracking is usually best.
+- They are useful for audit snapshots, incidental reads, and noisy object updates.
 
 ## Growing Path
 
