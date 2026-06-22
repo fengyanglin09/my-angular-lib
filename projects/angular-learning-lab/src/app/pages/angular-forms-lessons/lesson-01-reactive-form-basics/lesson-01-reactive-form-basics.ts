@@ -3,17 +3,7 @@ import { Component, computed, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
-
-interface CodeStep {
-  description: string;
-  name: string;
-  syntax: string;
-}
-
-interface LessonLog {
-  id: number;
-  message: string;
-}
+import { CodeStep, LessonLog } from '../angular-forms-lesson.models';
 
 type SignupForm = FormGroup<{
   email: FormControl<string>;

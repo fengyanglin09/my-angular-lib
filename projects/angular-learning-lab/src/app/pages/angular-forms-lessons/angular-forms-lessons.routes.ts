@@ -8,4 +8,18 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson01ReactiveFormBasics,
       ),
   },
+  {
+    path: 'lesson-02-form-builder',
+    loadComponent: () =>
+      import('./lesson-02-form-builder/lesson-02-form-builder').then(
+        (m) => m.Lesson02FormBuilder,
+      ),
+  },
+  {
+    path: 'lesson-03-form-factory',
+    loadComponent: () =>
+      import('./lesson-03-form-factory/lesson-03-form-factory').then(
+        (m) => m.Lesson03FormFactory,
+      ),
+  },
 ];

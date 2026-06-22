@@ -1,0 +1,122 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="2" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 2</p>
+    <h1>FormBuilder Basics</h1>
+    <p>
+      <code>FormBuilder</code> creates the same kind of reactive form as
+      <code>new FormGroup(...)</code>, but with less repeated setup. It is most
+      helpful once a form has several controls.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="builder-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">NonNullableFormBuilder, group, validators</p>
+        <h2 id="builder-title">Contact Form Demo</h2>
+      </div>
+      <p class="summary">{{ contactForm.valid ? 'valid' : 'invalid' }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Builder-Created Form</h2>
+
+        <form class="builder-form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+          <label>
+            Full name
+            <input type="text" formControlName="fullName" autocomplete="name" />
+            @if (fullNameControl.touched && fullNameControl.hasError('required')) {
+              <small>Full name is required.</small>
+            }
+            @if (fullNameControl.touched && fullNameControl.hasError('minlength')) {
+              <small>Full name must be at least 3 characters.</small>
+            }
+          </label>
+
+          <label>
+            Email
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (emailControl.touched && emailControl.hasError('required')) {
+              <small>Email is required.</small>
+            }
+            @if (emailControl.touched && emailControl.hasError('email')) {
+              <small>Enter a valid email address.</small>
+            }
+          </label>
+
+          <label>
+            Topic
+            <input type="text" formControlName="topic" />
+            @if (topicControl.touched && topicControl.hasError('required')) {
+              <small>Topic is required.</small>
+            }
+          </label>
+
+          <div class="button-row">
+            <button type="submit">Submit form</button>
+            <button type="button" (click)="patchTopic()">Patch topic only</button>
+            <button type="button" (click)="resetForm()">Reset form</button>
+            <button type="button" (click)="clearLogs()">Clear log</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Form State</h2>
+
+        <dl>
+          <div>
+            <dt>contactForm.valid</dt>
+            <dd>{{ contactForm.valid ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>contactForm.getRawValue()</dt>
+            <dd>{{ contactForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>submittedValue()</dt>
+            <dd>{{ submittedValue() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Submitted Preview</p>
+          <h3>{{ submittedValue().fullName }}</h3>
+          <p>{{ submittedSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>FormBuilder.group(...)</code> creates a <code>FormGroup</code>.</li>
+      <li><code>NonNullableFormBuilder</code> makes controls hold non-null values.</li>
+      <li>The shorthand array format is <code>[initialValue, validators]</code>.</li>
+      <li>The template bindings stay the same as Lesson 1.</li>
+    </ol>
+  </section>
+</main>

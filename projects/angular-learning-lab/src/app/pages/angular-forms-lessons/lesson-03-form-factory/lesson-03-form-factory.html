@@ -1,0 +1,119 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="3" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 3</p>
+    <h1>Form Data And Factory</h1>
+    <p>
+      A form factory is useful when form values come from plain data objects.
+      The object describes the data, and the factory method creates controls,
+      validators, and initial values in one predictable place.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="factory-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">plain data, factory method, patchValue, reset</p>
+        <h2 id="factory-title">Profile Editor Demo</h2>
+      </div>
+      <p class="summary">{{ profileForm.valid ? 'valid' : 'invalid' }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="patchMentorProfile()">Patch mentor data</button>
+      <button type="button" (click)="patchReviewerProfile()">Patch reviewer data</button>
+      <button type="button" (click)="resetToLearnerProfile()">Reset learner data</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Factory-Created Form</h2>
+
+        <form class="profile-form" [formGroup]="profileForm" (ngSubmit)="submitForm()">
+          @for (field of fieldEntries; track field.name) {
+            <label>
+              {{ field.config.label }}
+              <input
+                [type]="field.config.inputType ?? 'text'"
+                [formControlName]="field.name"
+                [autocomplete]="field.config.autocomplete ?? 'off'"
+              />
+              @for (message of errorMessagesFor(field.name); track message) {
+                <small>{{ message }}</small>
+              }
+            </label>
+          }
+
+          <button type="submit">Save profile data</button>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Data Objects And Form Value</h2>
+
+        <dl>
+          <div>
+            <dt>activeProfile()</dt>
+            <dd>{{ activeProfile() | json }}</dd>
+          </div>
+          @for (field of fieldEntries; track field.name) {
+            <div>
+              <dt>{{ field.name }} control</dt>
+              <dd>{{ controlFor(field.name).value }}</dd>
+            </div>
+          }
+          <div>
+            <dt>profileForm.getRawValue()</dt>
+            <dd>{{ profileForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.dirty</dt>
+            <dd>{{ profileForm.dirty ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.touched</dt>
+            <dd>{{ profileForm.touched ? 'true' : 'false' }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Saved Profile</p>
+          <h3>{{ savedProfile()['fullName'] }}</h3>
+          <p>{{ savedSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Use plain objects for data that comes from an API, route resolver, local storage, or defaults.</li>
+      <li>Use a field object when the same metadata should drive controls and template rendering.</li>
+      <li>Use a form factory to loop over that field object and create controls.</li>
+      <li><code>patchValue(...)</code> updates existing controls without rebuilding the form.</li>
+      <li><code>reset(...)</code> restores values and also resets form state such as dirty and touched.</li>
+    </ol>
+  </section>
+</main>
