@@ -1,14 +1,18 @@
-import {JsonPipe} from '@angular/common';
-import {Component, computed, inject, signal} from '@angular/core';
-import {FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators,} from '@angular/forms';
+import { JsonPipe } from '@angular/common';
+import { Component, computed, inject, signal } from '@angular/core';
+import {
+  FormControl,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
-import {LearningNav} from '../../../core/layout/learning-nav/learning-nav';
-import {FormFieldsConfig} from '../angular-forms-field-config.models';
-import {CodeStep, LessonLog} from '../angular-forms-lesson.models';
+import { LearningNav } from '../../../core/layout/learning-nav/learning-nav';
+import { FormFieldsConfig } from '../angular-forms-field-config.models';
+import { createFormFromFields } from '../angular-forms-field-config.utils';
+import { CodeStep, LessonLog } from '../angular-forms-lesson.models';
 
 type ProfileFormData = Record<string, string>;
-
-type ProfileForm = FormGroup<Record<string, FormControl<string>>>;
 
 const learnerProfile: ProfileFormData = {
   email: 'learner@example.com',
@@ -74,7 +78,7 @@ export class Lesson03FormFactory {
   private nextLogId = 2;
 
   protected readonly activeProfile = signal<ProfileFormData>(learnerProfile);
-  protected readonly profileForm = this.createProfileForm(profileFormFields);
+  protected readonly profileForm = createFormFromFields(this.formBuilder, profileFormFields);
   protected readonly savedProfile = signal<ProfileFormData>(this.profileForm.getRawValue());
   protected readonly fieldEntries = Object.entries(profileFormFields).map(([name, config]) => ({
     config,
@@ -113,10 +117,12 @@ export class Lesson03FormFactory {
     {
       description: 'The factory loops over the field object and creates controls.',
       name: 'form factory',
-      syntax: `createProfileForm(fields) {
+      syntax: `createFormFromFields(formBuilder, fields) {
   const controls = {};
   for (const [name, field] of Object.entries(fields)) {
-    controls[name] = [field.value, field.validators];
+    controls[name] = formBuilder.control(field.value, {
+      validators: field.validators ?? []
+    });
   }
   return new FormGroup(controls);
 }`,
@@ -188,18 +194,6 @@ profileForm.reset(learnerProfile)`,
   protected clearLogs(): void {
     this.logs.set([{ id: 1, message: 'Log cleared.' }]);
     this.nextLogId = 2;
-  }
-
-  private createProfileForm(fields: FormFieldsConfig): ProfileForm {
-    const controls: Record<string, FormControl<string>> = {};
-
-    for (const [name, field] of Object.entries(fields)) {
-      controls[name] = this.formBuilder.control(field.value, {
-        validators: field.validators ?? [],
-      });
-    }
-
-    return new FormGroup(controls);
   }
 
   private addLog(message: string): void {
