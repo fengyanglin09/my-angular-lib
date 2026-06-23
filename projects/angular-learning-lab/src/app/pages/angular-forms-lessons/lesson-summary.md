@@ -10,6 +10,7 @@ form state, custom controls, and practical app workflows.
 | 1. Reactive Form Basics | `/angular-forms-lessons/lesson-01-reactive-form-basics` | How to build a typed `FormGroup`, connect inputs with `formControlName`, validate fields, inspect form state, and submit safely. |
 | 2. FormBuilder Basics | `/angular-forms-lessons/lesson-02-form-builder` | How `NonNullableFormBuilder` creates typed controls with less repeated setup than `new FormGroup(...)`. |
 | 3. Form Data And Factory | `/angular-forms-lessons/lesson-03-form-factory` | How a shared field config utility can create controls while the same config drives template rendering, validation messages, patching, and reset. |
+| 4. Validation Patterns | `/angular-forms-lessons/lesson-04-validation-patterns` | How field validators and group validators work, including a password confirmation validator. |
 
 ## Big Ideas So Far
 
@@ -37,6 +38,15 @@ form state, custom controls, and practical app workflows.
 - The template can loop over the same object to render fields and validation messages.
 - `patchValue(...)` updates existing controls from another object with the same shape.
 - `reset(...)` restores values and also resets form state such as `dirty` and `touched`.
+
+### Validation Patterns
+
+- Field validators check one control, such as required, email, or minimum length.
+- Group validators check rules that need multiple controls, such as password and confirm password matching.
+- `matchingFieldsValidator(...)` lives in `angular-forms-validators.ts` so future lessons can reuse and evolve shared form validators.
+- A validator returns `null` when the value is valid.
+- A validator returns an error object when invalid, such as `{ passwordMismatch: true }`.
+- Error messages usually wait for touch or submit so users do not see errors before interacting.
 
 ## Growing Path
 

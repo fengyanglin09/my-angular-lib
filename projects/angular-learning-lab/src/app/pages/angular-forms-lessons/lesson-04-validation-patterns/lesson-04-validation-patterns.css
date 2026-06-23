@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.account-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.account-form label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.account-form input {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.account-form small {
+  color: #b6402b;
+  font-weight: 700;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.preview-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.preview-card,
+.hint-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.preview-card h3 {
+  font-size: 1.4rem;
+}
+
+.preview-card p,
+.hint-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

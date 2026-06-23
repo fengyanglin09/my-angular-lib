@@ -22,4 +22,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson03FormFactory,
       ),
   },
+  {
+    path: 'lesson-04-validation-patterns',
+    loadComponent: () =>
+      import('./lesson-04-validation-patterns/lesson-04-validation-patterns').then(
+        (m) => m.Lesson04ValidationPatterns,
+      ),
+  },
 ];

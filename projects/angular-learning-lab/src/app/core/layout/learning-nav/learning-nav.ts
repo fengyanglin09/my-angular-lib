@@ -100,6 +100,7 @@ export class LearningNav {
     { description: 'Build a typed FormGroup with controls, validators, form state, and submit handling.', number: 1, path: '/angular-forms-lessons/lesson-01-reactive-form-basics', title: 'Reactive Basics' },
     { description: 'Use NonNullableFormBuilder to create a typed reactive form with less setup.', number: 2, path: '/angular-forms-lessons/lesson-02-form-builder', title: 'FormBuilder' },
     { description: 'Create a typed form from plain data objects with a reusable factory method.', number: 3, path: '/angular-forms-lessons/lesson-03-form-factory', title: 'Form Factory' },
+    { description: 'Use field validators and group validators for real-world form rules.', number: 4, path: '/angular-forms-lessons/lesson-04-validation-patterns', title: 'Validation' },
   ];
 
   protected get categoryLabel(): string {
