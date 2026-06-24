@@ -1,0 +1,148 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 5</p>
+    <h1>Nested Groups And Arrays</h1>
+    <p>
+      Real forms often match real data shapes. A nested <code>FormGroup</code>
+      represents an object inside the form, and a <code>FormArray</code>
+      represents a list users can add to or remove from.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="nested-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">FormGroup, FormArray, formGroupName, formArrayName</p>
+        <h2 id="nested-title">Team Onboarding Demo</h2>
+      </div>
+      <p class="summary">{{ onboardingForm.valid ? 'valid' : 'invalid' }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="addMember()">Add member row</button>
+      <button type="button" (click)="patchProjectOwner()">Patch project owner</button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Nested Form</h2>
+
+        <form class="team-form" [formGroup]="onboardingForm" (ngSubmit)="saveForm()">
+          <fieldset formGroupName="project">
+            <legend>Project</legend>
+
+            <label>
+              Project name
+              <input type="text" formControlName="name" />
+              @if (projectGroup.controls.name.touched && projectGroup.controls.name.hasError('required')) {
+                <small>Project name is required.</small>
+              }
+            </label>
+
+            <label>
+              Project owner
+              <input type="text" formControlName="owner" />
+              @if (projectGroup.controls.owner.touched && projectGroup.controls.owner.hasError('required')) {
+                <small>Project owner is required.</small>
+              }
+            </label>
+          </fieldset>
+
+          <fieldset formArrayName="members">
+            <legend>Members</legend>
+
+            @for (memberGroup of members.controls; track memberGroup; let index = $index) {
+              <article class="member-row" [formGroupName]="index">
+                <div class="member-row__heading">
+                  <h3>Member {{ index + 1 }}</h3>
+                  <button type="button" (click)="removeMember(index)">Remove</button>
+                </div>
+
+                <label>
+                  Name
+                  <input type="text" formControlName="name" />
+                  @if (memberGroup.controls.name.touched && memberGroup.controls.name.hasError('required')) {
+                    <small>Member name is required.</small>
+                  }
+                </label>
+
+                <label>
+                  Role
+                  <input type="text" formControlName="role" />
+                  @if (memberGroup.controls.role.touched && memberGroup.controls.role.hasError('required')) {
+                    <small>Member role is required.</small>
+                  }
+                </label>
+              </article>
+            }
+          </fieldset>
+
+          <button type="submit">Save onboarding form</button>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Nested State</h2>
+
+        <dl>
+          <div>
+            <dt>projectGroup.getRawValue()</dt>
+            <dd>{{ projectGroup.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>members.length</dt>
+            <dd>{{ members.length }}</dd>
+          </div>
+          <div>
+            <dt>onboardingForm.getRawValue()</dt>
+            <dd>{{ onboardingForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>savedData()</dt>
+            <dd>{{ savedData() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Last Saved Snapshot</p>
+          <h3>{{ savedData().project.name }}</h3>
+          <p>{{ savedSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Use a nested <code>FormGroup</code> when the form value contains an object.</li>
+      <li>Use <code>formGroupName</code> to enter a child group in the template.</li>
+      <li>Use a <code>FormArray</code> when users can add or remove repeated rows.</li>
+      <li>Use <code>formArrayName</code> plus an index-based <code>formGroupName</code> for array rows.</li>
+      <li>Save with <code>getRawValue()</code> when you want the full nested object.</li>
+    </ol>
+  </section>
+</main>

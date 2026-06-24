@@ -29,4 +29,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson04ValidationPatterns,
       ),
   },
+  {
+    path: 'lesson-05-nested-groups-arrays',
+    loadComponent: () =>
+      import('./lesson-05-nested-groups-arrays/lesson-05-nested-groups-arrays').then(
+        (m) => m.Lesson05NestedGroupsArrays,
+      ),
+  },
 ];

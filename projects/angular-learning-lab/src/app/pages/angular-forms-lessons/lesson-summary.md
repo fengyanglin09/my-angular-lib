@@ -11,6 +11,7 @@ form state, custom controls, and practical app workflows.
 | 2. FormBuilder Basics | `/angular-forms-lessons/lesson-02-form-builder` | How `NonNullableFormBuilder` creates typed controls with less repeated setup than `new FormGroup(...)`. |
 | 3. Form Data And Factory | `/angular-forms-lessons/lesson-03-form-factory` | How a shared field config utility can create controls while the same config drives template rendering, validation messages, patching, and reset. |
 | 4. Validation Patterns | `/angular-forms-lessons/lesson-04-validation-patterns` | How field validators and group validators work, including a password confirmation validator. |
+| 5. Nested Groups And Arrays | `/angular-forms-lessons/lesson-05-nested-groups-arrays` | How nested `FormGroup` and `FormArray` model object-shaped and list-shaped form data. |
 
 ## Big Ideas So Far
 
@@ -48,12 +49,19 @@ form state, custom controls, and practical app workflows.
 - A validator returns an error object when invalid, such as `{ passwordMismatch: true }`.
 - Error messages usually wait for touch or submit so users do not see errors before interacting.
 
+### Nested Groups And Arrays
+
+- A nested `FormGroup` models an object inside the larger form value.
+- `formGroupName` tells the template to work inside a child group.
+- A `FormArray` models repeated rows where the user can add or remove items.
+- `formArrayName` points the template at the array, and each row uses its index as `formGroupName`.
+- `getRawValue()` returns the full nested value, including group objects and array rows.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
 
 - validation messages and cross-field validation
-- nested groups and dynamic arrays
 - form submission with backend-style save state
 - custom form controls with `ControlValueAccessor`
 - forms with signals and RxJS interop

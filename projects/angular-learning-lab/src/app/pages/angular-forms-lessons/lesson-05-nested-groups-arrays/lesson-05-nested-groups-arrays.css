@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.team-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.team-form fieldset {
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 16px;
+}
+
+.team-form legend {
+  color: #20252b;
+  font-weight: 800;
+  padding: 0 8px;
+}
+
+.team-form label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.team-form input {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.team-form small {
+  color: #b6402b;
+  font-weight: 700;
+}
+
+.member-row {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.member-row__heading {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.preview-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.preview-card h3 {
+  font-size: 1.4rem;
+}
+
+.preview-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}
