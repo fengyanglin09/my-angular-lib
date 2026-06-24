@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.raw-value-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.raw-value-form label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.raw-value-form input {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.raw-value-form input:disabled {
+  background: #eef3f7;
+  color: #718096;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.preview-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.preview-card h3 {
+  font-size: 1.4rem;
+}
+
+.preview-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

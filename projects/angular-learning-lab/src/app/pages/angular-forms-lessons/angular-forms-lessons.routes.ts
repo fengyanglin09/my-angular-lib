@@ -36,4 +36,18 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson05NestedGroupsArrays,
       ),
   },
+  {
+    path: 'lesson-06-value-vs-raw-value',
+    loadComponent: () =>
+      import('./lesson-06-value-vs-raw-value/lesson-06-value-vs-raw-value').then(
+        (m) => m.Lesson06ValueVsRawValue,
+      ),
+  },
+  {
+    path: 'lesson-07-submit-save-state',
+    loadComponent: () =>
+      import('./lesson-07-submit-save-state/lesson-07-submit-save-state').then(
+        (m) => m.Lesson07SubmitSaveState,
+      ),
+  },
 ];

@@ -1,0 +1,130 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="6" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 6</p>
+    <h1>Value Vs Raw Value</h1>
+    <p>
+      Disabled controls are easy to overlook. <code>profileForm.value</code>
+      can omit disabled child controls, while <code>getRawValue()</code>
+      returns the full form object. This matters when disabled fields still
+      belong in the backend payload.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="raw-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">disabled controls, form.value, getRawValue</p>
+        <h2 id="raw-title">Employee Profile Payload Demo</h2>
+      </div>
+      <p class="summary">{{ profileForm.valid ? 'valid' : 'invalid' }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="toggleEmployeeIdDisabled()">
+        {{ employeeIdControl.disabled ? 'Enable employeeId' : 'Disable employeeId' }}
+      </button>
+      <button type="button" (click)="toggleRoleDisabled()">
+        {{ roleControl.disabled ? 'Enable role' : 'Disable role' }}
+      </button>
+      <button type="button" (click)="savePayload()">Save raw payload</button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Profile Form</h2>
+
+        <form class="raw-value-form" [formGroup]="profileForm">
+          <label>
+            Display name
+            <input type="text" formControlName="displayName" autocomplete="name" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" formControlName="email" autocomplete="email" />
+          </label>
+
+          <label>
+            Employee ID
+            <input type="text" formControlName="employeeId" />
+          </label>
+
+          <label>
+            Role
+            <input type="text" formControlName="role" />
+          </label>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Payload Comparison</h2>
+
+        <dl>
+          <div>
+            <dt>employeeId.disabled</dt>
+            <dd>{{ employeeIdControl.disabled ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>role.disabled</dt>
+            <dd>{{ roleControl.disabled ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.value</dt>
+            <dd>{{ profileForm.value | json }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.getRawValue()</dt>
+            <dd>{{ profileForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>savedPayload()</dt>
+            <dd>{{ savedPayload() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Backend Payload Rule</p>
+          <h3>Use getRawValue for complete payloads</h3>
+          <p>
+            If disabled controls are read-only but still meaningful to the
+            backend, save <code>getRawValue()</code>, not <code>value</code>.
+          </p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>form.value</code> is the enabled-control value shape.</li>
+      <li><code>form.getRawValue()</code> is the complete form value shape.</li>
+      <li>Disabled controls can still be valid business data.</li>
+      <li>Use <code>getRawValue()</code> when read-only disabled fields must be saved.</li>
+      <li>This difference is easy to miss because both APIs often look the same until a child control is disabled.</li>
+    </ol>
+  </section>
+</main>

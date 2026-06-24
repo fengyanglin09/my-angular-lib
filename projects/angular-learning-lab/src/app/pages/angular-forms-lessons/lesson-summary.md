@@ -12,6 +12,8 @@ form state, custom controls, and practical app workflows.
 | 3. Form Data And Factory | `/angular-forms-lessons/lesson-03-form-factory` | How a shared field config utility can create controls while the same config drives template rendering, validation messages, patching, and reset. |
 | 4. Validation Patterns | `/angular-forms-lessons/lesson-04-validation-patterns` | How field validators and group validators work, including a password confirmation validator. |
 | 5. Nested Groups And Arrays | `/angular-forms-lessons/lesson-05-nested-groups-arrays` | How nested `FormGroup` and `FormArray` model object-shaped and list-shaped form data. |
+| 6. Value Vs Raw Value | `/angular-forms-lessons/lesson-06-value-vs-raw-value` | How `form.value` and `getRawValue()` differ when child controls are disabled. |
+| 7. Submit And Save State | `/angular-forms-lessons/lesson-07-submit-save-state` | How to handle backend-style submission with loading, success, failure, disabled controls, and retry. |
 
 ## Big Ideas So Far
 
@@ -57,11 +59,26 @@ form state, custom controls, and practical app workflows.
 - `formArrayName` points the template at the array, and each row uses its index as `formGroupName`.
 - `getRawValue()` returns the full nested value, including group objects and array rows.
 
+### Value Vs Raw Value
+
+- `form.value` is the enabled-control value shape.
+- `form.getRawValue()` is the complete form value shape.
+- Disabled controls can still be valid business data, such as server-owned IDs.
+- Use `getRawValue()` when read-only disabled fields must be included in a backend payload.
+- The difference is easy to miss because both APIs often look the same until a child control is disabled.
+
+### Submit And Save State
+
+- Form values and save status are separate state.
+- Submit should guard against invalid forms before calling the backend.
+- Disabling the form while saving prevents duplicate submits and communicates that work is in progress.
+- Success updates the last saved backend result.
+- Failure keeps the current form value so the user can fix or retry without retyping.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
 
 - validation messages and cross-field validation
-- form submission with backend-style save state
 - custom form controls with `ControlValueAccessor`
 - forms with signals and RxJS interop
