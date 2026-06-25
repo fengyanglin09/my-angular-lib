@@ -14,6 +14,7 @@ form state, custom controls, and practical app workflows.
 | 5. Nested Groups And Arrays | `/angular-forms-lessons/lesson-05-nested-groups-arrays` | How nested `FormGroup` and `FormArray` model object-shaped and list-shaped form data. |
 | 6. Value Vs Raw Value | `/angular-forms-lessons/lesson-06-value-vs-raw-value` | How `form.value` and `getRawValue()` differ when child controls are disabled. |
 | 7. Submit And Save State | `/angular-forms-lessons/lesson-07-submit-save-state` | How to handle backend-style submission with loading, success, failure, disabled controls, and retry. |
+| 8. ControlValueAccessor | `/angular-forms-lessons/lesson-08-control-value-accessor` | How to make a custom component work with `formControlName`. |
 
 ## Big Ideas So Far
 
@@ -75,10 +76,18 @@ form state, custom controls, and practical app workflows.
 - Success updates the last saved backend result.
 - Failure keeps the current form value so the user can fix or retry without retyping.
 
+### ControlValueAccessor
+
+- `ControlValueAccessor` is the bridge between Angular forms and custom input components.
+- `NG_VALUE_ACCESSOR` registers the custom component as a form control.
+- `writeValue(...)` receives values from the parent form.
+- `registerOnChange(...)` gives the custom control a callback for updating the parent form.
+- `registerOnTouched(...)` is usually called from blur, click, or touch interaction.
+- `setDisabledState(...)` lets disabled state flow from the parent form into the custom component.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
 
 - validation messages and cross-field validation
-- custom form controls with `ControlValueAccessor`
 - forms with signals and RxJS interop

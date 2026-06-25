@@ -50,4 +50,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson07SubmitSaveState,
       ),
   },
+  {
+    path: 'lesson-08-control-value-accessor',
+    loadComponent: () =>
+      import('./lesson-08-control-value-accessor/lesson-08-control-value-accessor').then(
+        (m) => m.Lesson08ControlValueAccessor,
+      ),
+  },
 ];

@@ -1,0 +1,124 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 8</p>
+    <h1>ControlValueAccessor</h1>
+    <p>
+      <code>ControlValueAccessor</code>, often shortened to CVA, is the bridge
+      between Angular forms and a custom input component. Once the component
+      implements the bridge, the parent form can use it with normal
+      <code>formControlName</code>.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="cva-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">custom control, NG_VALUE_ACCESSOR, writeValue</p>
+        <h2 id="cva-title">Task Priority Demo</h2>
+      </div>
+      <p class="summary">{{ taskForm.valid ? 'valid' : 'invalid' }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="patchHighPriority()">Parent sets high priority</button>
+      <button type="button" (click)="togglePriorityDisabled()">
+        {{ priorityControl.disabled ? 'Enable priority control' : 'Disable priority control' }}
+      </button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Task Form</h2>
+
+        <form class="task-form" [formGroup]="taskForm" (ngSubmit)="saveTask()">
+          <label>
+            Task title
+            <input type="text" formControlName="title" />
+            @if (titleControl.touched && titleControl.hasError('required')) {
+              <small>Task title is required.</small>
+            }
+          </label>
+
+          <label>
+            Priority
+            <app-priority-picker formControlName="priority" />
+          </label>
+
+          <label>
+            Notes
+            <textarea rows="4" formControlName="notes"></textarea>
+          </label>
+
+          <button type="submit">Save task</button>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Form And Custom Control State</h2>
+
+        <dl>
+          <div>
+            <dt>priorityControl.value</dt>
+            <dd>{{ priorityControl.value }}</dd>
+          </div>
+          <div>
+            <dt>priorityControl.touched</dt>
+            <dd>{{ priorityControl.touched ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>priorityControl.disabled</dt>
+            <dd>{{ priorityControl.disabled ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>taskForm.getRawValue()</dt>
+            <dd>{{ taskForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>savedTask()</dt>
+            <dd>{{ savedTask() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Saved Task</p>
+          <h3>{{ savedTask().title }}</h3>
+          <p>{{ savedSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>A custom form control must implement <code>ControlValueAccessor</code>.</li>
+      <li><code>writeValue</code> receives values from the parent form.</li>
+      <li><code>registerOnChange</code> gives the custom control a way to update the parent form.</li>
+      <li><code>registerOnTouched</code> lets the custom control mark itself touched, often from blur, click, or touch interaction.</li>
+      <li><code>setDisabledState</code> lets the parent form disable the custom control.</li>
+    </ol>
+  </section>
+</main>
