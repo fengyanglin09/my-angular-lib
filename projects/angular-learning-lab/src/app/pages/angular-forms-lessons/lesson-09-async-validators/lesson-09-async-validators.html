@@ -1,0 +1,148 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 9</p>
+    <h1>Async Validators</h1>
+    <p>
+      Some validation rules need a backend check. Async validators let a control
+      enter a <code>pending</code> state while Angular waits for a Promise or
+      Observable to decide whether the value is valid.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="async-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">AsyncValidatorFn, pending, backend availability</p>
+        <h2 id="async-title">Project Slug Demo</h2>
+      </div>
+      <p class="summary">{{ projectForm.status }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="setAvailableSlug()">Set available slug</button>
+      <button type="button" (click)="setTakenSlug()">Set taken slug</button>
+      <button type="button" (click)="setInvalidSlug()">Set invalid slug</button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Project Form</h2>
+
+        <form class="slug-form" [formGroup]="projectForm" (ngSubmit)="saveProject()">
+          <label>
+            Project name
+            <input type="text" formControlName="projectName" />
+            @if (projectNameControl.touched && projectNameControl.hasError('required')) {
+              <small>Project name is required.</small>
+            }
+            @if (projectNameControl.touched && projectNameControl.hasError('minlength')) {
+              <small>Project name must be at least 3 characters.</small>
+            }
+          </label>
+
+          <label>
+            Project slug
+            <input
+              type="text"
+              formControlName="slug"
+              [readOnly]="checkingSlugAvailability()"
+              [attr.aria-busy]="slugControl.pending"
+            />
+            @if (checkingSlugAvailability()) {
+              <small class="pending">Checking availability; the field is read-only during the backend call.</small>
+            } @else if (slugControl.pending) {
+              <small class="pending">Waiting for typing to pause...</small>
+            }
+            @if (slugControl.touched && slugControl.hasError('required')) {
+              <small>Slug is required.</small>
+            }
+            @if (slugControl.touched && slugControl.hasError('pattern')) {
+              <small>Use lowercase letters, numbers, and hyphens only.</small>
+            }
+            @if (slugControl.touched && slugControl.hasError('minlength')) {
+              <small>Slug must be at least 3 characters.</small>
+            }
+            @if (slugControl.touched && slugControl.hasError('slugTaken')) {
+              <small>That slug is already taken.</small>
+            }
+          </label>
+
+          <button type="submit" [disabled]="projectForm.pending">Save project</button>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Validation State</h2>
+
+        <dl>
+          <div>
+            <dt>slugControl.status</dt>
+            <dd>{{ slugControl.status }}</dd>
+          </div>
+          <div>
+            <dt>slugControl.pending</dt>
+            <dd>{{ slugControl.pending ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>checkingSlugAvailability()</dt>
+            <dd>{{ checkingSlugAvailability() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>slugControl.errors</dt>
+            <dd>{{ slugControl.errors | json }}</dd>
+          </div>
+          <div>
+            <dt>projectForm.status</dt>
+            <dd>{{ projectForm.status }}</dd>
+          </div>
+          <div>
+            <dt>projectForm.getRawValue()</dt>
+            <dd>{{ projectForm.getRawValue() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Saved Project</p>
+          <h3>{{ savedProject().projectName }}</h3>
+          <p>{{ savedSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Lesson Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Async validators return a Promise or Observable.</li>
+      <li>Angular runs async validators after sync validators pass.</li>
+      <li>The control status becomes <code>PENDING</code> while debounce and async validation run.</li>
+      <li>Use a separate flag when the UI needs to know the backend request phase.</li>
+      <li>Make the field readonly during the backend call, not during the debounce wait.</li>
+      <li>Return <code>null</code> when valid, or an error object when invalid.</li>
+      <li>Block submit while the form is pending so you do not save before validation finishes.</li>
+    </ol>
+  </section>
+</main>

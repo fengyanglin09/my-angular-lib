@@ -57,4 +57,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson08ControlValueAccessor,
       ),
   },
+  {
+    path: 'lesson-09-async-validators',
+    loadComponent: () =>
+      import('./lesson-09-async-validators/lesson-09-async-validators').then(
+        (m) => m.Lesson09AsyncValidators,
+      ),
+  },
 ];

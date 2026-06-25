@@ -105,6 +105,7 @@ export class LearningNav {
     { description: 'Compare form.value and getRawValue when controls are disabled.', number: 6, path: '/angular-forms-lessons/lesson-06-value-vs-raw-value', title: 'Value vs Raw' },
     { description: 'Handle backend-style form submission with loading, success, failure, and retry state.', number: 7, path: '/angular-forms-lessons/lesson-07-submit-save-state', title: 'Submit State' },
     { description: 'Make a custom component work with formControlName using ControlValueAccessor.', number: 8, path: '/angular-forms-lessons/lesson-08-control-value-accessor', title: 'Custom Control' },
+    { description: 'Validate a control with a backend-style async availability check.', number: 9, path: '/angular-forms-lessons/lesson-09-async-validators', title: 'Async Validators' },
   ];
 
   protected get categoryLabel(): string {

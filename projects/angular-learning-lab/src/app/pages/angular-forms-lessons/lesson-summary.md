@@ -15,6 +15,7 @@ form state, custom controls, and practical app workflows.
 | 6. Value Vs Raw Value | `/angular-forms-lessons/lesson-06-value-vs-raw-value` | How `form.value` and `getRawValue()` differ when child controls are disabled. |
 | 7. Submit And Save State | `/angular-forms-lessons/lesson-07-submit-save-state` | How to handle backend-style submission with loading, success, failure, disabled controls, and retry. |
 | 8. ControlValueAccessor | `/angular-forms-lessons/lesson-08-control-value-accessor` | How to make a custom component work with `formControlName`. |
+| 9. Async Validators | `/angular-forms-lessons/lesson-09-async-validators` | How to validate a control with a backend-style async availability check and pending state. |
 
 ## Big Ideas So Far
 
@@ -84,6 +85,14 @@ form state, custom controls, and practical app workflows.
 - `registerOnChange(...)` gives the custom control a callback for updating the parent form.
 - `registerOnTouched(...)` is usually called from blur, click, or touch interaction.
 - `setDisabledState(...)` lets disabled state flow from the parent form into the custom component.
+
+### Async Validators
+
+- Async validators return a Promise or Observable of validation errors.
+- Angular runs async validators after sync validators pass.
+- A control becomes `PENDING` while async validation is running.
+- Return `null` when the value is valid, or an error object when invalid.
+- Submit flows should guard against pending forms before saving.
 
 ## Growing Path
 
