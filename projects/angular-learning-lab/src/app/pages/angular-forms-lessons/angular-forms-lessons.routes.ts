@@ -71,4 +71,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson10FormStreams,
       ),
   },
+  {
+    path: 'lesson-11-dependent-controls',
+    loadComponent: () =>
+      import('./lesson-11-dependent-controls/lesson-11-dependent-controls').then(
+        (m) => m.Lesson11DependentControls,
+      ),
+  },
 ];

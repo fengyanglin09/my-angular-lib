@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.delivery-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.delivery-form fieldset {
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 14px;
+}
+
+.delivery-form legend,
+.delivery-form label {
+  color: #606b78;
+  font-weight: 700;
+}
+
+.delivery-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.delivery-form .radio-option {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.delivery-form input[type='email'],
+.delivery-form input[type='text'] {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.delivery-form input:disabled {
+  background: #eef3f7;
+  color: #718092;
+}
+
+.delivery-form small {
+  color: #b6402b;
+  font-weight: 700;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.preview-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.preview-card h3 {
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.preview-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}

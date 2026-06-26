@@ -107,6 +107,7 @@ export class LearningNav {
     { description: 'Make a custom component work with formControlName using ControlValueAccessor.', number: 8, path: '/angular-forms-lessons/lesson-08-control-value-accessor', title: 'Custom Control' },
     { description: 'Validate a control with a backend-style async availability check.', number: 9, path: '/angular-forms-lessons/lesson-09-async-validators', title: 'Async Validators' },
     { description: 'React to valueChanges and statusChanges with debounced form streams and cleanup.', number: 10, path: '/angular-forms-lessons/lesson-10-form-streams', title: 'Form Streams' },
+    { description: 'Enable, disable, require, and clear fields based on another control value.', number: 11, path: '/angular-forms-lessons/lesson-11-dependent-controls', title: 'Dependent Controls' },
   ];
 
   protected get categoryLabel(): string {

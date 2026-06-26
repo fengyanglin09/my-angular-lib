@@ -17,6 +17,7 @@ form state, custom controls, and practical app workflows.
 | 8. ControlValueAccessor | `/angular-forms-lessons/lesson-08-control-value-accessor` | How to make a custom component work with `formControlName`. |
 | 9. Async Validators | `/angular-forms-lessons/lesson-09-async-validators` | How to validate a control with a backend-style async availability check and pending state. |
 | 10. Form Streams | `/angular-forms-lessons/lesson-10-form-streams` | How to use `valueChanges`, `statusChanges`, debounce, combined streams, and subscription cleanup. |
+| 11. Dependent Controls | `/angular-forms-lessons/lesson-11-dependent-controls` | How to enable, disable, require, clear, and recalculate fields based on another control value. |
 
 ## Big Ideas So Far
 
@@ -107,6 +108,16 @@ form state, custom controls, and practical app workflows.
 - `combineLatest(...)` is useful when work needs both the latest form value and latest form status.
 - `debounceTime(...)` prevents noisy typing from triggering preview, autosave, or search work too often.
 - `takeUntilDestroyed(...)` cleans component subscriptions when Angular destroys the component.
+
+### Dependent Controls
+
+- One control can decide whether other controls are enabled, disabled, required, or cleared.
+- Use `startWith(...)` when dependent rules must run for the initial form value too.
+- Use `enable(...)` and `disable(...)` when controls should join or leave `form.value`.
+- Use `setValidators(...)` and `clearValidators(...)` when requirements change dynamically.
+- Call `updateValueAndValidity(...)` after changing validators.
+- `{ emitEvent: true }` announces internal updates to `valueChanges` and `statusChanges`.
+- `{ emitEvent: false }` makes internal adjustments quietly so the original user change remains the main event.
 
 ## Growing Path
 
