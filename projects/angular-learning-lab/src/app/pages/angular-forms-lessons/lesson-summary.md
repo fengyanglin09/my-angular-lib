@@ -16,6 +16,7 @@ form state, custom controls, and practical app workflows.
 | 7. Submit And Save State | `/angular-forms-lessons/lesson-07-submit-save-state` | How to handle backend-style submission with loading, success, failure, disabled controls, and retry. |
 | 8. ControlValueAccessor | `/angular-forms-lessons/lesson-08-control-value-accessor` | How to make a custom component work with `formControlName`. |
 | 9. Async Validators | `/angular-forms-lessons/lesson-09-async-validators` | How to validate a control with a backend-style async availability check and pending state. |
+| 10. Form Streams | `/angular-forms-lessons/lesson-10-form-streams` | How to use `valueChanges`, `statusChanges`, debounce, combined streams, and subscription cleanup. |
 
 ## Big Ideas So Far
 
@@ -94,9 +95,23 @@ form state, custom controls, and practical app workflows.
 - Return `null` when the value is valid, or an error object when invalid.
 - Submit flows should guard against pending forms before saving.
 
+### Form Streams
+
+- `valueChanges` emits future form or control value changes.
+- `valueChanges` does not emit the current value when you subscribe.
+- Use `getRawValue()` when you need the current form value snapshot.
+- `statusChanges` emits future form or control status changes: `VALID`, `INVALID`, `PENDING`, or `DISABLED`.
+- `statusChanges` does not emit the current status when you subscribe.
+- Use `form.status` when you need the current status snapshot.
+- `startWith(...)` provides the current form state before the first user edit.
+- `combineLatest(...)` is useful when work needs both the latest form value and latest form status.
+- `debounceTime(...)` prevents noisy typing from triggering preview, autosave, or search work too often.
+- `takeUntilDestroyed(...)` cleans component subscriptions when Angular destroys the component.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
 
-- validation messages and cross-field validation
-- forms with signals and RxJS interop
+- dynamic form sections
+- multi-step forms
+- form state persistence

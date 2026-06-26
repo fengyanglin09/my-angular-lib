@@ -1,0 +1,135 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 10</p>
+    <h1>Form Streams</h1>
+    <p>
+      Reactive forms expose Observables. <code>valueChanges</code> tells you
+      when values change, <code>statusChanges</code> tells you when validation
+      state changes, and RxJS operators let you build practical flows like
+      autosave previews.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="streams-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">valueChanges, statusChanges, debounce, cleanup</p>
+        <h2 id="streams-title">Newsletter Preferences Demo</h2>
+      </div>
+      <p class="summary">{{ latestStatus() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="patchValidDraft()">Patch valid draft</button>
+      <button type="button" (click)="patchInvalidEmail()">Patch invalid email</button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Newsletter Form</h2>
+
+        <form class="streams-form" [formGroup]="newsletterForm">
+          <label>
+            Email
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (emailControl.touched && emailControl.hasError('required')) {
+              <small>Email is required.</small>
+            }
+            @if (emailControl.touched && emailControl.hasError('email')) {
+              <small>Enter a valid email address.</small>
+            }
+          </label>
+
+          <label>
+            Frequency
+            <select formControlName="frequency">
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </label>
+
+          <label>
+            Topic
+            <input type="text" formControlName="topic" />
+            @if (topicControl.touched && topicControl.hasError('required')) {
+              <small>Topic is required.</small>
+            }
+            @if (topicControl.touched && topicControl.hasError('minlength')) {
+              <small>Topic must be at least 3 characters.</small>
+            }
+          </label>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Stream State</h2>
+
+        <dl>
+          <div>
+            <dt>valueChangeCount()</dt>
+            <dd>{{ valueChangeCount() }}</dd>
+          </div>
+          <div>
+            <dt>statusChangeCount()</dt>
+            <dd>{{ statusChangeCount() }}</dd>
+          </div>
+          <div>
+            <dt>latestStatus()</dt>
+            <dd>{{ latestStatus() }}</dd>
+          </div>
+          <div>
+            <dt>latestDraft()</dt>
+            <dd>{{ latestDraft() | json }}</dd>
+          </div>
+          <div>
+            <dt>newsletterForm.getRawValue()</dt>
+            <dd>{{ newsletterForm.getRawValue() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Debounced Autosave Preview</p>
+          <h3>{{ autosavePreview() }}</h3>
+          <p>{{ formSummary() }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Stream Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>valueChanges</code> emits future value changes; it does not emit the current value on subscribe.</li>
+      <li>Use <code>getRawValue()</code> when you need the current form value right now.</li>
+      <li><code>statusChanges</code> emits future status changes; it does not emit the current status on subscribe.</li>
+      <li>Use <code>form.status</code> when you need the current status right now.</li>
+      <li>Use <code>startWith</code> when a combined stream needs the current form state immediately.</li>
+      <li>Use <code>debounceTime</code> before autosave, search, or preview work.</li>
+      <li>Use <code>takeUntilDestroyed</code> for component-owned subscriptions.</li>
+    </ol>
+  </section>
+</main>

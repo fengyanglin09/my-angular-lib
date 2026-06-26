@@ -64,4 +64,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson09AsyncValidators,
       ),
   },
+  {
+    path: 'lesson-10-form-streams',
+    loadComponent: () =>
+      import('./lesson-10-form-streams/lesson-10-form-streams').then(
+        (m) => m.Lesson10FormStreams,
+      ),
+  },
 ];
