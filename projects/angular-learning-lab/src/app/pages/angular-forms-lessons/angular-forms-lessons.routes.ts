@@ -78,4 +78,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson11DependentControls,
       ),
   },
+  {
+    path: 'lesson-12-dynamic-form-array',
+    loadComponent: () =>
+      import('./lesson-12-dynamic-form-array/lesson-12-dynamic-form-array').then(
+        (m) => m.Lesson12DynamicFormArray,
+      ),
+  },
 ];

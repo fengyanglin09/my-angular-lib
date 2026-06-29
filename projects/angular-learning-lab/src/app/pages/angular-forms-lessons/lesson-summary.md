@@ -18,6 +18,7 @@ form state, custom controls, and practical app workflows.
 | 9. Async Validators | `/angular-forms-lessons/lesson-09-async-validators` | How to validate a control with a backend-style async availability check and pending state. |
 | 10. Form Streams | `/angular-forms-lessons/lesson-10-form-streams` | How to use `valueChanges`, `statusChanges`, debounce, combined streams, and subscription cleanup. |
 | 11. Dependent Controls | `/angular-forms-lessons/lesson-11-dependent-controls` | How to enable, disable, require, clear, and recalculate fields based on another control value. |
+| 12. Dynamic FormArray | `/angular-forms-lessons/lesson-12-dynamic-form-array` | How to build dynamic repeated sections with row factories, add/remove guards, totals, and payload inspection. |
 
 ## Big Ideas So Far
 
@@ -118,6 +119,15 @@ form state, custom controls, and practical app workflows.
 - Call `updateValueAndValidity(...)` after changing validators.
 - `{ emitEvent: true }` announces internal updates to `valueChanges` and `statusChanges`.
 - `{ emitEvent: false }` makes internal adjustments quietly so the original user change remains the main event.
+
+### Dynamic FormArray
+
+- `FormArray` is useful when users can add or remove repeated sections.
+- A row factory keeps every new row consistent with the same controls and validators.
+- The template loops over `lines.controls` and uses the row index as `formGroupName`.
+- Add rows with `push(...)` and remove rows with `removeAt(index)`.
+- Guard against removing the final row when the workflow needs at least one editable section.
+- Use a form stream when derived values, such as invoice totals, must update after edits.
 
 ## Growing Path
 
