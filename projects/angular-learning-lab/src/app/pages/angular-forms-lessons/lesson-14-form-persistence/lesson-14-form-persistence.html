@@ -1,0 +1,154 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="14" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 14</p>
+    <h1>Form Persistence</h1>
+    <p>
+      Draft persistence is about saving values somewhere durable, then restoring
+      them later. This lesson uses local storage so the behavior is visible
+      without a backend.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="persistence-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">autosave, localStorage, restore, state boundary</p>
+        <h2 id="persistence-title">Profile Draft Demo</h2>
+      </div>
+      <p class="summary">{{ profileForm.status }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="patchExampleDraft()">Patch example draft</button>
+      <button type="button" (click)="saveDraftNow()">Save draft now</button>
+      <button type="button" (click)="restoreDraft()">Restore stored draft</button>
+      <button type="button" (click)="clearStoredDraft()">Clear stored draft</button>
+      <button type="button" (click)="resetToDefaults()">Reset visible form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Profile Draft Form</h2>
+
+        <form class="draft-form" [formGroup]="profileForm">
+          <label>
+            Full name
+            <input type="text" formControlName="fullName" autocomplete="name" />
+            @if (fullNameControl.touched && fullNameControl.hasError('required')) {
+              <small>Full name is required.</small>
+            }
+            @if (fullNameControl.touched && fullNameControl.hasError('minlength')) {
+              <small>Full name must be at least 3 characters.</small>
+            }
+          </label>
+
+          <label>
+            Email
+            <input type="email" formControlName="email" autocomplete="email" />
+            @if (emailControl.touched && emailControl.hasError('required')) {
+              <small>Email is required.</small>
+            }
+            @if (emailControl.touched && emailControl.hasError('email')) {
+              <small>Enter a valid email address.</small>
+            }
+          </label>
+
+          <label>
+            Role
+            <input type="text" formControlName="role" />
+            @if (roleControl.touched && roleControl.hasError('required')) {
+              <small>Role is required.</small>
+            }
+          </label>
+
+          <label>
+            Notes
+            <textarea formControlName="notes" rows="4"></textarea>
+          </label>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Persistence State</h2>
+
+        <dl>
+          <div>
+            <dt>autosaveCount()</dt>
+            <dd>{{ autosaveCount() }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.dirty</dt>
+            <dd>{{ profileForm.dirty ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.touched</dt>
+            <dd>{{ profileForm.touched ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>profileForm.getRawValue()</dt>
+            <dd>{{ profileForm.getRawValue() | json }}</dd>
+          </div>
+          <div>
+            <dt>storedDraft()</dt>
+            <dd>{{ storedDraft() | json }}</dd>
+          </div>
+        </dl>
+
+        <article class="preview-card">
+          <p class="eyebrow">Stored Draft</p>
+          <h3>{{ savedSummary() }}</h3>
+          <p>
+            Restore brings back the typed values. It does not bring back the
+            old screen moment, such as which fields were touched or whether the
+            user had already tried to submit.
+          </p>
+        </article>
+
+        <article class="preview-card">
+          <p class="eyebrow">Data Vs Screen State</p>
+          <h3>Draft data comes back; interaction state starts fresh.</h3>
+          <p>
+            Values like name, email, role, and notes are worth saving. Flags
+            like dirty, touched, focused field, validation messages, and submit
+            attempts usually belong to the current visit.
+          </p>
+          <pre>form.reset(savedValue, {{ '{' }} emitEvent: false {{ '}' }});</pre>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Persistence Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li>Persist typed values, not the old screen interaction state.</li>
+      <li>Use <code>getRawValue()</code> when saving a complete draft payload.</li>
+      <li>Debounce autosave so typing does not write storage on every keystroke.</li>
+      <li>Use <code>reset(savedValue, {{ '{' }} emitEvent: false {{ '}' }})</code> so restored values feel like a freshly loaded form without triggering autosave.</li>
+      <li>Use <code>emitEvent: false</code> when reset or restore should not trigger autosave.</li>
+      <li>Keep storage code in a service so the component stays focused on form behavior.</li>
+    </ol>
+  </section>
+</main>

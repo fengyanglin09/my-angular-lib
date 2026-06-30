@@ -20,6 +20,7 @@ form state, custom controls, and practical app workflows.
 | 11. Dependent Controls | `/angular-forms-lessons/lesson-11-dependent-controls` | How to enable, disable, require, clear, and recalculate fields based on another control value. |
 | 12. Dynamic FormArray | `/angular-forms-lessons/lesson-12-dynamic-form-array` | How to build dynamic repeated sections with row factories, add/remove guards, totals, and payload inspection. |
 | 13. Multi-step Form | `/angular-forms-lessons/lesson-13-multi-step-form` | How to split one typed form into wizard steps with step-level validation and final review. |
+| 14. Form Persistence | `/angular-forms-lessons/lesson-14-form-persistence` | How to autosave, restore, and clear local form drafts while keeping value state separate from UI state. |
 
 ## Big Ideas So Far
 
@@ -139,8 +140,16 @@ form state, custom controls, and practical app workflows.
 - Going backward usually should not require validation.
 - Use `getRawValue()` on submit so the final payload is complete.
 
+### Form Persistence
+
+- Draft persistence usually saves typed values, not the old screen interaction state.
+- Use `getRawValue()` when saving the complete current draft payload.
+- Debounce autosave so typing does not write to storage on every keystroke.
+- Restore values with `reset(savedValue, { emitEvent: false })` so the form feels freshly loaded without triggering autosave.
+- Dirty, touched, focused field, validation messages, and submit attempts usually belong to the current visit.
+- Use `{ emitEvent: false }` when reset or restore should not trigger autosave.
+- Keep persistence logic in a service so components stay focused on form behavior.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
-
-- form state persistence

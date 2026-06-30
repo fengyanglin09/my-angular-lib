@@ -110,6 +110,7 @@ export class LearningNav {
     { description: 'Enable, disable, require, and clear fields based on another control value.', number: 11, path: '/angular-forms-lessons/lesson-11-dependent-controls', title: 'Dependent Controls' },
     { description: 'Build dynamic repeated sections with FormArray row factories and derived totals.', number: 12, path: '/angular-forms-lessons/lesson-12-dynamic-form-array', title: 'Dynamic FormArray' },
     { description: 'Split one typed form into wizard steps with step guards and final review.', number: 13, path: '/angular-forms-lessons/lesson-13-multi-step-form', title: 'Multi-step Form' },
+    { description: 'Autosave, restore, and clear local form drafts while keeping UI state boundaries clear.', number: 14, path: '/angular-forms-lessons/lesson-14-form-persistence', title: 'Form Persistence' },
   ];
 
   protected get categoryLabel(): string {

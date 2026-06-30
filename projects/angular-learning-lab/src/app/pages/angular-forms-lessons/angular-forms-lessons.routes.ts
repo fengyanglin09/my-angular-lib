@@ -92,4 +92,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson13MultiStepForm,
       ),
   },
+  {
+    path: 'lesson-14-form-persistence',
+    loadComponent: () =>
+      import('./lesson-14-form-persistence/lesson-14-form-persistence').then(
+        (m) => m.Lesson14FormPersistence,
+      ),
+  },
 ];
