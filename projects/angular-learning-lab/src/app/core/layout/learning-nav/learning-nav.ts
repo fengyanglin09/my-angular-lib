@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'forms' | 'ngrx' | 'rxjs' | 'signals';
+type LearningCategory = 'forms' | 'ngrx' | 'routes' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -117,6 +117,10 @@ export class LearningNav {
     { description: 'Use form state APIs for touched, dirty, pending, disabled, pristine, and reset behavior.', number: 18, path: '/angular-forms-lessons/lesson-18-form-state-apis', title: 'Form State APIs' },
   ];
 
+  private readonly routesLessons: LessonLink[] = [
+    { description: 'Map URLs to standalone components with route records, routerLink, and router-outlet.', number: 1, path: '/angular-route-lessons/lesson-01-route-basics', title: 'Route Basics' },
+  ];
+
   protected get categoryLabel(): string {
     if (this.category === 'rxjs') {
       return 'RxJS';
@@ -128,6 +132,10 @@ export class LearningNav {
 
     if (this.category === 'forms') {
       return 'Forms';
+    }
+
+    if (this.category === 'routes') {
+      return 'Routes';
     }
 
     return 'NgRx';
@@ -148,6 +156,10 @@ export class LearningNav {
 
     if (this.category === 'forms') {
       return this.formsLessons;
+    }
+
+    if (this.category === 'routes') {
+      return this.routesLessons;
     }
 
     return this.ngrxLessons;

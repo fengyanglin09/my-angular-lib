@@ -1,0 +1,104 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="1" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 1</p>
+    <h1>Route Basics</h1>
+    <p>
+      Angular Router is the map between browser URLs and components. A route is
+      like a labeled doorway: when the URL matches the label, Angular loads the
+      component behind that doorway and places it in the app's router outlet.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="routes-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Routes, routerLink, router-outlet</p>
+        <h2 id="routes-title">URL Matching Demo</h2>
+      </div>
+      <p class="summary">{{ selectedSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="selectExample('dashboard')">Match dashboard route</button>
+      <button type="button" (click)="selectExample('category')">Match category route</button>
+      <button type="button" (click)="selectExample('lesson')">Match lesson route</button>
+      <a class="lesson-link-button" [routerLink]="['/']">Try dashboard link</a>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="match-title">
+        <h2 id="match-title">Selected Match</h2>
+        <dl>
+          <div>
+            <dt>URL</dt>
+            <dd>{{ selectedMatch().url }}</dd>
+          </div>
+          <div>
+            <dt>Route record</dt>
+            <dd><code>{{ selectedMatch().routeRecord }}</code></dd>
+          </div>
+          <div>
+            <dt>What loads</dt>
+            <dd>{{ selectedMatch().component }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Route Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="route mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>URL changes
+  router checks Routes[]
+  first matching path wins
+  route lazy-loads component
+  component renders in router-outlet</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="navigation-title">
+    <h2 id="navigation-title">Two Important Differences</h2>
+
+    <div class="step-grid comparison-grid">
+      @for (step of comparisonSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>app.routes.ts</code> is the top-level route table.</li>
+      <li><code>loadChildren</code> is useful for a category with many child routes.</li>
+      <li><code>loadComponent</code> lazy-loads one standalone component.</li>
+      <li><code>routerLink</code> asks Angular Router to navigate without refreshing the browser.</li>
+      <li><code>router-outlet</code> is where the matched component appears.</li>
+    </ol>
+  </section>
+</main>

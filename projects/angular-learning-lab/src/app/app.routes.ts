@@ -36,4 +36,11 @@ export const routes: Routes = [
         (m) => m.angularFormsLessonsRoutes,
       ),
   },
+  {
+    path: 'angular-route-lessons',
+    loadChildren: () =>
+      import('./pages/angular-route-lessons/angular-route-lessons.routes').then(
+        (m) => m.angularRouteLessonsRoutes,
+      ),
+  },
 ];
