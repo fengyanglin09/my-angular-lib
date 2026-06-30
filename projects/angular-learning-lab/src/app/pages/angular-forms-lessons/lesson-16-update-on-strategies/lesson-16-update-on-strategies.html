@@ -1,0 +1,181 @@
+<main class="lesson-shell">
+  <app-learning-nav category="forms" [activeLesson]="16" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Forms Lesson 16</p>
+    <h1>UpdateOn Strategies</h1>
+    <p>
+      <code>updateOn</code> controls when Angular updates a control value and
+      runs validation from user input: on every change, on blur, or on submit.
+    </p>
+  </section>
+
+  <section class="forms-panel" aria-labelledby="update-on-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">change, blur, submit, validation timing</p>
+        <h2 id="update-on-title">Email Timing Demo</h2>
+      </div>
+      <p class="summary">{{ strategyForm.status }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="patchInvalidValues()">Patch invalid values</button>
+      <button type="button" (click)="submitForm()">Submit form</button>
+      <button type="button" (click)="resetForm()">Reset form</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    <div class="content-grid">
+      <section class="state-card" aria-labelledby="form-title">
+        <h2 id="form-title">Strategy Form</h2>
+
+        <form class="strategy-form" [formGroup]="strategyForm" (ngSubmit)="submitForm()">
+          <label>
+            Change email
+            <input type="email" formControlName="changeEmail" autocomplete="off" />
+            @if (changeEmailControl.touched && changeEmailControl.hasError('email')) {
+              <small>Change email is invalid.</small>
+            }
+          </label>
+
+          <label>
+            Blur email
+            <input type="email" formControlName="blurEmail" autocomplete="off" />
+            @if (blurEmailControl.touched && blurEmailControl.hasError('email')) {
+              <small>Blur email is invalid.</small>
+            }
+          </label>
+
+          <label>
+            Submit email
+            <input type="email" formControlName="submitEmail" autocomplete="off" />
+            @if (submitEmailControl.touched && submitEmailControl.hasError('email')) {
+              <small>Submit email is invalid.</small>
+            }
+          </label>
+        </form>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="state-title">
+        <h2 id="state-title">Control Timing State</h2>
+
+        <div class="strategy-grid">
+          <article>
+            <h3>changeEmail</h3>
+            <dl>
+              <div>
+                <dt>value</dt>
+                <dd>{{ changeEmailControl.value }}</dd>
+              </div>
+              <div>
+                <dt>status</dt>
+                <dd>{{ changeEmailControl.status }}</dd>
+              </div>
+              <div>
+                <dt>valueChanges</dt>
+                <dd>{{ valueChangeCounts().changeEmail }}</dd>
+              </div>
+              <div>
+                <dt>statusChanges</dt>
+                <dd>{{ statusChangeCounts().changeEmail }}</dd>
+              </div>
+              <div>
+                <dt>errors</dt>
+                <dd>{{ changeEmailControl.errors | json }}</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article>
+            <h3>blurEmail</h3>
+            <dl>
+              <div>
+                <dt>value</dt>
+                <dd>{{ blurEmailControl.value }}</dd>
+              </div>
+              <div>
+                <dt>status</dt>
+                <dd>{{ blurEmailControl.status }}</dd>
+              </div>
+              <div>
+                <dt>valueChanges</dt>
+                <dd>{{ valueChangeCounts().blurEmail }}</dd>
+              </div>
+              <div>
+                <dt>statusChanges</dt>
+                <dd>{{ statusChangeCounts().blurEmail }}</dd>
+              </div>
+              <div>
+                <dt>errors</dt>
+                <dd>{{ blurEmailControl.errors | json }}</dd>
+              </div>
+            </dl>
+          </article>
+
+          <article>
+            <h3>submitEmail</h3>
+            <dl>
+              <div>
+                <dt>value</dt>
+                <dd>{{ submitEmailControl.value }}</dd>
+              </div>
+              <div>
+                <dt>status</dt>
+                <dd>{{ submitEmailControl.status }}</dd>
+              </div>
+              <div>
+                <dt>valueChanges</dt>
+                <dd>{{ valueChangeCounts().submitEmail }}</dd>
+              </div>
+              <div>
+                <dt>statusChanges</dt>
+                <dd>{{ statusChangeCounts().submitEmail }}</dd>
+              </div>
+              <div>
+                <dt>errors</dt>
+                <dd>{{ submitEmailControl.errors | json }}</dd>
+              </div>
+            </dl>
+          </article>
+        </div>
+
+        <article class="preview-card">
+          <p class="eyebrow">Submitted Payload</p>
+          <h3>{{ submittedPayload() ? 'Submitted successfully' : 'Nothing submitted yet' }}</h3>
+          <p>{{ submittedPayload() | json }}</p>
+        </article>
+
+        <article class="log-card" aria-labelledby="log-title">
+          <h3 id="log-title">Timing Log</h3>
+          <ol>
+            @for (log of logs(); track log.id) {
+              <li>{{ log.message }}</li>
+            }
+          </ol>
+        </article>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="flow-title">
+    <h2 id="flow-title">What To Remember</h2>
+    <ol>
+      <li><code>updateOn: 'change'</code> validates from user input as the user types.</li>
+      <li><code>updateOn: 'blur'</code> waits until the field loses focus.</li>
+      <li><code>updateOn: 'submit'</code> waits until the form is submitted.</li>
+      <li>Programmatic updates like <code>patchValue</code> still update controls immediately.</li>
+      <li>Use blur or submit when instant validation would be noisy or expensive.</li>
+    </ol>
+  </section>
+</main>

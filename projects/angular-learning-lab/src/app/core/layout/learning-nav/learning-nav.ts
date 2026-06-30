@@ -112,6 +112,7 @@ export class LearningNav {
     { description: 'Split one typed form into wizard steps with step guards and final review.', number: 13, path: '/angular-forms-lessons/lesson-13-multi-step-form', title: 'Multi-step Form' },
     { description: 'Autosave, restore, and clear local form drafts while keeping UI state boundaries clear.', number: 14, path: '/angular-forms-lessons/lesson-14-form-persistence', title: 'Form Persistence' },
     { description: 'Map backend field validation errors onto Angular controls with setErrors.', number: 15, path: '/angular-forms-lessons/lesson-15-server-errors', title: 'Server Errors' },
+    { description: 'Compare updateOn change, blur, and submit validation timing strategies.', number: 16, path: '/angular-forms-lessons/lesson-16-update-on-strategies', title: 'UpdateOn Strategies' },
   ];
 
   protected get categoryLabel(): string {

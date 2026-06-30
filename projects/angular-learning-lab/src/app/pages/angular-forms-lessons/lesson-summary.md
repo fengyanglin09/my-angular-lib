@@ -22,6 +22,7 @@ form state, custom controls, and practical app workflows.
 | 13. Multi-step Form | `/angular-forms-lessons/lesson-13-multi-step-form` | How to split one typed form into wizard steps with step-level validation and final review. |
 | 14. Form Persistence | `/angular-forms-lessons/lesson-14-form-persistence` | How to autosave, restore, and clear local form drafts while keeping value state separate from UI state. |
 | 15. Server Errors | `/angular-forms-lessons/lesson-15-server-errors` | How to map backend field validation errors onto Angular controls with `setErrors`. |
+| 16. UpdateOn Strategies | `/angular-forms-lessons/lesson-16-update-on-strategies` | How to compare `updateOn: 'change'`, `'blur'`, and `'submit'` validation timing. |
 
 ## Big Ideas So Far
 
@@ -159,6 +160,14 @@ form state, custom controls, and practical app workflows.
 - A server error makes the control and parent form invalid.
 - Clear old server errors before retrying a backend save.
 - Server field errors can use the same template display pattern as client-side validation errors.
+
+### UpdateOn Strategies
+
+- `updateOn: 'change'` is the default and reacts to user input as the user types.
+- `updateOn: 'blur'` waits until the field loses focus.
+- `updateOn: 'submit'` waits until the form is submitted.
+- Programmatic updates such as `patchValue(...)` still update controls immediately.
+- `blur` and `submit` are useful when instant validation would be noisy or expensive.
 
 ## Growing Path
 

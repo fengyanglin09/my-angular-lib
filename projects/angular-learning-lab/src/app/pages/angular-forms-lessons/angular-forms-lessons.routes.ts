@@ -106,4 +106,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson15ServerErrors,
       ),
   },
+  {
+    path: 'lesson-16-update-on-strategies',
+    loadComponent: () =>
+      import('./lesson-16-update-on-strategies/lesson-16-update-on-strategies').then(
+        (m) => m.Lesson16UpdateOnStrategies,
+      ),
+  },
 ];
