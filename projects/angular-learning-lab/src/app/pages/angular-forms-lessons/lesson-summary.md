@@ -24,6 +24,7 @@ form state, custom controls, and practical app workflows.
 | 15. Server Errors | `/angular-forms-lessons/lesson-15-server-errors` | How to map backend field validation errors onto Angular controls with `setErrors`. |
 | 16. UpdateOn Strategies | `/angular-forms-lessons/lesson-16-update-on-strategies` | How to compare `updateOn: 'change'`, `'blur'`, and `'submit'` validation timing. |
 | 17. Set Patch Reset | `/angular-forms-lessons/lesson-17-set-patch-reset` | How to compare `setValue`, `patchValue`, and `reset` for strict, partial, and fresh form updates. |
+| 18. Form State APIs | `/angular-forms-lessons/lesson-18-form-state-apis` | How to use touched, dirty, pending, disabled, pristine, and reset APIs deliberately. |
 
 ## Big Ideas So Far
 
@@ -177,6 +178,15 @@ form state, custom controls, and practical app workflows.
 - `patchValue(...)` updates only the matching controls you provide.
 - `patchValue(...)` is useful for partial API responses or targeted UI actions.
 - `reset(...)` updates values and clears dirty/touched state.
+
+### Form State APIs
+
+- `touched` is useful for validation messages after blur or submit.
+- `dirty` means the value has changed from a clean state.
+- `pristine` is the opposite of dirty.
+- `pending` is useful while async work is unresolved.
+- `disable(...)` removes a control from `form.value`, while `getRawValue()` still includes it.
+- `reset(...)` restores values and clears dirty/touched state.
 
 ## Growing Path
 

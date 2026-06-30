@@ -120,4 +120,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson17SetPatchReset,
       ),
   },
+  {
+    path: 'lesson-18-form-state-apis',
+    loadComponent: () =>
+      import('./lesson-18-form-state-apis/lesson-18-form-state-apis').then(
+        (m) => m.Lesson18FormStateApis,
+      ),
+  },
 ];

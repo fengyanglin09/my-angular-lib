@@ -1,0 +1,86 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.state-api-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.state-api-form label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.state-api-form input {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.state-api-form input:disabled {
+  background: #eef3f7;
+  color: #718092;
+}
+
+.state-api-form small {
+  color: #b6402b;
+  font-weight: 700;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.state-table {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.state-table article,
+.preview-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.state-table h3,
+.preview-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.preview-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 900px) {
+  .state-table {
+    grid-template-columns: 1fr;
+  }
+}

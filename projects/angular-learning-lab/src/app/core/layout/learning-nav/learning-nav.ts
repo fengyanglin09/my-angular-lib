@@ -114,6 +114,7 @@ export class LearningNav {
     { description: 'Map backend field validation errors onto Angular controls with setErrors.', number: 15, path: '/angular-forms-lessons/lesson-15-server-errors', title: 'Server Errors' },
     { description: 'Compare updateOn change, blur, and submit validation timing strategies.', number: 16, path: '/angular-forms-lessons/lesson-16-update-on-strategies', title: 'UpdateOn Strategies' },
     { description: 'Compare setValue, patchValue, and reset for strict, partial, and fresh form updates.', number: 17, path: '/angular-forms-lessons/lesson-17-set-patch-reset', title: 'Set Patch Reset' },
+    { description: 'Use form state APIs for touched, dirty, pending, disabled, pristine, and reset behavior.', number: 18, path: '/angular-forms-lessons/lesson-18-form-state-apis', title: 'Form State APIs' },
   ];
 
   protected get categoryLabel(): string {
