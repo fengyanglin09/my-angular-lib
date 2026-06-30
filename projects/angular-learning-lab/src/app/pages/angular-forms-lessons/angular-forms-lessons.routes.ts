@@ -99,4 +99,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson14FormPersistence,
       ),
   },
+  {
+    path: 'lesson-15-server-errors',
+    loadComponent: () =>
+      import('./lesson-15-server-errors/lesson-15-server-errors').then(
+        (m) => m.Lesson15ServerErrors,
+      ),
+  },
 ];

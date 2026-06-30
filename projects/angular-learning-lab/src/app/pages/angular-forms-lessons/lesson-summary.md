@@ -21,6 +21,7 @@ form state, custom controls, and practical app workflows.
 | 12. Dynamic FormArray | `/angular-forms-lessons/lesson-12-dynamic-form-array` | How to build dynamic repeated sections with row factories, add/remove guards, totals, and payload inspection. |
 | 13. Multi-step Form | `/angular-forms-lessons/lesson-13-multi-step-form` | How to split one typed form into wizard steps with step-level validation and final review. |
 | 14. Form Persistence | `/angular-forms-lessons/lesson-14-form-persistence` | How to autosave, restore, and clear local form drafts while keeping value state separate from UI state. |
+| 15. Server Errors | `/angular-forms-lessons/lesson-15-server-errors` | How to map backend field validation errors onto Angular controls with `setErrors`. |
 
 ## Big Ideas So Far
 
@@ -149,6 +150,15 @@ form state, custom controls, and practical app workflows.
 - Dirty, touched, focused field, validation messages, and submit attempts usually belong to the current visit.
 - Use `{ emitEvent: false }` when reset or restore should not trigger autosave.
 - Keep persistence logic in a service so components stay focused on form behavior.
+
+### Server Errors
+
+- Client validators run before the backend request, but the backend can still reject client-valid values.
+- Use `setErrors(...)` to attach backend field errors to specific controls.
+- Merge server errors with existing errors so client validation state is not erased.
+- A server error makes the control and parent form invalid.
+- Clear old server errors before retrying a backend save.
+- Server field errors can use the same template display pattern as client-side validation errors.
 
 ## Growing Path
 

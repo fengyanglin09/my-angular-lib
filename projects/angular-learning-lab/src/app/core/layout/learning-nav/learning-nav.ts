@@ -111,6 +111,7 @@ export class LearningNav {
     { description: 'Build dynamic repeated sections with FormArray row factories and derived totals.', number: 12, path: '/angular-forms-lessons/lesson-12-dynamic-form-array', title: 'Dynamic FormArray' },
     { description: 'Split one typed form into wizard steps with step guards and final review.', number: 13, path: '/angular-forms-lessons/lesson-13-multi-step-form', title: 'Multi-step Form' },
     { description: 'Autosave, restore, and clear local form drafts while keeping UI state boundaries clear.', number: 14, path: '/angular-forms-lessons/lesson-14-form-persistence', title: 'Form Persistence' },
+    { description: 'Map backend field validation errors onto Angular controls with setErrors.', number: 15, path: '/angular-forms-lessons/lesson-15-server-errors', title: 'Server Errors' },
   ];
 
   protected get categoryLabel(): string {
