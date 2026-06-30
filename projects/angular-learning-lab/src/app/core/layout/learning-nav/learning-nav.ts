@@ -109,6 +109,7 @@ export class LearningNav {
     { description: 'React to valueChanges and statusChanges with debounced form streams and cleanup.', number: 10, path: '/angular-forms-lessons/lesson-10-form-streams', title: 'Form Streams' },
     { description: 'Enable, disable, require, and clear fields based on another control value.', number: 11, path: '/angular-forms-lessons/lesson-11-dependent-controls', title: 'Dependent Controls' },
     { description: 'Build dynamic repeated sections with FormArray row factories and derived totals.', number: 12, path: '/angular-forms-lessons/lesson-12-dynamic-form-array', title: 'Dynamic FormArray' },
+    { description: 'Split one typed form into wizard steps with step guards and final review.', number: 13, path: '/angular-forms-lessons/lesson-13-multi-step-form', title: 'Multi-step Form' },
   ];
 
   protected get categoryLabel(): string {

@@ -19,6 +19,7 @@ form state, custom controls, and practical app workflows.
 | 10. Form Streams | `/angular-forms-lessons/lesson-10-form-streams` | How to use `valueChanges`, `statusChanges`, debounce, combined streams, and subscription cleanup. |
 | 11. Dependent Controls | `/angular-forms-lessons/lesson-11-dependent-controls` | How to enable, disable, require, clear, and recalculate fields based on another control value. |
 | 12. Dynamic FormArray | `/angular-forms-lessons/lesson-12-dynamic-form-array` | How to build dynamic repeated sections with row factories, add/remove guards, totals, and payload inspection. |
+| 13. Multi-step Form | `/angular-forms-lessons/lesson-13-multi-step-form` | How to split one typed form into wizard steps with step-level validation and final review. |
 
 ## Big Ideas So Far
 
@@ -129,10 +130,17 @@ form state, custom controls, and practical app workflows.
 - Guard against removing the final row when the workflow needs at least one editable section.
 - Use a form stream when derived values, such as invoice totals, must update after edits.
 
+### Multi-step Form
+
+- A wizard can still be one parent `FormGroup` when all steps belong to one payload.
+- Nested groups are a clean way to model each step.
+- The current step controls visibility and navigation, not form ownership.
+- Validate the current step group before moving forward.
+- Going backward usually should not require validation.
+- Use `getRawValue()` on submit so the final payload is complete.
+
 ## Growing Path
 
 Future Angular Forms lessons can build from this foundation:
 
-- dynamic form sections
-- multi-step forms
 - form state persistence

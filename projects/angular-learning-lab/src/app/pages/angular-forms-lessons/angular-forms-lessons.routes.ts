@@ -85,4 +85,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson12DynamicFormArray,
       ),
   },
+  {
+    path: 'lesson-13-multi-step-form',
+    loadComponent: () =>
+      import('./lesson-13-multi-step-form/lesson-13-multi-step-form').then(
+        (m) => m.Lesson13MultiStepForm,
+      ),
+  },
 ];

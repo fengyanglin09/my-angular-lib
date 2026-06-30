@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f4f6f8;
+  color: #20252b;
+}
+
+.wizard-tabs {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 18px 0;
+}
+
+.wizard-tabs button {
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  display: grid;
+  font: inherit;
+  font-weight: 800;
+  gap: 4px;
+  min-height: 64px;
+  padding: 12px;
+  text-align: left;
+}
+
+.wizard-tabs button.active {
+  background: #264f3c;
+  border-color: #264f3c;
+  color: #ffffff;
+}
+
+.wizard-tabs span {
+  color: inherit;
+  font-size: 0.78rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.wizard-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.wizard-form section {
+  display: grid;
+  gap: 16px;
+}
+
+.wizard-form label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.wizard-form .checkbox-option {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.wizard-form input:not([type='checkbox']),
+.wizard-form select,
+.wizard-form textarea {
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #20252b;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.wizard-form textarea {
+  min-height: 96px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.wizard-form small {
+  color: #b6402b;
+  font-weight: 700;
+}
+
+.wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.comparison-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.preview-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.preview-card h3 {
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+.preview-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.log-card ol {
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .wizard-tabs {
+    grid-template-columns: 1fr;
+  }
+}
