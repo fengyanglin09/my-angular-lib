@@ -23,6 +23,7 @@ form state, custom controls, and practical app workflows.
 | 14. Form Persistence | `/angular-forms-lessons/lesson-14-form-persistence` | How to autosave, restore, and clear local form drafts while keeping value state separate from UI state. |
 | 15. Server Errors | `/angular-forms-lessons/lesson-15-server-errors` | How to map backend field validation errors onto Angular controls with `setErrors`. |
 | 16. UpdateOn Strategies | `/angular-forms-lessons/lesson-16-update-on-strategies` | How to compare `updateOn: 'change'`, `'blur'`, and `'submit'` validation timing. |
+| 17. Set Patch Reset | `/angular-forms-lessons/lesson-17-set-patch-reset` | How to compare `setValue`, `patchValue`, and `reset` for strict, partial, and fresh form updates. |
 
 ## Big Ideas So Far
 
@@ -168,6 +169,14 @@ form state, custom controls, and practical app workflows.
 - `updateOn: 'submit'` waits until the form is submitted.
 - Programmatic updates such as `patchValue(...)` still update controls immediately.
 - `blur` and `submit` are useful when instant validation would be noisy or expensive.
+
+### Set Patch Reset
+
+- `setValue(...)` requires the full form control shape.
+- `setValue(...)` is useful when missing data should be treated as a bug.
+- `patchValue(...)` updates only the matching controls you provide.
+- `patchValue(...)` is useful for partial API responses or targeted UI actions.
+- `reset(...)` updates values and clears dirty/touched state.
 
 ## Growing Path
 

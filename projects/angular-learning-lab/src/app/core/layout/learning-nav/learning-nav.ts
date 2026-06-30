@@ -113,6 +113,7 @@ export class LearningNav {
     { description: 'Autosave, restore, and clear local form drafts while keeping UI state boundaries clear.', number: 14, path: '/angular-forms-lessons/lesson-14-form-persistence', title: 'Form Persistence' },
     { description: 'Map backend field validation errors onto Angular controls with setErrors.', number: 15, path: '/angular-forms-lessons/lesson-15-server-errors', title: 'Server Errors' },
     { description: 'Compare updateOn change, blur, and submit validation timing strategies.', number: 16, path: '/angular-forms-lessons/lesson-16-update-on-strategies', title: 'UpdateOn Strategies' },
+    { description: 'Compare setValue, patchValue, and reset for strict, partial, and fresh form updates.', number: 17, path: '/angular-forms-lessons/lesson-17-set-patch-reset', title: 'Set Patch Reset' },
   ];
 
   protected get categoryLabel(): string {

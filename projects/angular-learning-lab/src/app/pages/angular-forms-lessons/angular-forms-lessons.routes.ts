@@ -113,4 +113,11 @@ export const angularFormsLessonsRoutes: Routes = [
         (m) => m.Lesson16UpdateOnStrategies,
       ),
   },
+  {
+    path: 'lesson-17-set-patch-reset',
+    loadComponent: () =>
+      import('./lesson-17-set-patch-reset/lesson-17-set-patch-reset').then(
+        (m) => m.Lesson17SetPatchReset,
+      ),
+  },
 ];
