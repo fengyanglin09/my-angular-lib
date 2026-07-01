@@ -1,0 +1,118 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="2" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 2</p>
+    <h1>Route Params</h1>
+    <p>
+      Route params let one route pattern serve many records. Instead of creating
+      separate routes for every project, Angular uses a placeholder like
+      <code>:projectId</code> and reads the actual value from the current URL.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="params-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">:projectId, paramMap, snapshot</p>
+        <h2 id="params-title">Project Detail Route</h2>
+      </div>
+      <p class="summary">{{ projectSummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-02-route-params', 'project-101']"
+      >
+        Project 101
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-02-route-params', 'project-202']"
+      >
+        Project 202
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-02-route-params', 'project-303']"
+      >
+        Project 303
+      </a>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="project-title">
+        <h2 id="project-title">Current Project</h2>
+        <dl>
+          <div>
+            <dt>projectId signal</dt>
+            <dd>{{ projectId() }}</dd>
+          </div>
+          <div>
+            <dt>Name</dt>
+            <dd>{{ currentProject().name }}</dd>
+          </div>
+          <div>
+            <dt>Owner</dt>
+            <dd>{{ currentProject().owner }}</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>{{ currentProject().status }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="snapshot-title">
+        <h2 id="snapshot-title">Snapshot vs Stream</h2>
+        <dl>
+          <div>
+            <dt>snapshot.paramMap</dt>
+            <dd>
+              Read once when this component instance was created:
+              <code>{{ snapshotProjectId }}</code>
+            </dd>
+          </div>
+          <div>
+            <dt>paramMap Observable</dt>
+            <dd>
+              Emits when you click another project link:
+              <code>{{ projectId() }}</code>
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Param Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>:projectId</code> names a dynamic URL segment.</li>
+      <li><code>routerLink</code> can build a URL by passing path segments as an array.</li>
+      <li><code>snapshot.paramMap</code> is a one-time read.</li>
+      <li><code>paramMap</code> is the safer choice when the same component can stay alive while the URL changes.</li>
+    </ol>
+  </section>
+</main>

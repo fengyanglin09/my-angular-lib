@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f1e8;
+  color: #20252b;
+}
+
+.routes-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  display: grid;
+  gap: 22px;
+  padding: 26px;
+}
+
+.routes-content-grid {
+  grid-template-columns: minmax(280px, 0.8fr) minmax(280px, 1fr) minmax(280px, 1fr);
+}
+
+.lesson-link-button {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  display: inline-flex;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+  text-decoration: none;
+}
+
+.lesson-link-button:hover {
+  border-color: #27483d;
+}
+
+@media (max-width: 1120px) {
+  .routes-content-grid {
+    grid-template-columns: 1fr;
+  }
+}

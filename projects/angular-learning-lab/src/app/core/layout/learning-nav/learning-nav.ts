@@ -119,6 +119,7 @@ export class LearningNav {
 
   private readonly routesLessons: LessonLink[] = [
     { description: 'Map URLs to standalone components with route records, routerLink, and router-outlet.', number: 1, path: '/angular-route-lessons/lesson-01-route-basics', title: 'Route Basics' },
+    { description: 'Read dynamic URL segments like :projectId with snapshot and paramMap.', number: 2, path: '/angular-route-lessons/lesson-02-route-params/project-101', title: 'Route Params' },
   ];
 
   protected get categoryLabel(): string {
