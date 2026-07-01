@@ -1,0 +1,111 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="4" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 4</p>
+    <h1>Child Routes</h1>
+    <p>
+      Child routes let one parent component own a shared layout while smaller
+      route components render inside a nested <code>router-outlet</code>. This
+      is how many dashboards, settings pages, and tabbed workspaces are built.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="child-routes-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">children, nested outlet, relative links</p>
+        <h2 id="child-routes-title">Project Workspace</h2>
+      </div>
+      <p class="summary">Active child: {{ activeChildPath() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="workspace-shell">
+      <aside class="workspace-sidebar" aria-label="Project workspace navigation">
+        <p class="eyebrow">Parent Layout</p>
+        <h3>Customer Portal</h3>
+        <nav>
+          <a routerLink="overview" routerLinkActive="workspace-link--active">Overview</a>
+          <a routerLink="activity" routerLinkActive="workspace-link--active">Activity</a>
+          <a routerLink="settings" routerLinkActive="workspace-link--active">Settings</a>
+        </nav>
+      </aside>
+
+      <section class="workspace-content" aria-label="Child route content">
+        <p class="eyebrow">Nested router-outlet content</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="route-state-title">
+        <h2 id="route-state-title">Route Shape</h2>
+        <dl>
+          <div>
+            <dt>Parent URL</dt>
+            <dd>/angular-route-lessons/lesson-04-child-routes</dd>
+          </div>
+          <div>
+            <dt>Current child path</dt>
+            <dd>{{ activeChildPath() }}</dd>
+          </div>
+          <div>
+            <dt>Example full URL</dt>
+            <dd>/angular-route-lessons/lesson-04-child-routes/{{ activeChildPath() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <div class="panel-heading">
+          <h2 id="log-title">Nested Route Log</h2>
+          <button type="button" (click)="clearLog()">Clear log</button>
+        </div>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="child routes mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>parent route matches
+  parent component renders
+  parent template has router-outlet
+  child route matches
+  child component renders inside parent
+
+routerLink="activity"
+  no leading slash
+  relative to the parent route
+
+routerLink="/activity"
+  leading slash
+  starts from app root</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>children</code> defines routes below a parent route.</li>
+      <li>The parent component stays visible while child route content changes.</li>
+      <li>A nested <code>router-outlet</code> is where child components render.</li>
+      <li>Links like <code>routerLink="activity"</code> are relative to the current parent route.</li>
+      <li>A leading slash changes the meaning: <code>routerLink="/activity"</code> starts from the app root.</li>
+      <li>Angular knows which outlet to use from the matched route tree: child routes render in their parent's outlet.</li>
+    </ol>
+  </section>
+</main>

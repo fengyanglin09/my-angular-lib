@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
 
+import { Lesson04ChildRoutes } from './lesson-04-child-routes/lesson-04-child-routes';
+import { ProjectActivity } from './lesson-04-child-routes/project-activity';
+import { ProjectOverview } from './lesson-04-child-routes/project-overview';
+import { ProjectSettings } from './lesson-04-child-routes/project-settings';
+
 export const angularRouteLessonsRoutes: Routes = [
   {
     path: 'lesson-01-route-basics',
@@ -26,5 +31,28 @@ export const angularRouteLessonsRoutes: Routes = [
       import('./lesson-03-query-params/lesson-03-query-params').then(
         (m) => m.Lesson03QueryParams,
       ),
+  },
+  {
+    path: 'lesson-04-child-routes',
+    component: Lesson04ChildRoutes,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+      {
+        path: 'overview',
+        component: ProjectOverview,
+      },
+      {
+        path: 'activity',
+        component: ProjectActivity,
+      },
+      {
+        path: 'settings',
+        component: ProjectSettings,
+      },
+    ],
   },
 ];
