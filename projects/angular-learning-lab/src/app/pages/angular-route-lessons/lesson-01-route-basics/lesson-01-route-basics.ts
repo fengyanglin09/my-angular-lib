@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -33,7 +32,7 @@ const routeMatches: Record<RouteExample, RouteMatch> = {
 
 @Component({
   selector: 'app-lesson-01-route-basics',
-  imports: [JsonPipe, LearningNav, RouterLink],
+  imports: [LearningNav, RouterLink],
   templateUrl: './lesson-01-route-basics.html',
   styleUrl: './lesson-01-route-basics.css',
 })

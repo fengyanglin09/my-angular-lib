@@ -1,0 +1,140 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="3" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 3</p>
+    <h1>Query Params</h1>
+    <p>
+      Query params are optional URL values after <code>?</code>. They are useful
+      for page state like filters, sorting, search terms, selected tabs, and
+      pagination because the same route can stay loaded while the query string
+      changes.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="query-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">queryParamMap, queryParams, filtering</p>
+        <h2 id="query-title">Course Filter Route</h2>
+      </div>
+      <p class="summary">{{ querySummary() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ filter: 'all' })"
+      >
+        All courses
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ filter: 'active' })"
+      >
+        Active only
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ filter: 'archived' })"
+      >
+        Archived only
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ sort: 'recent' })"
+      >
+        Sort recent
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ sort: 'name' })"
+      >
+        Sort name
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ search: 'route' })"
+      >
+        Search route
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-03-query-params']"
+        [queryParams]="queryParamsFor({ search: '' })"
+      >
+        Clear search
+      </a>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="query-state-title">
+        <h2 id="query-state-title">Current Query State</h2>
+        <dl>
+          <div>
+            <dt>filter</dt>
+            <dd>{{ queryState().filter }}</dd>
+          </div>
+          <div>
+            <dt>sort</dt>
+            <dd>{{ queryState().sort }}</dd>
+          </div>
+          <div>
+            <dt>search</dt>
+            <dd>{{ queryState().search || 'none' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="comparison-card" aria-labelledby="courses-title">
+        <h2 id="courses-title">Visible Courses</h2>
+        <div class="course-list">
+          @for (course of visibleCourses(); track course.id) {
+            <article>
+              <h3>{{ course.title }}</h3>
+              <p>{{ course.status }} · updated {{ course.updatedDaysAgo }} days ago</p>
+            </article>
+          } @empty {
+            <p class="empty-state">No courses match the current query params.</p>
+          }
+        </div>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Query Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Route params identify the main thing: <code>/projects/project-101</code>.</li>
+      <li>Query params describe how to view it: <code>?filter=active&amp;sort=name</code>.</li>
+      <li><code>[queryParams]</code> writes query params when navigating.</li>
+      <li><code>queryParamMap</code> is the stream to watch when query params can change on the same component.</li>
+    </ol>
+  </section>
+</main>

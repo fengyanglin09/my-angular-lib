@@ -20,4 +20,11 @@ export const angularRouteLessonsRoutes: Routes = [
         (m) => m.Lesson02RouteParams,
       ),
   },
+  {
+    path: 'lesson-03-query-params',
+    loadComponent: () =>
+      import('./lesson-03-query-params/lesson-03-query-params').then(
+        (m) => m.Lesson03QueryParams,
+      ),
+  },
 ];
