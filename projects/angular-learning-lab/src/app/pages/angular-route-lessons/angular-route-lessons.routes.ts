@@ -4,6 +4,11 @@ import { Lesson04ChildRoutes } from './lesson-04-child-routes/lesson-04-child-ro
 import { ProjectActivity } from './lesson-04-child-routes/project-activity';
 import { ProjectOverview } from './lesson-04-child-routes/project-overview';
 import { ProjectSettings } from './lesson-04-child-routes/project-settings';
+import { AccountDashboard } from './lesson-05-named-outlets/account-dashboard';
+import { AccountDetails } from './lesson-05-named-outlets/account-details';
+import { AccountHelpPanel } from './lesson-05-named-outlets/account-help-panel';
+import { Lesson05NamedOutlets } from './lesson-05-named-outlets/lesson-05-named-outlets';
+import { AccountNotesPanel } from './lesson-05-named-outlets/account-notes-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -52,6 +57,35 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: 'settings',
         component: ProjectSettings,
+      },
+    ],
+  },
+  {
+    path: 'lesson-05-named-outlets',
+    component: Lesson05NamedOutlets,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        component: AccountDashboard,
+      },
+      {
+        path: 'details',
+        component: AccountDetails,
+      },
+      {
+        path: 'notes',
+        outlet: 'sidePanel',
+        component: AccountNotesPanel,
+      },
+      {
+        path: 'help',
+        outlet: 'sidePanel',
+        component: AccountHelpPanel,
       },
     ],
   },

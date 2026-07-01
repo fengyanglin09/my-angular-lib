@@ -122,6 +122,7 @@ export class LearningNav {
     { description: 'Read dynamic URL segments like :projectId with snapshot and paramMap.', number: 2, path: '/angular-route-lessons/lesson-02-route-params/project-101', title: 'Route Params' },
     { description: 'Use query params for optional filter, sort, and search state in the URL.', number: 3, path: '/angular-route-lessons/lesson-03-query-params', title: 'Query Params' },
     { description: 'Keep a parent layout on screen while child route content changes in a nested outlet.', number: 4, path: '/angular-route-lessons/lesson-04-child-routes/overview', title: 'Child Routes' },
+    { description: 'Render primary content and a named side panel from the route tree.', number: 5, path: '/angular-route-lessons/lesson-05-named-outlets/dashboard', title: 'Named Outlets' },
   ];
 
   protected get categoryLabel(): string {

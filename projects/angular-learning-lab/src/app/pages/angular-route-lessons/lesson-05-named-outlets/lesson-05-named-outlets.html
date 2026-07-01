@@ -1,0 +1,150 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 5</p>
+    <h1>Named Outlets</h1>
+    <p>
+      A component can have one primary unnamed <code>router-outlet</code> and
+      additional named outlets. This is useful when the URL should control both
+      the main content and a side panel, modal, drawer, or inspector.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="named-outlets-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">primary outlet, named outlet, auxiliary route</p>
+        <h2 id="named-outlets-title">Account Workspace</h2>
+      </div>
+      <p class="summary">Primary: {{ primaryOutlet() }} · Side: {{ sidePanelOutlet() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="[{ outlets: { primary: ['dashboard'], sidePanel: null } }]"
+      >
+        Dashboard only
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="[{ outlets: { primary: ['dashboard'], sidePanel: ['notes'] } }]"
+      >
+        Dashboard + notes
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="[{ outlets: { primary: ['details'], sidePanel: ['help'] } }]"
+      >
+        Details + help
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="[{ outlets: { sidePanel: null } }]"
+      >
+        Close side panel
+      </a>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="workspace-shell">
+      <section class="primary-region" aria-label="Primary route content">
+        <p class="eyebrow">Primary unnamed outlet</p>
+        <router-outlet (activate)="outletActivated('primary', $event)" />
+      </section>
+
+      <aside class="side-region" aria-label="Named side panel outlet">
+        <p class="eyebrow">Named outlet: sidePanel</p>
+        <router-outlet
+          name="sidePanel"
+          (activate)="outletActivated('sidePanel', $event)"
+          (deactivate)="sidePanelDeactivated()"
+        />
+        @if (sidePanelOutlet() === 'closed') {
+          <article class="empty-panel">
+            <h3>Side panel closed</h3>
+            <p>Open notes or help to render a route in the named outlet.</p>
+          </article>
+        }
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="url-shape-title">
+        <h2 id="url-shape-title">URL Shape</h2>
+        <dl>
+          <div>
+            <dt>Primary only</dt>
+            <dd>/lesson-05-named-outlets/dashboard</dd>
+          </div>
+          <div>
+            <dt>Primary + named outlet</dt>
+            <dd>/lesson-05-named-outlets/(dashboard//sidePanel:notes)</dd>
+          </div>
+          <div>
+            <dt>Outlet name</dt>
+            <dd><code>sidePanel</code> must match the route's <code>outlet</code> value.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Outlet Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="named outlets mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>primary route
+  no outlet property
+  renders in &lt;router-outlet /&gt;
+
+named route
+  outlet: 'sidePanel'
+  renders in &lt;router-outlet name="sidePanel" /&gt;
+
+one URL can describe both</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="events-title">
+    <h2 id="events-title">Outlet Events</h2>
+    <ol>
+      <li><code>(activate)</code> runs after navigation makes Angular insert a routed component into that outlet.</li>
+      <li>The <code>$event</code> value is the component instance that was activated.</li>
+      <li><code>(deactivate)</code> runs after navigation makes Angular remove the current routed component from that outlet.</li>
+      <li>Opening <code>sidePanel: ['notes']</code> triggers <code>activate</code> for the notes panel.</li>
+      <li>Closing <code>sidePanel: null</code> triggers <code>deactivate</code> for the current side panel component.</li>
+      <li>Primary content is normally changed by navigating to another primary route, not by closing it with <code>null</code>.</li>
+      <li>This lesson uses those events only for display state and logging; the route itself is still the source of truth.</li>
+    </ol>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Use one unnamed outlet for normal primary content.</li>
+      <li>Use named outlets for secondary route-driven UI, like a side panel.</li>
+      <li>The route config must include <code>outlet: 'sidePanel'</code> for the named outlet route.</li>
+      <li>Closing a named outlet uses <code>sidePanel: null</code> in the outlets command.</li>
+      <li>The primary outlet is main page content. Change it with another primary route, such as <code>primary: ['dashboard']</code>.</li>
+      <li><code>activate</code> and <code>deactivate</code> are outlet lifecycle events, not route definitions.</li>
+    </ol>
+  </section>
+</main>
