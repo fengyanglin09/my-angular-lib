@@ -1,0 +1,143 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 9</p>
+    <h1>Route Resolvers</h1>
+    <p>
+      A resolver loads data during navigation before Angular activates the route.
+      The component receives that data from <code>ActivatedRoute.data</code>,
+      so the page can start with required data already available.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="resolver-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">ResolveFn, route data, required page data</p>
+        <h2 id="resolver-title">Project Detail Resolver</h2>
+      </div>
+      <p class="summary">{{ project().id }} · {{ project().status }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-09-route-resolvers', 'project-101']"
+      >
+        Project 101
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-09-route-resolvers', 'project-202']"
+      >
+        Project 202
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-09-route-resolvers', 'project-303']"
+      >
+        Project 303
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-09-route-resolvers', 'missing-project']"
+      >
+        Missing project
+      </a>
+      <button type="button" (click)="projectApi.clearLog()">Clear log</button>
+    </div>
+
+    <div class="resolver-demo">
+      <section class="project-card" aria-labelledby="project-title">
+        <p class="eyebrow">Resolved Project</p>
+        <h2 id="project-title">{{ project().name }}</h2>
+        <p>{{ project().summary }}</p>
+        <dl>
+          <div>
+            <dt>ID</dt>
+            <dd>{{ project().id }}</dd>
+          </div>
+          <div>
+            <dt>Owner</dt>
+            <dd>{{ project().owner }}</dd>
+          </div>
+          <div>
+            <dt>Priority</dt>
+            <dd>{{ project().priority }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">What to watch</p>
+        <ol>
+          <li>Click a different project link.</li>
+          <li>The resolver starts before the project page data updates.</li>
+          <li><code>ActivatedRoute.data</code> emits the resolved <code>project</code>.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="data-title">
+        <h2 id="data-title">Resolver Data Shape</h2>
+        <dl>
+          <div>
+            <dt>Route config key</dt>
+            <dd><code>project</code></dd>
+          </div>
+          <div>
+            <dt>Component reads</dt>
+            <dd><code>data['project']</code></dd>
+          </div>
+          <div>
+            <dt>Current value</dt>
+            <dd>{{ project().name }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Resolver Log</h2>
+        <ol>
+          @for (log of projectApi.resolverLog(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="resolver mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>navigation starts
+  router matches route
+  resolver runs
+  resolved data is attached to route
+  component activates
+  component reads ActivatedRoute.data</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>ResolveFn</code> runs before route activation.</li>
+      <li>The route config chooses the data key, such as <code>project</code> in the <code>resolve</code> object.</li>
+      <li>A route can define multiple resolvers; each key becomes one value on <code>ActivatedRoute.data</code>.</li>
+      <li>The component reads resolved values from <code>ActivatedRoute.data</code>.</li>
+      <li>Resolvers are good for required route data, but they delay route activation while loading.</li>
+      <li>Optional or secondary data can usually load after activation from the component or a service.</li>
+    </ol>
+  </section>
+</main>

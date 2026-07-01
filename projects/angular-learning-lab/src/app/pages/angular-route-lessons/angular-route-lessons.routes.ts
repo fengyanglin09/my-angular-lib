@@ -21,6 +21,8 @@ import { GuardDeniedPanel } from './lesson-08-route-guards/guard-denied-panel';
 import { GuardPublicPanel } from './lesson-08-route-guards/guard-public-panel';
 import { GuardAdminPanel } from './lesson-08-route-guards/guard-admin-panel';
 import { Lesson08RouteGuards } from './lesson-08-route-guards/lesson-08-route-guards';
+import { projectResolver } from './lesson-09-route-resolvers/project.resolver';
+import { Lesson09RouteResolvers } from './lesson-09-route-resolvers/lesson-09-route-resolvers';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -171,5 +173,17 @@ export const angularRouteLessonsRoutes: Routes = [
         component: GuardDeniedPanel,
       },
     ],
+  },
+  {
+    path: 'lesson-09-route-resolvers',
+    pathMatch: 'full',
+    redirectTo: 'lesson-09-route-resolvers/project-101',
+  },
+  {
+    path: 'lesson-09-route-resolvers/:projectId',
+    component: Lesson09RouteResolvers,
+    resolve: {
+      project: projectResolver,
+    },
   },
 ];

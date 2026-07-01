@@ -12,6 +12,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 6. Redirects | `/angular-route-lessons/lesson-06-redirects-wildcards/dashboard` | How default redirects, legacy redirects, `pathMatch`, and wildcard fallbacks shape navigation. |
 | 7. Programmatic Nav | `/angular-route-lessons/lesson-07-programmatic-navigation/inbox` | How to navigate from TypeScript with `Router.navigate`, `relativeTo`, `queryParams`, and `navigateByUrl`. |
 | 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can allow navigation, block navigation, or redirect to a safer route. |
+| 9. Route Resolvers | `/angular-route-lessons/lesson-09-route-resolvers/project-101` | How a resolver loads data before route activation and exposes it through `ActivatedRoute.data`. |
 
 ## Big Ideas
 
@@ -43,3 +44,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - A guard runs during navigation before Angular activates the target route.
 - A guard can return `true`, `false`, or a `UrlTree` redirect.
 - Guards protect route entry; they do not automatically remove a user from a page after access changes.
+- A resolver runs during navigation before the target route activates.
+- Resolved values are available on `ActivatedRoute.data`.
+- Resolvers are useful when the route should not render until required data is available.

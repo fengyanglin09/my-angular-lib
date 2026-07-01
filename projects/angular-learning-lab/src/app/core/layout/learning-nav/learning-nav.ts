@@ -126,6 +126,7 @@ export class LearningNav {
     { description: 'Use default redirects, legacy URL redirects, pathMatch, and scoped wildcard fallbacks.', number: 6, path: '/angular-route-lessons/lesson-06-redirects-wildcards/dashboard', title: 'Redirects' },
     { description: 'Navigate from TypeScript with Router.navigate, relativeTo, queryParams, and navigateByUrl.', number: 7, path: '/angular-route-lessons/lesson-07-programmatic-navigation/inbox', title: 'Programmatic Nav' },
     { description: 'Allow, block, or redirect navigation with a functional canActivate guard.', number: 8, path: '/angular-route-lessons/lesson-08-route-guards/public', title: 'Route Guards' },
+    { description: 'Load route data before activation with a functional resolver and ActivatedRoute.data.', number: 9, path: '/angular-route-lessons/lesson-09-route-resolvers/project-101', title: 'Route Resolvers' },
   ];
 
   protected get categoryLabel(): string {
