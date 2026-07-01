@@ -11,6 +11,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 5. Named Outlets | `/angular-route-lessons/lesson-05-named-outlets/dashboard` | How an unnamed primary outlet and a named outlet can render different route branches at the same time. |
 | 6. Redirects | `/angular-route-lessons/lesson-06-redirects-wildcards/dashboard` | How default redirects, legacy redirects, `pathMatch`, and wildcard fallbacks shape navigation. |
 | 7. Programmatic Nav | `/angular-route-lessons/lesson-07-programmatic-navigation/inbox` | How to navigate from TypeScript with `Router.navigate`, `relativeTo`, `queryParams`, and `navigateByUrl`. |
+| 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can allow navigation, block navigation, or redirect to a safer route. |
 
 ## Big Ideas
 
@@ -39,3 +40,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - `Router.navigate(...)` builds navigation from route commands.
 - `relativeTo` makes programmatic navigation relative to the current activated route.
 - `navigateByUrl(...)` navigates to a complete URL string.
+- A guard runs during navigation before Angular activates the target route.
+- A guard can return `true`, `false`, or a `UrlTree` redirect.
+- Guards protect route entry; they do not automatically remove a user from a page after access changes.

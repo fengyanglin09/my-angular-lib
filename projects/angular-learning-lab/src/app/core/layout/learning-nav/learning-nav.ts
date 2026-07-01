@@ -125,6 +125,7 @@ export class LearningNav {
     { description: 'Render primary content and a named side panel from the route tree.', number: 5, path: '/angular-route-lessons/lesson-05-named-outlets/dashboard', title: 'Named Outlets' },
     { description: 'Use default redirects, legacy URL redirects, pathMatch, and scoped wildcard fallbacks.', number: 6, path: '/angular-route-lessons/lesson-06-redirects-wildcards/dashboard', title: 'Redirects' },
     { description: 'Navigate from TypeScript with Router.navigate, relativeTo, queryParams, and navigateByUrl.', number: 7, path: '/angular-route-lessons/lesson-07-programmatic-navigation/inbox', title: 'Programmatic Nav' },
+    { description: 'Allow, block, or redirect navigation with a functional canActivate guard.', number: 8, path: '/angular-route-lessons/lesson-08-route-guards/public', title: 'Route Guards' },
   ];
 
   protected get categoryLabel(): string {

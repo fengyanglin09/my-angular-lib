@@ -16,6 +16,11 @@ import { RedirectDemoNotFound } from './lesson-06-redirects-wildcards/redirect-d
 import { Lesson07ProgrammaticNavigation } from './lesson-07-programmatic-navigation/lesson-07-programmatic-navigation';
 import { NavigationInboxPanel } from './lesson-07-programmatic-navigation/navigation-inbox-panel';
 import { NavigationArchivePanel } from './lesson-07-programmatic-navigation/navigation-archive-panel';
+import { adminAccessGuard } from './lesson-08-route-guards/admin-access.guard';
+import { GuardDeniedPanel } from './lesson-08-route-guards/guard-denied-panel';
+import { GuardPublicPanel } from './lesson-08-route-guards/guard-public-panel';
+import { GuardAdminPanel } from './lesson-08-route-guards/guard-admin-panel';
+import { Lesson08RouteGuards } from './lesson-08-route-guards/lesson-08-route-guards';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -140,6 +145,30 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: 'archive',
         component: NavigationArchivePanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-08-route-guards',
+    component: Lesson08RouteGuards,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'public',
+      },
+      {
+        path: 'public',
+        component: GuardPublicPanel,
+      },
+      {
+        path: 'admin',
+        canActivate: [adminAccessGuard],
+        component: GuardAdminPanel,
+      },
+      {
+        path: 'access-denied',
+        component: GuardDeniedPanel,
       },
     ],
   },

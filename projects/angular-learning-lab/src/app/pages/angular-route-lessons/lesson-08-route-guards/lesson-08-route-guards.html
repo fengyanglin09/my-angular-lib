@@ -1,0 +1,117 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 8</p>
+    <h1>Route Guards</h1>
+    <p>
+      Route guards decide whether navigation should continue before Angular
+      activates a route. A guard can allow the route, block it, or redirect to a
+      safer route.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="guards-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">canActivate, UrlTree, route access</p>
+        <h2 id="guards-title">Admin Access Demo</h2>
+      </div>
+      <p class="summary">
+        Active panel: {{ activePanel() }} · Admin access:
+        {{ access.adminAccess() ? 'granted' : 'revoked' }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a class="lesson-link-button" routerLink="public">Public page</a>
+      <a class="lesson-link-button" routerLink="admin">Admin page</a>
+      <a class="lesson-link-button" routerLink="access-denied">Access denied page</a>
+      <button type="button" (click)="access.grantAdminAccess()">Grant admin access</button>
+      <button type="button" (click)="access.revokeAdminAccess()">Revoke admin access</button>
+      <button type="button" (click)="access.clearLog()">Clear log</button>
+    </div>
+
+    <div class="guard-demo">
+      <section class="demo-main" aria-label="Guarded route outlet">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Revoke admin access.</li>
+          <li>Click <strong>Admin page</strong>.</li>
+          <li>The guard redirects to <strong>Access denied</strong>.</li>
+          <li>Grant access and click <strong>Admin page</strong> again.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="return-title">
+        <h2 id="return-title">Guard Return Values</h2>
+        <dl>
+          <div>
+            <dt>true</dt>
+            <dd>Allow navigation and activate the target route.</dd>
+          </div>
+          <div>
+            <dt>false</dt>
+            <dd>Cancel navigation and stay where you are.</dd>
+          </div>
+          <div>
+            <dt>UrlTree</dt>
+            <dd>Cancel the attempted route and redirect to the UrlTree route.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Guard Log</h2>
+        <ol>
+          @for (log of access.guardLog(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="route guard mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>navigation starts
+  router finds target route
+  canActivate guard runs
+  true -> activate component
+  UrlTree -> redirect elsewhere
+
+guard protects entry
+  not every future state change</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>canActivate</code> runs before Angular activates the guarded route.</li>
+      <li>A functional guard can use <code>inject(...)</code> to read services.</li>
+      <li>Return <code>true</code> to allow navigation.</li>
+      <li>Return <code>false</code> to cancel navigation and stay on the current route.</li>
+      <li>Return a <code>UrlTree</code> when you want to redirect instead of merely canceling.</li>
+      <li>A guard redirect can be absolute, or relative when you pass <code>relativeTo: route</code>.</li>
+      <li>Relative guard redirects depend on the route snapshot passed into the guard.</li>
+      <li>Guards run during navigation; they do not continuously watch access state after activation.</li>
+    </ol>
+  </section>
+</main>
