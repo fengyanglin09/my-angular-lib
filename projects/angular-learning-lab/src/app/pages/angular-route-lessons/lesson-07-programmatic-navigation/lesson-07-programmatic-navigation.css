@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f1e8;
+  color: #20252b;
+}
+
+.routes-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  display: grid;
+  gap: 22px;
+  padding: 26px;
+}
+
+.navigation-demo {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.4fr);
+}
+
+.demo-main,
+.demo-state {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-height: 260px;
+  padding: 18px;
+}
+
+.demo-state {
+  background: #eef3f0;
+}
+
+.routes-content-grid {
+  grid-template-columns: minmax(300px, 0.9fr) minmax(320px, 1.1fr) minmax(280px, 0.8fr);
+}
+
+@media (max-width: 1120px) {
+  .navigation-demo,
+  .routes-content-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -10,6 +10,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 4. Child Routes | `/angular-route-lessons/lesson-04-child-routes/overview` | How a parent route keeps a shared layout on screen while child routes render inside a nested `router-outlet`. |
 | 5. Named Outlets | `/angular-route-lessons/lesson-05-named-outlets/dashboard` | How an unnamed primary outlet and a named outlet can render different route branches at the same time. |
 | 6. Redirects | `/angular-route-lessons/lesson-06-redirects-wildcards/dashboard` | How default redirects, legacy redirects, `pathMatch`, and wildcard fallbacks shape navigation. |
+| 7. Programmatic Nav | `/angular-route-lessons/lesson-07-programmatic-navigation/inbox` | How to navigate from TypeScript with `Router.navigate`, `relativeTo`, `queryParams`, and `navigateByUrl`. |
 
 ## Big Ideas
 
@@ -35,3 +36,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - `redirectTo` changes the matched URL to another route.
 - `pathMatch: 'full'` means the whole remaining path must match.
 - `**` is a wildcard fallback and should usually be last within its route group.
+- `Router.navigate(...)` builds navigation from route commands.
+- `relativeTo` makes programmatic navigation relative to the current activated route.
+- `navigateByUrl(...)` navigates to a complete URL string.

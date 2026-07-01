@@ -13,6 +13,9 @@ import { Lesson06RedirectsWildcards } from './lesson-06-redirects-wildcards/less
 import { RedirectDemoDashboard } from './lesson-06-redirects-wildcards/redirect-demo-dashboard';
 import { RedirectDemoReports } from './lesson-06-redirects-wildcards/redirect-demo-reports';
 import { RedirectDemoNotFound } from './lesson-06-redirects-wildcards/redirect-demo-not-found';
+import { Lesson07ProgrammaticNavigation } from './lesson-07-programmatic-navigation/lesson-07-programmatic-navigation';
+import { NavigationInboxPanel } from './lesson-07-programmatic-navigation/navigation-inbox-panel';
+import { NavigationArchivePanel } from './lesson-07-programmatic-navigation/navigation-archive-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -118,6 +121,25 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: '**',
         component: RedirectDemoNotFound,
+      },
+    ],
+  },
+  {
+    path: 'lesson-07-programmatic-navigation',
+    component: Lesson07ProgrammaticNavigation,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'inbox',
+      },
+      {
+        path: 'inbox',
+        component: NavigationInboxPanel,
+      },
+      {
+        path: 'archive',
+        component: NavigationArchivePanel,
       },
     ],
   },

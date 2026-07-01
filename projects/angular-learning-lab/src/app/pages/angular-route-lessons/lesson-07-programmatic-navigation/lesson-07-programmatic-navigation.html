@@ -1,0 +1,120 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="7" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 7</p>
+    <h1>Programmatic Navigation</h1>
+    <p>
+      Not every navigation starts from a link. Components often navigate after a
+      save succeeds, after a wizard step is completed, or after a button changes
+      filter state. In TypeScript, that job belongs to <code>Router</code>.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="programmatic-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Router.navigate, relativeTo, queryParams</p>
+        <h2 id="programmatic-title">Mailbox Navigation</h2>
+      </div>
+      <p class="summary">
+        Panel: {{ activePanel() }} · Filter: {{ queryState().filter }} · Sort: {{ queryState().sort }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="goToInbox()">Go to inbox</button>
+      <button type="button" (click)="goToUnreadInbox()">Unread inbox</button>
+      <button type="button" (click)="goToArchive()">Go to archive</button>
+      <button type="button" (click)="sortOldestFirst()">Merge sort=oldest</button>
+      <button type="button" (click)="goByAbsoluteUrl()">navigateByUrl reset</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="navigation-demo">
+      <section class="demo-main" aria-label="Programmatic navigation routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Current query params</p>
+        <dl>
+          <div>
+            <dt>filter</dt>
+            <dd>{{ queryState().filter }}</dd>
+          </div>
+          <div>
+            <dt>sort</dt>
+            <dd>{{ queryState().sort }}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="method-title">
+        <h2 id="method-title">Method Choice</h2>
+        <dl>
+          <div>
+            <dt>navigate</dt>
+            <dd>Best when you want route commands, relative navigation, or query param options.</dd>
+          </div>
+          <div>
+            <dt>navigateByUrl</dt>
+            <dd>Best when you already have the complete URL string.</dd>
+          </div>
+          <div>
+            <dt>relativeTo</dt>
+            <dd>Keeps commands scoped under the current route, like a relative <code>routerLink</code>.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Navigation Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="programmatic navigation mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>routerLink
+  navigation declared in template
+
+Router.navigate
+  navigation started by TypeScript
+  route commands + options
+
+Router.navigateByUrl
+  complete URL string</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Use <code>Router.navigate</code> when TypeScript needs to start navigation.</li>
+      <li><code>relativeTo</code> makes route commands resolve under the current activated route.</li>
+      <li>The current path is the URL path before <code>?</code>, such as <code>/lesson-07-programmatic-navigation/archive</code>.</li>
+      <li>Navigation options are the object passed after the commands, such as <code>queryParams</code> and <code>queryParamsHandling</code>.</li>
+      <li><code>router.navigate([])</code> keeps the current path and only applies navigation options.</li>
+      <li><code>queryParamsHandling: 'merge'</code> keeps existing query params unless you replace them.</li>
+      <li>Use <code>navigateByUrl</code> when you already have a complete URL string.</li>
+    </ol>
+  </section>
+</main>
