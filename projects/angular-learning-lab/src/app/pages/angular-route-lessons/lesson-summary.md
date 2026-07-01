@@ -9,6 +9,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 3. Query Params | `/angular-route-lessons/lesson-03-query-params` | How optional URL state like filters, sorting, and search terms can live after `?` in the URL. |
 | 4. Child Routes | `/angular-route-lessons/lesson-04-child-routes/overview` | How a parent route keeps a shared layout on screen while child routes render inside a nested `router-outlet`. |
 | 5. Named Outlets | `/angular-route-lessons/lesson-05-named-outlets/dashboard` | How an unnamed primary outlet and a named outlet can render different route branches at the same time. |
+| 6. Redirects | `/angular-route-lessons/lesson-06-redirects-wildcards/dashboard` | How default redirects, legacy redirects, `pathMatch`, and wildcard fallbacks shape navigation. |
 
 ## Big Ideas
 
@@ -31,3 +32,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - An unnamed route renders in the primary unnamed outlet.
 - A route with `outlet: 'sidePanel'` renders in `<router-outlet name="sidePanel" />`.
 - Named outlet URLs use auxiliary route syntax, such as `(dashboard//sidePanel:notes)`.
+- `redirectTo` changes the matched URL to another route.
+- `pathMatch: 'full'` means the whole remaining path must match.
+- `**` is a wildcard fallback and should usually be last within its route group.

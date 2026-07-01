@@ -1,0 +1,114 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="6" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 6</p>
+    <h1>Redirects And Wildcards</h1>
+    <p>
+      Redirects move one matched URL to another route. Wildcards catch unmatched
+      paths. Together they help you create default child pages, support old URLs,
+      and show useful fallback content when a path is missing.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="redirect-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">redirectTo, pathMatch, wildcard</p>
+        <h2 id="redirect-title">Settings Area Routes</h2>
+      </div>
+      <p class="summary">Active panel: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a class="lesson-link-button" routerLink="../lesson-06-redirects-wildcards">
+        Empty child path
+      </a>
+      <a class="lesson-link-button" routerLink="dashboard">Dashboard</a>
+      <a class="lesson-link-button" routerLink="reports">Reports</a>
+      <a class="lesson-link-button" routerLink="old-reports">Legacy reports URL</a>
+      <a class="lesson-link-button" routerLink="missing-section">Missing section</a>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="redirect-demo">
+      <section class="demo-main" aria-label="Redirect demo outlet">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-notes">
+        <p class="eyebrow">What to watch</p>
+        <ol>
+          <li><strong>Empty child path</strong> redirects to <code>dashboard</code>.</li>
+          <li><strong>Legacy reports URL</strong> redirects to <code>reports</code>.</li>
+          <li><strong>Missing section</strong> stays under lesson 6 and renders the wildcard fallback.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="matching-order-title">
+        <h2 id="matching-order-title">Matching Order</h2>
+        <dl>
+          <div>
+            <dt>1. Default redirect</dt>
+            <dd><code>'' -> dashboard</code></dd>
+          </div>
+          <div>
+            <dt>2. Real routes</dt>
+            <dd><code>dashboard</code> and <code>reports</code></dd>
+          </div>
+          <div>
+            <dt>3. Legacy redirect</dt>
+            <dd><code>old-reports -> reports</code></dd>
+          </div>
+          <div>
+            <dt>4. Fallback</dt>
+            <dd><code>**</code> catches anything left over.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Redirect Log</h2>
+        <ol>
+          @for (log of logs(); track log.id) {
+            <li>{{ log.message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="redirects mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>router checks routes top to bottom
+  exact/default redirect can move URL
+  normal route can render component
+  wildcard catches leftovers
+
+put ** last
+  it matches almost anything</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>redirectTo</code> changes navigation to another route.</li>
+      <li><code>pathMatch: 'full'</code> is important for empty-path redirects.</li>
+      <li><code>**</code> should usually be the last route in its route group.</li>
+      <li>A wildcard can be scoped inside child routes, so it only catches missing paths in that section.</li>
+    </ol>
+  </section>
+</main>

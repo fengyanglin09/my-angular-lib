@@ -123,6 +123,7 @@ export class LearningNav {
     { description: 'Use query params for optional filter, sort, and search state in the URL.', number: 3, path: '/angular-route-lessons/lesson-03-query-params', title: 'Query Params' },
     { description: 'Keep a parent layout on screen while child route content changes in a nested outlet.', number: 4, path: '/angular-route-lessons/lesson-04-child-routes/overview', title: 'Child Routes' },
     { description: 'Render primary content and a named side panel from the route tree.', number: 5, path: '/angular-route-lessons/lesson-05-named-outlets/dashboard', title: 'Named Outlets' },
+    { description: 'Use default redirects, legacy URL redirects, pathMatch, and scoped wildcard fallbacks.', number: 6, path: '/angular-route-lessons/lesson-06-redirects-wildcards/dashboard', title: 'Redirects' },
   ];
 
   protected get categoryLabel(): string {

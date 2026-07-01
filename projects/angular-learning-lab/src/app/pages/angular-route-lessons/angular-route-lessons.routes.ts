@@ -9,6 +9,10 @@ import { AccountDetails } from './lesson-05-named-outlets/account-details';
 import { AccountHelpPanel } from './lesson-05-named-outlets/account-help-panel';
 import { Lesson05NamedOutlets } from './lesson-05-named-outlets/lesson-05-named-outlets';
 import { AccountNotesPanel } from './lesson-05-named-outlets/account-notes-panel';
+import { Lesson06RedirectsWildcards } from './lesson-06-redirects-wildcards/lesson-06-redirects-wildcards';
+import { RedirectDemoDashboard } from './lesson-06-redirects-wildcards/redirect-demo-dashboard';
+import { RedirectDemoReports } from './lesson-06-redirects-wildcards/redirect-demo-reports';
+import { RedirectDemoNotFound } from './lesson-06-redirects-wildcards/redirect-demo-not-found';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -86,6 +90,34 @@ export const angularRouteLessonsRoutes: Routes = [
         path: 'help',
         outlet: 'sidePanel',
         component: AccountHelpPanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-06-redirects-wildcards',
+    component: Lesson06RedirectsWildcards,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        component: RedirectDemoDashboard,
+      },
+      {
+        path: 'reports',
+        component: RedirectDemoReports,
+      },
+      {
+        path: 'old-reports',
+        pathMatch: 'full',
+        redirectTo: 'reports',
+      },
+      {
+        path: '**',
+        component: RedirectDemoNotFound,
       },
     ],
   },
