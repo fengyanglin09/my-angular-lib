@@ -1,0 +1,130 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="12" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 12</p>
+    <h1>Lazy Route Groups</h1>
+    <p>
+      <code>loadChildren</code> lazy-loads a group of child routes. This is
+      useful when a feature area has several related pages and the user may not
+      need that feature immediately.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="lazy-routes-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">loadChildren, route chunks, feature route files</p>
+        <h2 id="lazy-routes-title">Lazy Admin Feature</h2>
+      </div>
+      <p class="summary">Active lazy child: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="admin/overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Load admin overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="admin/reports"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Load admin reports
+      </a>
+      <button type="button" (click)="log.clearLog()">Clear log</button>
+    </div>
+
+    <div class="lazy-demo">
+      <section class="demo-main" aria-label="Lazy route outlet">
+        <p class="eyebrow">Nested outlet result</p>
+        @if (activePanel() === 'No lazy child route active yet') {
+          <article class="empty-outlet">
+            <h3>No lazy child route active yet</h3>
+            <p>
+              Click an admin link to make Angular match the
+              <code>loadChildren</code> route and import the lazy admin route
+              file.
+            </p>
+          </article>
+        }
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">What to watch</p>
+        <ol>
+          <li>The lesson route loads first.</li>
+          <li>Click an admin link.</li>
+          <li>Angular imports the lazy admin route group.</li>
+          <li>The lazy child component renders inside this parent outlet.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="choice-title">
+        <h2 id="choice-title">loadComponent vs loadChildren</h2>
+        <dl>
+          <div>
+            <dt>loadComponent</dt>
+            <dd>Best for one standalone page component.</dd>
+          </div>
+          <div>
+            <dt>loadChildren</dt>
+            <dd>Best for a feature route file with several child routes.</dd>
+          </div>
+          <div>
+            <dt>Both</dt>
+            <dd>Use dynamic <code>import(...)</code>, so Angular can split code.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">Lazy Route Log</h2>
+        <ol>
+          @for (message of log.routeLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="lazy route mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>user enters lesson route
+  parent lesson component loads
+
+user enters /admin/overview
+  router hits loadChildren
+  lazy route file is imported
+  lazy child route matches
+  lazy child renders in outlet</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>loadChildren</code> lazy-loads a route group, not just one component.</li>
+      <li>The lazy route file exports a normal <code>Routes</code> array.</li>
+      <li>The parent route still needs a <code>router-outlet</code> for lazy children.</li>
+      <li>Lazy loading is about when code is requested, not about changing how routes match.</li>
+      <li>Use lazy route groups for larger feature areas that users may not visit right away.</li>
+    </ol>
+  </section>
+</main>

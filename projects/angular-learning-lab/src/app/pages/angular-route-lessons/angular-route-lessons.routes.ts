@@ -29,6 +29,7 @@ import { CanDeactivatePreviewPanel } from './lesson-10-can-deactivate/can-deacti
 import { pendingChangesGuard } from './lesson-10-can-deactivate/pending-changes.guard';
 import { Lesson11RouteData } from './lesson-11-route-data/lesson-11-route-data';
 import { RouteDataPanel } from './lesson-11-route-data/route-data-panel';
+import { Lesson12LazyRoutes } from './lesson-12-lazy-routes/lesson-12-lazy-routes';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -265,6 +266,19 @@ export const angularRouteLessonsRoutes: Routes = [
             requiredRole: 'Compliance Reviewer',
           },
         },
+      },
+    ],
+  },
+  {
+    path: 'lesson-12-lazy-routes',
+    component: Lesson12LazyRoutes,
+    children: [
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./lesson-12-lazy-routes/lazy-admin.routes').then(
+            (m) => m.lazyAdminRoutes,
+          ),
       },
     ],
   },

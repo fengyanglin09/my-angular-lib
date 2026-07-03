@@ -129,6 +129,7 @@ export class LearningNav {
     { description: 'Load route data before activation with a functional resolver and ActivatedRoute.data.', number: 9, path: '/angular-route-lessons/lesson-09-route-resolvers/project-101', title: 'Route Resolvers' },
     { description: 'Prevent leaving a dirty editor route with a canDeactivate guard.', number: 10, path: '/angular-route-lessons/lesson-10-can-deactivate/editor', title: 'CanDeactivate' },
     { description: 'Attach static metadata and page titles to route records.', number: 11, path: '/angular-route-lessons/lesson-11-route-data/dashboard', title: 'Route Data' },
+    { description: 'Lazy-load a feature route file with loadChildren.', number: 12, path: '/angular-route-lessons/lesson-12-lazy-routes', title: 'Lazy Routes' },
   ];
 
   protected get categoryLabel(): string {
