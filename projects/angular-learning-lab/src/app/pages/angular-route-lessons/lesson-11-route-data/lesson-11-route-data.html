@@ -1,0 +1,138 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="11" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 11</p>
+    <h1>Route Data and Titles</h1>
+    <p>
+      Routes can carry static metadata with <code>data</code> and page titles
+      with <code>title</code>. This is useful for page labels, breadcrumbs,
+      access hints, and analytics names that belong to the route, not to a
+      backend record.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="route-data-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">data, title, ActivatedRoute.data</p>
+        <h2 id="route-data-title">Workspace Metadata</h2>
+      </div>
+      <p class="summary">Active routed component: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="dashboard"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Dashboard data
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="billing"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Billing data
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="audit"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Audit data
+      </a>
+    </div>
+
+    <div class="route-data-demo">
+      <section class="demo-main" aria-label="Route data routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">What to watch</p>
+        <ol>
+          <li>Click each route data link.</li>
+          <li>The same routed component stays reusable.</li>
+          <li>The displayed metadata changes because the active route changed.</li>
+          <li>The browser tab title changes from the route <code>title</code>.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="metadata-title">
+        <h2 id="metadata-title">Metadata Use Cases</h2>
+        <dl>
+          <div>
+            <dt>Breadcrumbs</dt>
+            <dd>Route data can provide a stable label for navigation trails.</dd>
+          </div>
+          <div>
+            <dt>Access hints</dt>
+            <dd>Route data can describe what role a route expects.</dd>
+          </div>
+          <div>
+            <dt>Page titles</dt>
+            <dd><code>title</code> updates the document title for the active route.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="difference-title">
+        <h2 id="difference-title">Data vs Resolver</h2>
+        <dl>
+          <div>
+            <dt>data</dt>
+            <dd>Already known when writing the route config.</dd>
+          </div>
+          <div>
+            <dt>resolve</dt>
+            <dd>Loaded or calculated during navigation.</dd>
+          </div>
+          <div>
+            <dt>component reads</dt>
+            <dd>Both are available through <code>ActivatedRoute.data</code>.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="route data mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>route config
+  path
+  component
+  title
+  data
+
+navigation matches route
+  component activates
+  component reads route.data</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>data</code> is static metadata on the route config.</li>
+      <li><code>title</code> is the route's document title metadata.</li>
+      <li>A component reads route metadata from <code>ActivatedRoute.data</code>.</li>
+      <li>The same component can render different route metadata for different paths.</li>
+      <li>Use <code>data</code> for route-owned facts, not backend records or form state.</li>
+      <li>Resolved values also appear in <code>ActivatedRoute.data</code>, but they are produced during navigation.</li>
+    </ol>
+  </section>
+</main>

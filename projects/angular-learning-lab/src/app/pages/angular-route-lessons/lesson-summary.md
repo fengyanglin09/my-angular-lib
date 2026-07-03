@@ -14,6 +14,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can allow navigation, block navigation, or redirect to a safer route. |
 | 9. Route Resolvers | `/angular-route-lessons/lesson-09-route-resolvers/project-101` | How a resolver loads data before route activation and exposes it through `ActivatedRoute.data`. |
 | 10. CanDeactivate | `/angular-route-lessons/lesson-10-can-deactivate/editor` | How a `canDeactivate` guard can pause navigation and ask the user to save, discard, or stay when there are unsaved changes. |
+| 11. Route Data | `/angular-route-lessons/lesson-11-route-data/dashboard` | How route records can provide static metadata and page titles that components read from `ActivatedRoute.data`. |
 
 ## Big Ideas
 
@@ -52,3 +53,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - A `canDeactivate` guard can allow or cancel leaving the current route.
 - A `canDeactivate` guard can return a `Promise<boolean>` when navigation must wait for a user decision.
 - Unsaved-change guards usually belong on editor or form routes.
+- Route `data` stores static metadata such as labels, breadcrumbs, role hints, and analytics names.
+- Route `title` describes the document title for the active route.
+- Static route data and resolver results are both read through `ActivatedRoute.data`.

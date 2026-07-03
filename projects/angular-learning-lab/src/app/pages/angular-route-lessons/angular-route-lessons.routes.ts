@@ -27,6 +27,8 @@ import { CanDeactivateEditorPanel } from './lesson-10-can-deactivate/can-deactiv
 import { Lesson10CanDeactivate } from './lesson-10-can-deactivate/lesson-10-can-deactivate';
 import { CanDeactivatePreviewPanel } from './lesson-10-can-deactivate/can-deactivate-preview-panel';
 import { pendingChangesGuard } from './lesson-10-can-deactivate/pending-changes.guard';
+import { Lesson11RouteData } from './lesson-11-route-data/lesson-11-route-data';
+import { RouteDataPanel } from './lesson-11-route-data/route-data-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -207,6 +209,62 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: 'preview',
         component: CanDeactivatePreviewPanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-11-route-data',
+    component: Lesson11RouteData,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        title: 'Routes Lesson 11 - Dashboard',
+        component: RouteDataPanel,
+        data: {
+          page: {
+            badge: 'Workspace overview',
+            breadcrumb: 'Workspace / Dashboard',
+            featureArea: 'Operations',
+            helpText: 'Dashboard metadata is useful for overview routes and landing panels.',
+            pageLabel: 'Dashboard',
+            requiredRole: 'Workspace Reader',
+          },
+        },
+      },
+      {
+        path: 'billing',
+        title: 'Routes Lesson 11 - Billing',
+        component: RouteDataPanel,
+        data: {
+          page: {
+            badge: 'Billing area',
+            breadcrumb: 'Workspace / Billing',
+            featureArea: 'Finance',
+            helpText: 'Billing metadata can drive page labels, breadcrumbs, and role hints.',
+            pageLabel: 'Billing',
+            requiredRole: 'Billing Admin',
+          },
+        },
+      },
+      {
+        path: 'audit',
+        title: 'Routes Lesson 11 - Audit',
+        component: RouteDataPanel,
+        data: {
+          page: {
+            badge: 'Audit tools',
+            breadcrumb: 'Workspace / Audit',
+            featureArea: 'Compliance',
+            helpText: 'Audit metadata is route-owned information that the component can display consistently.',
+            pageLabel: 'Audit Log',
+            requiredRole: 'Compliance Reviewer',
+          },
+        },
       },
     ],
   },
