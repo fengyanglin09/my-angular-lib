@@ -28,11 +28,44 @@
   text-decoration: none;
 }
 
-.lesson-link-button:hover {
+.lesson-link-button:hover,
+.lesson-link-button--active {
   border-color: #27483d;
+  color: #27483d;
 }
 
-.guard-demo {
+.access-panel {
+  background: #eef3f0;
+  border: 1px solid #cbd9d1;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.access-panel h3,
+.access-panel p {
+  margin: 0;
+}
+
+.access-panel p,
+.access-panel dd {
+  color: #606b78;
+}
+
+.access-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.access-option--active {
+  border-color: #27483d;
+  color: #27483d;
+  box-shadow: inset 0 0 0 2px #27483d;
+}
+
+.match-demo {
   display: grid;
   gap: 16px;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
@@ -40,13 +73,13 @@
 
 .demo-main,
 .demo-state {
+  align-content: start;
   background: #f8fafc;
   border: 1px solid #dfe7ef;
   border-radius: 8px;
   display: grid;
   gap: 14px;
-  align-content: start;
-  min-height: 260px;
+  min-height: 300px;
   padding: 18px;
 }
 
@@ -64,7 +97,7 @@
 }
 
 @media (max-width: 1120px) {
-  .guard-demo,
+  .match-demo,
   .routes-content-grid {
     grid-template-columns: 1fr;
   }

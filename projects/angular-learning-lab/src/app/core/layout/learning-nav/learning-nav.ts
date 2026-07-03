@@ -125,11 +125,12 @@ export class LearningNav {
     { description: 'Render primary content and a named side panel from the route tree.', number: 5, path: '/angular-route-lessons/lesson-05-named-outlets/dashboard', title: 'Named Outlets' },
     { description: 'Use default redirects, legacy URL redirects, pathMatch, and scoped wildcard fallbacks.', number: 6, path: '/angular-route-lessons/lesson-06-redirects-wildcards/dashboard', title: 'Redirects' },
     { description: 'Navigate from TypeScript with Router.navigate, relativeTo, queryParams, and navigateByUrl.', number: 7, path: '/angular-route-lessons/lesson-07-programmatic-navigation/inbox', title: 'Programmatic Nav' },
-    { description: 'Allow, block, or redirect navigation with a functional canActivate guard.', number: 8, path: '/angular-route-lessons/lesson-08-route-guards/public', title: 'Route Guards' },
+    { description: 'Use route data and a reusable canActivate guard for access checks.', number: 8, path: '/angular-route-lessons/lesson-08-route-guards/public', title: 'Route Guards' },
     { description: 'Load route data before activation with a functional resolver and ActivatedRoute.data.', number: 9, path: '/angular-route-lessons/lesson-09-route-resolvers/project-101', title: 'Route Resolvers' },
     { description: 'Prevent leaving a dirty editor route with a canDeactivate guard.', number: 10, path: '/angular-route-lessons/lesson-10-can-deactivate/editor', title: 'CanDeactivate' },
     { description: 'Attach static metadata and page titles to route records.', number: 11, path: '/angular-route-lessons/lesson-11-route-data/dashboard', title: 'Route Data' },
     { description: 'Lazy-load a feature route file with loadChildren.', number: 12, path: '/angular-route-lessons/lesson-12-lazy-routes', title: 'Lazy Routes' },
+    { description: 'Use route data and canMatch to protect a lazy route branch.', number: 13, path: '/angular-route-lessons/lesson-13-can-match/public', title: 'canMatch' },
   ];
 
   protected get categoryLabel(): string {

@@ -30,6 +30,10 @@ import { pendingChangesGuard } from './lesson-10-can-deactivate/pending-changes.
 import { Lesson11RouteData } from './lesson-11-route-data/lesson-11-route-data';
 import { RouteDataPanel } from './lesson-11-route-data/route-data-panel';
 import { Lesson12LazyRoutes } from './lesson-12-lazy-routes/lesson-12-lazy-routes';
+import { CanMatchDeniedPanel } from './lesson-13-can-match/can-match-denied-panel';
+import { CanMatchPublicPanel } from './lesson-13-can-match/can-match-public-panel';
+import { Lesson13CanMatch } from './lesson-13-can-match/lesson-13-can-match';
+import { protectedFeatureCanMatchGuard } from './lesson-13-can-match/protected-feature-can-match.guard';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -174,6 +178,9 @@ export const angularRouteLessonsRoutes: Routes = [
         path: 'admin',
         canActivate: [adminAccessGuard],
         component: GuardAdminPanel,
+        data: {
+          requiredRole: 'Admin',
+        },
       },
       {
         path: 'access-denied',
@@ -279,6 +286,36 @@ export const angularRouteLessonsRoutes: Routes = [
           import('./lesson-12-lazy-routes/lazy-admin.routes').then(
             (m) => m.lazyAdminRoutes,
           ),
+      },
+    ],
+  },
+  {
+    path: 'lesson-13-can-match',
+    component: Lesson13CanMatch,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'public',
+      },
+      {
+        path: 'public',
+        component: CanMatchPublicPanel,
+      },
+      {
+        path: 'protected',
+        canMatch: [protectedFeatureCanMatchGuard],
+        data: {
+          requiredRole: 'Protected Feature',
+        },
+        loadChildren: () =>
+          import('./lesson-13-can-match/restricted-feature.routes').then(
+            (m) => m.restrictedFeatureRoutes,
+          ),
+      },
+      {
+        path: 'access-denied',
+        component: CanMatchDeniedPanel,
       },
     ],
   },

@@ -21,6 +21,14 @@ export class RouteGuardAccessService {
     this.addLog(message);
   }
 
+  hasRole(requiredRole: string | undefined): boolean {
+    if (!requiredRole) {
+      return true;
+    }
+
+    return requiredRole === 'Admin' && this.adminAccess();
+  }
+
   clearLog(): void {
     this.guardLog.set(['Log cleared. Navigate to admin to run the guard again.']);
   }

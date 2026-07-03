@@ -77,6 +77,28 @@ stayEditing(): void {
 preview -> editor
 // editor route is being entered, so this guard does not run`,
     },
+    {
+      description: 'Use canDeactivate when the user is already on a page and leaving could lose work.',
+      name: 'when to use',
+      syntax: `canDeactivate
+  question:
+    "Is it safe to leave this page?"
+
+use for:
+  unsaved forms
+  draft editors
+  active uploads
+  unfinished wizards`,
+    },
+    {
+      description: 'canDeactivate runs in the opposite direction: the current route is active, and navigation is trying to leave it.',
+      name: 'sequence',
+      syntax: `editor route is active
+  user navigates to preview
+  canDeactivate runs on editor
+  true -> leave editor
+  false -> stay on editor`,
+    },
   ];
 
   protected childActivated(component: unknown): void {

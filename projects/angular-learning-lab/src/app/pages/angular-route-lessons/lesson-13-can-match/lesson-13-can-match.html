@@ -1,0 +1,229 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="13" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 13</p>
+    <h1>canMatch Guards</h1>
+    <p>
+      <code>canMatch</code> decides whether a route branch is eligible to match.
+      This is especially useful in front of lazy feature routes because Angular
+      can read the route's access metadata and redirect before activating the
+      protected branch.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="can-match-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">canMatch, lazy routes, route eligibility</p>
+        <h2 id="can-match-title">Protected Feature Match</h2>
+      </div>
+      <p class="summary">
+        Access: {{ access.hasProtectedAccess() ? 'granted' : 'disabled' }} ·
+        Route requires: Protected Feature · Active: {{ activePanel() }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <section class="access-panel" aria-labelledby="access-panel-title">
+      <div>
+        <p class="eyebrow">Access Decision Panel</p>
+        <h3 id="access-panel-title">Choose the current session role</h3>
+        <p>
+          The route declares <code>requiredRole: 'Protected Feature'</code>.
+          Change the simulated session role, then try the protected route.
+          Because this guard sits before <code>loadChildren</code>, it acts as
+          the entrance check for the protected feature route group.
+        </p>
+      </div>
+
+      <div class="access-options" aria-label="Session role choices">
+        <button
+          type="button"
+          [class.access-option--active]="!access.hasProtectedAccess()"
+          (click)="access.useVisitorSession()"
+        >
+          Visitor session
+        </button>
+        <button
+          type="button"
+          [class.access-option--active]="access.hasProtectedAccess()"
+          (click)="access.useProtectedFeatureSession()"
+        >
+          Protected Feature member
+        </button>
+      </div>
+
+      <dl>
+        <div>
+          <dt>Route requires</dt>
+          <dd>Protected Feature</dd>
+        </div>
+        <div>
+          <dt>Current session</dt>
+          <dd>{{ access.hasProtectedAccess() ? 'Protected Feature member' : 'Visitor' }}</dd>
+        </div>
+        <div>
+          <dt>Expected canMatch result</dt>
+          <dd>{{ access.hasProtectedAccess() ? 'true, route can match' : 'UrlTree, redirect to access denied' }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="public"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Public route
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="protected/overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Protected overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="protected/reports"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Protected reports
+      </a>
+      <button type="button" (click)="access.clearLog()">Clear log</button>
+    </div>
+
+    <div class="match-demo">
+      <section class="demo-main" aria-label="canMatch routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Choose <strong>Visitor session</strong> and click a protected route.</li>
+          <li>The guard returns a <code>UrlTree</code> and redirects to access denied.</li>
+          <li>Choose <strong>Protected Feature member</strong> and click a protected route again.</li>
+          <li>The protected lazy route group can now match.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <h2 id="state-title">Access State</h2>
+        <dl>
+          <div>
+            <dt>hasProtectedAccess</dt>
+            <dd>{{ access.hasProtectedAccess() ? 'true' : 'false' }}</dd>
+          </div>
+          <div>
+            <dt>Route data</dt>
+            <dd><code>requiredRole: 'Protected Feature'</code></dd>
+          </div>
+          <div>
+            <dt>Protected branch</dt>
+            <dd><code>protected/*</code></dd>
+          </div>
+          <div>
+            <dt>Denied route</dt>
+            <dd><code>access-denied</code></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="choice-title">
+        <h2 id="choice-title">When To Use canMatch</h2>
+        <dl>
+          <div>
+            <dt>Main question</dt>
+            <dd>Should this route branch be considered a match?</dd>
+          </div>
+          <div>
+            <dt>Use for</dt>
+            <dd>Feature flags, protected lazy feature entrances, role-based route branches.</dd>
+          </div>
+          <div>
+            <dt>Lazy route reason</dt>
+            <dd>One <code>canMatch</code> guard can protect the entrance to a whole lazy feature group.</dd>
+          </div>
+          <div>
+            <dt>Use canActivate inside</dt>
+            <dd>When the feature is available, but one child page needs an extra permission.</dd>
+          </div>
+          <div>
+            <dt>Not for</dt>
+            <dd>Unsaved changes when leaving; use <code>canDeactivate</code> for that.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">canMatch Sequence</h2>
+        <ol>
+          <li>Navigation starts.</li>
+          <li>Angular sees a possible protected route branch.</li>
+          <li><code>canMatch</code> checks whether that branch may match.</li>
+          <li>If allowed, Angular matches the branch and can load its lazy children.</li>
+          <li>If denied, Angular skips or redirects before entering that branch.</li>
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">canMatch Log</h2>
+        <ol>
+          @for (message of access.routeLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="canMatch mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>navigation starts
+  router tries to match protected
+  canMatch runs
+  guard reads route data
+
+true
+  protected route matches
+  lazy children can load
+
+UrlTree
+  protected route is skipped
+  redirect route matches instead</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>canMatch</code> runs while Angular is matching a route branch.</li>
+      <li>Route <code>data</code> is a good place to declare what role or permission the branch requires.</li>
+      <li>The guard should read that metadata and use a service to check the current user.</li>
+      <li>Return <code>true</code> to let that branch match.</li>
+      <li>Return a <code>UrlTree</code> to redirect somewhere else.</li>
+      <li><code>canMatch</code> is useful before lazy feature routes.</li>
+      <li>At a lazy parent route, <code>canMatch</code> protects the entrance to the whole feature route group.</li>
+      <li>Inside that lazy group, <code>canActivate</code> can still protect one specific child page.</li>
+      <li><code>canActivate</code> protects activation; <code>canMatch</code> protects matching.</li>
+      <li>Use <code>canMatch</code> when the whole route branch should feel unavailable unless access rules pass.</li>
+      <li>Use <code>canActivate</code> when the route is valid, but entering that matched page needs a permission check.</li>
+      <li>Use <code>canDeactivate</code> for the opposite direction: leaving a page with unsaved or unfinished work.</li>
+      <li>Changing access state later does not automatically remove a user from an already active route.</li>
+    </ol>
+  </section>
+</main>

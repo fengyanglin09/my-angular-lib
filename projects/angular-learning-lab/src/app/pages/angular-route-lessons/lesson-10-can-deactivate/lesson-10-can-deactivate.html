@@ -72,6 +72,35 @@
         </dl>
       </section>
 
+      <section class="state-card" aria-labelledby="choice-title">
+        <h2 id="choice-title">When To Use canDeactivate</h2>
+        <dl>
+          <div>
+            <dt>Main question</dt>
+            <dd>Is it safe to leave the current page?</dd>
+          </div>
+          <div>
+            <dt>Use for</dt>
+            <dd>Unsaved forms, draft editors, active uploads, unfinished wizard steps.</dd>
+          </div>
+          <div>
+            <dt>Not for</dt>
+            <dd>Login or role access before entering a page; use <code>canActivate</code> or <code>canMatch</code>.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">canDeactivate Sequence</h2>
+        <ol>
+          <li>The user is already on the editor route.</li>
+          <li>Navigation tries to leave the editor route.</li>
+          <li><code>canDeactivate</code> asks the current component if leaving is safe.</li>
+          <li>If allowed, Angular deactivates the editor and continues navigation.</li>
+          <li>If denied, Angular keeps the current editor route active.</li>
+        </ol>
+      </section>
+
       <section class="log-card" aria-labelledby="log-title">
         <h2 id="log-title">CanDeactivate Log</h2>
         <ol>
@@ -101,6 +130,9 @@
       <li>Return <code>true</code> to allow leaving.</li>
       <li>Return <code>Promise&lt;boolean&gt;</code> when the user needs to make a save/discard/stay decision.</li>
       <li>Resolve <code>true</code> to continue the original navigation, or <code>false</code> to stay.</li>
+      <li>Use <code>canDeactivate</code> for leaving a route, not for deciding whether the target route should be entered.</li>
+      <li>Use <code>canActivate</code> for entering a matched page that requires access.</li>
+      <li>Use <code>canMatch</code> when the route branch itself should not match unless access is valid.</li>
       <li>Use this pattern carefully; the dialog should protect the user, not trap them.</li>
     </ol>
   </section>

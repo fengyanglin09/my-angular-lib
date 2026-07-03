@@ -11,11 +11,12 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 5. Named Outlets | `/angular-route-lessons/lesson-05-named-outlets/dashboard` | How an unnamed primary outlet and a named outlet can render different route branches at the same time. |
 | 6. Redirects | `/angular-route-lessons/lesson-06-redirects-wildcards/dashboard` | How default redirects, legacy redirects, `pathMatch`, and wildcard fallbacks shape navigation. |
 | 7. Programmatic Nav | `/angular-route-lessons/lesson-07-programmatic-navigation/inbox` | How to navigate from TypeScript with `Router.navigate`, `relativeTo`, `queryParams`, and `navigateByUrl`. |
-| 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can allow navigation, block navigation, or redirect to a safer route. |
+| 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can read route access metadata, allow navigation, or redirect to a safer route. |
 | 9. Route Resolvers | `/angular-route-lessons/lesson-09-route-resolvers/project-101` | How a resolver loads data before route activation and exposes it through `ActivatedRoute.data`. |
 | 10. CanDeactivate | `/angular-route-lessons/lesson-10-can-deactivate/editor` | How a `canDeactivate` guard can pause navigation and ask the user to save, discard, or stay when there are unsaved changes. |
 | 11. Route Data | `/angular-route-lessons/lesson-11-route-data/dashboard` | How route records can provide static metadata and page titles that components read from `ActivatedRoute.data`. |
 | 12. Lazy Routes | `/angular-route-lessons/lesson-12-lazy-routes` | How `loadChildren` lazy-loads a feature route file with its own child routes. |
+| 13. canMatch | `/angular-route-lessons/lesson-13-can-match/public` | How `canMatch` reads route access metadata and allows, skips, or redirects a route branch before it matches. |
 
 ## Big Ideas
 
@@ -46,6 +47,14 @@ These lessons focus on Angular Router patterns used in normal application develo
 - `navigateByUrl(...)` navigates to a complete URL string.
 - A guard runs during navigation before Angular activates the target route.
 - A guard can return `true`, `false`, or a `UrlTree` redirect.
+- Access guards are usually cleaner when route `data` declares requirements such as `requiredRole`.
+- The guard should read route `data` and delegate user/session checks to a service.
+- Use `canActivate` when the route matched, but entering the page needs a login, role, or permission check.
+- Use `canDeactivate` when the user is leaving the current page and might lose unsaved work.
+- Use `canMatch` when a route branch should not even be considered a match unless access rules pass.
+- On a lazy parent route, `canMatch` can protect the entrance to the whole feature route group.
+- Inside an already-available lazy group, `canActivate` can protect one specific child page.
+- Guard sequence: `canMatch` checks branch eligibility during matching, `canActivate` checks entry after a route matched, and `canDeactivate` checks whether the current route may be left.
 - Guards protect route entry; they do not automatically remove a user from a page after access changes.
 - A resolver runs during navigation before the target route activates.
 - Resolved values are available on `ActivatedRoute.data`.
@@ -58,3 +67,6 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Route `title` describes the document title for the active route.
 - Static route data and resolver results are both read through `ActivatedRoute.data`.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
+- `canMatch` runs while Angular decides whether a route branch is eligible to match.
+- `canMatch` is useful in front of protected lazy feature routes.
+- `canActivate` protects activation; `canMatch` protects route matching.

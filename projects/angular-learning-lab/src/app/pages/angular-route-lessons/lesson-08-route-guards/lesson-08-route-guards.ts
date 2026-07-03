@@ -17,25 +17,32 @@ export class Lesson08RouteGuards {
 
   protected readonly codeSteps: CodeStep[] = [
     {
-      description: 'A functional guard is a function that Angular runs before activating a route.',
+      description: 'A functional guard is a reusable function that Angular runs before activating a route.',
       name: 'canActivate function',
-      syntax: `export const adminAccessGuard: CanActivateFn = () => {
+      syntax: `export const adminAccessGuard: CanActivateFn = (route) => {
   const access = inject(RouteGuardAccessService);
-  return access.adminAccess() ? true : redirect;
+  const requiredRole = route.data['requiredRole'];
+
+  return access.hasRole(requiredRole)
+    ? true
+    : redirect;
 };`,
     },
     {
-      description: 'Attach the guard to the route that needs protection.',
-      name: 'guarded route',
+      description: 'The route declares what it requires; the guard knows how to check it.',
+      name: 'route data',
       syntax: `{ path: 'admin',
   canActivate: [adminAccessGuard],
-  component: GuardAdminPanel
+  component: GuardAdminPanel,
+  data: {
+    requiredRole: 'Admin'
+  }
 }`,
     },
     {
       description: 'Returning true allows navigation to continue.',
       name: 'allow',
-      syntax: `if (access.adminAccess()) {
+      syntax: `if (access.hasRole(requiredRole)) {
   return true;
 }`,
     },
@@ -66,6 +73,38 @@ return false;
 
 return router.createUrlTree(['/access-denied']);
 // cancel original navigation and redirect`,
+    },
+    {
+      description: 'Use canActivate when the route matched, but entering the page requires a permission check.',
+      name: 'when to use',
+      syntax: `canActivate
+  question:
+    "May this user enter this page?"
+
+use for:
+  login required
+  role required
+  onboarding required`,
+    },
+    {
+      description: 'canActivate happens after Angular matches the route, but before Angular renders the target component.',
+      name: 'sequence',
+      syntax: `URL navigation starts
+  route matches admin
+  canActivate runs
+  true -> activate GuardAdminPanel
+  UrlTree -> redirect before rendering admin`,
+    },
+    {
+      description: 'Route data is the sign on the door. The guard is the security check.',
+      name: 'real app pattern',
+      syntax: `route data:
+  "Admin role required"
+
+guard:
+  read requiredRole
+  check current user/session
+  allow or redirect`,
     },
     {
       description: 'Guards run when navigation enters the guarded route, not continuously after the page is active.',

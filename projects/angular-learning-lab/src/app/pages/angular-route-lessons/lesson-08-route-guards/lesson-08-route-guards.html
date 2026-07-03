@@ -6,8 +6,9 @@
     <h1>Route Guards</h1>
     <p>
       Route guards decide whether navigation should continue before Angular
-      activates a route. A guard can allow the route, block it, or redirect to a
-      safer route.
+      activates a route. In real applications, the route often declares what
+      access it requires with <code>data</code>, and the guard contains the
+      reusable checking logic.
     </p>
   </section>
 
@@ -19,7 +20,8 @@
       </div>
       <p class="summary">
         Active panel: {{ activePanel() }} · Admin access:
-        {{ access.adminAccess() ? 'granted' : 'revoked' }}
+        {{ access.adminAccess() ? 'granted' : 'revoked' }} · Route requires:
+        Admin
       </p>
     </div>
 
@@ -64,6 +66,10 @@
         <h2 id="return-title">Guard Return Values</h2>
         <dl>
           <div>
+            <dt>Route data</dt>
+            <dd><code>requiredRole: 'Admin'</code></dd>
+          </div>
+          <div>
             <dt>true</dt>
             <dd>Allow navigation and activate the target route.</dd>
           </div>
@@ -76,6 +82,35 @@
             <dd>Cancel the attempted route and redirect to the UrlTree route.</dd>
           </div>
         </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="choice-title">
+        <h2 id="choice-title">When To Use canActivate</h2>
+        <dl>
+          <div>
+            <dt>Main question</dt>
+            <dd>May this user enter this matched page?</dd>
+          </div>
+          <div>
+            <dt>Use for</dt>
+            <dd>Login checks, role checks, onboarding gates, page-level permissions.</dd>
+          </div>
+          <div>
+            <dt>Not for</dt>
+            <dd>Unsaved changes when leaving; use <code>canDeactivate</code> for that.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">canActivate Sequence</h2>
+        <ol>
+          <li>Navigation starts.</li>
+          <li>Angular matches the target route.</li>
+          <li><code>canActivate</code> reads route data and checks access.</li>
+          <li>If allowed, Angular activates the route and renders its component.</li>
+          <li>If denied, Angular cancels or redirects before rendering the target component.</li>
+        </ol>
       </section>
 
       <section class="log-card" aria-labelledby="log-title">
@@ -92,6 +127,8 @@
         <pre>navigation starts
   router finds target route
   canActivate guard runs
+  guard reads route data
+  checks user access
   true -> activate component
   UrlTree -> redirect elsewhere
 
@@ -106,11 +143,16 @@ guard protects entry
     <ol>
       <li><code>canActivate</code> runs before Angular activates the guarded route.</li>
       <li>A functional guard can use <code>inject(...)</code> to read services.</li>
+      <li>Route <code>data</code> is a good place to declare access requirements such as <code>requiredRole</code>.</li>
+      <li>The guard should contain reusable checking logic, not one hardcoded rule per route.</li>
       <li>Return <code>true</code> to allow navigation.</li>
       <li>Return <code>false</code> to cancel navigation and stay on the current route.</li>
       <li>Return a <code>UrlTree</code> when you want to redirect instead of merely canceling.</li>
       <li>A guard redirect can be absolute, or relative when you pass <code>relativeTo: route</code>.</li>
       <li>Relative guard redirects depend on the route snapshot passed into the guard.</li>
+      <li>Use <code>canActivate</code> when the page route is valid, but entering it requires access.</li>
+      <li>Use <code>canMatch</code> when the route branch itself should not match unless access is valid.</li>
+      <li>Use <code>canDeactivate</code> when the user is leaving a route and might lose work.</li>
       <li>Guards run during navigation; they do not continuously watch access state after activation.</li>
     </ol>
   </section>
