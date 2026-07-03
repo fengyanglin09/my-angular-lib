@@ -1,0 +1,107 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 10</p>
+    <h1>CanDeactivate</h1>
+    <p>
+      <code>canDeactivate</code> guards protect leaving a route. They are useful
+      for editors and forms where accidental navigation could lose unsaved
+      changes.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="deactivate-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">canDeactivate, dirty state, leaving a route</p>
+        <h2 id="deactivate-title">Unsaved Draft Demo</h2>
+      </div>
+      <p class="summary">Active panel: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a class="lesson-link-button" routerLink="editor">Open editor</a>
+      <a class="lesson-link-button" routerLink="preview">Open preview</a>
+      <button type="button" (click)="demo.clearLog()">Clear log</button>
+    </div>
+
+    <div class="deactivate-demo">
+      <section class="demo-main" aria-label="CanDeactivate routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Open the editor.</li>
+          <li>Type into the draft.</li>
+          <li>Click <strong>Open preview</strong>.</li>
+          <li>The guard opens a decision dialog before the router can finish navigation.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="return-title">
+        <h2 id="return-title">Guard Return Values</h2>
+        <dl>
+          <div>
+            <dt>true</dt>
+            <dd>Allow leaving the current route.</dd>
+          </div>
+          <div>
+            <dt>Promise&lt;boolean&gt;</dt>
+            <dd>Pause navigation until the user chooses what should happen.</dd>
+          </div>
+          <div>
+            <dt>false</dt>
+            <dd>Cancel navigation and keep the current route active.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="log-card" aria-labelledby="log-title">
+        <h2 id="log-title">CanDeactivate Log</h2>
+        <ol>
+          @for (log of demo.guardLog(); track $index) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="canDeactivate mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>navigation tries to leave editor
+  router calls canDeactivate guard
+  guard asks component if it can leave
+  true -> continue navigation
+  Promise -> wait for the user's choice
+  false -> stay on editor</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>canDeactivate</code> runs when navigation tries to leave the guarded route.</li>
+      <li>The guard receives the current component instance.</li>
+      <li>Return <code>true</code> to allow leaving.</li>
+      <li>Return <code>Promise&lt;boolean&gt;</code> when the user needs to make a save/discard/stay decision.</li>
+      <li>Resolve <code>true</code> to continue the original navigation, or <code>false</code> to stay.</li>
+      <li>Use this pattern carefully; the dialog should protect the user, not trap them.</li>
+    </ol>
+  </section>
+</main>

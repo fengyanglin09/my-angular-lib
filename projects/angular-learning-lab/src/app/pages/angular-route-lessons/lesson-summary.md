@@ -13,6 +13,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 7. Programmatic Nav | `/angular-route-lessons/lesson-07-programmatic-navigation/inbox` | How to navigate from TypeScript with `Router.navigate`, `relativeTo`, `queryParams`, and `navigateByUrl`. |
 | 8. Route Guards | `/angular-route-lessons/lesson-08-route-guards/public` | How `canActivate` can allow navigation, block navigation, or redirect to a safer route. |
 | 9. Route Resolvers | `/angular-route-lessons/lesson-09-route-resolvers/project-101` | How a resolver loads data before route activation and exposes it through `ActivatedRoute.data`. |
+| 10. CanDeactivate | `/angular-route-lessons/lesson-10-can-deactivate/editor` | How a `canDeactivate` guard can pause navigation and ask the user to save, discard, or stay when there are unsaved changes. |
 
 ## Big Ideas
 
@@ -47,3 +48,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 - A resolver runs during navigation before the target route activates.
 - Resolved values are available on `ActivatedRoute.data`.
 - Resolvers are useful when the route should not render until required data is available.
+- `canDeactivate` runs when navigation tries to leave the guarded component.
+- A `canDeactivate` guard can allow or cancel leaving the current route.
+- A `canDeactivate` guard can return a `Promise<boolean>` when navigation must wait for a user decision.
+- Unsaved-change guards usually belong on editor or form routes.

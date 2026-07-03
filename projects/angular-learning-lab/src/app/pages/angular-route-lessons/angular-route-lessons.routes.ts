@@ -23,6 +23,10 @@ import { GuardAdminPanel } from './lesson-08-route-guards/guard-admin-panel';
 import { Lesson08RouteGuards } from './lesson-08-route-guards/lesson-08-route-guards';
 import { projectResolver } from './lesson-09-route-resolvers/project.resolver';
 import { Lesson09RouteResolvers } from './lesson-09-route-resolvers/lesson-09-route-resolvers';
+import { CanDeactivateEditorPanel } from './lesson-10-can-deactivate/can-deactivate-editor-panel';
+import { Lesson10CanDeactivate } from './lesson-10-can-deactivate/lesson-10-can-deactivate';
+import { CanDeactivatePreviewPanel } from './lesson-10-can-deactivate/can-deactivate-preview-panel';
+import { pendingChangesGuard } from './lesson-10-can-deactivate/pending-changes.guard';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -185,5 +189,25 @@ export const angularRouteLessonsRoutes: Routes = [
     resolve: {
       project: projectResolver,
     },
+  },
+  {
+    path: 'lesson-10-can-deactivate',
+    component: Lesson10CanDeactivate,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'editor',
+      },
+      {
+        path: 'editor',
+        component: CanDeactivateEditorPanel,
+        canDeactivate: [pendingChangesGuard],
+      },
+      {
+        path: 'preview',
+        component: CanDeactivatePreviewPanel,
+      },
+    ],
   },
 ];
