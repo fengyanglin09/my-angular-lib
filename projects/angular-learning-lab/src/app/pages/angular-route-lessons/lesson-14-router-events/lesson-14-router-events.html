@@ -1,0 +1,193 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="14" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 14</p>
+    <h1>Router Events</h1>
+    <p>
+      <code>Router.events</code> lets you observe Angular's navigation
+      lifecycle. This is useful for understanding guard order, resolver timing,
+      loading indicators, analytics, and debugging redirects.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="router-events-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Router.events, navigation lifecycle, debugging</p>
+        <h2 id="router-events-title">Navigation Event Timeline</h2>
+      </div>
+      <p class="summary">
+        Active: {{ activePanel() }} · Last terminal event: {{ latestTerminalEvent() }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <section class="access-panel" aria-labelledby="event-access-title">
+      <div>
+        <p class="eyebrow">Guard test control</p>
+        <h3 id="event-access-title">Choose session role</h3>
+        <p>
+          The reporter route has <code>canActivate</code>. Use this control to
+          see the event sequence for an allowed navigation and a redirected one.
+        </p>
+      </div>
+
+      <div class="access-options" aria-label="Router event session choices">
+        <button
+          type="button"
+          [class.access-option--active]="!access.hasReporterAccess()"
+          (click)="useVisitorSession()"
+        >
+          Visitor session
+        </button>
+        <button
+          type="button"
+          [class.access-option--active]="access.hasReporterAccess()"
+          (click)="useReporterSession()"
+        >
+          Reporter session
+        </button>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="home"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Home route
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="report"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Guarded report
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['profile', 'ada']"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Profile: Ada
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['profile', 'grace']"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Profile: Grace
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['profile', 'linus']"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Profile: Linus
+      </a>
+      <button type="button" (click)="clearLogs()">Clear logs</button>
+    </div>
+
+    <div class="events-demo">
+      <section class="demo-main" aria-label="Router events routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Click <strong>Home route</strong> to see a simple navigation.</li>
+          <li>Use <strong>Visitor session</strong>, then click <strong>Guarded report</strong>.</li>
+          <li>Use <strong>Reporter session</strong>, then click <strong>Guarded report</strong> again.</li>
+          <li>Click a <strong>Profile</strong> route to see the resolver read <code>:profileId</code>.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="event-log-title">
+        <h2 id="event-log-title">Router Event Log</h2>
+        <div class="event-log-note">
+          <p class="eyebrow">Important first-load detail</p>
+          <p>
+            If this page was opened directly, this component may start listening
+            after the navigation already began. That can make the first log show
+            mostly <code>End</code> events. Clear the log, then click one of the
+            route buttons above to watch the next navigation from
+            <code>NavigationStart</code>.
+          </p>
+        </div>
+        <ol>
+          @for (event of eventLog(); track event.id) {
+            <li>
+              <strong>{{ event.name }}</strong>
+              <em>{{ event.detail }}</em>
+              <span>{{ event.note }}</span>
+              <code>{{ event.url }}</code>
+            </li>
+          }
+        </ol>
+      </section>
+
+      <section class="log-card" aria-labelledby="extra-log-title">
+        <h2 id="extra-log-title">Guard / Resolver Notes</h2>
+        <ol>
+          @for (message of extraLog.extraLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="sequence-title">
+        <h2 id="sequence-title">Typical Successful Sequence</h2>
+        <ol>
+          <li><code>NavigationStart</code></li>
+          <li><code>RoutesRecognized</code></li>
+          <li><code>GuardsCheckStart</code></li>
+          <li><code>GuardsCheckEnd</code></li>
+          <li><code>ResolveStart</code> and <code>ResolveEnd</code>, if resolvers exist</li>
+          <li><code>ActivationStart</code> and <code>ActivationEnd</code></li>
+          <li><code>NavigationEnd</code></li>
+        </ol>
+      </section>
+
+      <aside class="mental-card" aria-label="router events mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>navigation is a timeline
+  start
+  match routes
+  check guards
+  run resolvers
+  activate components
+  finish or cancel
+
+Router.events lets you watch that timeline.</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>Router.events</code> is an Observable of navigation lifecycle events.</li>
+      <li>Use it for loading indicators, analytics, debugging redirects, and learning route sequence.</li>
+      <li><code>GuardsCheckStart</code> and <code>GuardsCheckEnd</code> surround guard checks.</li>
+      <li><code>ResolveStart</code> and <code>ResolveEnd</code> appear when a route has resolvers.</li>
+      <li>A resolver receives the matched route, so it can read params such as <code>route.paramMap.get('profileId')</code>.</li>
+      <li><code>NavigationEnd</code> means success; <code>NavigationCancel</code> often means a guard redirected or canceled.</li>
+      <li>Always unsubscribe from router event subscriptions, usually with <code>takeUntilDestroyed</code>.</li>
+    </ol>
+  </section>
+</main>

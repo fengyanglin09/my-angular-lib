@@ -32,7 +32,7 @@ export class Lesson09RouteResolvers {
 
   protected readonly codeSteps: CodeStep[] = [
     {
-      description: 'A functional resolver runs before Angular activates the target route.',
+      description: 'A functional resolver receives the matched route, so it can read params before loading data.',
       name: 'resolver function',
       syntax: `export const projectResolver: ResolveFn<Project> = (route) => {
   const projectId = route.paramMap.get('projectId');
@@ -70,7 +70,7 @@ export class Lesson09RouteResolvers {
 )`,
     },
     {
-      description: 'Changing the projectId route param runs the resolver again before updating route data.',
+      description: 'Changing the projectId route param runs the resolver again with the new id.',
       name: 'param changes',
       syntax: `/lesson-09-route-resolvers/project-101
 /lesson-09-route-resolvers/project-202

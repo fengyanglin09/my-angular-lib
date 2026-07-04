@@ -59,6 +59,10 @@ export class ProjectResolverApi {
     this.resolverLog.set(['Log cleared. Navigate to another project to run the resolver again.']);
   }
 
+  recordRouteParam(projectId: string): void {
+    this.addLog(`Resolver read projectId="${projectId}" from the route params.`);
+  }
+
   private addLog(message: string): void {
     this.resolverLog.update((logs) => [...logs, message]);
   }

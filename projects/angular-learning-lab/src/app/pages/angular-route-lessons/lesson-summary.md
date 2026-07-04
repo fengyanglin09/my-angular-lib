@@ -17,6 +17,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 11. Route Data | `/angular-route-lessons/lesson-11-route-data/dashboard` | How route records can provide static metadata and page titles that components read from `ActivatedRoute.data`. |
 | 12. Lazy Routes | `/angular-route-lessons/lesson-12-lazy-routes` | How `loadChildren` lazy-loads a feature route file with its own child routes. |
 | 13. canMatch | `/angular-route-lessons/lesson-13-can-match/public` | How `canMatch` reads route access metadata and allows, skips, or redirects a route branch before it matches. |
+| 14. Router Events | `/angular-route-lessons/lesson-14-router-events/home` | How `Router.events` exposes navigation lifecycle events for guards, resolvers, activation, redirects, and completion. |
 
 ## Big Ideas
 
@@ -56,6 +57,8 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Inside an already-available lazy group, `canActivate` can protect one specific child page.
 - Guard sequence: `canMatch` checks branch eligibility during matching, `canActivate` checks entry after a route matched, and `canDeactivate` checks whether the current route may be left.
 - Guards protect route entry; they do not automatically remove a user from a page after access changes.
+- `Router.events` exposes the navigation timeline as an Observable.
+- Router event logs are useful for loading indicators, analytics, debugging redirects, and understanding guard/resolver order.
 - A resolver runs during navigation before the target route activates.
 - Resolved values are available on `ActivatedRoute.data`.
 - Resolvers are useful when the route should not render until required data is available.

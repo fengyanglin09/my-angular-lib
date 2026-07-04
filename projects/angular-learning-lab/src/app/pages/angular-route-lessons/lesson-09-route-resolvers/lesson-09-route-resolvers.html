@@ -83,7 +83,8 @@
         <p class="eyebrow">What to watch</p>
         <ol>
           <li>Click a different project link.</li>
-          <li>The resolver starts before the project page data updates.</li>
+          <li>The resolver reads <code>:projectId</code> from the matched route.</li>
+          <li>The resolver loads the matching project before the page data updates.</li>
           <li><code>ActivatedRoute.data</code> emits the resolved <code>project</code>.</li>
         </ol>
       </aside>
@@ -96,6 +97,10 @@
           <div>
             <dt>Route config key</dt>
             <dd><code>project</code></dd>
+          </div>
+          <div>
+            <dt>Route param used</dt>
+            <dd><code>:projectId</code> → <code>{{ project().id }}</code></dd>
           </div>
           <div>
             <dt>Component reads</dt>
@@ -133,6 +138,7 @@
     <h2 id="remember-title">What To Remember</h2>
     <ol>
       <li><code>ResolveFn</code> runs before route activation.</li>
+      <li>A resolver receives the matched route, so it can read route params like <code>route.paramMap.get('projectId')</code>.</li>
       <li>The route config chooses the data key, such as <code>project</code> in the <code>resolve</code> object.</li>
       <li>A route can define multiple resolvers; each key becomes one value on <code>ActivatedRoute.data</code>.</li>
       <li>The component reads resolved values from <code>ActivatedRoute.data</code>.</li>

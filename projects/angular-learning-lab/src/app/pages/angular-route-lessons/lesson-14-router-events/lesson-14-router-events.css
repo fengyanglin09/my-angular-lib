@@ -1,0 +1,137 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f1e8;
+  color: #20252b;
+}
+
+.routes-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  display: grid;
+  gap: 22px;
+  padding: 26px;
+}
+
+.lesson-link-button {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  display: inline-flex;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+  text-decoration: none;
+}
+
+.lesson-link-button:hover,
+.lesson-link-button--active {
+  border-color: #27483d;
+  color: #27483d;
+}
+
+.access-panel {
+  background: #eef3f0;
+  border: 1px solid #cbd9d1;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.access-panel h3,
+.access-panel p {
+  margin: 0;
+}
+
+.access-panel p {
+  color: #606b78;
+}
+
+.access-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.access-option--active {
+  border-color: #27483d;
+  color: #27483d;
+  box-shadow: inset 0 0 0 2px #27483d;
+}
+
+.events-demo {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.45fr);
+}
+
+.demo-main,
+.demo-state {
+  align-content: start;
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  min-height: 300px;
+  padding: 18px;
+}
+
+.demo-state {
+  background: #eef3f0;
+}
+
+.demo-state ol {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.routes-content-grid {
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+}
+
+.log-card li {
+  display: grid;
+  gap: 4px;
+}
+
+.event-log-note {
+  background: #eef3f0;
+  border: 1px solid #cbd9d1;
+  border-radius: 8px;
+  color: #4f5d68;
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 18px;
+  padding: 12px;
+}
+
+.event-log-note p {
+  margin: 0;
+}
+
+.log-card span {
+  color: #606b78;
+}
+
+.log-card em {
+  color: #27483d;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.log-card code {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1120px) {
+  .events-demo,
+  .routes-content-grid {
+    grid-template-columns: 1fr;
+  }
+}

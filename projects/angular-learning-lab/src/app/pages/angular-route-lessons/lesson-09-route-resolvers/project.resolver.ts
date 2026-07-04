@@ -8,5 +8,7 @@ export const projectResolver: ResolveFn<ResolvedProject> = (route) => {
   const projectApi = inject(ProjectResolverApi);
   const projectId = route.paramMap.get('projectId') ?? 'missing-project';
 
+  projectApi.recordRouteParam(projectId);
+
   return projectApi.loadProject(projectId);
 };

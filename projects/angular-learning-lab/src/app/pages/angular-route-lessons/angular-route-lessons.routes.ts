@@ -34,6 +34,13 @@ import { CanMatchDeniedPanel } from './lesson-13-can-match/can-match-denied-pane
 import { CanMatchPublicPanel } from './lesson-13-can-match/can-match-public-panel';
 import { Lesson13CanMatch } from './lesson-13-can-match/lesson-13-can-match';
 import { protectedFeatureCanMatchGuard } from './lesson-13-can-match/protected-feature-can-match.guard';
+import { Lesson14RouterEvents } from './lesson-14-router-events/lesson-14-router-events';
+import { routerEventsAccessGuard } from './lesson-14-router-events/router-events-access.guard';
+import { RouterEventsDeniedPanel } from './lesson-14-router-events/router-events-denied-panel';
+import { RouterEventsHomePanel } from './lesson-14-router-events/router-events-home-panel';
+import { routerEventsProfileResolver } from './lesson-14-router-events/router-events-profile.resolver';
+import { RouterEventsProfilePanel } from './lesson-14-router-events/router-events-profile-panel';
+import { RouterEventsReportPanel } from './lesson-14-router-events/router-events-report-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -316,6 +323,40 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: 'access-denied',
         component: CanMatchDeniedPanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-14-router-events',
+    component: Lesson14RouterEvents,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+      },
+      {
+        path: 'home',
+        component: RouterEventsHomePanel,
+      },
+      {
+        path: 'report',
+        canActivate: [routerEventsAccessGuard],
+        component: RouterEventsReportPanel,
+        data: {
+          requiredRole: 'Reporter',
+        },
+      },
+      {
+        path: 'profile/:profileId',
+        component: RouterEventsProfilePanel,
+        resolve: {
+          profile: routerEventsProfileResolver,
+        },
+      },
+      {
+        path: 'access-denied',
+        component: RouterEventsDeniedPanel,
       },
     ],
   },
