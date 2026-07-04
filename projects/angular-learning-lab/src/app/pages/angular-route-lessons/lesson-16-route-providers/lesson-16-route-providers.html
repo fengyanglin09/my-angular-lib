@@ -1,0 +1,172 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="16" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 16</p>
+    <h1>Route-Level Providers</h1>
+    <p>
+      A route can provide services for only that route branch. This gives a
+      feature area local state without making that state a global singleton.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="route-providers-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">providers, route injectors, scoped state</p>
+        <h2 id="route-providers-title">Workspace Route Scope</h2>
+      </div>
+      <p class="summary">
+        Active component: {{ activePanel() }} · Route store #{{ store.instanceId }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="activity"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Activity
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="settings"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Settings
+      </a>
+      <button type="button" (click)="store.clearDrafts()">Clear route drafts</button>
+    </div>
+
+    <div class="scope-demo">
+      <section class="scope-card" aria-labelledby="route-scope-title">
+        <p class="eyebrow">Route-scoped service</p>
+        <h3 id="route-scope-title">RouteProvidersWorkspaceStore</h3>
+        <dl>
+          <div>
+            <dt>Instance id</dt>
+            <dd>#{{ store.instanceId }}</dd>
+          </div>
+          <div>
+            <dt>Created at</dt>
+            <dd>{{ store.createdAt }}</dd>
+          </div>
+          <div>
+            <dt>Workspace</dt>
+            <dd>{{ store.workspace() }}</dd>
+          </div>
+          <div>
+            <dt>Draft count</dt>
+            <dd>{{ store.draftCount() }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="scope-card" aria-labelledby="root-scope-title">
+        <p class="eyebrow">Root singleton service</p>
+        <h3 id="root-scope-title">RootVisitCounterService</h3>
+        <dl>
+          <div>
+            <dt>Created at</dt>
+            <dd>{{ rootCounter.createdAt }}</dd>
+          </div>
+          <div>
+            <dt>Lesson visits</dt>
+            <dd>{{ rootCounter.visitCount() }}</dd>
+          </div>
+          <div>
+            <dt>Lifetime</dt>
+            <dd>Shared by the whole app until refresh.</dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    <div class="provider-demo">
+      <section class="demo-main" aria-label="Route providers routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Add a draft in <strong>Overview</strong>.</li>
+          <li>Move to <strong>Activity</strong>; the draft count stays because the child shares the route store.</li>
+          <li>Move to <strong>Settings</strong> and change the workspace; the parent card updates too.</li>
+          <li>Leave this lesson and come back; the route-scoped store gets a new instance.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="route-store-log-title">
+        <h2 id="route-store-log-title">Route Store Log</h2>
+        <ol>
+          @for (message of store.routeLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="scope-title">
+        <h2 id="scope-title">Where Is The Service Created?</h2>
+        <dl>
+          <div>
+            <dt>Route providers</dt>
+            <dd>Created for the matched route branch and available to its children.</dd>
+          </div>
+          <div>
+            <dt>Component providers</dt>
+            <dd>Created for one component subtree, even if the route is the same.</dd>
+          </div>
+          <div>
+            <dt>Root providers</dt>
+            <dd>Created once for the app and shared globally.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="route provider mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>root provider
+  whole app shares it
+
+route provider
+  parent route gets an injector
+  child routes share that injector
+  leaving the branch releases it</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Route records can declare <code>providers</code>.</li>
+      <li>The route component and child routes can inject services from that route provider.</li>
+      <li>Child routes under the same parent route share the same route-scoped service instance.</li>
+      <li>A root service uses <code>providedIn: 'root'</code> and behaves like a global singleton.</li>
+      <li>Route providers are useful for feature-local state that should reset when the feature is left.</li>
+      <li>Do not make state global just because multiple child routes need it.</li>
+    </ol>
+  </section>
+</main>

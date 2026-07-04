@@ -133,6 +133,7 @@ export class LearningNav {
     { description: 'Use route data and canMatch to protect a lazy route branch.', number: 13, path: '/angular-route-lessons/lesson-13-can-match/public', title: 'canMatch' },
     { description: 'Watch Router.events to understand navigation lifecycle sequence.', number: 14, path: '/angular-route-lessons/lesson-14-router-events/home', title: 'Router Events' },
     { description: 'Build breadcrumbs and page chrome from active child route metadata.', number: 15, path: '/angular-route-lessons/lesson-15-route-metadata-shell/overview', title: 'Metadata Shell' },
+    { description: 'Scope services and feature state to a route branch with route providers.', number: 16, path: '/angular-route-lessons/lesson-16-route-providers/overview', title: 'Route Providers' },
   ];
 
   protected get categoryLabel(): string {

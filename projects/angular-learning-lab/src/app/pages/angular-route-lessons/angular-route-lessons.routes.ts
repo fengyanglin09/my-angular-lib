@@ -45,6 +45,11 @@ import { Lesson15RouteMetadataShell } from './lesson-15-route-metadata-shell/les
 import { MetadataBillingPanel } from './lesson-15-route-metadata-shell/metadata-billing-panel';
 import { MetadataOverviewPanel } from './lesson-15-route-metadata-shell/metadata-overview-panel';
 import { MetadataSettingsPanel } from './lesson-15-route-metadata-shell/metadata-settings-panel';
+import { Lesson16RouteProviders } from './lesson-16-route-providers/lesson-16-route-providers';
+import { RouteProvidersActivityPanel } from './lesson-16-route-providers/route-providers-activity-panel';
+import { RouteProvidersOverviewPanel } from './lesson-16-route-providers/route-providers-overview-panel';
+import { RouteProvidersSettingsPanel } from './lesson-16-route-providers/route-providers-settings-panel';
+import { RouteProvidersWorkspaceStore } from './lesson-16-route-providers/route-providers-workspace-store';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -414,6 +419,33 @@ export const angularRouteLessonsRoutes: Routes = [
             section: 'Administration',
           },
         },
+      },
+    ],
+  },
+  {
+    path: 'lesson-16-route-providers',
+    component: Lesson16RouteProviders,
+    providers: [RouteProvidersWorkspaceStore],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+      {
+        path: 'overview',
+        title: 'Routes Lesson 16 - Route Providers Overview',
+        component: RouteProvidersOverviewPanel,
+      },
+      {
+        path: 'activity',
+        title: 'Routes Lesson 16 - Route Providers Activity',
+        component: RouteProvidersActivityPanel,
+      },
+      {
+        path: 'settings',
+        title: 'Routes Lesson 16 - Route Providers Settings',
+        component: RouteProvidersSettingsPanel,
       },
     ],
   },

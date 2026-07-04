@@ -19,6 +19,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 13. canMatch | `/angular-route-lessons/lesson-13-can-match/public` | How `canMatch` reads route access metadata and allows, skips, or redirects a route branch before it matches. |
 | 14. Router Events | `/angular-route-lessons/lesson-14-router-events/home` | How `Router.events` exposes navigation lifecycle events for guards, resolvers, activation, redirects, and completion. |
 | 15. Metadata Shell | `/angular-route-lessons/lesson-15-route-metadata-shell/overview` | How a parent route shell reads active child route metadata to build breadcrumbs, page chrome, document title context, and analytics labels. |
+| 16. Route Providers | `/angular-route-lessons/lesson-16-route-providers/overview` | How route records can provide services scoped to one route branch and shared by child routes. |
 
 ## Big Ideas
 
@@ -72,6 +73,8 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Static route data and resolver results are both read through `ActivatedRoute.data`.
 - A parent shell can walk through `firstChild` to find the deepest active route and read its metadata.
 - Route metadata is useful for shared page chrome such as breadcrumbs, sections, layout hints, and analytics names.
+- Route records can declare `providers` for services scoped to that route branch.
+- Route-scoped services are shared by the route component and child routes, but they do not have to become global root services.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
 - `canMatch` runs while Angular decides whether a route branch is eligible to match.
 - `canMatch` is useful in front of protected lazy feature routes.

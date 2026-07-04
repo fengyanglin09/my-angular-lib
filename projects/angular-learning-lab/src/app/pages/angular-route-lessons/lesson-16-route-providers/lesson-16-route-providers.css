@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f1e8;
+  color: #20252b;
+}
+
+.routes-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  display: grid;
+  gap: 22px;
+  padding: 26px;
+}
+
+.lesson-link-button {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  color: #315a85;
+  display: inline-flex;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+  text-decoration: none;
+}
+
+.lesson-link-button:hover,
+.lesson-link-button--active {
+  border-color: #27483d;
+  color: #27483d;
+}
+
+.scope-demo,
+.provider-demo {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+}
+
+.scope-card,
+.demo-main,
+.demo-state {
+  align-content: start;
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.demo-main,
+.demo-state {
+  min-height: 280px;
+}
+
+.demo-state {
+  background: #eef3f0;
+}
+
+.demo-state ol {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.scope-card h3,
+.scope-card p {
+  margin: 0;
+}
+
+.scope-card dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.scope-card div {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.scope-card dt {
+  font-weight: 800;
+}
+
+.scope-card dd {
+  color: #606b78;
+  margin: 6px 0 0;
+}
+
+.routes-content-grid {
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+}
+
+.log-card li {
+  line-height: 1.45;
+}
+
+@media (max-width: 1120px) {
+  .scope-demo,
+  .provider-demo,
+  .routes-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
