@@ -41,6 +41,10 @@ import { RouterEventsHomePanel } from './lesson-14-router-events/router-events-h
 import { routerEventsProfileResolver } from './lesson-14-router-events/router-events-profile.resolver';
 import { RouterEventsProfilePanel } from './lesson-14-router-events/router-events-profile-panel';
 import { RouterEventsReportPanel } from './lesson-14-router-events/router-events-report-panel';
+import { Lesson15RouteMetadataShell } from './lesson-15-route-metadata-shell/lesson-15-route-metadata-shell';
+import { MetadataBillingPanel } from './lesson-15-route-metadata-shell/metadata-billing-panel';
+import { MetadataOverviewPanel } from './lesson-15-route-metadata-shell/metadata-overview-panel';
+import { MetadataSettingsPanel } from './lesson-15-route-metadata-shell/metadata-settings-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -357,6 +361,59 @@ export const angularRouteLessonsRoutes: Routes = [
       {
         path: 'access-denied',
         component: RouterEventsDeniedPanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-15-route-metadata-shell',
+    component: Lesson15RouteMetadataShell,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+      {
+        path: 'overview',
+        title: 'Routes Lesson 15 - Workspace Overview',
+        component: MetadataOverviewPanel,
+        data: {
+          shell: {
+            analyticsName: 'workspace_overview_viewed',
+            breadcrumb: ['Workspace', 'Overview'],
+            helpText: 'Overview metadata keeps the shell focused on workspace health.',
+            layout: 'summary',
+            section: 'Workspace',
+          },
+        },
+      },
+      {
+        path: 'billing',
+        title: 'Routes Lesson 15 - Billing Center',
+        component: MetadataBillingPanel,
+        data: {
+          shell: {
+            analyticsName: 'billing_center_viewed',
+            breadcrumb: ['Workspace', 'Finance', 'Billing'],
+            helpText: 'Billing metadata can drive finance breadcrumbs and analytics names.',
+            layout: 'finance',
+            section: 'Finance',
+          },
+        },
+      },
+      {
+        path: 'settings',
+        title: 'Routes Lesson 15 - Workspace Settings',
+        component: MetadataSettingsPanel,
+        data: {
+          shell: {
+            analyticsName: 'workspace_settings_viewed',
+            breadcrumb: ['Workspace', 'Administration', 'Settings'],
+            helpText: 'Settings metadata tells the shell this route belongs to administration.',
+            layout: 'admin',
+            section: 'Administration',
+          },
+        },
       },
     ],
   },
