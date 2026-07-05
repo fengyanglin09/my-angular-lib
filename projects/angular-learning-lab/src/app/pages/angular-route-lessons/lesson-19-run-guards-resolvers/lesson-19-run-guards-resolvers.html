@@ -1,0 +1,177 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="19" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 19</p>
+    <h1>runGuardsAndResolvers</h1>
+    <p>
+      When the URL changes but Angular keeps the same route component,
+      <code>runGuardsAndResolvers</code> controls whether guards and resolvers
+      run again.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="rerun-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">resolver reruns, query params, same component</p>
+        <h2 id="rerun-title">Resolver Rerun Policy</h2>
+      </div>
+      <p class="summary">
+        {{ strategyLabel() }} · {{ reportId() }} · tab {{ currentTab() }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/default', 'sales-report']"
+        [queryParams]="{ tab: 'summary' }"
+      >
+        Default: sales summary
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/default', 'sales-report']"
+        [queryParams]="{ tab: 'details' }"
+      >
+        Default: sales details
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/default', 'inventory-report']"
+        [queryParams]="{ tab: 'summary' }"
+      >
+        Default: inventory
+      </a>
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/query-aware', 'sales-report']"
+        [queryParams]="{ tab: 'summary' }"
+      >
+        Query-aware: sales summary
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/query-aware', 'sales-report']"
+        [queryParams]="{ tab: 'details' }"
+      >
+        Query-aware: sales details
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-19-run-guards-resolvers/query-aware', 'inventory-report']"
+        [queryParams]="{ tab: 'audit' }"
+      >
+        Query-aware: inventory audit
+      </a>
+      <button type="button" (click)="log.clearLog()">Clear log</button>
+    </div>
+
+    <div class="rerun-demo">
+      <section class="report-card" aria-labelledby="report-title">
+        <p class="eyebrow">Resolved report data</p>
+        <h3 id="report-title">{{ report()?.title ?? 'Waiting for resolver' }}</h3>
+        <dl>
+          <div>
+            <dt>Resolver run id</dt>
+            <dd>#{{ report()?.runId ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Resolver strategy</dt>
+            <dd>{{ report()?.strategy ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Resolver used tab</dt>
+            <dd>{{ report()?.resolvedTab ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Resolved at</dt>
+            <dd>{{ report()?.resolvedAt ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Current URL inputs</p>
+        <dl>
+          <div>
+            <dt>Path param</dt>
+            <dd><code>reportId()</code> = {{ reportId() }}</dd>
+          </div>
+          <div>
+            <dt>Query param</dt>
+            <dd><code>tab()</code> = {{ currentTab() }}</dd>
+          </div>
+          <div>
+            <dt>Does resolver data match current tab?</dt>
+            <dd>{{ tabMatchesResolvedData() ? 'Yes' : 'No - query changed without resolver rerun' }}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="resolver-log-title">
+        <h2 id="resolver-log-title">Resolver Log</h2>
+        <ol>
+          @for (message of log.resolverLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="compare-title">
+        <h2 id="compare-title">What To Compare</h2>
+        <dl>
+          <div>
+            <dt>Default route</dt>
+            <dd>Changing <code>:reportId</code> reruns the resolver; changing only <code>?tab</code> does not.</dd>
+          </div>
+          <div>
+            <dt>Query-aware route</dt>
+            <dd><code>paramsOrQueryParamsChange</code> reruns the resolver for path or query changes.</dd>
+          </div>
+          <div>
+            <dt>Same component</dt>
+            <dd>The component can stay mounted while inputs and resolver data update.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="run guards and resolvers mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>URL changes
+  router decides route is still same component
+  route params/query params update
+  runGuardsAndResolvers decides:
+    rerun resolver?
+    keep old resolver data?</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>The default policy reruns guards and resolvers when route params change.</li>
+      <li>Changing only query params may update component inputs without rerunning a resolver.</li>
+      <li>Use <code>runGuardsAndResolvers: 'paramsOrQueryParamsChange'</code> when resolver data depends on query params.</li>
+      <li>Do not rerun expensive resolvers on every query change unless the data truly depends on those query values.</li>
+      <li>This setting belongs on the route record that owns the guard or resolver.</li>
+    </ol>
+  </section>
+</main>

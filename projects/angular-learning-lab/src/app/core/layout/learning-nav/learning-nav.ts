@@ -136,6 +136,7 @@ export class LearningNav {
     { description: 'Scope services and feature state to a route branch with route providers.', number: 16, path: '/angular-route-lessons/lesson-16-route-providers/overview', title: 'Route Providers' },
     { description: 'Preload selected lazy route chunks after the app is running.', number: 17, path: '/angular-route-lessons/lesson-17-preloading-lazy-routes/overview', title: 'Preloading' },
     { description: 'Bind route params, query params, data, and resolver results directly to component inputs.', number: 18, path: '/angular-route-lessons/lesson-18-component-input-binding/workspace-101', title: 'Input Binding' },
+    { description: 'Control when guards and resolvers rerun as params and query params change.', number: 19, path: '/angular-route-lessons/lesson-19-run-guards-resolvers/default/sales-report', title: 'Rerun Policy' },
   ];
 
   protected get categoryLabel(): string {

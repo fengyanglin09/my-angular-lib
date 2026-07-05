@@ -54,6 +54,8 @@ import { Lesson17PreloadingLazyRoutes } from './lesson-17-preloading-lazy-routes
 import { PreloadingOverviewPanel } from './lesson-17-preloading-lazy-routes/preloading-overview-panel';
 import { componentInputWorkspaceResolver } from './lesson-18-component-input-binding/component-input-workspace.resolver';
 import { Lesson18ComponentInputBinding } from './lesson-18-component-input-binding/lesson-18-component-input-binding';
+import { Lesson19RunGuardsResolvers } from './lesson-19-run-guards-resolvers/lesson-19-run-guards-resolvers';
+import { reportResolver } from './lesson-19-run-guards-resolvers/report.resolver';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -494,6 +496,34 @@ export const angularRouteLessonsRoutes: Routes = [
     },
     resolve: {
       workspace: componentInputWorkspaceResolver,
+    },
+  },
+  {
+    path: 'lesson-19-run-guards-resolvers',
+    pathMatch: 'full',
+    redirectTo: 'lesson-19-run-guards-resolvers/default/sales-report',
+  },
+  {
+    path: 'lesson-19-run-guards-resolvers/default/:reportId',
+    title: 'Routes Lesson 19 - Default Resolver Reruns',
+    component: Lesson19RunGuardsResolvers,
+    data: {
+      strategyLabel: 'Default params-change policy',
+    },
+    resolve: {
+      report: reportResolver,
+    },
+  },
+  {
+    path: 'lesson-19-run-guards-resolvers/query-aware/:reportId',
+    title: 'Routes Lesson 19 - Query-Aware Resolver Reruns',
+    component: Lesson19RunGuardsResolvers,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    data: {
+      strategyLabel: 'paramsOrQueryParamsChange policy',
+    },
+    resolve: {
+      report: reportResolver,
     },
   },
 ];
