@@ -1,11 +1,12 @@
 import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation, withPreloading } from '@angular/router';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
+import { SelectiveRoutePreloadingStrategy } from './pages/angular-route-lessons/lesson-17-preloading-lazy-routes/selective-route-preloading.strategy';
 import { AuthUserEffects } from './state/auth-user/auth-user.effects';
 import { authUserFeature } from './state/auth-user/auth-user.reducer';
 import { BooksEffects } from './state/books/books.effects';
@@ -31,7 +32,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withHashLocation(),
+      withPreloading(SelectiveRoutePreloadingStrategy),
+    ),
     provideStore({
       [authUserFeature.name]: authUserFeature.reducer,
       [booksFeature.name]: booksFeature.reducer,

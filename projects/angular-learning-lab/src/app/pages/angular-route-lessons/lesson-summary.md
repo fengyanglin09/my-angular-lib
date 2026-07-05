@@ -20,6 +20,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 14. Router Events | `/angular-route-lessons/lesson-14-router-events/home` | How `Router.events` exposes navigation lifecycle events for guards, resolvers, activation, redirects, and completion. |
 | 15. Metadata Shell | `/angular-route-lessons/lesson-15-route-metadata-shell/overview` | How a parent route shell reads active child route metadata to build breadcrumbs, page chrome, document title context, and analytics labels. |
 | 16. Route Providers | `/angular-route-lessons/lesson-16-route-providers/overview` | How route records can provide services scoped to one route branch and shared by child routes. |
+| 17. Preloading | `/angular-route-lessons/lesson-17-preloading-lazy-routes/overview` | How `withPreloading` and a custom `PreloadingStrategy` can download selected lazy route chunks before the user opens them. |
 
 ## Big Ideas
 
@@ -75,6 +76,9 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Route metadata is useful for shared page chrome such as breadcrumbs, sections, layout hints, and analytics names.
 - Route records can declare `providers` for services scoped to that route branch.
 - Route-scoped services are shared by the route component and child routes, but they do not have to become global root services.
+- Lazy loading splits route code into separate chunks.
+- Preloading decides whether selected lazy route chunks should download after the app is already running.
+- A custom `PreloadingStrategy` can use route `data` to opt specific lazy routes into preload behavior.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
 - `canMatch` runs while Angular decides whether a route branch is eligible to match.
 - `canMatch` is useful in front of protected lazy feature routes.

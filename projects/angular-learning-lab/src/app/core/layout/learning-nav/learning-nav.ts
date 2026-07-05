@@ -134,6 +134,7 @@ export class LearningNav {
     { description: 'Watch Router.events to understand navigation lifecycle sequence.', number: 14, path: '/angular-route-lessons/lesson-14-router-events/home', title: 'Router Events' },
     { description: 'Build breadcrumbs and page chrome from active child route metadata.', number: 15, path: '/angular-route-lessons/lesson-15-route-metadata-shell/overview', title: 'Metadata Shell' },
     { description: 'Scope services and feature state to a route branch with route providers.', number: 16, path: '/angular-route-lessons/lesson-16-route-providers/overview', title: 'Route Providers' },
+    { description: 'Preload selected lazy route chunks after the app is running.', number: 17, path: '/angular-route-lessons/lesson-17-preloading-lazy-routes/overview', title: 'Preloading' },
   ];
 
   protected get categoryLabel(): string {

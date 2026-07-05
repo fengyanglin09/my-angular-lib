@@ -1,0 +1,152 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="17" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 17</p>
+    <h1>Preloading Lazy Routes</h1>
+    <p>
+      Lazy routes split code into separate chunks. Preloading lets Angular
+      quietly download selected lazy chunks after the app is running, so a
+      likely-next route can feel faster when the user opens it.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="preloading-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">withPreloading, PreloadingStrategy, route data</p>
+        <h2 id="preloading-title">Selective Preloading</h2>
+      </div>
+      <p class="summary">Active child: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="reports"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Reports lazy route
+      </a>
+      <button type="button" (click)="log.clearLog()">Clear log</button>
+    </div>
+
+    <div class="preloading-demo">
+      <section class="demo-main" aria-label="Preloading routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Open this lesson and watch the preloading log.</li>
+          <li>The <code>reports</code> route is still lazy because it uses <code>loadChildren</code>.</li>
+          <li>
+            It opts into preload with
+            <code>data: {{ '{' }} preload: true {{ '}' }}</code>.
+          </li>
+          <li>Click <strong>Reports lazy route</strong>; activation should be separate from preloading.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="preloading-log-title">
+        <h2 id="preloading-log-title">Preloading Log</h2>
+        <ol>
+          @for (message of log.preloadingLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="decision-title">
+        <h2 id="decision-title">Decision Point</h2>
+        <dl>
+          <div>
+            <dt>Preload this route</dt>
+            <dd>The strategy calls and returns <code>load()</code>.</dd>
+          </div>
+          <div>
+            <dt>Skip this route</dt>
+            <dd>The strategy returns <code>of(null)</code> instead.</dd>
+          </div>
+          <div>
+            <dt><code>loadChildren</code></dt>
+            <dd>Creates a lazy route chunk.</dd>
+          </div>
+          <div>
+            <dt><code>withPreloading(...)</code></dt>
+            <dd>Tells the router how to preload lazy chunks after navigation.</dd>
+          </div>
+          <div>
+            <dt><code>data.preload</code></dt>
+            <dd>Lets each route opt in without hard-coding route names in the strategy.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="eager-title">
+        <h2 id="eager-title">Why Not Just Make It Eager?</h2>
+        <dl>
+          <div>
+            <dt>Eager route</dt>
+            <dd>Included in the initial app load, even if the user never opens it.</dd>
+          </div>
+          <div>
+            <dt>Lazy + preload</dt>
+            <dd>Kept out of the first bundle, then downloaded after the app is already running.</dd>
+          </div>
+          <div>
+            <dt>Selective preload</dt>
+            <dd>Can be based on route data, role, network, or likely next navigation.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="preloading mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>lazy route
+  code is split
+
+preloading strategy
+  sees lazy route
+  checks route data
+  calls load() only when allowed
+
+user clicks later
+  route can activate faster</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>loadChildren</code> makes a route lazy.</li>
+      <li><code>withPreloading</code> controls whether lazy routes are downloaded early.</li>
+      <li>A custom <code>PreloadingStrategy</code> receives each lazy route and a <code>load()</code> function.</li>
+      <li>Calling <code>load()</code> preloads the lazy route chunk.</li>
+      <li>Returning <code>of(null)</code> skips preloading for that route.</li>
+      <li>Route <code>data</code> is a clean way to mark preload candidates.</li>
+    </ol>
+  </section>
+</main>

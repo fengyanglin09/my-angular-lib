@@ -50,6 +50,8 @@ import { RouteProvidersActivityPanel } from './lesson-16-route-providers/route-p
 import { RouteProvidersOverviewPanel } from './lesson-16-route-providers/route-providers-overview-panel';
 import { RouteProvidersSettingsPanel } from './lesson-16-route-providers/route-providers-settings-panel';
 import { RouteProvidersWorkspaceStore } from './lesson-16-route-providers/route-providers-workspace-store';
+import { Lesson17PreloadingLazyRoutes } from './lesson-17-preloading-lazy-routes/lesson-17-preloading-lazy-routes';
+import { PreloadingOverviewPanel } from './lesson-17-preloading-lazy-routes/preloading-overview-panel';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -446,6 +448,33 @@ export const angularRouteLessonsRoutes: Routes = [
         path: 'settings',
         title: 'Routes Lesson 16 - Route Providers Settings',
         component: RouteProvidersSettingsPanel,
+      },
+    ],
+  },
+  {
+    path: 'lesson-17-preloading-lazy-routes',
+    component: Lesson17PreloadingLazyRoutes,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'overview',
+      },
+      {
+        path: 'overview',
+        title: 'Routes Lesson 17 - Preloading Overview',
+        component: PreloadingOverviewPanel,
+      },
+      {
+        path: 'reports',
+        title: 'Routes Lesson 17 - Preloaded Reports',
+        data: {
+          preload: true,
+        },
+        loadChildren: () =>
+          import('./lesson-17-preloading-lazy-routes/preloaded-reports.routes').then(
+            (m) => m.preloadedReportsRoutes,
+          ),
       },
     ],
   },
