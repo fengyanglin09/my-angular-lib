@@ -21,6 +21,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 15. Metadata Shell | `/angular-route-lessons/lesson-15-route-metadata-shell/overview` | How a parent route shell reads active child route metadata to build breadcrumbs, page chrome, document title context, and analytics labels. |
 | 16. Route Providers | `/angular-route-lessons/lesson-16-route-providers/overview` | How route records can provide services scoped to one route branch and shared by child routes. |
 | 17. Preloading | `/angular-route-lessons/lesson-17-preloading-lazy-routes/overview` | How `withPreloading` and a custom `PreloadingStrategy` can download selected lazy route chunks before the user opens them. |
+| 18. Input Binding | `/angular-route-lessons/lesson-18-component-input-binding/workspace-101` | How `withComponentInputBinding` binds route params, query params, static data, and resolver data directly to component inputs. |
 
 ## Big Ideas
 
@@ -79,6 +80,8 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Lazy loading splits route code into separate chunks.
 - Preloading decides whether selected lazy route chunks should download after the app is already running.
 - A custom `PreloadingStrategy` can use route `data` to opt specific lazy routes into preload behavior.
+- `withComponentInputBinding` can bind route params, query params, route `data`, and resolver data to matching component input names.
+- Resolver data has the highest precedence when multiple route value sources use the same input name.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
 - `canMatch` runs while Angular decides whether a route branch is eligible to match.
 - `canMatch` is useful in front of protected lazy feature routes.

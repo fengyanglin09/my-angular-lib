@@ -135,6 +135,7 @@ export class LearningNav {
     { description: 'Build breadcrumbs and page chrome from active child route metadata.', number: 15, path: '/angular-route-lessons/lesson-15-route-metadata-shell/overview', title: 'Metadata Shell' },
     { description: 'Scope services and feature state to a route branch with route providers.', number: 16, path: '/angular-route-lessons/lesson-16-route-providers/overview', title: 'Route Providers' },
     { description: 'Preload selected lazy route chunks after the app is running.', number: 17, path: '/angular-route-lessons/lesson-17-preloading-lazy-routes/overview', title: 'Preloading' },
+    { description: 'Bind route params, query params, data, and resolver results directly to component inputs.', number: 18, path: '/angular-route-lessons/lesson-18-component-input-binding/workspace-101', title: 'Input Binding' },
   ];
 
   protected get categoryLabel(): string {

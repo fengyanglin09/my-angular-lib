@@ -52,6 +52,8 @@ import { RouteProvidersSettingsPanel } from './lesson-16-route-providers/route-p
 import { RouteProvidersWorkspaceStore } from './lesson-16-route-providers/route-providers-workspace-store';
 import { Lesson17PreloadingLazyRoutes } from './lesson-17-preloading-lazy-routes/lesson-17-preloading-lazy-routes';
 import { PreloadingOverviewPanel } from './lesson-17-preloading-lazy-routes/preloading-overview-panel';
+import { componentInputWorkspaceResolver } from './lesson-18-component-input-binding/component-input-workspace.resolver';
+import { Lesson18ComponentInputBinding } from './lesson-18-component-input-binding/lesson-18-component-input-binding';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -477,5 +479,21 @@ export const angularRouteLessonsRoutes: Routes = [
           ),
       },
     ],
+  },
+  {
+    path: 'lesson-18-component-input-binding',
+    pathMatch: 'full',
+    redirectTo: 'lesson-18-component-input-binding/workspace-101',
+  },
+  {
+    path: 'lesson-18-component-input-binding/:workspaceId',
+    title: 'Routes Lesson 18 - Component Input Binding',
+    component: Lesson18ComponentInputBinding,
+    data: {
+      accessLevel: 'Workspace Reader',
+    },
+    resolve: {
+      workspace: componentInputWorkspaceResolver,
+    },
   },
 ];

@@ -1,0 +1,161 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="18" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 18</p>
+    <h1>Component Input Binding</h1>
+    <p>
+      <code>withComponentInputBinding()</code> lets Angular bind route params,
+      query params, static route data, and resolver data directly to component
+      inputs with matching names.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="component-input-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">withComponentInputBinding, input signals, route values</p>
+        <h2 id="component-input-title">Route Values As Inputs</h2>
+      </div>
+      <p class="summary">
+        {{ workspaceId() }} · {{ effectiveMode() }} · {{ accessLevel() }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-18-component-input-binding', 'workspace-101']"
+        [queryParams]="{ mode: 'summary' }"
+      >
+        Customer summary
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-18-component-input-binding', 'workspace-202']"
+        [queryParams]="{ mode: 'details' }"
+      >
+        Billing details
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-18-component-input-binding', 'workspace-303']"
+        [queryParams]="{ mode: 'audit' }"
+      >
+        Design audit
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-18-component-input-binding', workspaceId()]"
+      >
+        Remove query param
+      </a>
+    </div>
+
+    <div class="input-demo">
+      <section class="workspace-card" aria-labelledby="workspace-title">
+        <p class="eyebrow">Resolver input</p>
+        <h3 id="workspace-title">{{ workspace()?.name ?? 'Loading workspace' }}</h3>
+        <p>{{ workspace()?.summary ?? 'Resolver data will bind to the workspace input.' }}</p>
+        <dl>
+          <div>
+            <dt>Owner</dt>
+            <dd>{{ workspace()?.owner ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Resolved id</dt>
+            <dd>{{ workspace()?.id ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Bound Inputs</p>
+        <dl>
+          <div>
+            <dt>Path param input</dt>
+            <dd><code>workspaceId()</code> = {{ workspaceId() }}</dd>
+          </div>
+          <div>
+            <dt>Query param input</dt>
+            <dd><code>mode()</code> = {{ mode() ?? 'undefined' }}</dd>
+          </div>
+          <div>
+            <dt>Static data input</dt>
+            <dd><code>accessLevel()</code> = {{ accessLevel() }}</dd>
+          </div>
+          <div>
+            <dt>Fallback computed</dt>
+            <dd><code>effectiveMode()</code> = {{ effectiveMode() }}</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="input-log-title">
+        <h2 id="input-log-title">Input Update Log</h2>
+        <ol>
+          @for (message of inputLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="precedence-title">
+        <h2 id="precedence-title">Name Matching And Precedence</h2>
+        <dl>
+          <div>
+            <dt>Matching rule</dt>
+            <dd>The component input name must match the route value key exactly.</dd>
+          </div>
+          <div>
+            <dt>Examples</dt>
+            <dd><code>:workspaceId</code> binds to <code>workspaceId</code>; <code>data.accessLevel</code> binds to <code>accessLevel</code>.</dd>
+          </div>
+          <div>
+            <dt>Sources</dt>
+            <dd>Query params, path params, static data, and resolver data can all bind.</dd>
+          </div>
+          <div>
+            <dt>Highest precedence</dt>
+            <dd>Resolver data wins if multiple sources use the same key.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="component input binding mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>router activates component
+  reads params
+  reads query params
+  reads route data
+  runs resolvers
+  sets matching component inputs</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>withComponentInputBinding()</code> is enabled in <code>provideRouter(...)</code>.</li>
+      <li>The component input name must match the route param, query param, data key, or resolver key.</li>
+      <li>Route params bind to inputs with matching names.</li>
+      <li>Query params bind to inputs too, but missing query params become <code>undefined</code>.</li>
+      <li>Static route <code>data</code> and resolver data can bind to component inputs.</li>
+      <li>Resolver data has the highest precedence when keys collide.</li>
+      <li>Use this when you only need route values; use <code>ActivatedRoute</code> when you need route tree APIs or custom stream logic.</li>
+    </ol>
+  </section>
+</main>
