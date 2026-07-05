@@ -23,6 +23,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 17. Preloading | `/angular-route-lessons/lesson-17-preloading-lazy-routes/overview` | How `withPreloading` and a custom `PreloadingStrategy` can download selected lazy route chunks before the user opens them. |
 | 18. Input Binding | `/angular-route-lessons/lesson-18-component-input-binding/workspace-101` | How `withComponentInputBinding` binds route params, query params, static data, and resolver data directly to component inputs. |
 | 19. Rerun Policy | `/angular-route-lessons/lesson-19-run-guards-resolvers/default/sales-report` | How `runGuardsAndResolvers` controls whether guards and resolvers rerun when params or query params change. |
+| 20. Rerun Resolver | `/angular-route-lessons/lesson-20-programmatic-resolver-rerun/ticket-101` | How programmatic navigation can update a refresh query param to intentionally rerun a resolver. |
 
 ## Big Ideas
 
@@ -85,6 +86,8 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Resolver data has the highest precedence when multiple route value sources use the same input name.
 - `runGuardsAndResolvers` controls when guards and resolvers rerun for the same route component.
 - Use `paramsOrQueryParamsChange` when resolver data depends on query params.
+- There is no direct `resolver.run()` API; programmatic resolver reruns happen through router navigation.
+- A refresh query param such as `refreshId` can intentionally trigger same-route navigation and resolver reruns.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
 - `canMatch` runs while Angular decides whether a route branch is eligible to match.
 - `canMatch` is useful in front of protected lazy feature routes.

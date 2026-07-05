@@ -56,6 +56,8 @@ import { componentInputWorkspaceResolver } from './lesson-18-component-input-bin
 import { Lesson18ComponentInputBinding } from './lesson-18-component-input-binding/lesson-18-component-input-binding';
 import { Lesson19RunGuardsResolvers } from './lesson-19-run-guards-resolvers/lesson-19-run-guards-resolvers';
 import { reportResolver } from './lesson-19-run-guards-resolvers/report.resolver';
+import { Lesson20ProgrammaticResolverRerun } from './lesson-20-programmatic-resolver-rerun/lesson-20-programmatic-resolver-rerun';
+import { supportTicketResolver } from './lesson-20-programmatic-resolver-rerun/support-ticket.resolver';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -524,6 +526,20 @@ export const angularRouteLessonsRoutes: Routes = [
     },
     resolve: {
       report: reportResolver,
+    },
+  },
+  {
+    path: 'lesson-20-programmatic-resolver-rerun',
+    pathMatch: 'full',
+    redirectTo: 'lesson-20-programmatic-resolver-rerun/ticket-101',
+  },
+  {
+    path: 'lesson-20-programmatic-resolver-rerun/:ticketId',
+    title: 'Routes Lesson 20 - Programmatic Resolver Rerun',
+    component: Lesson20ProgrammaticResolverRerun,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    resolve: {
+      ticket: supportTicketResolver,
     },
   },
 ];

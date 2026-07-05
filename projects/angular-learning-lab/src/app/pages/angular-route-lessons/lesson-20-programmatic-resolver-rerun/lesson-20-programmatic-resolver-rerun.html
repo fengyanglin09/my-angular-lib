@@ -1,0 +1,171 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="20" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 20</p>
+    <h1>Programmatically Rerun Resolvers</h1>
+    <p>
+      Resolvers do not have a direct rerun method. To rerun one from code,
+      perform a navigation that changes a URL value the route is configured to
+      watch.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="programmatic-rerun-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Router.navigate, refreshId, resolver rerun</p>
+        <h2 id="programmatic-rerun-title">Refresh Route-Owned Data</h2>
+      </div>
+      <p class="summary">
+        {{ ticketId() }} · refreshId {{ currentRefreshId() }}
+      </p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="refreshResolverData()">
+        Refresh resolver data
+      </button>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-20-programmatic-resolver-rerun', 'ticket-101']"
+      >
+        Ticket 101
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-20-programmatic-resolver-rerun', 'ticket-202']"
+      >
+        Ticket 202
+      </a>
+      <a
+        class="lesson-link-button"
+        [routerLink]="['/angular-route-lessons/lesson-20-programmatic-resolver-rerun', 'ticket-303']"
+      >
+        Ticket 303
+      </a>
+      <button type="button" (click)="log.clearLog()">Clear log</button>
+    </div>
+
+    <div class="rerun-demo">
+      <section class="ticket-card" aria-labelledby="ticket-title">
+        <p class="eyebrow">Resolved ticket data</p>
+        <h3 id="ticket-title">{{ ticket()?.title ?? 'Waiting for resolver' }}</h3>
+        <dl>
+          <div>
+            <dt>Resolver run id</dt>
+            <dd>#{{ ticket()?.runId ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd>{{ ticket()?.status ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Resolver used refreshId</dt>
+            <dd>{{ ticket()?.refreshId ?? 'None' }}</dd>
+          </div>
+          <div>
+            <dt>Loaded at</dt>
+            <dd>{{ ticket()?.loadedAt ?? 'None' }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Current route inputs</p>
+        <dl>
+          <div>
+            <dt>Path param</dt>
+            <dd><code>ticketId()</code> = {{ ticketId() }}</dd>
+          </div>
+          <div>
+            <dt>Query param</dt>
+            <dd><code>refreshId()</code> = {{ currentRefreshId() }}</dd>
+          </div>
+          <div>
+            <dt>Rerun mechanism</dt>
+            <dd>The button updates <code>?refreshId=...</code>, which is navigation.</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="log-card" aria-labelledby="resolver-log-title">
+        <h2 id="resolver-log-title">Resolver Log</h2>
+        <ol>
+          @for (message of log.resolverLog(); track $index) {
+            <li>{{ message }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card" aria-labelledby="pattern-title">
+        <h2 id="pattern-title">Pattern Summary</h2>
+        <dl>
+          <div>
+            <dt>Button click</dt>
+            <dd>Calls <code>router.navigate([])</code> relative to the current route.</dd>
+          </div>
+          <div>
+            <dt>URL change</dt>
+            <dd>Only <code>refreshId</code> changes; the same component can stay on screen.</dd>
+          </div>
+          <div>
+            <dt>Resolver rerun</dt>
+            <dd><code>paramsOrQueryParamsChange</code> tells Angular this query change matters.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="tradeoff-title">
+        <h2 id="tradeoff-title">Resolver Rerun vs Service Reload</h2>
+        <dl>
+          <div>
+            <dt>Use resolver rerun</dt>
+            <dd>When route-owned data should be represented by navigation and route data.</dd>
+          </div>
+          <div>
+            <dt>Use service reload</dt>
+            <dd>When the page is already active and you only need to refresh an internal panel.</dd>
+          </div>
+          <div>
+            <dt>Rule of thumb</dt>
+            <dd>If the URL should explain the reload, navigation is a good fit.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="programmatic resolver rerun mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>click refresh
+  navigate on same route
+  change refreshId query param
+  router sees query param change
+  route policy allows rerun
+  resolver runs again</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>There is no direct <code>resolver.run()</code> API.</li>
+      <li>Resolvers rerun through router navigation.</li>
+      <li>A refresh query param is a common way to intentionally trigger same-page navigation.</li>
+      <li><code>runGuardsAndResolvers: 'paramsOrQueryParamsChange'</code> is needed when a query param should rerun the resolver.</li>
+      <li>Use this pattern when the refreshed data belongs to the route; use a service reload when the refresh is only local UI state.</li>
+    </ol>
+  </section>
+</main>
