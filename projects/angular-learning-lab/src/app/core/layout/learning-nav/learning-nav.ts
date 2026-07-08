@@ -138,6 +138,7 @@ export class LearningNav {
     { description: 'Bind route params, query params, data, and resolver results directly to component inputs.', number: 18, path: '/angular-route-lessons/lesson-18-component-input-binding/workspace-101', title: 'Input Binding' },
     { description: 'Control when guards and resolvers rerun as params and query params change.', number: 19, path: '/angular-route-lessons/lesson-19-run-guards-resolvers/default/sales-report', title: 'Rerun Policy' },
     { description: 'Use programmatic navigation to intentionally rerun route resolvers.', number: 20, path: '/angular-route-lessons/lesson-20-programmatic-resolver-rerun/ticket-101', title: 'Rerun Resolver' },
+    { description: 'Group child routes with shared params and data without rendering an extra parent component.', number: 21, path: '/angular-route-lessons/lesson-21-componentless-parent/workspace/acme/overview', title: 'Componentless Parent' },
   ];
 
   protected get categoryLabel(): string {

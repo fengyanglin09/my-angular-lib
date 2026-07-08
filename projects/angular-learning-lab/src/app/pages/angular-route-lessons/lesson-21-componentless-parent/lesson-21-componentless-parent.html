@@ -1,0 +1,144 @@
+<main class="lesson-shell">
+  <app-learning-nav category="routes" [activeLesson]="21" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Routes Lesson 21</p>
+    <h1>Componentless Parent Routes</h1>
+    <p>
+      A componentless parent route groups child routes under shared path
+      segments, params, data, guards, or providers without creating an extra
+      component just to hold route configuration.
+    </p>
+  </section>
+
+  <section class="routes-panel" aria-labelledby="componentless-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">route grouping, shared data, shared params</p>
+        <h2 id="componentless-title">Workspace Route Group</h2>
+      </div>
+      <p class="summary">Active child: {{ activePanel() }}</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <a
+        class="lesson-link-button"
+        routerLink="workspace/acme/overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Acme overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="workspace/acme/settings"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Acme settings
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="workspace/atlas/overview"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Atlas overview
+      </a>
+      <a
+        class="lesson-link-button"
+        routerLink="workspace/atlas/settings"
+        routerLinkActive="lesson-link-button--active"
+      >
+        Atlas settings
+      </a>
+    </div>
+
+    <div class="componentless-demo">
+      <section class="demo-main" aria-label="Componentless parent routed content">
+        <p class="eyebrow">Nested outlet result</p>
+        <router-outlet (activate)="childActivated($event)" />
+      </section>
+
+      <aside class="demo-state">
+        <p class="eyebrow">Try this</p>
+        <ol>
+          <li>Switch between <strong>overview</strong> and <strong>settings</strong>.</li>
+          <li>Notice both children read the same parent route data.</li>
+          <li>Switch between <strong>acme</strong> and <strong>atlas</strong>.</li>
+          <li>The same child component can stay alive while <code>:workspaceId</code> changes.</li>
+          <li>The componentless parent owns <code>:workspaceId</code>, but renders no component.</li>
+        </ol>
+      </aside>
+    </div>
+
+    <div class="content-grid routes-content-grid">
+      <section class="state-card" aria-labelledby="tree-title">
+        <h2 id="tree-title">Route Tree</h2>
+        <dl>
+          <div>
+            <dt>Lesson shell route</dt>
+            <dd><code>lesson-21-componentless-parent</code> renders this page and its outlet.</dd>
+          </div>
+          <div>
+            <dt>Componentless group route</dt>
+            <dd><code>workspace/:workspaceId</code> has no component, but owns shared params and data.</dd>
+          </div>
+          <div>
+            <dt>Real child routes</dt>
+            <dd><code>overview</code> and <code>settings</code> render actual routed components.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card" aria-labelledby="why-title">
+        <h2 id="why-title">Why Not Add A Parent Component?</h2>
+        <dl>
+          <div>
+            <dt>Use componentless</dt>
+            <dd>When the parent only groups config and has no UI to render.</dd>
+          </div>
+          <div>
+            <dt>Use a parent component</dt>
+            <dd>When the parent needs layout, tabs, sidebars, loading state, or a visible shell.</dd>
+          </div>
+          <div>
+            <dt>Practical result</dt>
+            <dd>You avoid throwaway components whose only job is route grouping.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="componentless route mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>route record can group
+  path segments
+  params
+  data
+  guards
+  providers
+
+but only routes with component
+  render UI</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>A route can have <code>children</code> without having a <code>component</code>.</li>
+      <li>That route is useful for grouping shared params, data, guards, or providers.</li>
+      <li>The componentless route does not render its own UI.</li>
+      <li>Child routes below it still render their components in the nearest parent <code>router-outlet</code>.</li>
+      <li>Use a real parent component when the parent route needs visible layout.</li>
+    </ol>
+  </section>
+</main>

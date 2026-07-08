@@ -24,6 +24,7 @@ These lessons focus on Angular Router patterns used in normal application develo
 | 18. Input Binding | `/angular-route-lessons/lesson-18-component-input-binding/workspace-101` | How `withComponentInputBinding` binds route params, query params, static data, and resolver data directly to component inputs. |
 | 19. Rerun Policy | `/angular-route-lessons/lesson-19-run-guards-resolvers/default/sales-report` | How `runGuardsAndResolvers` controls whether guards and resolvers rerun when params or query params change. |
 | 20. Rerun Resolver | `/angular-route-lessons/lesson-20-programmatic-resolver-rerun/ticket-101` | How programmatic navigation can update a refresh query param to intentionally rerun a resolver. |
+| 21. Componentless Parent | `/angular-route-lessons/lesson-21-componentless-parent/workspace/acme/overview` | How a route can group child routes with shared params and data without rendering an extra parent component. |
 
 ## Big Ideas
 
@@ -88,6 +89,8 @@ These lessons focus on Angular Router patterns used in normal application develo
 - Use `paramsOrQueryParamsChange` when resolver data depends on query params.
 - There is no direct `resolver.run()` API; programmatic resolver reruns happen through router navigation.
 - A refresh query param such as `refreshId` can intentionally trigger same-route navigation and resolver reruns.
+- A route can have `children` without a `component`; that route groups config but renders no UI.
+- Componentless parent routes are useful for shared params, data, guards, and providers when no visible parent layout is needed.
 - Lazy route groups are useful for larger feature areas the user may not visit immediately.
 - `canMatch` runs while Angular decides whether a route branch is eligible to match.
 - `canMatch` is useful in front of protected lazy feature routes.

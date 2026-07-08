@@ -58,6 +58,9 @@ import { Lesson19RunGuardsResolvers } from './lesson-19-run-guards-resolvers/les
 import { reportResolver } from './lesson-19-run-guards-resolvers/report.resolver';
 import { Lesson20ProgrammaticResolverRerun } from './lesson-20-programmatic-resolver-rerun/lesson-20-programmatic-resolver-rerun';
 import { supportTicketResolver } from './lesson-20-programmatic-resolver-rerun/support-ticket.resolver';
+import { ComponentlessOverviewPanel } from './lesson-21-componentless-parent/componentless-overview-panel';
+import { ComponentlessSettingsPanel } from './lesson-21-componentless-parent/componentless-settings-panel';
+import { Lesson21ComponentlessParent } from './lesson-21-componentless-parent/lesson-21-componentless-parent';
 
 export const angularRouteLessonsRoutes: Routes = [
   {
@@ -541,5 +544,35 @@ export const angularRouteLessonsRoutes: Routes = [
     resolve: {
       ticket: supportTicketResolver,
     },
+  },
+  {
+    path: 'lesson-21-componentless-parent',
+    component: Lesson21ComponentlessParent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'workspace/acme/overview',
+      },
+      {
+        path: 'workspace/:workspaceId',
+        data: {
+          featureArea: 'Workspace Administration',
+          requiredRole: 'Workspace Manager',
+        },
+        children: [
+          {
+            path: 'overview',
+            title: 'Routes Lesson 21 - Componentless Overview',
+            component: ComponentlessOverviewPanel,
+          },
+          {
+            path: 'settings',
+            title: 'Routes Lesson 21 - Componentless Settings',
+            component: ComponentlessSettingsPanel,
+          },
+        ],
+      },
+    ],
   },
 ];
