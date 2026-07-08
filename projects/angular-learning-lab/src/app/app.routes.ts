@@ -16,6 +16,17 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'ramda-lessons',
+    loadChildren: () =>
+      import('./pages/ramda-lessons/ramda-lessons.routes').then(
+        (m) => m.ramdaLessonsRoutes,
+      ),
+  },
+  {
+    path: 'ngrx-ramda-lessons',
+    redirectTo: 'ramda-lessons/lesson-09-ramda-with-ngrx',
+  },
+  {
     path: 'rxjs-lessons',
     loadChildren: () =>
       import('./pages/rxjs-lessons/rxjs-lessons.routes').then(

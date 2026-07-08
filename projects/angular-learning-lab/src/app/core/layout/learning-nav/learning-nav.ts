@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'forms' | 'ngrx' | 'routes' | 'rxjs' | 'signals';
+type LearningCategory = 'forms' | 'ngrx' | 'ramda' | 'routes' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -47,6 +47,11 @@ export class LearningNav {
     { description: 'Use MockStore for component and facade tests.', number: 24, path: '/ngrx-lessons/lesson-24-mock-store-testing', title: 'MockStore Tests' },
     { description: 'Model relational data with normalized entities and selector joins.', number: 25, path: '/ngrx-lessons/lesson-25-normalized-state', title: 'Normalized State' },
     { description: 'Store the current auth user globally with effects and selectors.', number: 26, path: '/ngrx-lessons/lesson-26-auth-user', title: 'Auth User' },
+  ];
+
+  private readonly ramdaLessons: LessonLink[] = [
+    { description: 'Understand Ramda as a general functional utility library for plain data transformations.', number: 1, path: '/ramda-lessons/lesson-01-what-is-ramda', title: 'What Is Ramda' },
+    { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
   ];
 
   private readonly rxjsLessons: LessonLink[] = [
@@ -146,6 +151,10 @@ export class LearningNav {
       return 'RxJS';
     }
 
+    if (this.category === 'ramda') {
+      return 'Ramda';
+    }
+
     if (this.category === 'signals') {
       return 'Signals';
     }
@@ -168,6 +177,10 @@ export class LearningNav {
   protected get lessons(): LessonLink[] {
     if (this.category === 'rxjs') {
       return this.rxjsLessons;
+    }
+
+    if (this.category === 'ramda') {
+      return this.ramdaLessons;
     }
 
     if (this.category === 'signals') {

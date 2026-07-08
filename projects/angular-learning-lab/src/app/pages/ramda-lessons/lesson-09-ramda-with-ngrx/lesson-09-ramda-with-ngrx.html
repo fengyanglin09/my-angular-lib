@@ -1,0 +1,133 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 9</p>
+    <h1>Ramda With NgRx</h1>
+    <p>
+      Once you understand Ramda basics, NgRx reducers and selectors become one
+      practical place to use it. NgRx still owns the architecture. Ramda only
+      helps describe immutable object updates and collection transformations.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="catalog-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Actions, Reducer, Selectors, Ramda</p>
+        <h2 id="catalog-title">Catalog State Lab</h2>
+      </div>
+      <p class="summary">{{ visibleProducts().length }} visible products</p>
+    </div>
+
+    <div class="toolbar">
+      <label>
+        Search
+        <input
+          #searchInput
+          type="search"
+          [value]="state().filters.search"
+          (input)="setSearch(searchInput.value)"
+          placeholder="Try effects, forms, selector"
+        />
+      </label>
+      <button type="button" (click)="toggleArchived()">
+        {{ state().filters.showArchived ? 'Hide archived' : 'Show archived' }}
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid catalog-grid">
+      <section class="state-card" aria-labelledby="products-title">
+        <h2 id="products-title">Selector Output</h2>
+
+        <div class="product-list">
+          @for (product of visibleProducts(); track product.id) {
+            <article class="product-card" [class.product-card--featured]="product.featured">
+              <div>
+                <p class="eyebrow">{{ product.category }}</p>
+                <h3>{{ product.title }}</h3>
+                <p>
+                  ${{ product.price }} · rating {{ product.rating }}
+                  @if (product.archived) {
+                    · archived
+                  }
+                </p>
+              </div>
+              <button type="button" (click)="promote(product.id)">
+                Promote
+              </button>
+            </article>
+          } @empty {
+            <p class="empty">No products match the current filters.</p>
+          }
+        </div>
+      </section>
+
+      <section class="state-card" aria-labelledby="selected-title">
+        <h2 id="selected-title">Selected Product</h2>
+        @if (selectedProduct(); as product) {
+          <dl>
+            <div>
+              <dt>Title</dt>
+              <dd>{{ product.title }}</dd>
+            </div>
+            <div>
+              <dt>Featured</dt>
+              <dd>{{ product.featured ? 'yes' : 'no' }}</dd>
+            </div>
+            <div>
+              <dt>Rating</dt>
+              <dd>{{ product.rating }}</dd>
+            </div>
+          </dl>
+        }
+      </section>
+
+      <aside class="mental-card" aria-label="NgRx plus Ramda mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>NgRx decides when state changes
+  action -> reducer -> new state
+
+Ramda helps describe how
+  assocPath
+  assoc
+  pipe
+  sortBy
+  find</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">Plain TypeScript Vs Ramda</h2>
+
+    <div class="comparison-grid">
+      @for (comparison of comparisons; track comparison.name) {
+        <article class="comparison-card">
+          <h3>{{ comparison.name }}</h3>
+          <div>
+            <p class="eyebrow">Plain TypeScript</p>
+            <pre>{{ comparison.plain }}</pre>
+          </div>
+          <div>
+            <p class="eyebrow">Ramda</p>
+            <pre>{{ comparison.ramda }}</pre>
+          </div>
+          <p>{{ comparison.takeaway }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>NgRx owns the architecture: actions, reducers, selectors, effects, and store flow.</li>
+      <li>Ramda is just a helper library for immutable data transformations.</li>
+      <li>Use Ramda when it removes noisy spread syntax or clarifies transformation steps.</li>
+      <li>Avoid Ramda when the helper chain hides simple business logic.</li>
+      <li>In real teams, consistency matters more than using a clever helper everywhere.</li>
+    </ol>
+  </section>
+</main>

@@ -1,0 +1,18 @@
+import { Routes } from '@angular/router';
+
+export const ramdaLessonsRoutes: Routes = [
+  {
+    path: 'lesson-01-what-is-ramda',
+    loadComponent: () =>
+      import('./lesson-01-what-is-ramda/lesson-01-what-is-ramda').then(
+        (m) => m.Lesson01WhatIsRamda,
+      ),
+  },
+  {
+    path: 'lesson-09-ramda-with-ngrx',
+    loadComponent: () =>
+      import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(
+        (m) => m.Lesson09RamdaWithNgrx,
+      ),
+  },
+];

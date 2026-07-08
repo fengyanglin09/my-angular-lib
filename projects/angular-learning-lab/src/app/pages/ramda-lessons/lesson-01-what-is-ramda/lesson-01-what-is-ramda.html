@@ -1,0 +1,125 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="1" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 1</p>
+    <h1>What Is Ramda?</h1>
+    <p>
+      Ramda is a utility library for transforming plain JavaScript data. It is
+      not tied to Angular, NgRx, RxJS, or forms. You can use it anywhere you
+      need small pure functions for filtering, sorting, composing, or updating
+      immutable data.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="ticket-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Plain Data, Pure Functions</p>
+        <h2 id="ticket-title">Support Ticket List</h2>
+      </div>
+      <p class="summary">{{ visibleTickets().length }} visible tickets</p>
+    </div>
+
+    <div class="toolbar">
+      <label>
+        Search
+        <input
+          #searchInput
+          type="search"
+          [value]="search()"
+          (input)="setSearch(searchInput.value)"
+          placeholder="Try ngrx, rxjs, contoso"
+        />
+      </label>
+      <button type="button" (click)="toggleClosedTickets()">
+        {{ showClosed() ? 'Hide closed tickets' : 'Show closed tickets' }}
+      </button>
+      <button type="button" (click)="boostFirstVisibleTicket()">
+        Boost first visible
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid ticket-grid">
+      <section class="state-card" aria-labelledby="visible-title">
+        <h2 id="visible-title">Transformed Result</h2>
+
+        <div class="ticket-list">
+          @for (ticket of visibleTickets(); track ticket.id) {
+            <article class="ticket-card" [class.ticket-card--closed]="ticket.status === 'closed'">
+              <div>
+                <p class="eyebrow">{{ ticket.customer }} · {{ ticket.status }}</p>
+                <h3>{{ ticket.title }}</h3>
+              </div>
+              <strong>Priority {{ ticket.priority }}</strong>
+            </article>
+          } @empty {
+            <p class="empty">No tickets match the current search.</p>
+          }
+        </div>
+      </section>
+
+      <section class="state-card" aria-labelledby="functions-title">
+        <h2 id="functions-title">What Ran?</h2>
+        <dl>
+          <div>
+            <dt><code>pipe(trim, toLower)</code></dt>
+            <dd>Normalizes search text before comparing it.</dd>
+          </div>
+          <div>
+            <dt><code>sortBy(...)</code></dt>
+            <dd>Returns tickets sorted by priority without mutating the original array.</dd>
+          </div>
+          <div>
+            <dt><code>assoc(...)</code></dt>
+            <dd>Returns a new ticket object with one field changed.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <aside class="mental-card" aria-label="Ramda mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>data goes in
+  function transforms it
+  new data comes out
+
+good Ramda code
+  is still readable
+  avoids mutation
+  names business meaning</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">Plain TypeScript Vs Ramda</h2>
+
+    <div class="comparison-grid">
+      @for (example of examples; track example.name) {
+        <article class="comparison-card">
+          <h3>{{ example.name }}</h3>
+          <div>
+            <p class="eyebrow">Plain TypeScript</p>
+            <pre>{{ example.plain }}</pre>
+          </div>
+          <div>
+            <p class="eyebrow">Ramda</p>
+            <pre>{{ example.ramda }}</pre>
+          </div>
+          <p>{{ example.takeaway }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Ramda is a general data-transformation library, not an NgRx feature.</li>
+      <li>Most Ramda helpers take data and return new data.</li>
+      <li>Pure transformations are easier to reuse in components, services, selectors, and streams.</li>
+      <li>Ramda is helpful only when the result is easier to read than plain TypeScript.</li>
+    </ol>
+  </section>
+</main>
