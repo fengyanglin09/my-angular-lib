@@ -51,6 +51,7 @@ export class LearningNav {
 
   private readonly ramdaLessons: LessonLink[] = [
     { description: 'Understand Ramda as a general functional utility library for plain data transformations.', number: 1, path: '/ramda-lessons/lesson-01-what-is-ramda', title: 'What Is Ramda' },
+    { description: 'Transform arrays with map, filter, reject, find, sortBy, and groupBy.', number: 2, path: '/ramda-lessons/lesson-02-collection-transformations', title: 'Collections' },
     { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
   ];
 

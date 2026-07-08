@@ -1,0 +1,140 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="2" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 2</p>
+    <h1>Collection Transformations</h1>
+    <p>
+      Most Ramda usage starts with arrays. This lesson compares the common
+      collection helpers you will see in real code: transform every item, keep
+      some items, remove some items, find one item, sort items, and group items.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="collections-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">map, filter, reject, find, sortBy, groupBy</p>
+        <h2 id="collections-title">Course Catalog</h2>
+      </div>
+      <p class="summary">
+        Sorting {{ sortDescending() ? 'descending' : 'ascending' }} by rating
+      </p>
+    </div>
+
+    <div class="toolbar">
+      @for (operator of operatorButtons; track operator.name) {
+        <button
+          type="button"
+          (click)="setActiveOperator(operator.name)"
+          [class.operator-button--active]="activeOperator() === operator.name"
+        >
+          {{ operator.label }}
+        </button>
+      }
+      <button
+        type="button"
+        (click)="toggleSortOrder()"
+        [disabled]="activeOperator() !== 'sortBy'"
+      >
+        {{ sortDescending() ? 'Use ascending sort' : 'Use descending sort' }}
+      </button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid catalog-grid">
+      <section class="state-card" aria-labelledby="source-title">
+        <h2 id="source-title">Source Data</h2>
+        <p class="source-note">
+          Each item below is a <code>Course</code> object. Operator callbacks
+          receive one course at a time, so <code>course.rating >= 4.7</code>
+          means “read the rating field from the current course.”
+        </p>
+        <div class="course-list">
+          @for (course of courses(); track course.id) {
+            <article class="course-card">
+              <div>
+                <p class="eyebrow">{{ course.topic }} · {{ course.level }}</p>
+                <h3>{{ course.title }}</h3>
+              </div>
+              <dl>
+                <div>
+                  <dt>Rating</dt>
+                  <dd>{{ course.rating }}</dd>
+                </div>
+                <div>
+                  <dt>Enrolled</dt>
+                  <dd>{{ course.enrolled }}</dd>
+                </div>
+              </dl>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="state-card data-shape-card" aria-labelledby="shape-title">
+        <p class="eyebrow">Data Structure</p>
+        <h2 id="shape-title">Course Shape</h2>
+        <pre>{{ sourceDataShape }}</pre>
+        <p class="eyebrow">Example Object</p>
+        <pre>{{ sourceDataSample }}</pre>
+      </section>
+
+      <section class="state-card result-card" aria-labelledby="result-title">
+        <p class="eyebrow">Selected Operator</p>
+        <h2 id="result-title">{{ activeExample().buttonLabel }}</h2>
+        <p>{{ activeExample().outputLabel }}</p>
+        <pre>{{ activeExample().code }}</pre>
+        <output>{{ activeExample().output }}</output>
+      </section>
+
+      <aside class="mental-card mental-card--wide" aria-label="collection transformation mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>array goes in
+  map changes each item
+  filter keeps matches
+  reject removes matches
+  find returns one match
+  sortBy orders items
+  groupBy creates buckets</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="examples-title">
+    <h2 id="examples-title">Operator Examples</h2>
+
+    <div class="example-grid">
+      @for (example of examples(); track example.name) {
+        <article class="example-card">
+          <div>
+            <p class="eyebrow">{{ example.name }}</p>
+            <h3>{{ example.description }}</h3>
+          </div>
+          <button
+            type="button"
+            (click)="setActiveOperator(example.name)"
+            [class.operator-button--active]="activeOperator() === example.name"
+          >
+            Show {{ example.buttonLabel }}
+          </button>
+          <pre>{{ example.code }}</pre>
+          <output>{{ example.output }}</output>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>map</code> changes every item into a new value.</li>
+      <li><code>filter</code> keeps items that match a predicate.</li>
+      <li><code>reject</code> removes items that match a predicate.</li>
+      <li><code>find</code> returns the first match, not an array.</li>
+      <li><code>sortBy</code> sorts ascending; combine it with <code>reverse</code> for descending order.</li>
+      <li><code>groupBy</code> changes an array into an object of grouped arrays, not counts.</li>
+      <li>If you want counts, call <code>.length</code> on each grouped array afterward.</li>
+    </ol>
+  </section>
+</main>

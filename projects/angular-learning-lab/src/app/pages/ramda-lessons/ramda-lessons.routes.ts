@@ -9,6 +9,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-02-collection-transformations',
+    loadComponent: () =>
+      import('./lesson-02-collection-transformations/lesson-02-collection-transformations').then(
+        (m) => m.Lesson02CollectionTransformations,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(

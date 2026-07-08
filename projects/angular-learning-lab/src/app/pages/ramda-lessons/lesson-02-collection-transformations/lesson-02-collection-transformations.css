@@ -1,0 +1,145 @@
+:host {
+  display: block;
+}
+
+.ramda-panel,
+.comparison-panel {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+}
+
+.catalog-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.95fr) minmax(280px, 0.95fr);
+}
+
+.operator-button--active {
+  background: #2f5d4a;
+  border-color: #2f5d4a;
+  color: #ffffff;
+}
+
+.course-list {
+  display: grid;
+  gap: 12px;
+}
+
+.source-note {
+  color: #606b78;
+  line-height: 1.55;
+  margin: 0 0 16px;
+}
+
+.course-card {
+  align-items: start;
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 14px;
+}
+
+.course-card h3,
+.course-card p {
+  margin: 0;
+}
+
+.course-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  min-width: 120px;
+}
+
+.result-card {
+  display: grid;
+  gap: 14px;
+}
+
+.data-shape-card {
+  display: grid;
+  gap: 12px;
+}
+
+.data-shape-card h2,
+.data-shape-card p {
+  margin: 0;
+}
+
+.mental-card--wide {
+  grid-column: 1 / -1;
+}
+
+.result-card h2,
+.result-card p {
+  margin: 0;
+}
+
+.result-card p {
+  color: #606b78;
+}
+
+.result-card output {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  color: #2f3a45;
+  display: block;
+  line-height: 1.55;
+  min-height: 96px;
+  padding: 12px;
+  white-space: pre-wrap;
+}
+
+.example-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.example-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.example-card:has(.operator-button--active) {
+  border-color: #2f5d4a;
+  box-shadow: inset 4px 0 0 #2f5d4a;
+}
+
+.example-card h3,
+.example-card p {
+  margin: 0;
+}
+
+.example-card output {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  color: #2f3a45;
+  display: block;
+  line-height: 1.55;
+  min-height: 64px;
+  padding: 12px;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 1100px) {
+  .catalog-grid,
+  .example-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-card {
+    grid-template-columns: 1fr;
+  }
+}
