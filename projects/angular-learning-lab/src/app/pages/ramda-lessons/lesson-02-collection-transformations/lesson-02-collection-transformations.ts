@@ -25,6 +25,14 @@ interface TransformationExample {
   outputLabel: string;
 }
 
+interface PlainEquivalent {
+  description: string;
+  name: string;
+  plain: string;
+  ramda: string;
+  title: string;
+}
+
 type GroupedCourseTitles = Partial<Record<CourseTopic, string[]>>;
 
 const initialCourses: Course[] = [
@@ -104,6 +112,45 @@ export class Lesson02CollectionTransformations {
   topic: 'angular' | 'ngrx' | 'ramda' | 'rxjs';
 }`;
   protected readonly sourceDataSample = JSON.stringify(initialCourses[0], null, 2);
+  protected readonly plainEquivalents: PlainEquivalent[] = [
+    {
+      description: 'Change every item.',
+      name: 'map',
+      plain: `courses.map((course) => toCourseLabel(course))`,
+      ramda: `R.map(toCourseLabel, courses)`,
+      title: 'map',
+    },
+    {
+      description: 'Keep or remove matching items.',
+      name: 'filter-reject',
+      plain: `courses.filter((course) => course.level === 'advanced')
+courses.filter((course) => course.level !== 'beginner')`,
+      ramda: `R.filter(isAdvanced, courses)
+R.reject(isBeginner, courses)`,
+      title: 'filter / reject',
+    },
+    {
+      description: 'Sort without mutating the source array.',
+      name: 'sortBy',
+      plain: `[...courses].sort((a, b) => a.rating - b.rating)`,
+      ramda: `R.sortBy((course) => course.rating, courses)`,
+      title: 'sortBy',
+    },
+    {
+      description: 'Turn one array into named buckets.',
+      name: 'groupBy',
+      plain: `courses.reduce((groups, course) => {
+  const topicCourses = groups[course.topic] ?? [];
+
+  return {
+    ...groups,
+    [course.topic]: [...topicCourses, course],
+  };
+}, {})`,
+      ramda: `R.groupBy((course) => course.topic, courses)`,
+      title: 'groupBy',
+    },
+  ];
 
   protected readonly courseLabels = computed(() =>
     R.map(toCourseLabel, this.courses()),

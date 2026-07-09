@@ -94,6 +94,33 @@ compose
     </div>
   </section>
 
+  <section class="comparison-panel" aria-labelledby="equivalent-title">
+    <h2 id="equivalent-title">Plain TypeScript Equivalent</h2>
+
+    <div class="equivalent-grid">
+      @for (equivalent of plainEquivalents; track equivalent.name) {
+        <article class="equivalent-card">
+          <p class="eyebrow">{{ equivalent.title }}</p>
+          <h3>{{ equivalent.description }}</h3>
+          <pre>Ramda:
+{{ equivalent.ramda }}
+
+Plain TypeScript:
+{{ equivalent.plain }}</pre>
+        </article>
+      }
+
+      <article class="equivalent-card">
+        <p class="eyebrow">When To Reach For Ramda</p>
+        <h3>Prefer the clearest flow</h3>
+        <p>
+          Plain named steps are often easiest. Use <code>pipe</code> when the repeated left-to-right shape
+          makes the business flow easier to scan.
+        </p>
+      </article>
+    </div>
+  </section>
+
   <section class="flow-panel" aria-labelledby="remember-title">
     <h2 id="remember-title">What To Remember</h2>
     <ol>

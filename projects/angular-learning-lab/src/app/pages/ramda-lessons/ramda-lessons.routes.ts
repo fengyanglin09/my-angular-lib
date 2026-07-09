@@ -37,6 +37,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-06-nested-data-lenses',
+    loadComponent: () =>
+      import('./lesson-06-nested-data-lenses/lesson-06-nested-data-lenses').then(
+        (m) => m.Lesson06NestedDataLenses,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(

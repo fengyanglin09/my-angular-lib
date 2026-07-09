@@ -25,6 +25,14 @@ interface PipelineStep {
   output: string;
 }
 
+interface PlainEquivalent {
+  description: string;
+  name: string;
+  plain: string;
+  ramda: string;
+  title: string;
+}
+
 const apiLessons: ApiLesson[] = [
   {
     archived: false,
@@ -108,6 +116,38 @@ function pretty(value: unknown): string {
 })
 export class Lesson04PipeCompose {
   protected readonly mode = signal<PipelineMode>('pipe');
+  protected readonly plainEquivalents: PlainEquivalent[] = [
+    {
+      description: 'Left-to-right transformation.',
+      name: 'pipe',
+      plain: `const visibleLessons = removeArchived(apiLessons);
+const sortedLessons = sortByDuration(visibleLessons);
+const cards = toLessonCards(sortedLessons);`,
+      ramda: `const buildCards = pipe(
+  removeArchived,
+  sortByDuration,
+  toLessonCards,
+);
+
+const cards = buildCards(apiLessons);`,
+      title: 'pipe',
+    },
+    {
+      description: 'Same result, opposite reading direction.',
+      name: 'compose',
+      plain: `const visibleLessons = removeArchived(apiLessons);
+const sortedLessons = sortByDuration(visibleLessons);
+const cards = toLessonCards(sortedLessons);`,
+      ramda: `const buildCards = compose(
+  toLessonCards,
+  sortByDuration,
+  removeArchived,
+);
+
+const cards = buildCards(apiLessons);`,
+      title: 'compose',
+    },
+  ];
 
   protected readonly sourceJson = pretty(apiLessons);
   protected readonly visibleLessons = computed(() => removeArchived(apiLessons));

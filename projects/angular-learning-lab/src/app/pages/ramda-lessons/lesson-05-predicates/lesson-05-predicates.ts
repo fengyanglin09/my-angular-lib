@@ -23,6 +23,14 @@ interface PredicateExample {
   title: string;
 }
 
+interface PlainEquivalent {
+  description: string;
+  name: string;
+  plain: string;
+  ramda: string;
+  title: string;
+}
+
 const accessUsers: AccessUser[] = [
   {
     active: true,
@@ -110,6 +118,47 @@ export class Lesson05Predicates {
   name: string;
   role: 'admin' | 'editor' | 'viewer';
 }`;
+  protected readonly plainEquivalents: PlainEquivalent[] = [
+    {
+      description: 'Check one property.',
+      name: 'propEq',
+      plain: `const isAdmin = (user) => user.role === 'admin';
+const isActive = (user) => user.active === true;`,
+      ramda: `const isAdmin = propEq('admin', 'role');
+const isActive = propEq(true, 'active');`,
+      title: 'propEq',
+    },
+    {
+      description: 'Check several fields.',
+      name: 'where',
+      plain: `const isReady = (user) =>
+  user.active === true &&
+  user.mfaEnabled === true &&
+  user.failedLogins <= 2;`,
+      ramda: `const isReady = where({
+  active: equals(true),
+  mfaEnabled: equals(true),
+  failedLogins: lte(__, 2),
+});`,
+      title: 'where',
+    },
+    {
+      description: 'Combine predicates.',
+      name: 'all-any-pass',
+      plain: `(user) => isAdmin(user) && isReady(user)
+(user) => isAdmin(user) || isEditor(user)`,
+      ramda: `allPass([isAdmin, isReady])
+anyPass([isAdmin, isEditor])`,
+      title: 'allPass / anyPass',
+    },
+    {
+      description: 'Invert another predicate.',
+      name: 'complement',
+      plain: `const isInactive = (user) => !isActive(user);`,
+      ramda: `const isInactive = complement(isActive);`,
+      title: 'complement',
+    },
+  ];
 
   protected readonly predicateButtons: Array<{ label: string; name: PredicateName }> = [
     { label: 'propEq', name: 'propEq' },

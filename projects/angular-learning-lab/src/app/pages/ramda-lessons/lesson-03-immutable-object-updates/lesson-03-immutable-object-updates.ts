@@ -33,6 +33,14 @@ interface UpdateExample {
   title: string;
 }
 
+interface PlainEquivalent {
+  description: string;
+  name: string;
+  plain: string;
+  ramda: string;
+  title: string;
+}
+
 const initialProfile: UserProfile = {
   id: 'user-101',
   name: 'Lin',
@@ -97,6 +105,57 @@ function pretty(value: unknown): string {
 export class Lesson03ImmutableObjectUpdates {
   protected readonly activeOperation = signal<UpdateOperation>('assoc');
   protected readonly profile = signal(initialProfile);
+  protected readonly plainEquivalents: PlainEquivalent[] = [
+    {
+      description: 'Update one top-level field.',
+      name: 'assoc',
+      plain: `{
+  ...profile,
+  name: 'Lin Peng',
+}`,
+      ramda: `assoc('name', 'Lin Peng', profile)`,
+      title: 'assoc',
+    },
+    {
+      description: 'Update one nested field.',
+      name: 'assocPath',
+      plain: `{
+  ...profile,
+  preferences: {
+    ...profile.preferences,
+    notifications: {
+      ...profile.preferences.notifications,
+      sms: true,
+    },
+  },
+}`,
+      ramda: `assocPath(
+  ['preferences', 'notifications', 'sms'],
+  true,
+  profile,
+)`,
+      title: 'assocPath',
+    },
+    {
+      description: 'Update fields from their old values.',
+      name: 'evolve',
+      plain: `{
+  ...profile,
+  stats: {
+    ...profile.stats,
+    completedLessons: profile.stats.completedLessons + 1,
+    streakDays: profile.stats.streakDays + 1,
+  },
+}`,
+      ramda: `evolve({
+  stats: {
+    completedLessons: (count) => count + 1,
+    streakDays: (days) => days + 1,
+  },
+}, profile)`,
+      title: 'evolve',
+    },
+  ];
 
   protected readonly updatedProfile = computed(() =>
     runOperation(this.activeOperation(), this.profile()),

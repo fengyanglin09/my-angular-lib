@@ -11,6 +11,7 @@ transformations, then later apply the same ideas to Angular, RxJS, and NgRx.
 | 3. Immutable Object Updates | `/ramda-lessons/lesson-03-immutable-object-updates` | How `assoc`, `assocPath`, and `evolve` return updated copies of objects while the original object stays unchanged. |
 | 4. pipe And compose | `/ramda-lessons/lesson-04-pipe-compose` | How `pipe` runs functions left-to-right, how `compose` runs right-to-left, and why named transformation steps make pipelines easier to read. |
 | 5. Predicates | `/ramda-lessons/lesson-05-predicates` | How `propEq`, `where`, `allPass`, `anyPass`, and `complement` create reusable yes/no functions for filtering and access rules. |
+| 6. Nested Data And Lenses | `/ramda-lessons/lesson-06-nested-data-lenses` | How `path`, `pathOr`, `lensPath`, `view`, `set`, and `over` read and update nested data without mutating the source object. |
 | 9. Ramda With NgRx | `/ramda-lessons/lesson-09-ramda-with-ngrx` | How Ramda can help with NgRx-style immutable reducer updates and selector transformations after the core Ramda ideas are familiar. |
 
 ## Planned Direction

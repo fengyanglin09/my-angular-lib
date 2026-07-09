@@ -112,6 +112,24 @@ reject(predicate, users)
     </div>
   </section>
 
+  <section class="comparison-panel" aria-labelledby="equivalent-title">
+    <h2 id="equivalent-title">Plain TypeScript Equivalent</h2>
+
+    <div class="equivalent-grid">
+      @for (equivalent of plainEquivalents; track equivalent.name) {
+        <article class="equivalent-card">
+          <p class="eyebrow">{{ equivalent.title }}</p>
+          <h3>{{ equivalent.description }}</h3>
+          <pre>Ramda:
+{{ equivalent.ramda }}
+
+Plain TypeScript:
+{{ equivalent.plain }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
   <section class="flow-panel" aria-labelledby="remember-title">
     <h2 id="remember-title">What To Remember</h2>
     <ol>
