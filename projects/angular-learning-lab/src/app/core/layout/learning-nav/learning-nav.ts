@@ -56,6 +56,7 @@ export class LearningNav {
     { description: 'Compose small functions with pipe and compose to create readable data pipelines.', number: 4, path: '/ramda-lessons/lesson-04-pipe-compose', title: 'pipe + compose' },
     { description: 'Build reusable yes/no functions with propEq, where, allPass, anyPass, and complement.', number: 5, path: '/ramda-lessons/lesson-05-predicates', title: 'Predicates' },
     { description: 'Read and update nested data with path, pathOr, lensPath, view, set, and over.', number: 6, path: '/ramda-lessons/lesson-06-nested-data-lenses', title: 'Nested Data' },
+    { description: 'Pre-fill arguments with curry and partial to create reusable configured functions.', number: 7, path: '/ramda-lessons/lesson-07-currying-partial-application', title: 'Currying' },
     { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
   ];
 

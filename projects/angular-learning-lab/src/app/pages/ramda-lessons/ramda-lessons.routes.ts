@@ -44,6 +44,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-07-currying-partial-application',
+    loadComponent: () =>
+      import('./lesson-07-currying-partial-application/lesson-07-currying-partial-application').then(
+        (m) => m.Lesson07CurryingPartialApplication,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(
