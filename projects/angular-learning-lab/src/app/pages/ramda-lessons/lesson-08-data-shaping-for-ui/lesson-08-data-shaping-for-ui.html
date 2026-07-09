@@ -1,0 +1,141 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 8</p>
+    <h1>Data Shaping For UI</h1>
+    <p>
+      Backend objects often contain more data than a component needs. Ramda can
+      help shape those objects into small view models, but plain TypeScript is
+      still often the clearest option for one-off transformations.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="shape-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">pick, omit, project, pluck, applySpec</p>
+        <h2 id="shape-title">Course Catalog Mapper</h2>
+      </div>
+      <p class="summary">Selected: {{ activeOperation() }}</p>
+    </div>
+
+    <div class="toolbar">
+      @for (operation of operationButtons; track operation.name) {
+        <button
+          type="button"
+          (click)="setActiveOperation(operation.name)"
+          [class.operation-button--active]="activeOperation() === operation.name"
+        >
+          {{ operation.label }}
+        </button>
+      }
+    </div>
+
+    <div class="content-grid data-shaping-grid">
+      <section class="state-card operation-card" aria-labelledby="operation-title">
+        <p class="eyebrow">Selected Helper</p>
+        <h2 id="operation-title">{{ activeExample().name }}</h2>
+        <h3>{{ activeExample().title }}</h3>
+        <p>{{ activeExample().description }}</p>
+        <pre>{{ activeExample().code }}</pre>
+        <output>{{ activeExample().output }}</output>
+      </section>
+
+      <section class="state-card" aria-labelledby="source-title">
+        <p class="eyebrow">Source Data</p>
+        <h2 id="source-title">Backend Course Records</h2>
+        <pre>{{ sourceJson() }}</pre>
+      </section>
+
+      <aside class="mental-card" aria-label="data shaping mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>pick
+  keep named fields
+
+omit
+  remove named fields
+
+project
+  pick for every array item
+
+pluck
+  one field from every item
+
+applySpec
+  build a new object shape</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="examples-title">
+    <h2 id="examples-title">Helper Guide</h2>
+
+    <div class="example-grid">
+      @for (example of examples(); track example.name) {
+        <article class="example-card" [class.example-card--active]="activeOperation() === example.name">
+          <p class="eyebrow">{{ example.name }}</p>
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <button type="button" (click)="setActiveOperation(example.name)">
+            Show {{ example.name }}
+          </button>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="equivalent-title">
+    <h2 id="equivalent-title">Plain TypeScript Equivalent</h2>
+
+    <div class="equivalent-grid">
+      @for (equivalent of plainEquivalents; track equivalent.name) {
+        <article class="equivalent-card">
+          <p class="eyebrow">{{ equivalent.title }}</p>
+          <h3>{{ equivalent.description }}</h3>
+          <pre>Ramda:
+{{ equivalent.ramda }}
+
+Plain TypeScript:
+{{ equivalent.plain }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="map-title">
+    <h2 id="map-title">How These Relate To map</h2>
+
+    <div class="map-grid">
+      @for (relationship of mapRelationships; track relationship.name) {
+        <article class="map-card">
+          <p class="eyebrow">{{ relationship.name }}</p>
+          <h3>{{ relationship.description }}</h3>
+          <div class="map-code-grid">
+            <div>
+              <p class="eyebrow">With map</p>
+              <pre>{{ relationship.withMap }}</pre>
+            </div>
+            <div>
+              <p class="eyebrow">Specialized helper</p>
+              <pre>{{ relationship.specialized }}</pre>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>pick</code> keeps named fields from one object.</li>
+      <li><code>omit</code> removes named fields from one object.</li>
+      <li><code>project</code> is like running <code>pick</code> for every object in an array.</li>
+      <li><code>pluck</code> collects one property from every object in an array.</li>
+      <li><code>pick</code> and <code>omit</code> can be configured first, then passed to <code>map</code>.</li>
+      <li><code>applySpec</code> builds a new object from several small field-producing functions.</li>
+      <li>Use plain TypeScript when the object shape is small and obvious.</li>
+    </ol>
+  </section>
+</main>

@@ -13,6 +13,7 @@ transformations, then later apply the same ideas to Angular, RxJS, and NgRx.
 | 5. Predicates | `/ramda-lessons/lesson-05-predicates` | How `propEq`, `where`, `allPass`, `anyPass`, and `complement` create reusable yes/no functions for filtering and access rules. |
 | 6. Nested Data And Lenses | `/ramda-lessons/lesson-06-nested-data-lenses` | How `path`, `pathOr`, `lensPath`, `view`, `set`, and `over` read and update nested data without mutating the source object. |
 | 7. Currying And Partial Application | `/ramda-lessons/lesson-07-currying-partial-application` | How `curry` and `partial` pre-fill configuration arguments so the returned function can be reused with later data. |
+| 8. Data Shaping For UI | `/ramda-lessons/lesson-08-data-shaping-for-ui` | How `pick`, `omit`, `project`, `pluck`, and `applySpec` shape backend records into smaller UI view models. |
 | 9. Ramda With NgRx | `/ramda-lessons/lesson-09-ramda-with-ngrx` | How Ramda can help with NgRx-style immutable reducer updates and selector transformations after the core Ramda ideas are familiar. |
 
 ## Planned Direction

@@ -57,6 +57,7 @@ export class LearningNav {
     { description: 'Build reusable yes/no functions with propEq, where, allPass, anyPass, and complement.', number: 5, path: '/ramda-lessons/lesson-05-predicates', title: 'Predicates' },
     { description: 'Read and update nested data with path, pathOr, lensPath, view, set, and over.', number: 6, path: '/ramda-lessons/lesson-06-nested-data-lenses', title: 'Nested Data' },
     { description: 'Pre-fill arguments with curry and partial to create reusable configured functions.', number: 7, path: '/ramda-lessons/lesson-07-currying-partial-application', title: 'Currying' },
+    { description: 'Shape backend records into UI view models with pick, omit, project, pluck, and applySpec.', number: 8, path: '/ramda-lessons/lesson-08-data-shaping-for-ui', title: 'Data Shaping' },
     { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
   ];
 

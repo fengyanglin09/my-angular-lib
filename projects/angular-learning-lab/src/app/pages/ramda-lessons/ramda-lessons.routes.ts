@@ -51,6 +51,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-08-data-shaping-for-ui',
+    loadComponent: () =>
+      import('./lesson-08-data-shaping-for-ui/lesson-08-data-shaping-for-ui').then(
+        (m) => m.Lesson08DataShapingForUi,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(
