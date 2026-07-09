@@ -54,6 +54,7 @@ export class LearningNav {
     { description: 'Transform arrays with map, filter, reject, find, sortBy, and groupBy.', number: 2, path: '/ramda-lessons/lesson-02-collection-transformations', title: 'Collections' },
     { description: 'Update objects immutably with assoc, assocPath, and evolve.', number: 3, path: '/ramda-lessons/lesson-03-immutable-object-updates', title: 'Object Updates' },
     { description: 'Compose small functions with pipe and compose to create readable data pipelines.', number: 4, path: '/ramda-lessons/lesson-04-pipe-compose', title: 'pipe + compose' },
+    { description: 'Build reusable yes/no functions with propEq, where, allPass, anyPass, and complement.', number: 5, path: '/ramda-lessons/lesson-05-predicates', title: 'Predicates' },
     { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
   ];
 

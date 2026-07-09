@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+
+.ramda-panel,
+.comparison-panel {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+}
+
+.predicate-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr) minmax(260px, 0.8fr);
+}
+
+.predicate-button--active {
+  background: #2f5d4a;
+  border-color: #2f5d4a;
+  color: #ffffff;
+}
+
+.rule-card,
+.example-card {
+  display: grid;
+  gap: 14px;
+}
+
+.rule-card h2,
+.rule-card h3,
+.rule-card p,
+.example-card h3,
+.example-card p {
+  margin: 0;
+}
+
+.rule-card p:not(.eyebrow),
+.example-card p {
+  color: #606b78;
+  line-height: 1.55;
+}
+
+.rule-card output {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  color: #2f3a45;
+  display: block;
+  line-height: 1.55;
+  min-height: 72px;
+  padding: 12px;
+  white-space: pre-wrap;
+}
+
+.user-grid,
+.example-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.example-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.user-card,
+.example-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.user-card--match,
+.example-card--active {
+  border-color: #2f5d4a;
+  box-shadow: inset 4px 0 0 #2f5d4a;
+}
+
+.user-card {
+  display: grid;
+  gap: 14px;
+}
+
+.user-card h3,
+.user-card p {
+  margin: 0;
+}
+
+.user-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .user-grid,
+  .example-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .predicate-grid,
+  .user-grid,
+  .example-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,126 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 5</p>
+    <h1>Predicates</h1>
+    <p>
+      A predicate is a function that answers yes or no. Ramda predicates are
+      useful when filtering lists, validating data, or expressing access rules
+      without burying every condition inside one long callback.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="predicate-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">propEq, where, allPass, anyPass, complement</p>
+        <h2 id="predicate-title">Access Review</h2>
+      </div>
+      <p class="summary">{{ matchingUsers().length }} matching users</p>
+    </div>
+
+    <div class="toolbar">
+      @for (predicate of predicateButtons; track predicate.name) {
+        <button
+          type="button"
+          (click)="setActivePredicate(predicate.name)"
+          [class.predicate-button--active]="activePredicate() === predicate.name"
+        >
+          {{ predicate.label }}
+        </button>
+      }
+    </div>
+
+    <div class="content-grid predicate-grid">
+      <section class="state-card rule-card" aria-labelledby="active-rule-title">
+        <p class="eyebrow">Selected Predicate</p>
+        <h2 id="active-rule-title">{{ activeExample().name }}</h2>
+        <h3>{{ activeExample().title }}</h3>
+        <p>{{ activeExample().description }}</p>
+        <pre>{{ activeExample().code }}</pre>
+        <output>{{ activeExample().outputLabel }}: {{ matchingUsersJson() }}</output>
+      </section>
+
+      <section class="state-card" aria-labelledby="shape-title">
+        <p class="eyebrow">Data Shape</p>
+        <h2 id="shape-title">AccessUser</h2>
+        <pre>{{ dataShape }}</pre>
+      </section>
+
+      <aside class="mental-card" aria-label="predicate mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>predicate(user)
+  returns true or false
+
+filter(predicate, users)
+  keeps true users
+
+reject(predicate, users)
+  removes true users</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="users-title">
+    <h2 id="users-title">Predicate Results</h2>
+
+    <div class="user-grid">
+      @for (result of predicateResults(); track result.user.name) {
+        <article class="user-card" [class.user-card--match]="result.matches">
+          <div>
+            <p class="eyebrow">{{ result.user.department }} · {{ result.user.role }}</p>
+            <h3>{{ result.user.name }}</h3>
+          </div>
+          <dl>
+            <div>
+              <dt>Active</dt>
+              <dd>{{ result.user.active ? 'yes' : 'no' }}</dd>
+            </div>
+            <div>
+              <dt>MFA</dt>
+              <dd>{{ result.user.mfaEnabled ? 'yes' : 'no' }}</dd>
+            </div>
+            <div>
+              <dt>Failed logins</dt>
+              <dd>{{ result.user.failedLogins }}</dd>
+            </div>
+            <div>
+              <dt>Predicate</dt>
+              <dd>{{ result.matches ? 'true' : 'false' }}</dd>
+            </div>
+          </dl>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="examples-title">
+    <h2 id="examples-title">Predicate Examples</h2>
+
+    <div class="example-grid">
+      @for (example of examples; track example.name) {
+        <article class="example-card" [class.example-card--active]="activePredicate() === example.name">
+          <p class="eyebrow">{{ example.name }}</p>
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <button type="button" (click)="setActivePredicate(example.name)">
+            Show {{ example.name }}
+          </button>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>A predicate is just a function that returns <code>true</code> or <code>false</code>.</li>
+      <li><code>propEq</code> checks one property against one expected value.</li>
+      <li><code>where</code> checks several properties with several predicate functions.</li>
+      <li><code>allPass</code> requires every predicate to pass.</li>
+      <li><code>anyPass</code> requires at least one predicate to pass.</li>
+      <li><code>complement</code> inverts another predicate.</li>
+    </ol>
+  </section>
+</main>

@@ -30,6 +30,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-05-predicates',
+    loadComponent: () =>
+      import('./lesson-05-predicates/lesson-05-predicates').then(
+        (m) => m.Lesson05Predicates,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(
