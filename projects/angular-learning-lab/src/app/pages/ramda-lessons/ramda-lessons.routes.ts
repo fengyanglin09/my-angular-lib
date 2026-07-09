@@ -16,6 +16,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-03-immutable-object-updates',
+    loadComponent: () =>
+      import('./lesson-03-immutable-object-updates/lesson-03-immutable-object-updates').then(
+        (m) => m.Lesson03ImmutableObjectUpdates,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(

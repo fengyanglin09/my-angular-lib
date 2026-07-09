@@ -1,0 +1,125 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="3" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 3</p>
+    <h1>Immutable Object Updates</h1>
+    <p>
+      Ramda can return updated copies of objects without mutating the original
+      object. This matters in Angular, NgRx, and Signals because many state
+      patterns depend on replacing data with a new reference.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="updates-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">assoc, assocPath, evolve</p>
+        <h2 id="updates-title">Profile Update Lab</h2>
+      </div>
+      <p class="summary">Selected: {{ activeOperation() }}</p>
+    </div>
+
+    <div class="toolbar">
+      @for (operation of operationButtons; track operation.name) {
+        <button
+          type="button"
+          (click)="setActiveOperation(operation.name)"
+          [class.operation-button--active]="activeOperation() === operation.name"
+        >
+          {{ operation.label }}
+        </button>
+      }
+      <button type="button" (click)="applyUpdate()">Apply update</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid object-grid">
+      <section class="state-card operation-card" aria-labelledby="operation-title">
+        <p class="eyebrow">Current Operation</p>
+        <h2 id="operation-title">{{ activeExample().title }}</h2>
+        <p>{{ activeExample().description }}</p>
+        <pre>{{ activeExample().code }}</pre>
+        <output>{{ activeExample().output }}</output>
+      </section>
+
+      <section class="state-card" aria-labelledby="shape-title">
+        <p class="eyebrow">Data Shape</p>
+        <h2 id="shape-title">UserProfile</h2>
+        <pre>interface UserProfile {{ '{' }}
+  id: string;
+  name: string;
+  preferences: {{ '{' }}
+    density: 'comfortable' | 'compact';
+    notifications: {{ '{' }}
+      email: boolean;
+      productUpdates: boolean;
+      sms: boolean;
+    {{ '}' }};
+    theme: 'dark' | 'light';
+  {{ '}' }};
+  stats: {{ '{' }}
+    completedLessons: number;
+    streakDays: number;
+  {{ '}' }};
+{{ '}' }}</pre>
+      </section>
+
+      <aside class="mental-card" aria-label="object update mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>old object goes in
+  Ramda creates a copy
+  changed path gets new value
+  unchanged paths are preserved
+
+original object stays unchanged</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="before-after-title">
+    <h2 id="before-after-title">Original Vs Updated Copy</h2>
+
+    <div class="json-grid">
+      <article class="json-card">
+        <p class="eyebrow">Original Current State</p>
+        <pre>{{ originalJson() }}</pre>
+      </article>
+
+      <article class="json-card json-card--updated">
+        <p class="eyebrow">Updated Copy Preview</p>
+        <pre>{{ updatedJson() }}</pre>
+      </article>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="examples-title">
+    <h2 id="examples-title">Which Helper Should I Use?</h2>
+
+    <div class="example-grid">
+      @for (example of examples(); track example.name) {
+        <article class="example-card" [class.example-card--active]="activeOperation() === example.name">
+          <div>
+            <p class="eyebrow">{{ example.name }}</p>
+            <h3>{{ example.title }}</h3>
+          </div>
+          <button type="button" (click)="setActiveOperation(example.name)">
+            Show {{ example.name }}
+          </button>
+          <p>{{ example.description }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li><code>assoc</code> updates one top-level property and returns a new object.</li>
+      <li><code>assocPath</code> updates one nested path and returns a new object.</li>
+      <li><code>evolve</code> updates fields by running functions against the old values.</li>
+      <li>None of these helpers mutate the object passed into them.</li>
+      <li><code>Apply update</code> replaces the current profile with the previewed copy.</li>
+    </ol>
+  </section>
+</main>
