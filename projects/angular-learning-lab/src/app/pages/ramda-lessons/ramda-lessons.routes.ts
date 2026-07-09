@@ -23,6 +23,13 @@ export const ramdaLessonsRoutes: Routes = [
       ),
   },
   {
+    path: 'lesson-04-pipe-compose',
+    loadComponent: () =>
+      import('./lesson-04-pipe-compose/lesson-04-pipe-compose').then(
+        (m) => m.Lesson04PipeCompose,
+      ),
+  },
+  {
     path: 'lesson-09-ramda-with-ngrx',
     loadComponent: () =>
       import('./lesson-09-ramda-with-ngrx/lesson-09-ramda-with-ngrx').then(

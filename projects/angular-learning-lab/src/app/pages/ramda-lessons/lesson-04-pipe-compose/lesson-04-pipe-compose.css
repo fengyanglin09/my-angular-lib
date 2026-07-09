@@ -1,0 +1,54 @@
+:host {
+  display: block;
+}
+
+.ramda-panel,
+.comparison-panel {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+}
+
+.pipeline-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr) minmax(260px, 0.75fr);
+}
+
+.mode-button--active {
+  background: #2f5d4a;
+  border-color: #2f5d4a;
+  color: #ffffff;
+}
+
+.state-card p:not(.eyebrow) {
+  color: #606b78;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.lesson-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.lesson-card h3,
+.lesson-card p {
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .pipeline-grid {
+    grid-template-columns: 1fr;
+  }
+}

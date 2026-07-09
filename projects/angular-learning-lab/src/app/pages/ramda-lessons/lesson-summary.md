@@ -9,6 +9,7 @@ transformations, then later apply the same ideas to Angular, RxJS, and NgRx.
 | 1. What Is Ramda | `/ramda-lessons/lesson-01-what-is-ramda` | Ramda as a general data-transformation library, using `pipe`, `sortBy`, and `assoc` with plain arrays and objects. |
 | 2. Collection Transformations | `/ramda-lessons/lesson-02-collection-transformations` | How `map`, `filter`, `reject`, `find`, `sortBy`, `reverse`, and `groupBy` transform arrays without mutating the original data. |
 | 3. Immutable Object Updates | `/ramda-lessons/lesson-03-immutable-object-updates` | How `assoc`, `assocPath`, and `evolve` return updated copies of objects while the original object stays unchanged. |
+| 4. pipe And compose | `/ramda-lessons/lesson-04-pipe-compose` | How `pipe` runs functions left-to-right, how `compose` runs right-to-left, and why named transformation steps make pipelines easier to read. |
 | 9. Ramda With NgRx | `/ramda-lessons/lesson-09-ramda-with-ngrx` | How Ramda can help with NgRx-style immutable reducer updates and selector transformations after the core Ramda ideas are familiar. |
 
 ## Planned Direction
