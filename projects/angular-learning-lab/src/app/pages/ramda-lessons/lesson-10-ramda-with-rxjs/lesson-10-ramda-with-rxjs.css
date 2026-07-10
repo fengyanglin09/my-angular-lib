@@ -1,0 +1,73 @@
+:host {
+  display: block;
+}
+
+.ramda-panel,
+.comparison-panel {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 22px;
+  padding: 24px;
+}
+
+.stream-grid {
+  grid-template-columns: minmax(260px, 0.75fr) minmax(420px, 1.25fr) minmax(280px, 0.8fr);
+}
+
+.topic-button--active {
+  background: #2f5d4a;
+  border-color: #2f5d4a;
+  color: #ffffff;
+}
+
+.result-card,
+.example-card,
+.pipeline-card {
+  display: grid;
+  gap: 14px;
+}
+
+.example-grid,
+.pipeline-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.example-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pipeline-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.example-card,
+.pipeline-card {
+  background: #ffffff;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.example-card p,
+.pipeline-card p {
+  color: #606b78;
+  line-height: 1.55;
+}
+
+.code-pair {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1200px) {
+  .stream-grid,
+  .example-grid,
+  .pipeline-grid,
+  .code-pair {
+    grid-template-columns: 1fr;
+  }
+}

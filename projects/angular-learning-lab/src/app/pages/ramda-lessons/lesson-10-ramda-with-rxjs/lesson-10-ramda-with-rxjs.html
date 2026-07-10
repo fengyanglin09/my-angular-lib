@@ -1,0 +1,143 @@
+<main class="lesson-shell">
+  <app-learning-nav category="ramda" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Ramda Lesson 10</p>
+    <h1>Ramda With RxJS</h1>
+    <p>
+      RxJS is responsible for when values arrive. Ramda is responsible for how
+      the plain data inside each emitted value is shaped. This lesson uses a
+      backend-style course stream and keeps the Ramda transformation in a named
+      selector function.
+    </p>
+  </section>
+
+  <section class="ramda-panel" aria-labelledby="stream-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">switchMap, rxMap, reject, filter, sortBy, map</p>
+        <h2 id="stream-title">Course Stream</h2>
+      </div>
+      <p class="summary">{{ courseState().cards.length }} cards from {{ courseState().totalFromBackend }} backend records</p>
+    </div>
+
+    <div class="toolbar">
+      <label>
+        Search title
+        <input
+          type="search"
+          [ngModel]="query()"
+          (ngModelChange)="setQuery($event)"
+          placeholder="Try: ngrx, rxjs, angular"
+          autocomplete="off"
+        />
+      </label>
+
+      @for (topicButton of topicButtons; track topicButton.topic) {
+        <button
+          type="button"
+          (click)="setTopic(topicButton.topic)"
+          [class.topic-button--active]="topic() === topicButton.topic"
+        >
+          {{ topicButton.label }}
+        </button>
+      }
+
+      <button type="button" (click)="reload()">Reload</button>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="content-grid stream-grid">
+      <section class="state-card" aria-labelledby="state-title">
+        <p class="eyebrow">Stream State</p>
+        <h2 id="state-title">{{ courseState().source }}</h2>
+        <dl>
+          <div>
+            <dt>Topic</dt>
+            <dd>{{ courseState().topic }}</dd>
+          </div>
+          <div>
+            <dt>Query</dt>
+            <dd>{{ courseState().query || 'none' }}</dd>
+          </div>
+          <div>
+            <dt>Visible cards</dt>
+            <dd>{{ courseState().cards.length }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card result-card" aria-labelledby="result-title">
+        <p class="eyebrow">Ramda-shaped Result</p>
+        <h2 id="result-title">Course Cards</h2>
+        <pre>{{ shapedCardsJson() }}</pre>
+      </section>
+
+      <aside class="mental-card" aria-label="rxjs and ramda mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>RxJS
+  controls time
+  emits backend responses
+
+RxJS map
+  changes each emission
+
+Ramda
+  controls data shape
+
+Ramda map
+  changes each item in an array</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="examples-title">
+    <h2 id="examples-title">RxJS map Vs Ramda map</h2>
+
+    <div class="example-grid">
+      @for (example of codeExamples; track example.name) {
+        <article class="example-card">
+          <p class="eyebrow">{{ example.name }}</p>
+          <h3>{{ example.title }}</h3>
+          <p>{{ example.description }}</p>
+          <div class="code-pair">
+            <div>
+              <p class="eyebrow">Ramda version</p>
+              <pre>{{ example.ramda }}</pre>
+            </div>
+            <div>
+              <p class="eyebrow">Plain TypeScript version</p>
+              <pre>{{ example.plain }}</pre>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="comparison-panel" aria-labelledby="pipeline-title">
+    <h2 id="pipeline-title">Pipeline Shape</h2>
+
+    <div class="pipeline-grid">
+      @for (pipelineExample of pipelineExamples; track pipelineExample.name) {
+        <article class="pipeline-card">
+          <p class="eyebrow">{{ pipelineExample.name }}</p>
+          <h3>{{ pipelineExample.title }}</h3>
+          <p>{{ pipelineExample.description }}</p>
+          <pre>{{ pipelineExample.code }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>RxJS operators work on stream emissions over time.</li>
+      <li>Ramda helpers work on the plain value inside one emission.</li>
+      <li>RxJS <code>map</code> changes each emitted value; Ramda <code>map</code> changes each array item.</li>
+      <li>Keep Ramda transformation logic in named functions when the RxJS pipeline starts getting busy.</li>
+      <li>Plain TypeScript is still a good choice when the transformation is short and obvious.</li>
+    </ol>
+  </section>
+</main>

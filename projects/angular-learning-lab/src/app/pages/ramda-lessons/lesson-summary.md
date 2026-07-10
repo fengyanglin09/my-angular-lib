@@ -15,6 +15,7 @@ transformations, then later apply the same ideas to Angular, RxJS, and NgRx.
 | 7. Currying And Partial Application | `/ramda-lessons/lesson-07-currying-partial-application` | How `curry` and `partial` pre-fill configuration arguments so the returned function can be reused with later data. |
 | 8. Data Shaping For UI | `/ramda-lessons/lesson-08-data-shaping-for-ui` | How `pick`, `omit`, `project`, `pluck`, and `applySpec` shape backend records into smaller UI view models. |
 | 9. Ramda With NgRx | `/ramda-lessons/lesson-09-ramda-with-ngrx` | How Ramda can help with NgRx-style immutable reducer updates and selector transformations after the core Ramda ideas are familiar. |
+| 10. Ramda With RxJS | `/ramda-lessons/lesson-10-ramda-with-rxjs` | How to use Ramda helpers inside RxJS pipelines while keeping stream timing separate from data shaping. |
 
 ## Planned Direction
 

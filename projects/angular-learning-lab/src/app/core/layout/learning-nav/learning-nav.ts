@@ -59,6 +59,7 @@ export class LearningNav {
     { description: 'Pre-fill arguments with curry and partial to create reusable configured functions.', number: 7, path: '/ramda-lessons/lesson-07-currying-partial-application', title: 'Currying' },
     { description: 'Shape backend records into UI view models with pick, omit, project, pluck, and applySpec.', number: 8, path: '/ramda-lessons/lesson-08-data-shaping-for-ui', title: 'Data Shaping' },
     { description: 'Apply Ramda to NgRx-style immutable reducer updates and selector pipelines.', number: 9, path: '/ramda-lessons/lesson-09-ramda-with-ngrx', title: 'Ramda With NgRx' },
+    { description: 'Use Ramda helpers inside RxJS pipelines while keeping stream timing separate from data shaping.', number: 10, path: '/ramda-lessons/lesson-10-ramda-with-rxjs', title: 'Ramda With RxJS' },
   ];
 
   private readonly rxjsLessons: LessonLink[] = [

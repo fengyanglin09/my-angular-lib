@@ -64,4 +64,11 @@ export const ramdaLessonsRoutes: Routes = [
         (m) => m.Lesson09RamdaWithNgrx,
       ),
   },
+  {
+    path: 'lesson-10-ramda-with-rxjs',
+    loadComponent: () =>
+      import('./lesson-10-ramda-with-rxjs/lesson-10-ramda-with-rxjs').then(
+        (m) => m.Lesson10RamdaWithRxjs,
+      ),
+  },
 ];
