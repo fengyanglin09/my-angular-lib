@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'forms' | 'ngrx' | 'ramda' | 'routes' | 'rxjs' | 'signals';
+type LearningCategory = 'forms' | 'http' | 'ngrx' | 'ramda' | 'routes' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -130,6 +130,10 @@ export class LearningNav {
     { description: 'Use form state APIs for touched, dirty, pending, disabled, pristine, and reset behavior.', number: 18, path: '/angular-forms-lessons/lesson-18-form-state-apis', title: 'Form State APIs' },
   ];
 
+  private readonly httpLessons: LessonLink[] = [
+    { description: 'Register HttpClient, load typed data through an API service, and show loading/data/error state.', number: 1, path: '/angular-http-lessons/lesson-01-http-client-basics', title: 'HttpClient Basics' },
+  ];
+
   private readonly routesLessons: LessonLink[] = [
     { description: 'Map URLs to standalone components with route records, routerLink, and router-outlet.', number: 1, path: '/angular-route-lessons/lesson-01-route-basics', title: 'Route Basics' },
     { description: 'Read dynamic URL segments like :projectId with snapshot and paramMap.', number: 2, path: '/angular-route-lessons/lesson-02-route-params/project-101', title: 'Route Params' },
@@ -171,6 +175,10 @@ export class LearningNav {
       return 'Forms';
     }
 
+    if (this.category === 'http') {
+      return 'HTTP';
+    }
+
     if (this.category === 'routes') {
       return 'Routes';
     }
@@ -197,6 +205,10 @@ export class LearningNav {
 
     if (this.category === 'forms') {
       return this.formsLessons;
+    }
+
+    if (this.category === 'http') {
+      return this.httpLessons;
     }
 
     if (this.category === 'routes') {

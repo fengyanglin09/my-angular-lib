@@ -1,0 +1,26 @@
+[
+  {
+    "id": 101,
+    "title": "Angular HttpClient Basics",
+    "category": "Angular",
+    "level": "Beginner",
+    "minutes": 28,
+    "updatedAt": "2026-06-18"
+  },
+  {
+    "id": 102,
+    "title": "Typed API Services",
+    "category": "Angular",
+    "level": "Intermediate",
+    "minutes": 34,
+    "updatedAt": "2026-06-21"
+  },
+  {
+    "id": 103,
+    "title": "HTTP Error Handling",
+    "category": "Angular",
+    "level": "Intermediate",
+    "minutes": 31,
+    "updatedAt": "2026-06-24"
+  }
+]

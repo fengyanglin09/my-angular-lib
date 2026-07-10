@@ -1,0 +1,104 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="1" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 1</p>
+    <h1>HttpClient Basics</h1>
+    <p>
+      Angular <code>HttpClient</code> returns typed Observables. A practical
+      component usually turns those responses into a small state object with
+      <code>loading</code>, <code>data</code>, and <code>error</code>.
+    </p>
+  </section>
+
+  <section class="http-panel" aria-labelledby="http-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">provideHttpClient, HttpClient.get, async pipe</p>
+        <h2 id="http-title">Course API Demo</h2>
+      </div>
+      @if (coursesState$ | async; as state) {
+        <p class="summary">{{ state.loading ? 'loading' : state.error ? 'error' : 'loaded' }}</p>
+      }
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadCourses()">Load courses</button>
+      <button type="button" (click)="loadFailure()">Load missing URL</button>
+      <button type="button" (click)="clearLogs()">Clear log</button>
+    </div>
+
+    @if (coursesState$ | async; as state) {
+      <div class="content-grid http-grid">
+        <section class="state-card" aria-labelledby="state-title">
+          <p class="eyebrow">HTTP State</p>
+          <h2 id="state-title">{{ state.source }}</h2>
+
+          <dl>
+            <div>
+              <dt>loading</dt>
+              <dd>{{ state.loading ? 'true' : 'false' }}</dd>
+            </div>
+            <div>
+              <dt>courses.length</dt>
+              <dd>{{ state.courses.length }}</dd>
+            </div>
+            <div>
+              <dt>error</dt>
+              <dd>{{ state.error ?? 'none' }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="state-card result-card" aria-labelledby="result-title">
+          <p class="eyebrow">Response Data</p>
+          <h2 id="result-title">Typed Course DTOs</h2>
+
+          @if (state.loading) {
+            <p class="empty-state">Loading courses from <code>/http-lessons/courses.json</code>...</p>
+          } @else if (state.error) {
+            <p class="error-text">{{ state.error }}</p>
+          } @else {
+            <pre>{{ state.courses | json }}</pre>
+          }
+        </section>
+
+        <aside class="mental-card" aria-label="HttpClient mental model">
+          <p class="eyebrow">Mental Model</p>
+          <pre>provider
+  makes HttpClient injectable
+
+service
+  owns URL and DTO type
+
+component
+  asks service for data
+
+template
+  async pipe subscribes</pre>
+        </aside>
+      </div>
+    }
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>Add <code>provideHttpClient()</code> once in app configuration before injecting <code>HttpClient</code>.</li>
+      <li><code>http.get&lt;CourseDto[]&gt;(url)</code> tells TypeScript what shape you expect back.</li>
+      <li>The generic type is a compile-time expectation; the backend response still needs to actually match it.</li>
+      <li>HTTP Observables usually emit once and complete.</li>
+      <li>Keep URLs and DTO types in an API service so components stay focused on UI state.</li>
+    </ol>
+  </section>
+</main>

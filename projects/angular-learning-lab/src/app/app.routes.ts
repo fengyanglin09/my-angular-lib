@@ -48,6 +48,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'angular-http-lessons',
+    loadChildren: () =>
+      import('./pages/angular-http-lessons/angular-http-lessons.routes').then(
+        (m) => m.angularHttpLessonsRoutes,
+      ),
+  },
+  {
     path: 'angular-route-lessons',
     loadChildren: () =>
       import('./pages/angular-route-lessons/angular-route-lessons.routes').then(
