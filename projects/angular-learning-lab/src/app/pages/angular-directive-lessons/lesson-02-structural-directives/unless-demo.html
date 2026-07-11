@@ -1,0 +1,48 @@
+<section class="directive-panel" aria-labelledby="structural-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="structural-demo-title">Add Or Remove A Template View</h2>
+    </div>
+    <p class="summary">
+      {{ showArchived() ? "archived visible" : "archived hidden" }}
+    </p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="toggleArchived()">
+      {{ showArchived() ? "Hide archived notes" : "Show archived notes" }}
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Visible notes</p>
+      <ul>
+        <li>Review dashboard routing.</li>
+        <li>Update profile form validation.</li>
+      </ul>
+
+      <p *appUnless="showArchived()" class="empty-state">
+        Archived notes are not rendered because the structural directive cleared
+        its embedded view.
+      </p>
+
+      @if (showArchived()) {
+      <ul class="archived-list">
+        <li>Archived: old tooltip experiment.</li>
+        <li>Archived: legacy account shell.</li>
+      </ul>
+      }
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Directive code idea</p>
+      <pre>*appUnless="showArchived()"</pre>
+      <p>
+        Structural directives work with template views. They decide whether a
+        piece of template exists in the DOM.
+      </p>
+    </article>
+  </div>
+</section>

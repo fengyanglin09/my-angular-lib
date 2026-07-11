@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.empty-panel {
+  background: #f8fafc;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+
+.empty-panel p {
+  color: #64748b;
+  margin: 0;
+}

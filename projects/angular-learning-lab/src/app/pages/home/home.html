@@ -3,93 +3,198 @@
     <p class="eyebrow">Angular Learning Lab</p>
     <h1>Choose A Learning Track</h1>
     <p>
-      Pick a category to start a focused sequence of lessons. Each track can grow
-      without crowding the route table or individual lesson pages.
+      Pick a category to start a focused sequence of lessons. Each track can
+      grow without crowding the route table or individual lesson pages.
     </p>
   </section>
 
   <section class="track-grid" aria-label="Learning categories">
-    <a class="track-card primary" [routerLink]="['/ngrx-lessons/lesson-01-counter']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/ngrx-lessons/lesson-01-counter']"
+    >
       <span>State Management</span>
       <h2>NgRx</h2>
-      <p>Store, actions, reducers, selectors, effects, Entity, Signal Store, rxMethod, and optimistic updates.</p>
+      <p>
+        Store, actions, reducers, selectors, effects, Entity, Signal Store,
+        rxMethod, and optimistic updates.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/ramda-lessons/lesson-01-what-is-ramda']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/ramda-lessons/lesson-01-what-is-ramda']"
+    >
       <span>Functional Utilities</span>
       <h2>Ramda</h2>
-      <p>Pure transformations, immutable object updates, composition, predicates, and practical Angular usage.</p>
+      <p>
+        Pure transformations, immutable object updates, composition, predicates,
+        and practical Angular usage.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/rxjs-lessons/lesson-01-observable-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/rxjs-lessons/lesson-01-observable-basics']"
+    >
       <span>Streams</span>
       <h2>RxJS</h2>
-      <p>Streams, operators, cancellation, composition, and async UI patterns.</p>
+      <p>
+        Streams, operators, cancellation, composition, and async UI patterns.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-signal-lessons/lesson-01-signal-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-signal-lessons/lesson-01-signal-basics']"
+    >
       <span>Local Reactivity</span>
       <h2>Angular Signals</h2>
-      <p>Writable signals, computed values, effects, inputs, model state, and signal-first component patterns.</p>
+      <p>
+        Writable signals, computed values, effects, inputs, model state, and
+        signal-first component patterns.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-forms-lessons/lesson-01-reactive-form-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-forms-lessons/lesson-01-reactive-form-basics']"
+    >
       <span>User Input</span>
       <h2>Angular Forms</h2>
-      <p>Template forms, reactive forms, validation, custom controls, and form state.</p>
+      <p>
+        Template forms, reactive forms, validation, custom controls, and form
+        state.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-components-lessons/lesson-01-smart-presentational']">
+    <a
+      class="track-card primary"
+      [routerLink]="[
+        '/angular-components-lessons/lesson-01-smart-presentational'
+      ]"
+    >
       <span>UI Architecture</span>
       <h2>Angular Components</h2>
-      <p>Smart and presentational components, reusable APIs, projection, queries, inputs, outputs, and models.</p>
+      <p>
+        Smart and presentational components, reusable APIs, projection, queries,
+        inputs, outputs, and models.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-performance-lessons/lesson-01-onpush-change-detection']">
+    <a
+      class="track-card primary"
+      [routerLink]="[
+        '/angular-directive-lessons/lesson-01-attribute-directives'
+      ]"
+    >
+      <span>Template Behavior</span>
+      <h2>Angular Directives</h2>
+      <p>
+        Attribute directives, structural directives, host bindings, directive
+        inputs, composition, permissions, and DOM behavior.
+      </p>
+      <strong>Start Lesson 1</strong>
+    </a>
+
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-pipe-lessons/lesson-01-built-in-pipes']"
+    >
+      <span>Display Formatting</span>
+      <h2>Angular Pipes</h2>
+      <p>
+        Built-in pipes, custom pure pipes, parameters, async pipe, API display
+        formatting, and performance tradeoffs.
+      </p>
+      <strong>Start Lesson 1</strong>
+    </a>
+
+    <a
+      class="track-card primary"
+      [routerLink]="[
+        '/angular-performance-lessons/lesson-01-onpush-change-detection'
+      ]"
+    >
       <span>Rendering Efficiency</span>
       <h2>Angular Performance</h2>
-      <p>OnPush, signals, list tracking, lazy loading, defer blocks, and avoiding unnecessary recomputation.</p>
+      <p>
+        OnPush, signals, list tracking, lazy loading, defer blocks, and avoiding
+        unnecessary recomputation.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-dependency-injection-lessons/lesson-01-provider-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="[
+        '/angular-dependency-injection-lessons/lesson-01-provider-basics'
+      ]"
+    >
       <span>Service Wiring</span>
       <h2>Angular DI</h2>
-      <p>Providers, service scope, root and component providers, injection tokens, factories, and shared state.</p>
+      <p>
+        Providers, service scope, root and component providers, injection
+        tokens, factories, and shared state.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-auth-lessons/lesson-01-login-flow']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-auth-lessons/lesson-01-login-flow']"
+    >
       <span>Access Control</span>
       <h2>Angular Auth</h2>
-      <p>Login flow, guards, session handling, role-based UI, refresh token flow, and logout cleanup.</p>
+      <p>
+        Login flow, guards, session handling, role-based UI, refresh token flow,
+        and logout cleanup.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-layout-lessons/lesson-01-shell-layout']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-layout-lessons/lesson-01-shell-layout']"
+    >
       <span>Product Structure</span>
       <h2>Angular Layout</h2>
-      <p>Shell layouts, sidenav and topnav, feature folders, reusable page layouts, dashboards, and details.</p>
+      <p>
+        Shell layouts, sidenav and topnav, feature folders, reusable page
+        layouts, dashboards, and details.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-http-lessons/lesson-01-http-client-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-http-lessons/lesson-01-http-client-basics']"
+    >
       <span>API Integration</span>
       <h2>Angular HTTP</h2>
-      <p>HttpClient, typed API services, loading state, errors, interceptors, headers, and cancellation.</p>
+      <p>
+        HttpClient, typed API services, loading state, errors, interceptors,
+        headers, and cancellation.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
 
-    <a class="track-card primary" [routerLink]="['/angular-route-lessons/lesson-01-route-basics']">
+    <a
+      class="track-card primary"
+      [routerLink]="['/angular-route-lessons/lesson-01-route-basics']"
+    >
       <span>Navigation</span>
       <h2>Angular Routes</h2>
-      <p>Route tables, nested routes, route params, query params, guards, resolvers, and lazy loading.</p>
+      <p>
+        Route tables, nested routes, route params, query params, guards,
+        resolvers, and lazy loading.
+      </p>
       <strong>Start Lesson 1</strong>
     </a>
   </section>

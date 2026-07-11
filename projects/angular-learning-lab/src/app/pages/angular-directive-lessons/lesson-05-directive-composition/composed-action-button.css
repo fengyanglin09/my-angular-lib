@@ -1,0 +1,23 @@
+:host {
+  display: inline-block;
+}
+
+.composed-button {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e3a8a;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  padding: 14px 18px;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+:host(.composed-button--focused) .composed-button {
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 20%);
+}
+
+:host(.composed-button--pressed) .composed-button {
+  transform: translateY(2px);
+}

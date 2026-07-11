@@ -1,0 +1,43 @@
+<section class="pipe-panel" aria-labelledby="performance-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="performance-demo-title">Keep Pipe Work Cache-Friendly</h2>
+    </div>
+    <p class="summary">render tick {{ renderTick() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="searchAngular()">Search Angular</button>
+    <button type="button" (click)="searchAdvanced()">Search advanced</button>
+    <button type="button" (click)="forceRender()">Force render</button>
+    <button type="button" (click)="replaceCourses()">Replace courses</button>
+  </div>
+
+  <p class="action-note">{{ lastAction() }}</p>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Pipe inputs</p>
+      <dl>
+        <div>
+          <dt>Query</dt>
+          <dd>{{ query() || "empty" }}</dd>
+        </div>
+        <div>
+          <dt>Courses reference</dt>
+          <dd>{{ courses.length }} rows</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Pure pipe output</p>
+      <h3>{{ courses | courseSearchSummary : query() }}</h3>
+      <p>
+        Force render does not change the pipe inputs, so the pure pipe can reuse
+        its previous output.
+      </p>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<section class="directive-panel behavior-zone" aria-labelledby="dom-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="dom-demo-title">Tooltip, Autofocus, Click Outside</h2>
+    </div>
+    <p class="summary">{{ panelOpen() ? "panel open" : "panel closed" }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button
+      type="button"
+      appDemoTooltip="Tooltips are often attribute directives."
+    >
+      Hover for tooltip
+    </button>
+    <button type="button" (click)="focusSearch()">Focus search input</button>
+    <button type="button" (click)="openPanel()">Open filter panel</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Autofocus directive</p>
+      <label>
+        Search
+        <input
+          [appDemoAutofocus]="focusCycle()"
+          type="search"
+          placeholder="Focus lands here"
+        />
+      </label>
+      <p>{{ log() }}</p>
+    </article>
+
+    <article class="demo-card panel-stage">
+      <p class="eyebrow">Click outside directive</p>
+      @if (panelOpen()) {
+      <section
+        class="floating-panel"
+        appDemoClickOutside
+        (appDemoClickOutside)="closePanel()"
+      >
+        <h3>Filter panel</h3>
+        <p>Click anywhere outside this panel to close it.</p>
+      </section>
+      } @else {
+      <p class="empty-state">Panel is closed.</p>
+      }
+    </article>
+  </div>
+</section>

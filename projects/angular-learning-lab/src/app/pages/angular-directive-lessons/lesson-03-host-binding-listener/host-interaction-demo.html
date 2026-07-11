@@ -1,0 +1,37 @@
+<section class="directive-panel" aria-labelledby="host-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="host-demo-title">Host Element Events And Classes</h2>
+    </div>
+    <p class="summary">host binding + host listener</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="clearLog()">Clear log</button>
+  </div>
+
+  <div class="demo-grid">
+    <button
+      type="button"
+      class="host-card"
+      appHostInteraction
+      (appHostInteractionTriggered)="addLog($event)"
+    >
+      <span class="eyebrow">Host button</span>
+      <strong>Hover me, then click me</strong>
+      <small>
+        The directive updates classes and aria state on this same host element.
+      </small>
+    </button>
+
+    <article class="demo-card">
+      <p class="eyebrow">Event log</p>
+      <ol>
+        @for (entry of log(); track $index) {
+        <li>{{ entry }}</li>
+        }
+      </ol>
+    </article>
+  </div>
+</section>

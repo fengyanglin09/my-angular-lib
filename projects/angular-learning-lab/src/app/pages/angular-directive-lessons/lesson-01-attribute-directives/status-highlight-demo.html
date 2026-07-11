@@ -1,0 +1,43 @@
+<section class="directive-panel" aria-labelledby="attribute-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="attribute-demo-title">Highlight An Existing Card</h2>
+    </div>
+    <p class="summary">{{ status() }}</p>
+  </div>
+
+  <div class="toolbar">
+    @for (statusOption of statuses; track statusOption) {
+    <button type="button" (click)="setStatus(statusOption)">
+      {{ statusOption }}
+    </button>
+    }
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card" [appStatusHighlight]="status()">
+      <p class="eyebrow">Host element</p>
+      <h3>Payment gateway</h3>
+      <p>
+        The card is still a normal article. The directive only attaches reusable
+        status styling behavior.
+      </p>
+      <dl>
+        <div>
+          <dt>Directive input</dt>
+          <dd>{{ status() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Template usage</p>
+      <pre>&lt;article [appStatusHighlight]="status()"&gt;</pre>
+      <p>
+        Attribute directives are useful when you want to enhance an element
+        without creating a new component.
+      </p>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section class="directive-panel" aria-labelledby="choice-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="choice-demo-title">Choose The Right Shape</h2>
+    </div>
+    <p class="summary">{{ problemType() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="chooseProblem('behavior')">
+      Existing element needs behavior
+    </button>
+    <button type="button" (click)="chooseProblem('layout')">
+      UI needs owned layout
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card" [appAttention]="problemType() === 'behavior'">
+      <p class="eyebrow">Directive fit</p>
+      <h3>Existing warning card</h3>
+      <p>
+        The markup is already right. A directive can add attention styling or
+        behavior without replacing the element.
+      </p>
+      <pre>&lt;article [appAttention]="needsReview()"&gt;</pre>
+    </article>
+
+    <app-empty-state-panel />
+
+    <article class="demo-card recommendation-card">
+      <p class="eyebrow">Recommendation</p>
+      <h3>{{ recommendation() }}</h3>
+    </article>
+  </div>
+</section>

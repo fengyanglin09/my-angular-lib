@@ -1,0 +1,32 @@
+<section class="pipe-panel" aria-labelledby="parameters-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="parameters-demo-title">Configure Pipe Output</h2>
+    </div>
+    <p class="summary">{{ maxLength() }} chars / {{ mode() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="shorter()">Shorter</button>
+    <button type="button" (click)="longer()">Longer</button>
+    @for (modeOption of modes; track modeOption) {
+    <button type="button" (click)="setMode(modeOption)">
+      {{ modeOption }}
+    </button>
+    }
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Original text</p>
+      <p>{{ releaseNote }}</p>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Parameterized pipe output</p>
+      <h3>{{ releaseNote | truncateText : maxLength() : mode() }}</h3>
+      <pre>{{ "{{ releaseNote | truncateText: maxLength() : mode() }}" }}</pre>
+    </article>
+  </div>
+</section>

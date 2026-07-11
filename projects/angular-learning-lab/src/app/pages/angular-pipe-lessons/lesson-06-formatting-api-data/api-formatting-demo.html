@@ -1,0 +1,43 @@
+<section class="pipe-panel" aria-labelledby="api-formatting-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="api-formatting-demo-title">Format Backend DTOs For Display</h2>
+    </div>
+    <p class="summary">invoice {{ selectedIndex() + 1 }}</p>
+  </div>
+
+  <div class="toolbar">
+    @for (index of invoiceIndexes; track index) {
+    <button type="button" (click)="selectInvoice(index)">
+      Invoice {{ index + 1 }}
+    </button>
+    }
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Raw API DTO</p>
+      <pre>{{ invoice() | json }}</pre>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Formatted UI card</p>
+      <h3>{{ invoice().customer_name }}</h3>
+      <dl>
+        <div>
+          <dt>Amount due</dt>
+          <dd>{{ amountInDollars(invoice()) | currency : "USD" }}</dd>
+        </div>
+        <div>
+          <dt>Due date</dt>
+          <dd>{{ invoice().due_date_iso | date : "mediumDate" }}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>{{ invoice().invoice_status | invoiceStatusLabel }}</dd>
+        </div>
+      </dl>
+    </article>
+  </div>
+</section>

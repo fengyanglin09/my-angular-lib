@@ -1,0 +1,38 @@
+<section class="directive-panel" aria-labelledby="composition-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="composition-demo-title">Compose Host Behaviors</h2>
+    </div>
+    <p class="summary">{{ actionCount() }} actions</p>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Composed component</p>
+      <app-composed-action-button (click)="runAction()">
+        Save changes
+      </app-composed-action-button>
+      <p>
+        The button component gets focus-ring and pressed-state behavior through
+        directive composition.
+      </p>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Composition idea</p>
+      <pre>
+&#64;Component(&#123;
+  hostDirectives: [
+    FocusRingDirective,
+    PressedStateDirective,
+  ],
+&#125;)</pre
+      >
+      <p>
+        This keeps common host behavior reusable without making every template
+        attach every directive manually.
+      </p>
+    </article>
+  </div>
+</section>

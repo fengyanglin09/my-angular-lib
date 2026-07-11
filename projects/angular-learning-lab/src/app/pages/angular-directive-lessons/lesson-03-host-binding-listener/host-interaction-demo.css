@@ -1,0 +1,51 @@
+:host {
+  display: block;
+}
+
+.demo-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1fr);
+}
+
+.host-card,
+.demo-card {
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  text-align: left;
+}
+
+.host-card {
+  background: #f8fafc;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.host-card--hovered {
+  background: #ecfeff;
+  border-color: #22d3ee;
+  transform: translateY(-2px);
+}
+
+.host-card--pressed {
+  background: #eef2ff;
+  border-color: #6366f1;
+}
+
+.demo-card ol {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 22px;
+}
+
+@media (max-width: 820px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}

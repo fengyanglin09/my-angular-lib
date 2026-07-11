@@ -1,0 +1,66 @@
+<section class="pipe-panel" aria-labelledby="built-in-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="built-in-demo-title">Format Common Values</h2>
+    </div>
+    <p class="summary">{{ selectedExample() }}</p>
+  </div>
+
+  <div class="toolbar">
+    @for (example of examples; track example) {
+    <button type="button" (click)="selectExample(example)">
+      {{ example }}
+    </button>
+    }
+    <button type="button" (click)="increaseTotal()">Increase total</button>
+    <button type="button" (click)="increaseCompletion()">
+      Increase percent
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Raw values</p>
+      <dl>
+        <div>
+          <dt>invoiceTotal</dt>
+          <dd>{{ invoiceTotal() }}</dd>
+        </div>
+        <div>
+          <dt>shippedAt</dt>
+          <dd>{{ shippedAt().toISOString() }}</dd>
+        </div>
+        <div>
+          <dt>completionRate</dt>
+          <dd>{{ completionRate() }}</dd>
+        </div>
+        <div>
+          <dt>rawTitle</dt>
+          <dd>{{ rawTitle() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Pipe output</p>
+      @switch (selectedExample()) { @case ("currency") {
+      <h3>{{ invoiceTotal() | currency : "USD" }}</h3>
+      <pre>{{ "{{ invoiceTotal() | currency: 'USD' }}" }}</pre>
+      } @case ("date") {
+      <h3>{{ shippedAt() | date : "medium" }}</h3>
+      <pre>{{ "{{ shippedAt() | date: 'medium' }}" }}</pre>
+      } @case ("number") {
+      <h3>{{ invoiceTotal() | number : "1.0-0" }}</h3>
+      <pre>{{ "{{ invoiceTotal() | number: '1.0-0' }}" }}</pre>
+      } @case ("percent") {
+      <h3>{{ completionRate() | percent : "1.0-1" }}</h3>
+      <pre>{{ "{{ completionRate() | percent: '1.0-1' }}" }}</pre>
+      } @case ("text") {
+      <h3>{{ rawTitle() | titlecase }}</h3>
+      <p>{{ rawTitle() | uppercase }}</p>
+      <pre>{{ "{{ rawTitle() | titlecase }}" }}</pre>
+      } }
+    </article>
+  </div>
+</section>

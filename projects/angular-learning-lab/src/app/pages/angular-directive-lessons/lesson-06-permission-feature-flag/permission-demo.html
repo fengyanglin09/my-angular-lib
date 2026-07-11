@@ -1,0 +1,53 @@
+<section class="directive-panel" aria-labelledby="permission-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="permission-demo-title">Permission-Gated Template</h2>
+    </div>
+    <p class="summary">{{ role() }} / feature {{ featureEnabled() }}</p>
+  </div>
+
+  <div class="toolbar">
+    @for (roleOption of roles; track roleOption) {
+    <button type="button" (click)="setRole(roleOption)">
+      {{ roleOption }}
+    </button>
+    }
+    <button type="button" (click)="toggleFeature()">
+      {{ featureEnabled() ? "Disable feature" : "Enable feature" }}
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Billing workspace</p>
+      <button type="button">View invoice</button>
+
+      <button
+        *appCanAccess="{
+          userRole: role(),
+          requiredRole: 'manager',
+          featureEnabled: featureEnabled(),
+        }"
+        type="button"
+      >
+        Approve refund
+      </button>
+
+      <p class="note">
+        The refund button only exists when the role and feature flag both pass.
+      </p>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Access rule</p>
+      <pre>
+*appCanAccess="&#123;
+  userRole: role(),
+  requiredRole: 'manager',
+  featureEnabled: featureEnabled(),
+&#125;"</pre
+      >
+    </article>
+  </div>
+</section>

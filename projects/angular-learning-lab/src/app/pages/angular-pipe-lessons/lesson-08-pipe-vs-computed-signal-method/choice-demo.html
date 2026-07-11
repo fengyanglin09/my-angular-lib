@@ -1,0 +1,61 @@
+<section class="pipe-panel" aria-labelledby="choice-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="choice-demo-title">Choose The Transformation Home</h2>
+    </div>
+    <p class="summary">{{ choice() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="choose('pipe')">Pipe</button>
+    <button type="button" (click)="choose('computed')">Computed</button>
+    <button type="button" (click)="choose('method')">Method</button>
+    <button type="button" (click)="increaseQuantity()">
+      Increase quantity
+    </button>
+    <button type="button" (click)="increasePrice()">Increase price</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Source state</p>
+      <dl>
+        <div>
+          <dt>quantity()</dt>
+          <dd>{{ quantity() }}</dd>
+        </div>
+        <div>
+          <dt>unitPrice()</dt>
+          <dd>{{ unitPrice() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Computed derived state</p>
+      <h3>{{ subtotal() }}</h3>
+      <pre>subtotal = computed(() =&gt; quantity() * unitPrice())</pre>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Pipe display formatting</p>
+      <h3>{{ subtotal() | currency : "USD" }}</h3>
+      <pre>{{ "{{ subtotal() | currency: 'USD' }}" }}</pre>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Method command/result</p>
+      <h3>{{ calculateMethodSubtotal() }}</h3>
+      <p>
+        This is acceptable for a tiny demo, but repeated template method calls
+        are often less predictable than computed state.
+      </p>
+    </article>
+
+    <article class="demo-card recommendation-card">
+      <p class="eyebrow">Recommendation</p>
+      <h3>{{ recommendation() }}</h3>
+    </article>
+  </div>
+</section>

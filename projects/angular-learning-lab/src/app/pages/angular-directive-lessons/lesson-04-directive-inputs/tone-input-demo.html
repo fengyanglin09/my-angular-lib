@@ -1,0 +1,54 @@
+<section class="directive-panel" aria-labelledby="inputs-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="inputs-demo-title">Configure One Directive Instance</h2>
+    </div>
+    <p class="summary">{{ tone() }} / {{ toneSize() }}</p>
+  </div>
+
+  <div class="control-grid">
+    <section>
+      <p class="eyebrow">Tone input</p>
+      <div class="toolbar">
+        @for (toneOption of tones; track toneOption) {
+        <button type="button" (click)="setTone(toneOption)">
+          {{ toneOption }}
+        </button>
+        }
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Size input</p>
+      <div class="toolbar">
+        @for (sizeOption of sizes; track sizeOption) {
+        <button type="button" (click)="setToneSize(sizeOption)">
+          {{ sizeOption }}
+        </button>
+        }
+      </div>
+    </section>
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card" [appTonePanel]="tone()" [toneSize]="toneSize()">
+      <p class="eyebrow">Configured host</p>
+      <h3>Deployment notice</h3>
+      <p>
+        This same directive instance reacts to two independent inputs: tone and
+        density.
+      </p>
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Template usage</p>
+      <pre>
+&lt;article
+  [appTonePanel]="tone()"
+  [toneSize]="toneSize()"&gt;
+&lt;/article&gt;</pre
+      >
+    </article>
+  </div>
+</section>

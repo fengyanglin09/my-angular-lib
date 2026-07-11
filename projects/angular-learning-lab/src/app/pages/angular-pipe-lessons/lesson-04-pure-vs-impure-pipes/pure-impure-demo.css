@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.action-note {
+  background: #f8fafc;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  color: #4b5563;
+  margin: 0;
+  padding: 14px 16px;
+}
+
+.demo-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.demo-card {
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+}
+
+.warning-card {
+  background: #fff7ed;
+  border-color: #fdba74;
+}
+
+.demo-card ul {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 22px;
+}
+
+@media (max-width: 980px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}

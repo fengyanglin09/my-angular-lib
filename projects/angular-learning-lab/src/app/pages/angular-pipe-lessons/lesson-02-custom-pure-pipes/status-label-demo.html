@@ -1,0 +1,31 @@
+<section class="pipe-panel" aria-labelledby="custom-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="custom-demo-title">Map Codes To Labels</h2>
+    </div>
+    <p class="summary">{{ status() }}</p>
+  </div>
+
+  <div class="toolbar">
+    @for (statusOption of statuses; track statusOption) {
+    <button type="button" (click)="setStatus(statusOption)">
+      {{ statusOption }}
+    </button>
+    }
+  </div>
+
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">Raw status code</p>
+      <h3>{{ status() }}</h3>
+      <p>Backend and store state often use compact codes.</p>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Custom pipe output</p>
+      <h3>{{ status() | statusLabel }}</h3>
+      <pre>{{ "{{ status() | statusLabel }}" }}</pre>
+    </article>
+  </div>
+</section>

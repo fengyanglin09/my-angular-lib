@@ -1,0 +1,56 @@
+<section class="pipe-panel" aria-labelledby="async-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="async-demo-title">Subscribe In The Template</h2>
+    </div>
+    <p class="summary">Observable + async pipe</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="reloadProfile()">Reload profile</button>
+    <button type="button" (click)="failProfile()">Fail next load</button>
+  </div>
+
+  @if (profileState$ | async; as state) {
+  <div class="demo-grid">
+    <article class="demo-card">
+      <p class="eyebrow">State from async pipe</p>
+      <dl>
+        <div>
+          <dt>Loading</dt>
+          <dd>{{ state.loading }}</dd>
+        </div>
+        <div>
+          <dt>Source</dt>
+          <dd>{{ state.source }}</dd>
+        </div>
+        <div>
+          <dt>Error</dt>
+          <dd>{{ state.error ?? "None" }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="demo-card highlight-card">
+      <p class="eyebrow">Profile card</p>
+      @if (state.profile) {
+      <h3>{{ state.profile.name }}</h3>
+      <p>{{ state.profile.plan }}</p>
+      <p>Refreshed at {{ state.profile.refreshedAt }}</p>
+      } @else if (state.loading) {
+      <h3>Loading profile...</h3>
+      <p>The async pipe is subscribed while this view is alive.</p>
+      } @else {
+      <h3>No profile loaded</h3>
+      <p>{{ state.error }}</p>
+      }
+    </article>
+
+    <article class="demo-card">
+      <p class="eyebrow">Raw emitted state</p>
+      <pre>{{ state | json }}</pre>
+    </article>
+  </div>
+  }
+</section>
