@@ -1,0 +1,67 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="9" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 9</p>
+    <h1>DTO Mapping And Runtime Validation</h1>
+    <p>
+      TypeScript types describe what your code expects. They do not prove that
+      backend JSON actually has that shape at runtime. Validate at the boundary,
+      then map DTOs into UI-friendly view models.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Backend boundary</p>
+        <h2>From JSON To View Model</h2>
+      </div>
+      <p class="summary">validate + map</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <button type="button" (click)="loadGoodData()">Load valid backend data</button>
+      <button type="button" (click)="loadBadData()">Try malformed data</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">Raw DTOs</p>
+        <pre>{{ state().raw | json }}</pre>
+      </section>
+
+      <section class="state-card">
+        <p class="eyebrow">UI View Models</p>
+        @if (state().error) {
+          <p class="error-text">{{ state().error }}</p>
+        } @else {
+          <pre>{{ state().viewModels | json }}</pre>
+        }
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>DTO
+  backend shape
+
+validation
+  prove required fields
+
+view model
+  frontend display shape</pre>
+      </aside>
+    </div>
+  </section>
+</main>

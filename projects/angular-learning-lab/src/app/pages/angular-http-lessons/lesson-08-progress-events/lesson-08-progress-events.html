@@ -1,0 +1,64 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="8" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 8</p>
+    <h1>Progress Events</h1>
+    <p>
+      Normal HTTP calls emit only the response body. Uploads and downloads can
+      ask Angular for the full event stream so the UI can show progress.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">observe: events</p>
+        <h2>Progress Syntax</h2>
+      </div>
+      <p class="summary">reportProgress</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <button type="button" (click)="startUpload()">Start simulated upload</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">Upload State</p>
+        <h2>{{ state().eventName }}</h2>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="state().percent"></div>
+        </div>
+        <p>{{ state().percent }}% {{ state().done ? 'complete' : 'in progress' }}</p>
+      </section>
+
+      <section class="state-card">
+        <p class="eyebrow">Newest Events</p>
+        <pre>{{ events() | json }}</pre>
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>body response
+  one useful value
+
+event response
+  sent
+  upload progress
+  final response</pre>
+      </aside>
+    </div>
+  </section>
+</main>

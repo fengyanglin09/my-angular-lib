@@ -1,0 +1,74 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="5" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 5</p>
+    <h1>Error Handling And Retry</h1>
+    <p>
+      HTTP calls fail for different reasons. The component should turn those
+      failures into clear UI state, and retry only when retrying has a real
+      chance to help.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">RxJS around HttpClient</p>
+        <h2>Request Pipeline</h2>
+      </div>
+      <p class="summary">retry + catchError</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <button type="button" (click)="loadSuccess()" [disabled]="state().loading">Load success</button>
+      <button type="button" (click)="loadFailureWithRetry()" [disabled]="state().loading">Load missing file with retry</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">View State</p>
+        <h2>{{ state().source }}</h2>
+        @if (state().loading) {
+          <p class="empty-state">Loading...</p>
+        } @else if (state().error) {
+          <p class="error-text">{{ state().error }}</p>
+        } @else {
+          <pre>{{ state().courses | json }}</pre>
+        }
+      </section>
+
+      <section class="log-card">
+        <h3>Lesson Log</h3>
+        <ol>
+          @for (log of logs(); track log) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>HttpClient
+  emits data or errors
+
+retry
+  resubscribes after an error
+
+catchError
+  turns failure into safe UI state</pre>
+      </aside>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,78 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="10" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 10</p>
+    <h1>API Configuration</h1>
+    <p>
+      Real apps should not scatter backend URLs across components. Keep API
+      base URLs in one place, then let services build endpoints from that
+      configuration.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Environment boundary</p>
+        <h2>URL Ownership</h2>
+      </div>
+      <p class="summary">configure once</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <button type="button" (click)="useStaticAssets()">Use static assets</button>
+      <button type="button" (click)="useJsonServer()">Use JSON Server</button>
+      <button type="button" (click)="loadCourses()">Load from selected target</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">Selected Target</p>
+        <h2>{{ target() }}</h2>
+        <dl>
+          <div>
+            <dt>Last URL</dt>
+            <dd>{{ state().url }}</dd>
+          </div>
+          <div>
+            <dt>Last target</dt>
+            <dd>{{ state().target }}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="state-card">
+        <p class="eyebrow">Response</p>
+        @if (state().error) {
+          <p class="error-text">{{ state().error }}</p>
+        } @else {
+          <pre>{{ state().courses | json }}</pre>
+        }
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>component
+  asks service for courses
+
+service
+  builds URL from config
+
+config
+  changes by environment</pre>
+      </aside>
+    </div>
+  </section>
+</main>

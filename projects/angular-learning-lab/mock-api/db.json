@@ -20,6 +20,55 @@
       "category": "HTTP",
       "level": "Intermediate",
       "minutes": 31
+    },
+    {
+      "id": "4",
+      "title": "HttpParams for Filters",
+      "category": "HTTP",
+      "level": "Beginner",
+      "minutes": 24
+    },
+    {
+      "id": "5",
+      "title": "Request Headers",
+      "category": "HTTP",
+      "level": "Intermediate",
+      "minutes": 27
+    },
+    {
+      "id": "6",
+      "title": "RxJS Retry Patterns",
+      "category": "RxJS",
+      "level": "Advanced",
+      "minutes": 46
+    },
+    {
+      "id": "7",
+      "title": "Route Resolver Data",
+      "category": "Angular",
+      "level": "Intermediate",
+      "minutes": 38
+    },
+    {
+      "id": "8",
+      "title": "NgRx Effect Requests",
+      "category": "NgRx",
+      "level": "Advanced",
+      "minutes": 42
+    },
+    {
+      "id": "9",
+      "title": "Typed Response Models",
+      "category": "HTTP",
+      "level": "Beginner",
+      "minutes": 22
+    },
+    {
+      "id": "10",
+      "title": "Form Submit APIs",
+      "category": "Angular",
+      "level": "Intermediate",
+      "minutes": 36
     }
   ]
 }

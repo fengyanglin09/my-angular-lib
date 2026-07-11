@@ -1,5 +1,5 @@
 import { ApplicationConfig, isDevMode, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import {
@@ -13,6 +13,10 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
 import { SelectiveRoutePreloadingStrategy } from './pages/angular-route-lessons/lesson-17-preloading-lazy-routes/selective-route-preloading.strategy';
+import {
+  httpLessonAuthInterceptor,
+  httpLessonTimingInterceptor,
+} from './pages/angular-http-lessons/shared/http-lesson-interceptors';
 import { AuthUserEffects } from './state/auth-user/auth-user.effects';
 import { authUserFeature } from './state/auth-user/auth-user.reducer';
 import { BooksEffects } from './state/books/books.effects';
@@ -38,7 +42,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([
+      httpLessonAuthInterceptor,
+      httpLessonTimingInterceptor,
+    ])),
     provideRouter(
       routes,
       withComponentInputBinding(),

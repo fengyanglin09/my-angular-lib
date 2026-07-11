@@ -1,0 +1,177 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="4" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 4</p>
+    <h1>Query Params And Headers</h1>
+    <p>
+      Real list screens usually send filters, sorting, and pagination as query
+      params. Headers carry request metadata such as auth tokens, request ids,
+      tenant ids, or feature flags.
+    </p>
+  </section>
+
+  <section class="http-panel" aria-labelledby="syntax-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Request options</p>
+        <h2 id="syntax-title">The Pieces Angular Sends</h2>
+      </div>
+      <p class="summary">params + headers</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel" aria-labelledby="search-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">GET http://localhost:3000/courses</p>
+        <h2 id="search-title">Course Search Request</h2>
+      </div>
+      <p class="summary">{{ state().loading ? 'loading' : state().request?.status ?? 'waiting' }}</p>
+    </div>
+
+    <div class="filter-bar">
+      <label>
+        Category
+        <select [ngModel]="category()" (ngModelChange)="setCategory($event)">
+          <option>All</option>
+          <option>Angular</option>
+          <option>HTTP</option>
+          <option>NgRx</option>
+          <option>RxJS</option>
+        </select>
+      </label>
+
+      <label>
+        Level
+        <select [ngModel]="level()" (ngModelChange)="setLevel($event)">
+          <option>All</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </label>
+
+      <label>
+        Sort
+        <select [ngModel]="sort()" (ngModelChange)="setSort($event)">
+          <option value="minutes">Minutes</option>
+          <option value="title">Title</option>
+        </select>
+      </label>
+
+      <label>
+        Order
+        <select [ngModel]="order()" (ngModelChange)="setOrder($event)">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </label>
+
+      <label>
+        Page
+        <input type="number" min="1" [ngModel]="page()" (ngModelChange)="setPage($event)" />
+      </label>
+
+      <label>
+        Page size
+        <input type="number" min="1" max="10" [ngModel]="pageSize()" (ngModelChange)="setPageSize($event)" />
+      </label>
+
+      <button type="button" (click)="searchCourses()" [disabled]="state().loading">Search courses</button>
+    </div>
+
+    <div class="content-grid results-grid">
+      <section class="state-card">
+        <p class="eyebrow">Returned Body</p>
+        <h2>{{ state().courses.length }} courses</h2>
+
+        @if (state().loading) {
+          <p class="empty-state">Waiting for the backend...</p>
+        } @else if (state().error) {
+          <p class="error-text">{{ state().error }}</p>
+        } @else {
+          <pre>{{ state().courses | json }}</pre>
+        }
+      </section>
+
+      <section class="state-card">
+        <p class="eyebrow">Full Response Metadata</p>
+        <h2>{{ state().request?.method ?? 'No request yet' }}</h2>
+
+        @if (state().request) {
+          <dl>
+            <div>
+              <dt>Status</dt>
+              <dd>{{ state().request?.status }}</dd>
+            </div>
+            <div>
+              <dt>URL</dt>
+              <dd>{{ state().request?.url }}</dd>
+            </div>
+            <div>
+              <dt>Request header id</dt>
+              <dd>{{ state().request?.requestId }}</dd>
+            </div>
+          </dl>
+        } @else {
+          <p class="empty-state">Click Search courses to see the response object.</p>
+        }
+      </section>
+
+      <aside class="mental-card" aria-label="Query params and headers mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>query params
+  visible in the URL
+  usually change what data is returned
+
+headers
+  not visible in the URL
+  usually describe the request
+
+backend
+  decides what each param/header means</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="http-panel" aria-labelledby="log-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Request history</p>
+        <h2 id="log-title">Lesson Log</h2>
+      </div>
+      <p class="summary">newest first</p>
+    </div>
+
+    <div class="content-grid explanation-grid">
+      <section class="log-card">
+        <ol>
+          @for (log of logs(); track log) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <section class="state-card">
+        <p class="eyebrow">Important Detail</p>
+        <h2>HttpParams Is Immutable</h2>
+        <p>
+          <code>params.set(...)</code> does not edit the old params object.
+          It returns a new params object, so the lesson assigns it back to
+          <code>params</code> when optional filters are added.
+        </p>
+      </section>
+    </div>
+  </section>
+</main>

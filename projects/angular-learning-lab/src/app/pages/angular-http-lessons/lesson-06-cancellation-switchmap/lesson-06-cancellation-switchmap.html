@@ -1,0 +1,71 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="6" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 6</p>
+    <h1>Cancellation With switchMap</h1>
+    <p>
+      Search boxes and route-driven pages often start a new request before the
+      old one finishes. <code>switchMap</code> keeps the newest inner request
+      and unsubscribes from the previous one.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Newest request wins</p>
+        <h2>Search Stream</h2>
+      </div>
+      <p class="summary">debounce + switchMap</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <label>
+        Course search
+        <input type="search" [ngModel]="query()" (ngModelChange)="setQuery($event)" placeholder="Try http, angular, rxjs" />
+      </label>
+      <button type="button" (click)="runFastSequence()">Simulate fast typing</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">Results for {{ state().query || 'empty search' }}</p>
+        <h2>{{ state().loading ? 'Loading' : state().courses.length + ' results' }}</h2>
+        <pre>{{ state().courses | json }}</pre>
+      </section>
+
+      <section class="log-card">
+        <h3>Lesson Log</h3>
+        <ol>
+          @for (log of logs(); track log) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>outer stream
+  user types search terms
+
+inner stream
+  HTTP request for that term
+
+switchMap
+  cancels older inner streams</pre>
+      </aside>
+    </div>
+  </section>
+</main>

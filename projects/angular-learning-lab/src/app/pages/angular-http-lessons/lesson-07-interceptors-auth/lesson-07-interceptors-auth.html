@@ -1,0 +1,68 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="7" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 7</p>
+    <h1>Interceptors And Auth Headers</h1>
+    <p>
+      Interceptors sit between your app code and the backend. They are useful
+      for cross-cutting HTTP behavior such as auth headers, request ids,
+      timing, and shared error handling.
+    </p>
+  </section>
+
+  <section class="http-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Global HTTP plumbing</p>
+        <h2>Interceptor Flow</h2>
+      </div>
+      <p class="summary">clone + next</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel">
+    <div class="toolbar">
+      <button type="button" (click)="sendSuccessfulRequest()">Send successful request</button>
+      <button type="button" (click)="sendFailingRequest()">Send failing request</button>
+      <button type="button" (click)="clearLog()">Clear log</button>
+    </div>
+
+    <div class="content-grid result-grid">
+      <section class="state-card">
+        <p class="eyebrow">Component Result</p>
+        <h2>{{ result() }}</h2>
+      </section>
+
+      <section class="log-card">
+        <h3>Interceptor Log</h3>
+        <ol>
+          @for (entry of interceptorLog.entries(); track entry) {
+            <li>{{ entry }}</li>
+          }
+        </ol>
+      </section>
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>component
+  calls http.get()
+
+interceptor
+  clones/modifies request
+
+backend
+  receives modified request</pre>
+      </aside>
+    </div>
+  </section>
+</main>
