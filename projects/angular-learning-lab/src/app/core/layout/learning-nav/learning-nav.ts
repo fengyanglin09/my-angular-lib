@@ -132,6 +132,8 @@ export class LearningNav {
 
   private readonly httpLessons: LessonLink[] = [
     { description: 'Register HttpClient, load typed data through an API service, and show loading/data/error state.', number: 1, path: '/angular-http-lessons/lesson-01-http-client-basics', title: 'HttpClient Basics' },
+    { description: 'Send a create request body to a fake in-memory API and handle the returned server object.', number: 2, path: '/angular-http-lessons/lesson-02-post-create', title: 'POST Create' },
+    { description: 'Use JSON Server as an optional local backend for real GET, POST, PATCH, and DELETE calls.', number: 3, path: '/angular-http-lessons/lesson-03-json-server-backend', title: 'JSON Server' },
   ];
 
   private readonly routesLessons: LessonLink[] = [

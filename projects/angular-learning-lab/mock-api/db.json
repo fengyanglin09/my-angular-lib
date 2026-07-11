@@ -1,0 +1,25 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "HttpClient Basics",
+      "category": "Angular",
+      "level": "Beginner",
+      "minutes": 28
+    },
+    {
+      "id": "2",
+      "title": "POST Create Requests",
+      "category": "HTTP",
+      "level": "Intermediate",
+      "minutes": 34
+    },
+    {
+      "id": "3",
+      "title": "JSON Server Local Backend",
+      "category": "HTTP",
+      "level": "Intermediate",
+      "minutes": 31
+    }
+  ]
+}

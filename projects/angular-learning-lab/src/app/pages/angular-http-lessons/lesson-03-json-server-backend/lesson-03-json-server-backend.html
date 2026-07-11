@@ -1,0 +1,153 @@
+<main class="lesson-shell">
+  <app-learning-nav category="http" [activeLesson]="3" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular HTTP Lesson 3</p>
+    <h1>Optional Local Backend With JSON Server</h1>
+    <p>
+      GitHub Pages can only serve static files, but local development can run a
+      tiny REST API beside Angular. JSON Server reads a <code>db.json</code>
+      file and exposes real <code>GET</code>, <code>POST</code>,
+      <code>PATCH</code>, and <code>DELETE</code> endpoints.
+    </p>
+  </section>
+
+  <section class="http-panel" aria-labelledby="setup-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Local only, optional backend</p>
+        <h2 id="setup-title">Run The Mock API</h2>
+      </div>
+      <p class="summary">localhost:3000</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of codeSteps; track step.name) {
+        <article>
+          <h3>{{ step.name }}</h3>
+          <p>{{ step.description }}</p>
+          <pre>{{ step.syntax }}</pre>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="http-panel" aria-labelledby="api-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">HttpClient against JSON Server</p>
+        <h2 id="api-title">Course API Client</h2>
+      </div>
+      <p class="summary">{{ requestState().loading ? 'loading' : requestState().error ? 'offline/error' : requestState().method }}</p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" (click)="loadCourses()" [disabled]="requestState().loading">GET courses</button>
+      <button type="button" (click)="createCourse()" [disabled]="requestState().loading">POST create</button>
+      <button type="button" (click)="updateFirstCourse()" [disabled]="requestState().loading">PATCH first</button>
+      <button type="button" (click)="deleteFirstCourse()" [disabled]="requestState().loading">DELETE first</button>
+    </div>
+
+    <div class="content-grid backend-grid">
+      <section class="state-card" aria-labelledby="draft-title">
+        <p class="eyebrow">POST Request Body</p>
+        <h2 id="draft-title">New Course Draft</h2>
+
+        <div class="draft-form">
+          <label>
+            Title
+            <input type="text" [ngModel]="title()" (ngModelChange)="setTitle($event)" />
+          </label>
+
+          <label>
+            Category
+            <select [ngModel]="category()" (ngModelChange)="setCategory($event)">
+              <option>Angular</option>
+              <option>HTTP</option>
+              <option>RxJS</option>
+              <option>NgRx</option>
+            </select>
+          </label>
+
+          <label>
+            Level
+            <select [ngModel]="level()" (ngModelChange)="setLevel($event)">
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </label>
+
+          <label>
+            Minutes
+            <input type="number" min="5" [ngModel]="minutes()" (ngModelChange)="setMinutes($event)" />
+          </label>
+        </div>
+      </section>
+
+      <section class="state-card result-card" aria-labelledby="response-title">
+        <p class="eyebrow">Last HTTP Response</p>
+        <h2 id="response-title">{{ requestState().method }}</h2>
+
+        @if (requestState().loading) {
+          <p class="empty-state">Waiting for JSON Server...</p>
+        } @else if (requestState().error) {
+          <p class="error-text">{{ requestState().error }}</p>
+        } @else {
+          <pre>{{ requestState().response | json }}</pre>
+        }
+      </section>
+
+      <aside class="mental-card" aria-label="JSON Server mental model">
+        <p class="eyebrow">Mental Model</p>
+        <pre>Angular
+  runs on localhost:4201
+
+JSON Server
+  runs on localhost:3000
+
+db.json
+  stores mock data
+
+GitHub Pages
+  cannot run this backend</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="http-panel" aria-labelledby="courses-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Loaded from http://localhost:3000/courses</p>
+        <h2 id="courses-title">Current Courses</h2>
+      </div>
+      <p class="summary">{{ courses().length }} courses</p>
+    </div>
+
+    <div class="content-grid list-grid">
+      <section class="state-card">
+        <pre>{{ courses() | json }}</pre>
+      </section>
+
+      <section class="log-card">
+        <h3>Lesson Log</h3>
+        <ol>
+          @for (log of logs(); track log) {
+            <li>{{ log }}</li>
+          }
+        </ol>
+      </section>
+    </div>
+  </section>
+
+  <section class="flow-panel" aria-labelledby="remember-title">
+    <h2 id="remember-title">What To Remember</h2>
+    <ol>
+      <li>JSON Server is a lightweight local REST API, not something GitHub Pages can host.</li>
+      <li>Angular still uses normal <code>HttpClient</code> calls.</li>
+      <li>The backend URL changes from a static file path to <code>http://localhost:3000/courses</code>.</li>
+      <li><code>POST</code>, <code>PATCH</code>, and <code>DELETE</code> change <code>mock-api/db.json</code> while the local server is running.</li>
+      <li>If the server is not running, Angular receives a connection error and should show a useful message.</li>
+    </ol>
+  </section>
+</main>
