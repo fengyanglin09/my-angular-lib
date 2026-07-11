@@ -8,7 +8,7 @@ interface LessonLink {
   title: string;
 }
 
-type LearningCategory = 'forms' | 'http' | 'ngrx' | 'ramda' | 'routes' | 'rxjs' | 'signals';
+type LearningCategory = 'auth' | 'components' | 'di' | 'forms' | 'http' | 'layout' | 'ngrx' | 'performance' | 'ramda' | 'routes' | 'rxjs' | 'signals';
 
 @Component({
   selector: 'app-learning-nav',
@@ -130,6 +130,54 @@ export class LearningNav {
     { description: 'Use form state APIs for touched, dirty, pending, disabled, pristine, and reset behavior.', number: 18, path: '/angular-forms-lessons/lesson-18-form-state-apis', title: 'Form State APIs' },
   ];
 
+  private readonly componentLessons: LessonLink[] = [
+    { description: 'Split data coordination from reusable rendering components.', number: 1, path: '/angular-components-lessons/lesson-01-smart-presentational', title: 'Smart vs Presentational' },
+    { description: 'Use input, output, and model for component data flow.', number: 2, path: '/angular-components-lessons/lesson-02-input-output-model', title: 'Input Output Model' },
+    { description: 'Design small reusable component APIs with clear ownership.', number: 3, path: '/angular-components-lessons/lesson-03-reusable-component-apis', title: 'Reusable APIs' },
+    { description: 'Use ng-content slots when callers need custom markup.', number: 4, path: '/angular-components-lessons/lesson-04-content-projection', title: 'Projection' },
+    { description: 'Read elements and child components from the component view.', number: 5, path: '/angular-components-lessons/lesson-05-view-queries', title: 'View Queries' },
+    { description: 'Read projected directives, elements, and components from parent content.', number: 6, path: '/angular-components-lessons/lesson-06-content-queries', title: 'Content Queries' },
+    { description: 'Choose between input/output, services, stores, and router state.', number: 7, path: '/angular-components-lessons/lesson-07-component-communication', title: 'Communication' },
+    { description: 'Decide where source-of-truth state and local draft state should live.', number: 8, path: '/angular-components-lessons/lesson-08-state-ownership', title: 'State Ownership' },
+  ];
+
+  private readonly dependencyInjectionLessons: LessonLink[] = [
+    { description: 'Understand tokens, providers, and inject().', number: 1, path: '/angular-dependency-injection-lessons/lesson-01-provider-basics', title: 'Provider Basics' },
+    { description: 'See how provider location controls service lifetime and sharing.', number: 2, path: '/angular-dependency-injection-lessons/lesson-02-service-scope', title: 'Service Scope' },
+    { description: 'Choose between app-wide root services and component-local services.', number: 3, path: '/angular-dependency-injection-lessons/lesson-03-root-vs-component-providers', title: 'Root vs Component' },
+    { description: 'Inject non-class values such as config objects, strings, and flags.', number: 4, path: '/angular-dependency-injection-lessons/lesson-04-injection-tokens', title: 'Injection Tokens' },
+    { description: 'Create dependencies with useFactory and injected runtime context.', number: 5, path: '/angular-dependency-injection-lessons/lesson-05-factory-providers', title: 'Factory Providers' },
+    { description: 'Learn why the nearest provider wins in Angular injector trees.', number: 6, path: '/angular-dependency-injection-lessons/lesson-06-hierarchical-injectors', title: 'Injector Tree' },
+    { description: 'Decide when service state should be shared or isolated.', number: 7, path: '/angular-dependency-injection-lessons/lesson-07-shared-vs-isolated-state', title: 'Shared vs Isolated' },
+  ];
+
+  private readonly performanceLessons: LessonLink[] = [
+    { description: 'Use OnPush and immutable inputs to narrow component checks.', number: 1, path: '/angular-performance-lessons/lesson-01-onpush-change-detection', title: 'OnPush' },
+    { description: 'Use signals to make template updates more targeted.', number: 2, path: '/angular-performance-lessons/lesson-02-signals-change-detection', title: 'Signals + CD' },
+    { description: 'Track list rows with stable identities for better DOM reuse.', number: 3, path: '/angular-performance-lessons/lesson-03-for-track', title: '@for Track' },
+    { description: 'Lazy-load route features and standalone pages.', number: 4, path: '/angular-performance-lessons/lesson-04-lazy-loading', title: 'Lazy Loading' },
+    { description: 'Delay expensive secondary UI with defer blocks.', number: 5, path: '/angular-performance-lessons/lesson-05-defer-blocks', title: 'Defer Blocks' },
+    { description: 'Use computed state and avoid heavy template method calls.', number: 6, path: '/angular-performance-lessons/lesson-06-avoid-recomputation', title: 'Recomputation' },
+  ];
+
+  private readonly authLessons: LessonLink[] = [
+    { description: 'Submit credentials, store session state, and return users to the intended page.', number: 1, path: '/angular-auth-lessons/lesson-01-login-flow', title: 'Login Flow' },
+    { description: 'Use route guards to allow, block, or redirect protected navigation.', number: 2, path: '/angular-auth-lessons/lesson-02-route-guards', title: 'Route Guards' },
+    { description: 'Centralize token and session state for requests and UI.', number: 3, path: '/angular-auth-lessons/lesson-03-token-session-handling', title: 'Token Session' },
+    { description: 'Show role-based UI while leaving real enforcement to the backend.', number: 4, path: '/angular-auth-lessons/lesson-04-role-based-ui', title: 'Role UI' },
+    { description: 'Refresh expired access tokens and retry original requests.', number: 5, path: '/angular-auth-lessons/lesson-05-refresh-token-flow', title: 'Refresh Token' },
+    { description: 'Clear session, storage, caches, and user state on logout.', number: 6, path: '/angular-auth-lessons/lesson-06-logout-cleanup', title: 'Logout Cleanup' },
+  ];
+
+  private readonly layoutLessons: LessonLink[] = [
+    { description: 'Build a stable shell around routed feature pages.', number: 1, path: '/angular-layout-lessons/lesson-01-shell-layout', title: 'Shell Layout' },
+    { description: 'Separate global navigation, feature navigation, and page actions.', number: 2, path: '/angular-layout-lessons/lesson-02-sidenav-topnav', title: 'Sidenav Topnav' },
+    { description: 'Organize routes, pages, components, services, and models by feature.', number: 3, path: '/angular-layout-lessons/lesson-03-feature-folders', title: 'Feature Folders' },
+    { description: 'Use reusable page layout components for repeated structure.', number: 4, path: '/angular-layout-lessons/lesson-04-reusable-page-layouts', title: 'Page Layouts' },
+    { description: 'Keep design consistent with shared primitives and patterns.', number: 5, path: '/angular-layout-lessons/lesson-05-design-consistency', title: 'Consistency' },
+    { description: 'Design dashboard-to-detail workflows with clear route structure.', number: 6, path: '/angular-layout-lessons/lesson-06-dashboards-detail-pages', title: 'Dashboard Detail' },
+  ];
+
   private readonly httpLessons: LessonLink[] = [
     { description: 'Register HttpClient, load typed data through an API service, and show loading/data/error state.', number: 1, path: '/angular-http-lessons/lesson-01-http-client-basics', title: 'HttpClient Basics' },
     { description: 'Send a create request body to a fake in-memory API and handle the returned server object.', number: 2, path: '/angular-http-lessons/lesson-02-post-create', title: 'POST Create' },
@@ -184,6 +232,26 @@ export class LearningNav {
       return 'Forms';
     }
 
+    if (this.category === 'components') {
+      return 'Components';
+    }
+
+    if (this.category === 'di') {
+      return 'Dependency Injection';
+    }
+
+    if (this.category === 'performance') {
+      return 'Performance';
+    }
+
+    if (this.category === 'auth') {
+      return 'Auth';
+    }
+
+    if (this.category === 'layout') {
+      return 'Layout';
+    }
+
     if (this.category === 'http') {
       return 'HTTP';
     }
@@ -214,6 +282,26 @@ export class LearningNav {
 
     if (this.category === 'forms') {
       return this.formsLessons;
+    }
+
+    if (this.category === 'components') {
+      return this.componentLessons;
+    }
+
+    if (this.category === 'di') {
+      return this.dependencyInjectionLessons;
+    }
+
+    if (this.category === 'performance') {
+      return this.performanceLessons;
+    }
+
+    if (this.category === 'auth') {
+      return this.authLessons;
+    }
+
+    if (this.category === 'layout') {
+      return this.layoutLessons;
     }
 
     if (this.category === 'http') {

@@ -1,0 +1,52 @@
+:host {
+  display: block;
+}
+
+.screen-grid {
+  align-items: stretch;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.screen-card {
+  border: 1px solid #dfe7ef;
+  display: grid;
+  gap: 12px;
+}
+
+.screen-card p:not(.eyebrow) {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.screen-card--one {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 18px;
+}
+
+.screen-card--two {
+  background: #f3f7fb;
+  border-radius: 18px;
+  padding: 28px 16px;
+}
+
+.screen-card--three {
+  background: #fbfaf7;
+  border-radius: 8px;
+  padding: 14px 24px;
+}
+
+.screen-grid--shared .screen-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+@media (max-width: 980px) {
+  .screen-grid {
+    grid-template-columns: 1fr;
+  }
+}

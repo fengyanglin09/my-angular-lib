@@ -1,0 +1,100 @@
+<main class="lesson-shell">
+  <app-learning-nav category="auth" [activeLesson]="lesson().number" />
+
+  <section class="lesson-intro">
+    <p class="eyebrow">Angular Auth Lesson {{ lesson().number }}</p>
+    <h1>{{ lesson().title }}</h1>
+    <p>{{ lesson().intro }}</p>
+  </section>
+
+  <section class="track-panel" aria-labelledby="syntax-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Auth pattern</p>
+        <h2 id="syntax-title">Core Syntax</h2>
+      </div>
+      <p class="summary">{{ lesson().codeSteps.length }} examples</p>
+    </div>
+
+    <div class="step-grid">
+      @for (step of lesson().codeSteps; track step.name) {
+      <article>
+        <h3>{{ step.name }}</h3>
+        <p>{{ step.description }}</p>
+        <pre>{{ step.syntax }}</pre>
+      </article>
+      }
+    </div>
+  </section>
+
+  <ng-content />
+
+  <section class="track-panel" aria-labelledby="practice-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Practical model</p>
+        <h2 id="practice-title">How To Think About It</h2>
+      </div>
+      <p class="summary">lesson {{ lesson().number }}</p>
+    </div>
+
+    <div class="content-grid practice-grid">
+      <section class="state-card">
+        <p class="eyebrow">Key Points</p>
+        <ol>
+          @for (point of lesson().keyPoints; track point) {
+          <li>{{ point }}</li>
+          }
+        </ol>
+      </section>
+
+      @if (lesson().demo; as demo) {
+      <section class="state-card">
+        <p class="eyebrow">Demo Scenario</p>
+        <h2>{{ demo.title }}</h2>
+        <dl>
+          <div>
+            <dt>Before</dt>
+            <dd>{{ demo.before }}</dd>
+          </div>
+          <div>
+            <dt>After</dt>
+            <dd>{{ demo.after }}</dd>
+          </div>
+          <div>
+            <dt>Last action</dt>
+            <dd>{{ demoState().lastAction }}</dd>
+          </div>
+          <div>
+            <dt>Action count</dt>
+            <dd>{{ demoState().count }}</dd>
+          </div>
+        </dl>
+        <div class="button-row">
+          <button type="button" (click)="runDemoAction()">
+            {{ demo.actionLabel }}
+          </button>
+          <button type="button" (click)="resetDemo()">Reset demo</button>
+        </div>
+      </section>
+      }
+
+      <aside class="mental-card">
+        <p class="eyebrow">Mental Model</p>
+        <pre>{{ lesson().mentalModel }}</pre>
+      </aside>
+    </div>
+  </section>
+
+  <section class="track-panel" aria-labelledby="reference-title">
+    <div class="panel-heading">
+      <div>
+        <p class="eyebrow">Reference snapshot</p>
+        <h2 id="reference-title">Lesson Object</h2>
+      </div>
+      <p class="summary">lesson folder data</p>
+    </div>
+
+    <pre>{{ lesson() | json }}</pre>
+  </section>
+</main>

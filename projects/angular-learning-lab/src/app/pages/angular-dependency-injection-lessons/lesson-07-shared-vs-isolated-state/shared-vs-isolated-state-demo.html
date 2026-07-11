@@ -1,0 +1,22 @@
+<section class="di-panel" aria-labelledby="state-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="state-demo-title">Who Sees The Same Service State?</h2>
+    </div>
+    <p class="summary">{{ mode() }} state</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="showShared()">Shared service state</button>
+    <button type="button" (click)="showIsolated()">
+      Isolated service state
+    </button>
+  </div>
+
+  @if (mode() === 'shared') {
+  <app-shared-tab-state-demo />
+  } @else {
+  <app-isolated-tab-state-demo />
+  }
+</section>

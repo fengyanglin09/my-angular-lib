@@ -1,0 +1,50 @@
+<section class="components-panel" aria-labelledby="content-query-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="content-query-demo-title">Query Projected Content</h2>
+    </div>
+    <p class="summary">projected directives</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="switchTitle()">
+      Switch projected title
+    </button>
+    <button type="button" (click)="toggleArchiveAction()">
+      Toggle projected action
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Parent owns projection</p>
+      <p>
+        The parent adds title and action directives to projected markup. The
+        child queries those directive instances from its content.
+      </p>
+      <pre
+        >{{ "contentChild(ComponentsProjectedTitleDirective)" }}
+{{ "contentChildren(ComponentsProjectedActionDirective)" }}</pre
+      >
+    </article>
+
+    <app-content-query-card-demo>
+      @if (useProjectTitle()) {
+      <h3 appComponentsProjectedTitle>Project Apollo</h3>
+      } @else {
+      <h3 appComponentsProjectedTitle>Project Beacon</h3>
+      }
+
+      <button appComponentsProjectedAction actionLabel="Refresh" type="button">
+        Refresh
+      </button>
+
+      @if (showArchiveAction()) {
+      <button appComponentsProjectedAction actionLabel="Archive" type="button">
+        Archive
+      </button>
+      }
+    </app-content-query-card-demo>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section class="di-panel" aria-labelledby="hierarchy-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="hierarchy-demo-title">Nearest Provider Wins</h2>
+    </div>
+    <p class="summary">
+      {{ useOverride() ? "feature override" : "root value" }}
+    </p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="toggleOverride()">
+      Toggle feature override
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Injector path</p>
+      <pre>
+Child asks for THEME_NAME
+check child injector
+check feature injector
+check root injector</pre
+      >
+    </article>
+
+    @if (useOverride()) {
+    <app-admin-theme-branch-demo />
+    } @else {
+    <app-default-theme-branch-demo />
+    }
+  </div>
+</section>

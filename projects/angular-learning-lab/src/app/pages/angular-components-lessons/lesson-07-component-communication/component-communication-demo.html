@@ -1,0 +1,59 @@
+<section class="components-panel" aria-labelledby="communication-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="communication-demo-title">Choose A Communication Channel</h2>
+    </div>
+    <p class="summary">{{ eventCount() }} selections</p>
+  </div>
+
+  <div class="pattern-tabs" role="group" aria-label="Communication patterns">
+    <button
+      type="button"
+      [class.active]="selectedPattern() === 'input-output'"
+      (click)="choosePattern('input-output')"
+    >
+      Input / Output
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedPattern() === 'shared-service'"
+      (click)="choosePattern('shared-service')"
+    >
+      Shared service
+    </button>
+    <button
+      type="button"
+      [class.active]="selectedPattern() === 'router-state'"
+      (click)="choosePattern('router-state')"
+    >
+      Router state
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Selected pattern</p>
+      <h3>{{ activeDetails().label }}</h3>
+      <p>{{ activeDetails().description }}</p>
+      <button type="button" (click)="sendSelection()">
+        Send course selection
+      </button>
+      <dl>
+        <div>
+          <dt>Selected course</dt>
+          <dd>{{ selectedCourse() }}</dd>
+        </div>
+        <div>
+          <dt>Last event</dt>
+          <dd>{{ lastEvent() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="state-card">
+      <p class="eyebrow">Shape of the code</p>
+      <pre>{{ activeDetails().code }}</pre>
+    </article>
+  </div>
+</section>

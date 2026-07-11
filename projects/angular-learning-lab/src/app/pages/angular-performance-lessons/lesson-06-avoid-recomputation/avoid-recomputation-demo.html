@@ -1,0 +1,52 @@
+<section class="track-panel" aria-labelledby="recompute-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="recompute-demo-title">Computed Caches Derived Work</h2>
+    </div>
+    <p class="summary">{{ expensiveRunCount }} filter runs</p>
+  </div>
+
+  <div class="toolbar">
+    <label>
+      Filter courses
+      <input
+        type="search"
+        [value]="query()"
+        (input)="setQuery($any($event.target).value)"
+        placeholder="Try signals or advanced"
+      />
+    </label>
+    <button type="button" (click)="bumpUnrelatedCounter()">
+      Update unrelated counter
+    </button>
+    <button type="button" (click)="addCourse()">Add course</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Derived state</p>
+      <h3>{{ filteredCourses().length }} matching courses</h3>
+      <p>
+        The expensive filter depends on <code>query()</code> and
+        <code>courses()</code>. Updating the unrelated counter should not make
+        it recalculate.
+      </p>
+      <dl>
+        <div>
+          <dt>Unrelated counter</dt>
+          <dd>{{ unrelatedCounter() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <section class="course-list">
+      @for (course of filteredCourses(); track course.id) {
+      <article class="course-card">
+        <p class="eyebrow">{{ course.level }}</p>
+        <h3>{{ course.title }}</h3>
+      </article>
+      }
+    </section>
+  </div>
+</section>

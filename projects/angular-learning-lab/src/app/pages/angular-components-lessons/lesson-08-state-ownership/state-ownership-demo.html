@@ -1,0 +1,38 @@
+<section class="components-panel" aria-labelledby="state-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="state-demo-title">Saved State vs Local Draft State</h2>
+    </div>
+    <p class="summary">
+      {{ hasUnsavedChanges() ? "unsaved draft" : "in sync" }}
+    </p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="editDraftName()">Change draft name</button>
+    <button type="button" (click)="editDraftRole()">Change draft role</button>
+    <button type="button" (click)="saveDraft()">Save draft</button>
+    <button type="button" (click)="resetDraft()">Reset draft</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card saved">
+      <p class="eyebrow">Parent-owned saved state</p>
+      <h3>{{ savedProfile().name }}</h3>
+      <p>{{ savedProfile().role }}</p>
+    </article>
+
+    <article class="state-card draft">
+      <p class="eyebrow">Child-owned draft state</p>
+      <h3>{{ draftProfile().name }}</h3>
+      <p>{{ draftProfile().role }}</p>
+    </article>
+
+    <article class="state-card log-card">
+      <p class="eyebrow">What changed?</p>
+      <p>{{ lastAction() }}</p>
+      <pre>{{ "input savedProfile -> local draft -> output saved" }}</pre>
+    </article>
+  </div>
+</section>

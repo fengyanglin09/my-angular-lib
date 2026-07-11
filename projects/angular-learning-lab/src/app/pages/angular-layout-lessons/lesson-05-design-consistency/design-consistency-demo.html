@@ -1,0 +1,39 @@
+<section class="track-panel" aria-labelledby="design-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="design-demo-title">CSS Drift vs Shared Pattern</h2>
+    </div>
+    <p class="summary">{{ modeLabel() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="showDrift()">Show CSS drift</button>
+    <button type="button" (click)="showSharedPattern()">
+      Show shared pattern
+    </button>
+  </div>
+
+  <div class="screen-grid" [class.screen-grid--shared]="mode() === 'shared'">
+    <article class="screen-card screen-card--one">
+      <p class="eyebrow">Orders page</p>
+      <h3>Pending Orders</h3>
+      <p>12 orders need review before shipping.</p>
+      <button type="button">Review</button>
+    </article>
+
+    <article class="screen-card screen-card--two">
+      <p class="eyebrow">Users page</p>
+      <h3>Team Members</h3>
+      <p>4 invitations are waiting for acceptance.</p>
+      <button type="button">Invite</button>
+    </article>
+
+    <article class="screen-card screen-card--three">
+      <p class="eyebrow">Reports page</p>
+      <h3>Monthly Report</h3>
+      <p>Revenue, usage, and adoption metrics are ready.</p>
+      <button type="button">Open</button>
+    </article>
+  </div>
+</section>

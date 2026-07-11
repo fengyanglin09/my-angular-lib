@@ -1,0 +1,37 @@
+<section class="track-panel" aria-labelledby="signals-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="signals-demo-title">Template Reads Create Dependencies</h2>
+    </div>
+    <p class="summary">{{ computedRuns }} computed runs</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="increment()">Increment count</button>
+    <button type="button" (click)="changePrefix()">Change label prefix</button>
+    <button type="button" (click)="updateUnrelatedDraft()">
+      Update unrelated signal
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Template consumer</p>
+      <h3>{{ countLabel() }}</h3>
+      <p>
+        This card reads <code>countLabel()</code>, so it depends on the signals
+        read inside that computed value.
+      </p>
+    </article>
+
+    <article class="state-card">
+      <p class="eyebrow">Unrelated signal</p>
+      <h3>{{ unrelatedDraft() }}</h3>
+      <p>
+        Updating this signal changes this card, but it is not a dependency of
+        <code>countLabel</code>.
+      </p>
+    </article>
+  </div>
+</section>

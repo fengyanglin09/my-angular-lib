@@ -1,0 +1,55 @@
+<section class="components-panel" aria-labelledby="projection-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="projection-demo-title">Projected Slots</h2>
+    </div>
+    <p class="summary">
+      {{ showSecondaryAction() ? "2 actions" : "1 action" }}
+    </p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="switchContent()">
+      Switch projected content
+    </button>
+    <button type="button" (click)="toggleSecondaryAction()">
+      Toggle second action
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Parent template owns content</p>
+      <p>
+        The shell component owns the border and layout. The parent supplies the
+        title, body, and buttons through matching attributes.
+      </p>
+      <pre>
+&lt;h3 cardTitle&gt;...&lt;/h3&gt;
+&lt;button cardAction&gt;...&lt;/button&gt;
+&lt;p cardBody&gt;...&lt;/p&gt;</pre
+      >
+    </article>
+
+    <app-projected-card-shell-demo>
+      @if (useBillingContent()) {
+      <h3 cardTitle>Billing</h3>
+      } @else {
+      <h3 cardTitle>Team access</h3>
+      } @if (useBillingContent()) {
+      <button cardAction type="button">Refresh invoices</button>
+      } @else {
+      <button cardAction type="button">Invite member</button>
+      } @if (showSecondaryAction()) {
+      <button cardAction type="button">
+        {{ useBillingContent() ? "Export" : "Audit roles" }}
+      </button>
+      } @if (useBillingContent()) {
+      <p cardBody>Invoices, payment status, and renewal dates.</p>
+      } @else {
+      <p cardBody>Members, roles, and pending invitations.</p>
+      }
+    </app-projected-card-shell-demo>
+  </div>
+</section>

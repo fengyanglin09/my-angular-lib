@@ -1,0 +1,31 @@
+<section class="track-panel" aria-labelledby="defer-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="defer-demo-title">Defer Secondary UI</h2>
+    </div>
+    <p class="summary">{{ showChart() ? "revealed" : "placeholder" }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button #loadChartButton type="button" (click)="revealChart()">
+      Reveal chart
+    </button>
+    <button type="button" (click)="reset()">Reset</button>
+  </div>
+
+  @defer (when showChart()) {
+  <app-heavy-chart-demo />
+  } @placeholder {
+  <article class="placeholder-card">
+    <p class="eyebrow">Placeholder</p>
+    <h3>Chart not loaded yet</h3>
+    <p>Critical page content can render before this secondary widget.</p>
+  </article>
+  } @loading {
+  <article class="placeholder-card">
+    <p class="eyebrow">Loading</p>
+    <h3>Loading chart...</h3>
+  </article>
+  }
+</section>

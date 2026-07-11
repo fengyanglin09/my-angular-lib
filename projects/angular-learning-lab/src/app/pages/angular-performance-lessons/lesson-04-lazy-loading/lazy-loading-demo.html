@@ -1,0 +1,39 @@
+<section class="track-panel" aria-labelledby="lazy-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="lazy-demo-title">Lazy Routes Download When Visited</h2>
+    </div>
+    <p class="summary">active: {{ activeRoute() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="visitDashboard()">Dashboard route</button>
+    <button type="button" (click)="visitReports()">Reports route</button>
+    <button type="button" (click)="visitSettings()">Settings route</button>
+  </div>
+
+  <div class="chunk-grid">
+    <article class="chunk-card chunk-card--loaded">
+      <p class="eyebrow">Initial bundle</p>
+      <h3>Dashboard</h3>
+      <p>loaded</p>
+    </article>
+    <article
+      class="chunk-card"
+      [class.chunk-card--loaded]="reportsState() === 'loaded'"
+    >
+      <p class="eyebrow">Lazy chunk</p>
+      <h3>Reports</h3>
+      <p>{{ reportsState() }}</p>
+    </article>
+    <article
+      class="chunk-card"
+      [class.chunk-card--loaded]="settingsState() === 'loaded'"
+    >
+      <p class="eyebrow">Lazy chunk</p>
+      <h3>Settings</h3>
+      <p>{{ settingsState() }}</p>
+    </article>
+  </div>
+</section>

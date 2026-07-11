@@ -1,0 +1,51 @@
+<section class="track-panel" aria-labelledby="shell-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="shell-demo-title">Stable Shell, Swapped Page Content</h2>
+    </div>
+    <p class="summary">{{ navigationCount() }} navigations</p>
+  </div>
+
+  <div class="shell-preview">
+    <header class="shell-topbar">
+      <strong>Angular Lab</strong>
+      <span>Topnav stays mounted</span>
+    </header>
+
+    <div class="shell-body">
+      <nav class="shell-sidenav" aria-label="Shell demo navigation">
+        <button
+          type="button"
+          [class.active]="activePage() === 'dashboard'"
+          (click)="navigate('dashboard')"
+        >
+          Dashboard
+        </button>
+        <button
+          type="button"
+          [class.active]="activePage() === 'projects'"
+          (click)="navigate('projects')"
+        >
+          Projects
+        </button>
+        <button
+          type="button"
+          [class.active]="activePage() === 'settings'"
+          (click)="navigate('settings')"
+        >
+          Settings
+        </button>
+      </nav>
+
+      <main class="page-outlet">
+        <p class="eyebrow">Router outlet area</p>
+        <h3>{{ pageTitle() }}</h3>
+        <p>
+          Only this page area changes. The shell frame keeps navigation,
+          spacing, and page chrome consistent.
+        </p>
+      </main>
+    </div>
+  </div>
+</section>

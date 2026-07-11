@@ -48,6 +48,41 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'angular-components-lessons',
+    loadChildren: () =>
+      import('./pages/angular-components-lessons/angular-components-lessons.routes').then(
+        (m) => m.angularComponentsLessonsRoutes,
+      ),
+  },
+  {
+    path: 'angular-performance-lessons',
+    loadChildren: () =>
+      import('./pages/angular-performance-lessons/angular-performance-lessons.routes').then(
+        (m) => m.angularPerformanceLessonsRoutes,
+      ),
+  },
+  {
+    path: 'angular-dependency-injection-lessons',
+    loadChildren: () =>
+      import('./pages/angular-dependency-injection-lessons/angular-dependency-injection-lessons.routes').then(
+        (m) => m.angularDependencyInjectionLessonsRoutes,
+      ),
+  },
+  {
+    path: 'angular-auth-lessons',
+    loadChildren: () =>
+      import('./pages/angular-auth-lessons/angular-auth-lessons.routes').then(
+        (m) => m.angularAuthLessonsRoutes,
+      ),
+  },
+  {
+    path: 'angular-layout-lessons',
+    loadChildren: () =>
+      import('./pages/angular-layout-lessons/angular-layout-lessons.routes').then(
+        (m) => m.angularLayoutLessonsRoutes,
+      ),
+  },
+  {
     path: 'angular-http-lessons',
     loadChildren: () =>
       import('./pages/angular-http-lessons/angular-http-lessons.routes').then(

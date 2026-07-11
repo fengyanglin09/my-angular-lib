@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.placeholder-card,
+:host ::ng-deep .chart-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  min-height: 220px;
+  padding: 18px;
+}
+
+.placeholder-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+:host ::ng-deep .bars {
+  align-items: end;
+  display: flex;
+  gap: 14px;
+  height: 130px;
+}
+
+:host ::ng-deep .bars span {
+  background: #2f4f43;
+  border-radius: 8px 8px 0 0;
+  flex: 1;
+}

@@ -1,0 +1,27 @@
+<section class="track-panel" aria-labelledby="feature-folder-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="feature-folder-demo-title">Compare Folder Organization</h2>
+    </div>
+    <p class="summary">{{ mode() === "by-type" ? "by type" : "by feature" }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="showByType()">Group by file type</button>
+    <button type="button" (click)="showByFeature()">Group by feature</button>
+  </div>
+
+  <div class="folder-grid">
+    @for (folder of fileTree(); track folder.folder) {
+    <article class="folder-card">
+      <h3>{{ folder.folder }}</h3>
+      <ul>
+        @for (file of folder.files; track file) {
+        <li>{{ file }}</li>
+        }
+      </ul>
+    </article>
+    }
+  </div>
+</section>

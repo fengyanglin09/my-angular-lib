@@ -1,0 +1,40 @@
+<section class="track-panel" aria-labelledby="session-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="session-demo-title">Central Session Boundary</h2>
+    </div>
+    <p class="summary">{{ isLoggedIn() ? "logged in" : "logged out" }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="restoreSession()">Restore session</button>
+    <button type="button" (click)="clearSession()">Clear session</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Session signal</p>
+      <dl>
+        <div>
+          <dt>User</dt>
+          <dd>{{ session()?.user ?? "None" }}</dd>
+        </div>
+        <div>
+          <dt>Expires in</dt>
+          <dd>{{ session()?.expiresIn ?? "n/a" }}</dd>
+        </div>
+        <div>
+          <dt>isLoggedIn()</dt>
+          <dd>{{ isLoggedIn() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">HTTP layer reads derived state</p>
+      <pre>{{ authorizationHeader() }}</pre>
+      <p>{{ log() }}</p>
+    </article>
+  </div>
+</section>

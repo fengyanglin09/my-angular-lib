@@ -1,0 +1,46 @@
+<section class="components-panel" aria-labelledby="model-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="model-demo-title">input, output, and model Together</h2>
+    </div>
+    <p class="summary">parent quantity {{ cartQuantity() }}</p>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Parent component</p>
+      <h3>Cart page</h3>
+      <p>
+        The parent owns the source value. The child can update it because
+        <code>model</code> creates the two-way component API.
+      </p>
+      <div class="button-row">
+        <button type="button" (click)="setParentQuantity(1)">
+          Parent sets 1
+        </button>
+        <button type="button" (click)="setParentQuantity(5)">
+          Parent sets 5
+        </button>
+      </div>
+      <dl>
+        <div>
+          <dt>cartQuantity()</dt>
+          <dd>{{ cartQuantity() }}</dd>
+        </div>
+        <div>
+          <dt>Last output</dt>
+          <dd>{{ lastSaved() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <app-quantity-picker-demo
+      [(quantity)]="cartQuantity"
+      label="Cart Quantity"
+      [min]="1"
+      [max]="10"
+      (saved)="saveQuantity($event)"
+    />
+  </div>
+</section>

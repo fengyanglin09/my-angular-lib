@@ -1,0 +1,31 @@
+<section class="di-panel" aria-labelledby="token-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="token-demo-title">Same Token, Different Values</h2>
+    </div>
+    <p class="summary">{{ environment() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="useLocal()">Local provider</button>
+    <button type="button" (click)="useProduction()">Production provider</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Consumer code stays the same</p>
+      <pre>const baseUrl = inject(DEMO_API_BASE_URL);</pre>
+      <p>
+        The component asks for the token. The provider decides which concrete
+        string is returned.
+      </p>
+    </article>
+
+    @if (environment() === 'local') {
+    <app-local-api-token-demo />
+    } @else {
+    <app-prod-api-token-demo />
+    }
+  </div>
+</section>

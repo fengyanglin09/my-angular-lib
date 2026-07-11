@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.shell-example {
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shell-body {
+  display: flex;
+  min-height: 360px;
+}
+
+.page-preview {
+  background: #ffffff;
+  display: grid;
+  flex: 1;
+  gap: 16px;
+  padding: 24px;
+}
+
+.page-preview h3,
+.page-preview p {
+  margin: 0;
+}
+
+.page-preview p {
+  color: #606b78;
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 760px) {
+  .shell-body {
+    display: grid;
+  }
+}

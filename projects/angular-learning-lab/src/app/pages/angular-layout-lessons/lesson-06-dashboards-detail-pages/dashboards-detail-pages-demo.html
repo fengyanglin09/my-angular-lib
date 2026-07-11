@@ -1,0 +1,50 @@
+<section class="track-panel" aria-labelledby="dashboard-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="dashboard-demo-title">Dashboard Leads To Detail</h2>
+    </div>
+    <p class="summary">{{ routePreview() }}</p>
+  </div>
+
+  <div class="dashboard-detail-grid">
+    <section class="dashboard-panel" aria-label="Projects dashboard">
+      <p class="eyebrow">Dashboard</p>
+      <h3>Projects Overview</h3>
+
+      <div class="project-list">
+        @for (project of projects; track project.id) {
+        <button
+          type="button"
+          class="project-row"
+          [class.project-row--active]="project.id === selectedProjectId()"
+          (click)="openProject(project.id)"
+        >
+          <span>{{ project.name }}</span>
+          <strong>{{ project.progress }}%</strong>
+        </button>
+        }
+      </div>
+    </section>
+
+    <section class="detail-panel" aria-label="Project detail">
+      <p class="eyebrow">Detail page</p>
+      <h3>{{ selectedProject().name }}</h3>
+      <dl>
+        <div>
+          <dt>Owner</dt>
+          <dd>{{ selectedProject().owner }}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>{{ selectedProject().status }}</dd>
+        </div>
+        <div>
+          <dt>Route</dt>
+          <dd>{{ routePreview() }}</dd>
+        </div>
+      </dl>
+      <button type="button">Primary detail action</button>
+    </section>
+  </div>
+</section>

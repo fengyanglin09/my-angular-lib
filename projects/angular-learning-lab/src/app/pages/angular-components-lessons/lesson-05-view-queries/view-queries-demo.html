@@ -1,0 +1,49 @@
+<section class="components-panel" aria-labelledby="view-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="view-demo-title">Query This Component's Own Template</h2>
+    </div>
+    <p class="summary">{{ cardCount() }} view children</p>
+  </div>
+
+  <div class="toolbar">
+    <label>
+      Search saved views
+      <input #searchInput type="search" placeholder="Focus me with viewChild" />
+    </label>
+    <button type="button" (click)="focusSearch()">Focus input</button>
+    <button type="button" (click)="addSavedView()">Add saved view</button>
+    <button type="button" (click)="scrollLastCard()">Focus last card</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Query state</p>
+      <dl>
+        <div>
+          <dt>viewChild</dt>
+          <dd>#searchInput</dd>
+        </div>
+        <div>
+          <dt>viewChildren</dt>
+          <dd>{{ cardCount() }} #savedViewCard elements</dd>
+        </div>
+        <div>
+          <dt>Last action</dt>
+          <dd>{{ lastAction() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <section class="saved-view-list" aria-label="Saved views">
+      @for (view of savedViews(); track view.id) {
+      <article #savedViewCard class="saved-view-card" tabindex="-1">
+        <p class="eyebrow">Saved view</p>
+        <h3>{{ view.name }}</h3>
+        <p>This card exists in the component's own template.</p>
+      </article>
+      }
+    </section>
+  </div>
+</section>

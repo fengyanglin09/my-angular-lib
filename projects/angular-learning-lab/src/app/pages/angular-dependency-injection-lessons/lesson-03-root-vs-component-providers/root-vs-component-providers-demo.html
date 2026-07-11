@@ -1,0 +1,22 @@
+<section class="di-panel" aria-labelledby="root-component-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="root-component-demo-title">Draft State Scope</h2>
+    </div>
+    <p class="summary">{{ mode() }} draft service</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="showShared()">Shared parent service</button>
+    <button type="button" (click)="showIsolated()">
+      Component-local services
+    </button>
+  </div>
+
+  @if (mode() === 'shared') {
+  <app-shared-editor-region-demo />
+  } @else {
+  <app-isolated-editor-region-demo />
+  }
+</section>

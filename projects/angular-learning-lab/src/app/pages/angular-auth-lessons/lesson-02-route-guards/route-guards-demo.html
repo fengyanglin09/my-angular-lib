@@ -1,0 +1,43 @@
+<section class="track-panel" aria-labelledby="guards-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="guards-demo-title">Guard Decision Outcomes</h2>
+    </div>
+    <p class="summary">{{ guardResult().decision }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="setRole('anonymous')">Anonymous</button>
+    <button type="button" (click)="setRole('viewer')">Viewer</button>
+    <button type="button" (click)="setRole('admin')">Admin</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Route request</p>
+      <h3>{{ requestedRoute() }}</h3>
+      <dl>
+        <div>
+          <dt>Current role</dt>
+          <dd>{{ role() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">Guard result</p>
+      <h3>{{ guardResult().decision }}</h3>
+      <dl>
+        <div>
+          <dt>Destination</dt>
+          <dd>{{ guardResult().destination }}</dd>
+        </div>
+        <div>
+          <dt>Reason</dt>
+          <dd>{{ guardResult().reason }}</dd>
+        </div>
+      </dl>
+    </article>
+  </div>
+</section>

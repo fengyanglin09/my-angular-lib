@@ -1,0 +1,42 @@
+<section class="track-panel" aria-labelledby="refresh-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="refresh-demo-title">401, Refresh, Retry Once</h2>
+    </div>
+    <p class="summary">{{ state() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="runRequest()">Run API request</button>
+    <button type="button" (click)="toggleRefreshAvailability()">
+      Toggle refresh {{ refreshAvailable() ? "failure" : "success" }}
+    </button>
+    <button type="button" (click)="reset()">Reset</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Session</p>
+      <dl>
+        <div>
+          <dt>Access token</dt>
+          <dd>{{ accessToken() }}</dd>
+        </div>
+        <div>
+          <dt>Refresh available</dt>
+          <dd>{{ refreshAvailable() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">Interceptor log</p>
+      <ol>
+        @for (entry of log(); track $index) {
+        <li>{{ entry }}</li>
+        }
+      </ol>
+    </article>
+  </div>
+</section>

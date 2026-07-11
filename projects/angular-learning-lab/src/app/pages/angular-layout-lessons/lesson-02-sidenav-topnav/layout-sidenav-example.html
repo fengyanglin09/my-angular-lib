@@ -1,0 +1,45 @@
+<nav
+  class="sidenav-example"
+  [class.sidenav-example--compact]="compact()"
+  aria-label="Example side navigation"
+>
+  <p class="sidenav-title">{{ compact() ? "Nav" : "Feature Navigation" }}</p>
+
+  @for (group of groups; track group.id) {
+  <section class="nav-group" [class.nav-group--active]="isGroupActive(group)">
+    <button
+      type="button"
+      class="sidenav-group-button"
+      [attr.aria-expanded]="isExpanded(group.id)"
+      (click)="toggleGroup(group)"
+    >
+      <span class="link-marker"></span>
+      <span class="link-label">{{
+        compact() ? group.label.slice(0, 1) : group.label
+      }}</span>
+      @if (!compact() && group.badge) {
+      <span class="link-badge">{{ group.badge }}</span>
+      } @if (!compact()) {
+      <span class="chevron" [class.chevron--open]="isExpanded(group.id)"
+        >›</span
+      >
+      }
+    </button>
+
+    @if (isExpanded(group.id) && !compact()) {
+    <div class="submenu">
+      @for (item of group.items; track item.id) {
+      <button
+        type="button"
+        class="submenu-link"
+        [class.submenu-link--active]="item.id === activeSection()"
+        (click)="selectItem(item.id)"
+      >
+        {{ item.label }}
+      </button>
+      }
+    </div>
+    }
+  </section>
+  }
+</nav>

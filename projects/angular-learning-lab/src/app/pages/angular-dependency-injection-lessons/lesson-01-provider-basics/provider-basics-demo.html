@@ -1,0 +1,26 @@
+<section class="di-panel" aria-labelledby="provider-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="provider-demo-title">Token, Provider, Instance</h2>
+    </div>
+    <p class="summary">{{ lookupCount() }} lookups</p>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Component asks</p>
+      <pre>private logger = inject(DemoLoggerService);</pre>
+      <button type="button" (click)="runLookup()">Run injection lookup</button>
+    </article>
+
+    <article class="state-card">
+      <p class="eyebrow">Injector answers</p>
+      <h3>{{ lookupLog() }}</h3>
+      <p>
+        The component never calls <code>new DemoLoggerService()</code>. It asks
+        Angular for the token, and the provider tells Angular how to satisfy it.
+      </p>
+    </article>
+  </div>
+</section>

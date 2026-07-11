@@ -1,0 +1,34 @@
+<section class="di-panel" aria-labelledby="factory-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="factory-demo-title">Factory Uses Another Dependency</h2>
+    </div>
+    <p class="summary">{{ environment() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="useDevelopment()">Development env</button>
+    <button type="button" (click)="useProduction()">Production env</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Factory provider</p>
+      <pre>
+provide: LOGGER_CONFIG
+useFactory: createLoggerConfig</pre
+      >
+      <p>
+        The factory injects <code>DEMO_ENVIRONMENT</code>, then returns the
+        logger configuration for that environment.
+      </p>
+    </article>
+
+    @if (environment() === 'development') {
+    <app-development-factory-demo />
+    } @else {
+    <app-production-factory-demo />
+    }
+  </div>
+</section>

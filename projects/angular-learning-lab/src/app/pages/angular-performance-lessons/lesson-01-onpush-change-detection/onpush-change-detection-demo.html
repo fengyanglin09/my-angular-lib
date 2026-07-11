@@ -1,0 +1,34 @@
+<section class="track-panel" aria-labelledby="onpush-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="onpush-demo-title">Reference Changes Are Easy To See</h2>
+    </div>
+    <p class="summary">{{ parentTicks() }} parent updates</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="mutateSameReference()">
+      Mutate same object
+    </button>
+    <button type="button" (click)="replaceReference()">
+      Replace object reference
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Parent state</p>
+      <h3>{{ product().name }}</h3>
+      <p>{{ log() }}</p>
+      <dl>
+        <div>
+          <dt>Reference id</dt>
+          <dd>{{ product().referenceId }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <app-onpush-product-card-demo [product]="product()" />
+  </div>
+</section>

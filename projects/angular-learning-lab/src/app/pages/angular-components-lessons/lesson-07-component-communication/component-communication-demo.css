@@ -1,0 +1,41 @@
+:host {
+  display: block;
+}
+
+.pattern-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pattern-tabs .active {
+  background: #2f4f43;
+  border-color: #2f4f43;
+  color: #ffffff;
+}
+
+.demo-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(320px, 1fr) minmax(300px, 0.9fr);
+}
+
+.state-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.state-card p {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+}

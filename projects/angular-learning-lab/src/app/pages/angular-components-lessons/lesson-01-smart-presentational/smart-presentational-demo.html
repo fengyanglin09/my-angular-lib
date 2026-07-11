@@ -1,0 +1,32 @@
+<section class="components-panel" aria-labelledby="smart-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="smart-demo-title">Smart Parent, Presentational Child</h2>
+    </div>
+    <p class="summary">{{ refreshCount() }} refreshes</p>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Smart parent state</p>
+      <h3>Dashboard container</h3>
+      <p>{{ log() }}</p>
+      <dl>
+        <div>
+          <dt>Selected course</dt>
+          <dd>{{ selectedCourse().title }}</dd>
+        </div>
+        <div>
+          <dt>Refresh count</dt>
+          <dd>{{ refreshCount() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <app-course-summary-card-demo
+      [course]="selectedCourse()"
+      (refreshClicked)="refreshCourse()"
+    />
+  </div>
+</section>

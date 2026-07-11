@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.dashboard-detail-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(320px, 1.1fr);
+}
+
+.dashboard-panel,
+.detail-panel {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.project-list {
+  display: grid;
+  gap: 10px;
+}
+
+.project-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-height: 54px;
+  text-align: left;
+}
+
+.project-row--active {
+  background: #2f4f43;
+  border-color: #2f4f43;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .dashboard-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

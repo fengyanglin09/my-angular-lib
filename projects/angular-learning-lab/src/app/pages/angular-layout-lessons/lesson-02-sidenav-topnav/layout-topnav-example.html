@@ -1,0 +1,28 @@
+<header class="topnav-example" aria-label="Example top navigation">
+  <button
+    type="button"
+    class="icon-button"
+    (click)="menuToggled.emit()"
+    aria-label="Toggle sidenav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="brand-area">
+    <strong>Angular Lab</strong>
+    <span>{{ workspaceName() }}</span>
+  </div>
+
+  <label class="search-box">
+    <span>Search</span>
+    <input type="search" placeholder="Search lessons" />
+  </label>
+
+  <div class="topnav-actions">
+    <button type="button">Help</button>
+    <button type="button">Notifications {{ notificationCount() }}</button>
+    <button type="button" class="avatar-button">LP</button>
+  </div>
+</header>

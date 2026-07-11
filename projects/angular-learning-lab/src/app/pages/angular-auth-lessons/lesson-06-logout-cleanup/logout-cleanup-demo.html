@@ -1,0 +1,46 @@
+<section class="track-panel" aria-labelledby="logout-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="logout-demo-title">Clear User-Specific State</h2>
+    </div>
+    <p class="summary">{{ allClear() ? "clean" : "user data present" }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="runLogout()">Run logout cleanup</button>
+    <button type="button" (click)="restoreDemoState()">
+      Restore demo state
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Cleanup checklist</p>
+      <dl>
+        <div>
+          <dt>In-memory session</dt>
+          <dd>{{ cleanupState().session }}</dd>
+        </div>
+        <div>
+          <dt>Persisted session</dt>
+          <dd>{{ cleanupState().persistedSession }}</dd>
+        </div>
+        <div>
+          <dt>User draft</dt>
+          <dd>{{ cleanupState().userDraft }}</dd>
+        </div>
+        <div>
+          <dt>Feature cache</dt>
+          <dd>{{ cleanupState().featureCache }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">Navigation after cleanup</p>
+      <h3>{{ currentRoute() }}</h3>
+      <p>{{ log() }}</p>
+    </article>
+  </div>
+</section>

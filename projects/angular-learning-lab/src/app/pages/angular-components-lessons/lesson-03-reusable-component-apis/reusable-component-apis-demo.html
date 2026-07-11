@@ -1,0 +1,42 @@
+<section class="components-panel" aria-labelledby="api-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="api-demo-title">Small Reusable Component API</h2>
+    </div>
+    <p class="summary">{{ presetKey() }} preset</p>
+  </div>
+
+  <div class="demo-grid">
+    <article class="state-card">
+      <p class="eyebrow">Parent decides behavior</p>
+      <h3>Feature page</h3>
+      <p>
+        The empty-state component accepts simple inputs and emits one action. It
+        does not know whether the parent clears filters, generates reports, or
+        navigates.
+      </p>
+      <div class="button-row">
+        <button type="button" (click)="usePreset('courses')">
+          Courses empty state
+        </button>
+        <button type="button" (click)="usePreset('reports')">
+          Reports empty state
+        </button>
+      </div>
+      <dl>
+        <div>
+          <dt>Parent log</dt>
+          <dd>{{ actionLog() }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <app-empty-state-demo
+      [title]="preset().title"
+      [message]="preset().message"
+      [actionLabel]="preset().actionLabel"
+      (action)="handleAction()"
+    />
+  </div>
+</section>

@@ -1,0 +1,133 @@
+:host {
+  display: block;
+}
+
+.sidenav-example {
+  background: #f8fafc;
+  border-right: 1px solid #dbe2e8;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 100%;
+  padding: 16px;
+  width: 220px;
+}
+
+.sidenav-example--compact {
+  width: 92px;
+}
+
+.sidenav-title {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.nav-group {
+  display: grid;
+  gap: 6px;
+}
+
+.sidenav-group-button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #334155;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  justify-items: start;
+  min-height: 42px;
+  padding: 0 10px;
+  text-align: left;
+}
+
+.sidenav-group-button:hover,
+.submenu-link:hover {
+  background: #eef3f7;
+  border-color: #d7e1ea;
+}
+
+.nav-group--active .sidenav-group-button {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #1f3d5a;
+  font-weight: 800;
+}
+
+.link-marker {
+  background: #94a3b8;
+  border-radius: 999px;
+  height: 9px;
+  width: 9px;
+}
+
+.nav-group--active .link-marker {
+  background: #315a85;
+}
+
+.link-label {
+  min-width: 0;
+}
+
+.link-badge {
+  justify-self: end;
+  background: #e2e8f0;
+  border-radius: 999px;
+  color: #475569;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+
+.chevron {
+  color: #64748b;
+  font-size: 1.1rem;
+  justify-self: end;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 160ms ease;
+}
+
+.chevron--open {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  border-left: 1px solid #cbd5e1;
+  display: grid;
+  gap: 4px;
+  margin-left: 14px;
+  padding-left: 12px;
+}
+
+.submenu-link {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #475569;
+  min-height: 34px;
+  padding: 0 10px;
+  text-align: left;
+}
+
+.submenu-link--active {
+  background: #e8f0f8;
+  border-color: #c8d8e8;
+  color: #1f3d5a;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .sidenav-example {
+    border-bottom: 1px solid #dbe2e8;
+    border-right: 0;
+    width: 100%;
+  }
+
+  .sidenav-title {
+    margin-bottom: 0;
+  }
+}

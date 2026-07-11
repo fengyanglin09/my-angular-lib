@@ -1,0 +1,22 @@
+<section class="di-panel" aria-labelledby="scope-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="scope-demo-title">Provider Location Changes Sharing</h2>
+    </div>
+    <p class="summary">{{ mode() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="showShared()">Shared parent provider</button>
+    <button type="button" (click)="showIsolated()">
+      Isolated component providers
+    </button>
+  </div>
+
+  @if (mode() === 'shared') {
+  <app-shared-scope-demo />
+  } @else {
+  <app-isolated-scope-demo />
+  }
+</section>

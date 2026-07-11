@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+.demo-note {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+.course-list {
+  display: grid;
+  gap: 12px;
+}
+
+.course-row {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(240px, 1fr) minmax(240px, 0.8fr);
+  padding: 18px;
+}
+
+.course-row p:not(.eyebrow) {
+  color: #606b78;
+}
+
+.course-row label {
+  color: #606b78;
+  display: grid;
+  font-weight: 700;
+  gap: 6px;
+}
+
+.course-row input {
+  border: 1px solid #bdc7d0;
+  border-radius: 8px;
+  font: inherit;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+@media (max-width: 760px) {
+  .course-row {
+    grid-template-columns: 1fr;
+  }
+}

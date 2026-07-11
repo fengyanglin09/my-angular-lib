@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+.shell-preview {
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.shell-topbar {
+  align-items: center;
+  background: #2f4f43;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 0 18px;
+}
+
+.shell-body {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 280px;
+}
+
+.shell-sidenav {
+  background: #f8fafc;
+  border-right: 1px solid #dfe7ef;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 16px;
+}
+
+.shell-sidenav .active {
+  background: #2f4f43;
+  border-color: #2f4f43;
+  color: #ffffff;
+}
+
+.page-outlet {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 22px;
+}
+
+.page-outlet p:last-child {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .shell-body {
+    grid-template-columns: 1fr;
+  }
+
+  .shell-sidenav {
+    border-right: 0;
+    border-bottom: 1px solid #dfe7ef;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

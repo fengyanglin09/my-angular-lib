@@ -1,0 +1,47 @@
+<section class="track-panel" aria-labelledby="login-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="login-demo-title">Return To Intended Page After Login</h2>
+    </div>
+    <p class="summary">{{ step() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="requestProtectedRoute()">
+      Request protected dashboard
+    </button>
+    <button type="button" (click)="submitLogin()">
+      Submit successful login
+    </button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Navigation state</p>
+      <dl>
+        <div>
+          <dt>Current URL</dt>
+          <dd>{{ currentUrl() }}</dd>
+        </div>
+        <div>
+          <dt>Return URL</dt>
+          <dd>{{ returnUrl() }}</dd>
+        </div>
+        <div>
+          <dt>Session user</dt>
+          <dd>{{ sessionUser() ?? "None" }}</dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">Flow log</p>
+      <h3>{{ log() }}</h3>
+      <p>
+        The frontend preserves intent; the backend still decides whether
+        credentials are valid.
+      </p>
+    </article>
+  </div>
+</section>

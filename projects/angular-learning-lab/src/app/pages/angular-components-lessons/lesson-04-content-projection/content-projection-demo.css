@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.demo-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(320px, 1fr);
+}
+
+.state-card,
+.projected-card {
+  background: #f8fafc;
+  border: 1px solid #dfe7ef;
+  border-radius: 8px;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.projected-card header {
+  align-items: start;
+  border-bottom: 1px solid #dfe7ef;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.state-card p,
+.projected-card section {
+  color: #606b78;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .demo-grid,
+  .projected-card header {
+    grid-template-columns: 1fr;
+  }
+
+  .projected-card header {
+    display: grid;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}

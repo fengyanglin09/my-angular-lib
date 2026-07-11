@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.components-panel {
+  background: #ffffff;
+  border: 1px solid #dbe2e8;
+  border-radius: 8px;
+  box-shadow: 0 14px 34px rgb(32 42 54 / 9%);
+  display: grid;
+  gap: 22px;
+  padding: 26px;
+}
+
+.practice-grid {
+  grid-template-columns: minmax(320px, 0.85fr) minmax(360px, 1fr) minmax(
+      300px,
+      0.75fr
+    );
+}
+
+.state-card {
+  display: grid;
+  gap: 14px;
+}
+
+.state-card ol {
+  color: #606b78;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (max-width: 1180px) {
+  .practice-grid {
+    grid-template-columns: 1fr;
+  }
+}

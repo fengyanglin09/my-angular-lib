@@ -1,0 +1,32 @@
+<section class="track-panel" aria-labelledby="track-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="track-demo-title">Stable Tracking Preserves Row State</h2>
+    </div>
+    <p class="summary">track course.id</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="sortByTitle()">Sort by title</button>
+    <button type="button" (click)="insertCourse()">Insert course</button>
+  </div>
+
+  <p class="demo-note">{{ lastAction() }}</p>
+
+  <div class="course-list">
+    @for (course of courses(); track course.id) {
+    <article class="course-row">
+      <div>
+        <p class="eyebrow">{{ course.id }}</p>
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.level }}</p>
+      </div>
+      <label>
+        Row note
+        <input type="text" placeholder="Type here, then reorder" />
+      </label>
+    </article>
+    }
+  </div>
+</section>

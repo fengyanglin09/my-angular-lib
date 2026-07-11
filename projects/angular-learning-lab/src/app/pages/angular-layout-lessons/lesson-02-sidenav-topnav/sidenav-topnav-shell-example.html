@@ -1,0 +1,48 @@
+<section
+  class="shell-example"
+  aria-label="Topnav and sidenav component example"
+>
+  <app-layout-topnav-example
+    workspaceName="Layout Lessons"
+    [notificationCount]="5"
+    (menuToggled)="toggleSidenav()"
+  />
+
+  <div class="shell-body">
+    <app-layout-sidenav-example
+      [activeSection]="activeSection()"
+      [compact]="compact()"
+      (sectionSelected)="selectSection($event)"
+    />
+
+    <main class="page-preview">
+      <p class="eyebrow">Page Content</p>
+      <h3>{{ activeSectionTitle() }}</h3>
+      <p>
+        The topnav owns global actions like search, notifications, help, and
+        user menu. The sidenav owns feature navigation. The page owns its title,
+        content, and primary actions.
+      </p>
+
+      <div class="page-actions">
+        <button type="button">Primary page action</button>
+        <button type="button">Secondary action</button>
+      </div>
+
+      <dl>
+        <div>
+          <dt>Active menu item</dt>
+          <dd>{{ activeSection() }}</dd>
+        </div>
+        <div>
+          <dt>Sidenav mode</dt>
+          <dd>{{ compact() ? "compact" : "comfortable" }}</dd>
+        </div>
+        <div>
+          <dt>Menu toggles</dt>
+          <dd>{{ menuToggleCount() }}</dd>
+        </div>
+      </dl>
+    </main>
+  </div>
+</section>

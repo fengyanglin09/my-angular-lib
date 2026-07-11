@@ -1,0 +1,50 @@
+<section class="track-panel" aria-labelledby="page-layout-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="page-layout-demo-title">One Page Layout, Different Content</h2>
+    </div>
+    <p class="summary">{{ entity() }} page</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="switchEntity()">Switch page content</button>
+    <button type="button" (click)="toggleAuditAction()">
+      Toggle audit action
+    </button>
+  </div>
+
+  <app-page-layout-shell-demo>
+    <h3 pageTitle>
+      {{ entity() === "order" ? "Order 1001" : "User Profile" }}
+    </h3>
+
+    <button pageActions type="button">
+      {{ entity() === "order" ? "Save order" : "Save user" }}
+    </button>
+
+    @if (showAuditAction()) {
+    <button pageActions type="button">Open audit log</button>
+    }
+
+    <div pageBody class="detail-body">
+      <article>
+        <p class="eyebrow">Primary content</p>
+        <p>
+          {{
+            entity() === "order"
+              ? "Line items, shipping status, and payment information."
+              : "Profile fields, team membership, and account status."
+          }}
+        </p>
+      </article>
+      <article>
+        <p class="eyebrow">Reusable frame</p>
+        <p>
+          The layout owns spacing, title area, action area, and body region. The
+          feature page owns the content and behavior.
+        </p>
+      </article>
+    </div>
+  </app-page-layout-shell-demo>
+</section>

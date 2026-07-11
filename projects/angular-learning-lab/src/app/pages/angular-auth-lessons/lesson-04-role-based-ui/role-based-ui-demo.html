@@ -1,0 +1,48 @@
+<section class="track-panel" aria-labelledby="role-demo-title">
+  <div class="panel-heading">
+    <div>
+      <p class="eyebrow">Interactive demo</p>
+      <h2 id="role-demo-title">Permission-Gated UI</h2>
+    </div>
+    <p class="summary">{{ role() }}</p>
+  </div>
+
+  <div class="toolbar">
+    <button type="button" (click)="setRole('viewer')">Viewer</button>
+    <button type="button" (click)="setRole('manager')">Manager</button>
+    <button type="button" (click)="setRole('admin')">Admin</button>
+  </div>
+
+  <div class="demo-grid">
+    <article class="auth-card">
+      <p class="eyebrow">Order review page</p>
+      <h3>Order #1042</h3>
+      <p>{{ log() }}</p>
+      <div class="button-row">
+        <button type="button">View order</button>
+        @if (canApprove()) {
+        <button type="button">Approve order</button>
+        } @if (canDelete()) {
+        <button type="button">Delete order</button>
+        }
+      </div>
+    </article>
+
+    <article class="auth-card">
+      <p class="eyebrow">Permission helper</p>
+      <dl>
+        <div>
+          <dt>canApprove()</dt>
+          <dd>{{ canApprove() }}</dd>
+        </div>
+        <div>
+          <dt>canDelete()</dt>
+          <dd>{{ canDelete() }}</dd>
+        </div>
+      </dl>
+      <p>
+        Hiding buttons helps UX. The backend still enforces the real boundary.
+      </p>
+    </article>
+  </div>
+</section>
